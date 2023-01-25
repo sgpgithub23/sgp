@@ -1,0 +1,23 @@
+@use '../../styles/_index.scss' as *;
+
+.button {
+    padding: 10px 30px 10px 30px;
+    font-family: "IBM Plex Sans";
+    font-size: 16px;
+    box-sizing: border-box;
+    font-weight: 700;
+    border-radius: 4px;
+    border: none;
+    width: auto;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+}
+
+.buttonColorBlue {
+    background-color: $blue-100;
+}
+
+.buttonColorOrange {
+    background-color: $orange-100;
+}
