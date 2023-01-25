@@ -18,10 +18,12 @@ export default function Home() {
         id: 'item-1',
         renderItem: (
           <div className={styles.imgBannerPublicacoes}>
-              <div className={styles.boldHigher}>Publicações de qualidade e que fazem a
+              <div className={styles.boldHigher}>
+                <span>
+                Publicações de qualidade e que fazem a
                 <span className={styles.italicTiny}> diferença! </span>
+                </span>
                 <Button title='Saber Mais Agora!' color='blue' />
-
               </div>
           </div>
         )
@@ -30,7 +32,7 @@ export default function Home() {
         id: 'item-2',
         renderItem: (
           <div className={styles.imgCaraGravata}>
-            <div >
+            <div>
               <p className={styles.boldHigher}>Dream Team</p> 
               de <span className={styles.italicTiny}>Professores</span>, 
               <br /> Consultores e Técnicos 

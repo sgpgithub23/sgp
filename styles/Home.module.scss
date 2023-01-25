@@ -9,12 +9,55 @@
 .italicTiny {
   font-family: "IBM Plex Sans Italic 100";
   font-weight: 500;
-
 }
 
 .boldHigher {
   font-weight: 700;
+}
 
+.carouselSpace {
+  height: 400px;
+  max-height: 400px;
+  min-width: 100vw;
+  margin-top: -1rem;
+  position: relative;
+
+  & > button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 25px;
+    color: rgba(white, 0.4);
+    transition: .2s ease all;
+    
+
+    &:hover {
+      color: rgba(white, 1);
+    }
+
+  }
+
+  & > .slideToNextItem {
+    position: absolute;
+    bottom: 40%;
+    right: 2%;
+  }
+
+  & > .slideToPrevItem {
+    position: absolute;
+    bottom: 40%;
+    left: 2%;
+    z-index: 10;
+
+    
+  }
+}
+
+.imgCarousel {
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+  object-fit: cover;
 }
 
 .imgBannerPublicacoes {
@@ -176,69 +219,522 @@
     text-align: center;
     color: #fff;
 
-    & > span {
-
+    > button {
+      text-align: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 20px ;
     }
   }
 
-}
-
-
-.carouselSpace {
-  height: 400px;
-  max-height: 400px;
-  min-width: 100vw;
-  margin-top: -1rem;
-  position: relative;
-
-  & > button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    font-size: 25px;
-    color: rgba(white, 0.4);
-    transition: .2s ease all;
-
-    &:hover {
-      color: rgba(white, 1);
-    }
-
-  }
-
-  & > .slideToNextItem {
-    position: absolute;
-    bottom: 40%;
-    right: 2%;
-  }
-
-  & > .slideToPrevItem {
-    position: absolute;
-    bottom: 40%;
-    left: 2%;
-    z-index: 10;
-
-    
-  }
-}
-
-.imgCarousel {
-  width: 100%;
-  height: auto;
-  min-height: 300px;
-  object-fit: cover;
 }
 
 @media (max-width: 982px) {
   .imgCarousel{
-    // height: ;
-    // width: 100%;
     height: auto;
     min-width: 100%;
-    // -moz-transform: scaleX(-1);
-    // -o-transform: scaleX(-1);
-    // -webkit-transform: scaleX(-1);
-    // transform: scaleX(-1);
-    
   }
 }
 
+// BANNER PUBLICAÇÕES
+@media (max-width: 1130px) {
+  .imgBannerPublicacoes {
+    & > div {
+      left: 10%;
+      width: 40%;
+    }
+  }
+  
+}
+
+@media (max-width: 666px) {
+  .imgBannerPublicacoes {
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), 
+      url("/images/carousel/banner-publicacoes.webp");
+  // opacity: 0.6;
+
+    & > div { 
+      // background-color: #fff;
+      top: 50%;
+      transform: translateY(-20%);
+
+      left: 10%;
+      width: 80%;
+      text-align: center;
+
+      > button {
+        margin-top: 20px ;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+
+      }
+    }
+  }
+}
+
+@media (max-width: 409px) {
+  .imgBannerPublicacoes {
+    & > div {
+      left: 10%;
+      top: 35%;
+      // background-color: #fff;
+    }
+  }
+  
+}
+
+// HOMEM DE GRAVATA
+@media (max-width: 1069px) {
+  .imgCaraGravata {
+  
+    & > div {
+      top: 30%;
+    }
+  
+  }
+}
+
+@media (max-width: 857px) {
+  .imgCaraGravata {
+    & > div {
+      top: 30%;
+      left: 20%;
+      width: 60%;
+      // background-color: #fff;
+      text-align: center;
+      
+      & > button {
+        margin-top: 20px ;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}
+
+@media (max-width: 481px) {
+  .imgCaraGravata {
+    & > div {
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%);
+      left: 20%;
+      width: 60%;
+      text-align: center;
+      
+      & > button {
+        margin-top: 20px ;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+      }
+    }
+  }
+}
+
+// PESSOAS CONVERSANDO
+@media (max-width: 1162px) {
+  .imgDuasConversando {
+    & > span {
+      top: 40%;
+      width: 25%;
+
+      > button {
+        margin-top: 20px ;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 972px) {
+  .imgDuasConversando {
+    & > span {
+      top: 40%;
+      width:35%;
+
+      > button {
+        margin-top: 20px ;
+        position: absolute;
+        left: 40%;
+        transform: translateX(-50%);
+        width: 80%;
+
+      }
+    }
+  }
+}
+
+@media (max-width: 872px) {
+  .imgDuasConversando {
+    & > span {
+      top: 40%;
+      width: 45%;
+
+      & > button {
+        margin-top: 20px ;
+        position: absolute;
+        left: 40%;
+        transform: translateX(-50%);
+        width: 80%;
+
+      }
+    }
+  }
+}
+
+@media (max-width: 686px) {
+  .imgDuasConversando {
+    & > span {
+      top: 30%;
+      width: 70%;
+      text-align: center;
+
+      & > button {
+        margin-top: 20px ;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+
+      }
+    }
+  }
+}
+
+// HOMEM NO TELEFONE
+@media (max-width: 1320px) {
+  .imgHomemTelefone {
+    width: 100%;
+  
+    & > div{
+      position: absolute;
+      top: 40%;
+      left: 20%;
+      font-size: xx-large;
+      width: 35%;
+      color: #fff;
+    }
+  }
+}
+
+@media (max-width: 1059px) {
+  .imgHomemTelefone {
+    width: 100%;
+  
+    & > div{
+      top: 40%;
+      left: 20%;
+      width: 45%;
+    }
+  }
+}
+
+@media (max-width: 824px) {
+  .imgHomemTelefone {
+    width: 100%;
+  
+    & > div{
+      top: 25%;
+      left: 20%;
+      width: 70%;
+
+      > button {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+// RELÓGIO
+@media (max-width: 1341px) {
+  .imgMao {
+  
+    & > div {
+      top: 30%;
+      left: 20%;
+      width:30%;
+  
+      > p {
+        margin-top: 10px;
+      }
+    }
+  
+  
+  }
+}
+
+@media (max-width: 889px) {
+  .imgMao {
+  
+    & > div {
+      top: 30%;
+      left: 20%;
+      width: 45%;
+  
+      > p {
+        margin-top: 10px;
+      }
+    }
+  
+  
+  }
+}
+
+@media (max-width: 585px) {
+  .imgMao {
+  
+    & > div {
+      top: 25%;
+      left: 20%;
+      width: 70%;
+  
+      > p {
+        margin-top: 10px;
+      }
+    }
+  
+  
+  }
+}
+
+@media (max-width: 381px) {
+  .imgMao {
+  
+    & > div {
+      top: 25%;
+      left: 15%;
+      width: 78%;
+      text-align: center;
+      font-size: 22px;
+  
+      > p {
+        margin-top: 10px;
+      }
+    }  
+  }
+}
+
+// MARCIA
+
+// TRES PESSOAS
+@media (max-width: 1145px) {
+  .imgModelTresPessoas {
+    & > div {
+      top: 40%;
+      left: 20%;
+      width: 25%;
+  
+      > p {
+        margin-bottom: 20px;
+      }
+    }
+  
+  }
+}
+
+@media (max-width: 917px) {
+  .imgModelTresPessoas {
+    & > div {
+      top: 40%;
+      left: 20%;
+      width: 30%;
+  
+      > p {
+        margin-bottom: 20px;
+      }
+    }
+  
+  }
+}
+
+@media (max-width: 621px) {
+  .imgModelTresPessoas {
+    & > div {
+      top: 40%;
+      left: 20%;
+      width: 40%;
+  
+      > p {
+        margin-bottom: 20px;
+      }
+    }
+  
+  }
+}
+
+@media (max-width: 457px) {
+  .imgModelTresPessoas {
+    & > div {
+      top: 40%;
+      left: 20%;
+      width: 50%;
+  
+      > p {
+        margin-bottom: 20px;
+      }
+    }
+  
+  }
+}
+
+@media (max-width: 365px) {
+  .imgModelTresPessoas {
+    & > div {
+      top: 34%;
+      left: 20%;
+      width: 60%;
+    }
+  
+  }
+}
+
+// TELA PRINCIPAL MÃO NO TABLET
+@media (max-width: 997px) {
+  .imgModel {
+
+    & > div {
+      left: 20%;
+      width: 35%;
+  
+      > p {
+        margin-bottom: 10px;
+      }
+    }
+  
+  
+  }
+}
+
+@media (max-width: 997px) {
+  .imgModel {
+
+    & > div {
+      left: 20%;
+      width: 35%;
+    }
+  }
+}
+
+@media (max-width: 849px) {
+  .imgModel {
+
+    & > div {
+      left: 20%;
+      width: 43%;
+    }
+  }
+}
+
+@media (max-width: 697px) {
+  .imgModel {
+
+    & > div {
+      left: 20%;
+      width: 50%;
+    }
+  }
+}
+
+@media (max-width: 505px) {
+  .imgModel {
+
+    & > div {
+      top: 35%;
+      left: 20%;
+      width: 50%;
+    }
+  }
+}
+
+@media (max-width: 409px) {
+  .imgModel {
+
+    & > div {
+      top: 30%;
+      left: 20%;
+      width: 60%;
+    }
+  }
+}
+
+// PALESTRA PUBLICO
+@media (max-width: 1319px) {
+  .imgPublico {
+    & > div {
+      top: 40%;
+      left: 50%;
+      width: 35%;
+    }
+  
+  }
+}
+
+@media (max-width: 1071px) {
+  .imgPublico {
+    & > div {
+      top: 40%;
+      left: 50%;
+      width: 40%;
+    }
+  
+  }
+}
+
+@media (max-width: 899px) {
+  .imgPublico {
+    & > div {
+      top: 40%;
+      left: 50%;
+      width: 60%;
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .imgPublico {
+    & > div {
+      top: 40%;
+      left: 50%;
+      width: 70%;
+      // background-color: #fff;
+    }
+  }
+}
+
+@media (max-width: 519px) {
+  .imgPublico {
+    & > div {
+      top: 40%;
+      left: 50%;
+      width: 70%;
+      
+       > button {
+        width: 70%;
+       }
+    }
+  }
+}
+
+@media (max-width: 319px) {
+  .imgPublico {
+    & > div {
+      top: 40%;
+      left: 50%;
+      width: 70%;
+      
+       > button {
+        width: 100%;
+       }
+    }
+  }
+}
