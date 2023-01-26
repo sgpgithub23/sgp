@@ -2,8 +2,11 @@ import Head from 'next/head'
 import styles from '@/styles/Home.module.scss'
 import Navbar from '@/components/Navbar'
 import { useSpringCarousel } from 'react-spring-carousel'
-import { BsArrowLeftCircle, BsArrowRightCircle } from "react-icons/bs"
+import { BsArrowLeftCircle, BsArrowRightCircle, BsFillArrowDownCircleFill } from "react-icons/bs"
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+
 import Button from '@/components/Button'
+import Image from 'next/image'
 
 export default function Home() {
   const { 
@@ -11,7 +14,7 @@ export default function Home() {
     slideToPrevItem, 
     slideToNextItem, 
   } = useSpringCarousel({
-    itemsPerSlide: 1,
+    itemsPerSlide: 3,
     withLoop: true,
     items: [
       {
@@ -37,7 +40,6 @@ export default function Home() {
               de <span className={styles.italicTiny}>Professores</span>, 
               <br /> Consultores e Técnicos 
               <Button title='Saber Mais Agora!' color='blue' />
-
               </div>
           </div>
         )
@@ -137,6 +139,46 @@ export default function Home() {
     ]
   })
 
+  const carouselParceiros = useSpringCarousel({
+    itemsPerSlide: 2,
+    withLoop: true,
+    initialActiveItem: 1,
+    items: [
+      {
+        id: "1", 
+        renderItem: (
+          <div className={styles.carouselParceirosItem}>
+            <Image src={"/images/homepage/carousel/saae.png"} alt="araras" width={311} height={127}/>
+          </div>
+        )
+      },
+      {
+        id: "2", 
+        renderItem: (
+          <div className={styles.carouselParceirosItem}>          
+            <Image src={"/images/homepage/carousel/pg.png"} alt="araras" width={311} height={127}/>
+          </div>
+        )
+      },
+      {
+        id: "3", 
+        renderItem: (
+          <div className={styles.carouselParceirosItem}>          
+                    <Image src={"/images/homepage/carousel/araras.png"} alt="araras" width={311} height={127}/>
+          </div>
+        )
+      },
+      {
+        id: "4", 
+        renderItem: (
+          <div className={styles.carouselParceirosItem}>    
+            <Image src={"/images/homepage/carousel/sao-joaquim.png"} alt="araras" width={311} height={127}/>
+          </div>
+        )
+      }
+    ]
+  })
+
   return (
     <>
       <Head>
@@ -157,6 +199,55 @@ export default function Home() {
           </button>
         </div>
       </main>
+      <section className={styles.quemsomos}>
+        <div className={styles.descricao}>
+          <h1>Quem somos, um pouco da história da SGP. </h1>
+          <hr />
+          <p>
+            <b> Experientes profissionais do segmento de cursos e treinamentos de capacitação profissional </b>
+            uniram esforços em uma nova empreitada, com o intuito de continuar a atualizar, informar, capacitar e trazer inovações aos profissionais que atuam na 
+            <b> área do Direito Público.</b>
+          </p>
+          <p className={styles.descricaoPt2}>
+            <b>Assim nasceu a SGP - Soluções em Gestão Pública, </b> 
+            uma empresa que veio inovar no mercado de eventos técnicos e jurídicos, capacitação e aperfeiçoamento profissional, mas contando com uma 
+            <b> equipe jurídica altamente qualificada,</b> 
+            detentora de um know-how singular, obtido ao longo de mais de 20 anos de experiência no 
+            <b> segmento da boa Gestão Pública.</b>
+          </p>
+        </div>
+        <div className={styles.foto}>
+          <Image 
+            src={"/images/homepage/cidadesp.webp"} 
+            alt='Foto do centro de São Paulo' 
+            width={416}
+            height={700}
+          />
+        </div>
+        <div className={styles.icon}>
+          <BsFillArrowDownCircleFill size="25px" />
+        </div>
+      </section>
+      <section className={styles.clientesContribuintes}>
+        <h1 className={styles.titleDarkBlue}>Clientes que fazem parte deste sucesso</h1>
+        <div className={styles.spaceTitleCarousel}>
+          <div className={styles.explicacao}>
+            <p>Contar com clientes em potencial é o que nos motiva como empresa a cada ano.</p>
+            <p>Vivenciando dificuldades e participando de experiências profissionais de nossos clientes, nos trouxe uma bagagem onde sempre podemos direciona-los por um caminho mais tranquilo, estratégico e muito mais profissional.</p>
+            <p>Esta é a razão da SGP Soluções em ser sempre lembrada quando existir necessidade de se capacitar em cursos e treinamentos, adquirir um material com conteúdo didático ou orientações no segmento de Gestão Pública.</p>
+          </div>
+          <div className={styles.carouselAll}>
+            <div className={styles.carousel}>
+              {carouselParceiros.carouselFragment}
+            </div>
+            <div className={styles.controles}>
+              <MdOutlineKeyboardArrowLeft onClick={carouselParceiros.slideToPrevItem} className={styles.arrowLeft}/>
+              <MdOutlineKeyboardArrowRight onClick={carouselParceiros.slideToNextItem} className={styles.arrowRight}/>
+              <span>Clique nos botões para interagir</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   )
 }

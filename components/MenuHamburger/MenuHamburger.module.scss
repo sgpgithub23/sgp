@@ -30,7 +30,8 @@ $height: 1rem;
     right: 0;
     width: 50%;
     height: auto;
-    background-color: $gray-details;
+    background-color: $grey-details;
+    overflow-y: scroll;
 
     & > ul {
         display: flex;
@@ -52,7 +53,7 @@ $height: 1rem;
 
 
 .line {
-    background-color: $gray-details;
+    background-color: $grey-details;
     width: 20px;
     height: 3px;
     position: absolute;
@@ -125,6 +126,12 @@ $height: 1rem;
     }
 } 
 
+@media (min-width: 400px) {
+    .Contato, .Login {
+        display: none;
+    }
+} 
+
 @media screen and (max-width:768px) {
     .itemsMenuHamburger {
         & > ul  {
@@ -145,3 +152,4 @@ $height: 1rem;
         display: none;
     }
 } 
+

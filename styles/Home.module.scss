@@ -1,9 +1,18 @@
+
+@use '_index.scss' as *;
+
+.titleDarkBlue {
+  color: $dark-blue-100;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+
 .main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-height: 100vh;
 }
 
 .italicTiny {
@@ -48,8 +57,6 @@
     bottom: 40%;
     left: 2%;
     z-index: 10;
-
-    
   }
 }
 
@@ -64,7 +71,7 @@
   background-image: url("/images/carousel/banner-publicacoes.webp");
   background-position: center;
   background-size: cover;
-  width: 100%;
+  min-width: 100vw;
   position: relative;
 
   & > div {
@@ -125,9 +132,6 @@
     width: 28%;
     color: #fff;
 
-    & > span {
-
-    }
   }
 }
 
@@ -229,6 +233,196 @@
   }
 
 }
+
+.quemsomos {
+  background-color: $dark-blue-2;
+  padding: 60px 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  word-break: keep-all;
+  position: relative;
+
+  & > .descricao, .foto {
+    width: 50%;
+  }
+
+  & > .descricao > h1 {
+    width: 90%;
+    color: $dark-blue-100;
+    font-weight: 700;
+    font-size: 30px;
+  }
+
+  hr {
+    height: 3px;
+    width: 50px;
+    background-color: $blue-100;
+    border: none;
+    margin-block: 20px;
+    // margin-top: 10px;
+  }
+
+  p {
+    font-size: 15px;
+    color: $grey-400;
+    margin-right: 30px;
+  }
+
+  .descricaoPt2 {
+    margin-top: 25px;
+  }
+
+  .foto {
+    & > img {
+      min-width: 100%;
+      height: auto;
+    }
+  }
+
+  .icon {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: $dark-blue-100;
+    cursor: pointer;
+    transition: .2s linear all;
+
+    &:hover {
+      color: $dark-blue-black;
+    }
+  }
+}
+
+.clientesContribuintes {
+  padding: 60px 100px;
+  display: flex;
+  flex-direction: column;
+  word-break: keep-all;
+  padding: 60px 0 60px 243px;
+
+  & > h1 {
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 15px;
+    color: $grey-400;
+    margin-right: 30px;
+  }
+
+  & > .spaceTitleCarousel {
+    display: flex;
+
+
+    & > .explicacao {
+      width: 35%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .carouselAll {
+      width: 65%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+
+      .carousel {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      & > .controles {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+        user-select: none;
+        
+        & > .arrowLeft, .arrowRight {
+          width: 30px;
+          height: 30px;
+          padding: 3px 3px;
+          font-size: 20px;
+          background-color: $dark-blue-2;
+          color: $dark-blue-100;
+          cursor: pointer;
+        }
+
+        & > span {
+          color: $grey-300;
+          font-size: 14px;
+          user-select: none;
+        }
+      }
+    }
+  }
+}
+
+
+.carouselParceirosItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ----------------- CAROUSEL ----------------- //
 
 @media (max-width: 982px) {
   .imgCarousel{
@@ -717,7 +911,6 @@
       top: 40%;
       left: 50%;
       width: 70%;
-      
        > button {
         width: 70%;
        }
@@ -738,3 +931,202 @@
     }
   }
 }
+
+// QUEM SOMOS
+
+@media (max-width: 1904px) {
+  .quemsomos {
+    padding: 60px 517px;
+  }
+}
+
+@media (max-width: 1700px) {
+  .quemsomos {
+    padding: 60px 417px;
+  }
+}
+
+@media (max-width: 1413px) {
+  .quemsomos {
+    background-color: $dark-blue-2;
+    // background-color: red;
+    padding: 60px 243px;
+  }
+}
+
+@media (max-width: 1173px) {
+  .quemsomos {
+    background-color: $dark-blue-2;
+    padding: 60px 130px;
+
+    .foto {
+      & > img {
+        min-width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+@media (max-width: 1005px) {
+  .quemsomos {
+    background-color: $dark-blue-2;
+    padding: 60px 90px;
+
+    .foto {
+      & > img {
+        min-width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+@media (max-width: 971px) {
+  .quemsomos {
+    flex-direction: column;
+    justify-content: center;
+    word-break: keep-all;
+  
+    & > .descricao, .foto {
+      width: 100%;
+    }
+  
+    & > .descricao > h1 {
+      width: 100%;
+    }  
+  
+    .foto {
+      margin-top: 40px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      & > img {
+        min-width: 300px;
+        height: 500px;
+      }
+    }
+  
+  }
+}
+
+@media (max-width: 581px) {
+  .quemsomos {
+    padding: 60px 60px;
+    // text-align: center;
+  
+    .foto {
+
+      & > img {
+        min-width: 200px;
+        height: auto;
+      }
+    }
+  
+  }
+}
+
+@media (max-width: 315px) {
+  .quemsomos {
+    padding: 60px 30px;
+    // text-align: center;
+  
+    .foto {
+
+      & > img {
+        min-width: 200px;
+        height: auto;
+      }
+    }
+  }
+}
+
+// COLABORADORES
+
+@media (max-width: 1037px){
+  .clientesContribuintes {
+    padding: 60px 100px;
+    display: flex;
+    flex-direction: column;
+    word-break: keep-all;
+    padding: 60px 0 60px 130px;
+  }
+}
+
+@media (max-width: 970px){
+  .clientesContribuintes {
+    padding: 60px 0 60px 90px;
+
+  
+    & > .spaceTitleCarousel {
+      flex-direction: column;
+      gap: 60px;
+  
+      & > .explicacao {
+        width: 100%;
+      }
+  
+      .carouselAll {
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+  
+        & > .controles {
+          justify-content: center;
+          
+          & > span {
+            color: $grey-300;
+            font-size: 14px;
+            user-select: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 530px){
+  .clientesContribuintes {
+    padding: 60px 0 60px 55px;
+  
+    & > h1 {
+      width: 80%;
+    }
+
+    & > .spaceTitleCarousel {
+      flex-direction: column;
+      gap: 60px;
+  
+      & > .explicacao {
+        width: 100%;
+      }
+  
+      .carouselAll {
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+  
+        & > .controles {
+          justify-content: center;
+          
+          & > span {
+            color: $grey-300;
+            font-size: 14px;
+            user-select: none;
+          }
+        }
+      }
+    }
+  }
+
+  .carouselParceirosItem {
+     & > img {
+      width: 150px;
+      height: 60px;
+     }
+  }
+  
+}
+

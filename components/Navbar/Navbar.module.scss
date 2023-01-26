@@ -51,7 +51,7 @@
 
 
 .btnOrcamento {
-    border: 1px solid $gray-details;
+    border: 1px solid $grey-details;
     padding: .5rem .875rem;
     font-family: 'Manrope';
     text-transform: uppercase;
@@ -62,7 +62,7 @@
 
     &:hover {
         cursor: pointer;
-        background-color: $gray-details;
+        background-color: $grey-details;
         color: white;
         -webkit-transition: background-color .2s ease-out;
         -moz-transition: background-color .2s ease-out;
@@ -72,7 +72,7 @@
 
     &.active  {
         color: white;
-        background-color: $gray-details;
+        background-color: $grey-details;
     }
 }
 
@@ -93,7 +93,7 @@
 }
 
 .activeUrl {
-    background-color: rgba($gray-details, 0.4);
+    background-color: rgba($grey-details, 0.4);
     color: green;
 }
 
@@ -152,6 +152,12 @@
 
 @media (max-width: 790px) {
     .Outros, .CursosTreinamentos {
+        display: none;
+    }
+} 
+
+@media (max-width: 400px) {
+    .Contato, .Login {
         display: none;
     }
 } 
