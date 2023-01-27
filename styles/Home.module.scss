@@ -365,13 +365,64 @@
   }
 }
 
-
 .carouselParceirosItem {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.comentarios {
+  display: flex;
+  justify-content: center;
+  padding-block: 60px;
+
+  & > .comentariosContent {
+    width: 63%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    & > .comentarioSergio {
+      width: 75%;
+      color: $grey-300;
+    }
+  }
+}
+
+.sergio {
+  display: flex;
+  margin-block: 30px ;
+  width: 70%;
+  justify-content: center;
+  color: $dark-blue-100;
+
+  & > .nomefoto {
+    width: 50%;
+    display: flex;
+    margin-right: 20px;
+
+    & > p {
+      width: 100%;
+      text-align: start;
+      align-self: center;
+      padding-inline: 8px;
+      font-size: 15px;
+    }
+  }
+
+  & > .review {
+    width: 50%;
+    border-left: 2px solid $grey-100;
+    text-align-last: left;
+    padding-left: 32px;
+
+    & > p {
+      color: $grey-300;
+    }
+  }
+}
 
 
 
@@ -1130,3 +1181,117 @@
   
 }
 
+@media (max-width: 621px) {
+  .comentarios {
+    display: flex;
+    justify-content: center;
+    padding-block: 60px;
+
+    & > .comentariosContent {
+      width: 63%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      & > .comentarioSergio {
+        width: 75%;
+        color: $grey-300;
+      }
+    }
+  }
+
+  .sergio {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+
+    & > .nomefoto {
+      width: 100%;
+      display: flex;
+      margin-right: 0;
+
+      & > p {
+        width: 100%;
+        text-align: start;
+        align-self: center;
+        padding-inline: 8px;
+        font-size: 15px;
+      }
+    }
+
+    & > .review {
+      width: 100%;
+      border: none;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding-left: 0;
+
+      & > p {
+        color: $grey-300;
+      }
+    }
+  }
+}
+
+@media (max-width: 470px) {
+  .comentarios {
+    display: flex;
+    justify-content: center;
+
+    & > .comentariosContent {
+      width: 85%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      & > .comentarioSergio {
+        width: 90%;
+        color: $grey-300;
+      }
+    }
+  }
+
+  .sergio {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+
+    & > .nomefoto {
+      width: 100%;
+      display: flex;
+      margin-right: 0;
+
+      & > p {
+        width: 100%;
+        text-align: start;
+        align-self: center;
+        padding-inline: 8px;
+        font-size: 15px;
+      }
+    }
+
+    & > .review {
+      width: 100%;
+      border: none;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding-left: 0;
+
+      & > p {
+        color: $grey-300;
+      }
+    }
+  }
+}

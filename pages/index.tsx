@@ -248,6 +248,42 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section className={styles.comentarios}>
+        <div className={styles.comentariosContent}>
+          <h1 className={styles.titleDarkBlue}>
+            Clientes e Parceiros comentam sobre a SGP...
+            </h1>
+          <div className={styles.sergio}>
+            <div className={styles.nomefoto}>
+              <Image 
+                src={"/images/homepage/sergio.png"} 
+                alt="Sergio Ferraz - Integrante do Conselho Editorial da SGP " 
+                width={52}
+                height={52}
+              />
+            <p>
+              <b>Sergio Ferraz - </b>
+              Integrante do nosso Conselho Editorial
+            </p>
+            </div>
+            <div className={styles.review}>
+              <Image 
+                  src={"/images/homepage/rant-stars.svg"} 
+                  alt="Sergio Ferraz - Integrante do Conselho Editorial da SGP " 
+                  width={109}
+                  height={15.71}
+              />
+              <div className={styles.linhaVertical}></div>
+              <p>Avaliação - SGP</p>
+            </div>
+          </div>
+          <p className={styles.comentarioSergio}>
+          O periódico SLC – Solução em Licitações e Contratos é uma referência imprescindível, tanto para doutrinadores como para exercentes da advocacia. Trata-se do mais atualizado e abrangente repositório de tudo quanto se produz, em qualquer das vertentes do Direito, no campo da constatação administrativa.
+
+          </p>
+        </div>
+
+      </section>
     </>
   )
 }
