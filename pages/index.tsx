@@ -278,7 +278,7 @@ export default function Home() {
             </div>
           </div>
           <p className={styles.comentarioSergio}>
-          O periódico SLC – Solução em Licitações e Contratos é uma referência imprescindível, tanto para doutrinadores como para exercentes da advocacia. Trata-se do mais atualizado e abrangente repositório de tudo quanto se produz, em qualquer das vertentes do Direito, no campo da constatação administrativa.
+            O periódico SLC - Solução em Licitações e Contratos é uma referência imprescindível, tanto para doutrinadores como para exercentes da advocacia. Trata-se do mais atualizado e abrangente repositório de tudo quanto se produz, em qualquer das vertentes do Direito, no campo da constatação administrativa.
 
           </p>
         </div>
