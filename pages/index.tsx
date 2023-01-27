@@ -252,7 +252,7 @@ export default function Home() {
         <div className={styles.comentariosContent}>
           <h1 className={styles.titleDarkBlue}>
             Clientes e Parceiros comentam sobre a SGP...
-            </h1>
+          </h1>
           <div className={styles.sergio}>
             <div className={styles.nomefoto}>
               <Image 
@@ -283,6 +283,30 @@ export default function Home() {
           </p>
         </div>
 
+      </section>
+      <section>
+        <div className={styles.periodicos}>
+          <div className={styles.introducao}>
+            <h1 className={styles.titleDarkBlue}>
+              Conheça nossos periódicos exclusivos
+            </h1> 
+            <p>A SGP - Soluções em Gestão Pública atua no mercado editorial, oferecendo publicações especializadas mensais de qualidade e extremamente práticas, na área do Direito Público.</p>
+          </div>
+          <div className={styles.fotosPeriodicos}>
+            <Image 
+              src={"/images/homepage/periodicos/azul.png"} 
+              alt='Foto do centro de São Paulo' 
+              width={200.44}
+              height={300.32}
+            />
+            <Image 
+              src={"/images/homepage/periodicos/laranja.png"} 
+              alt='Foto do centro de São Paulo' 
+              width={200.44}
+              height={300.32}
+            />
+          </div>
+        </div>
       </section>
     </>
   )
