@@ -1,0 +1,10 @@
+@mixin centralizaHorizontalmente {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin centralizaVerticalmente {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

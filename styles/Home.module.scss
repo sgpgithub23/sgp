@@ -474,13 +474,15 @@
     & > .item {
       padding: 10px;
 
-
       & > .titleIcon {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 10px;
         margin-bottom: 1px;
+        
+      color: $dark-blue-100;
+      font-weight: 100;
         
         & > img {
           background-color: $dark-blue-2;
@@ -496,7 +498,9 @@
       }
 
       & > p {
+        margin-block: 10px;
         font-size: 14px;
+        color: $grey-500;
       }
 
     }
@@ -566,6 +570,67 @@
     
   }
 }
+
+.assinantes {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  & > .assinantesAll{
+    max-width: 60.5%;
+    overflow: hidden;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    align-items: center;
+    gap: 5%;
+
+    & > .leftSide {
+      @include centralizaVerticalmente;
+      gap: 10px;
+
+      & > h1 {
+        width: 80%;
+        color: $dark-blue-100;
+      }
+
+      & > p {
+        width: 80%;
+        color: $grey-400;
+        font-size: 14px
+      }
+    }
+
+    & > .centerSide {
+      @include centralizaVerticalmente;
+      gap: 20px;
+      align-items: center;
+
+      & > img {
+        height: 30px;
+        width: 30px;
+      }
+
+      & > p {
+        text-align: center;
+        width: 80%;
+      }
+    }
+
+    & > .rightSide {
+      @include centralizaVerticalmente;
+      gap: 20px;
+      align-items: center;
+
+      & > p {
+        text-align: center;
+        width: 80%;
+      }
+    }
+  } 
+}
+
 
 
 
@@ -1184,9 +1249,9 @@
       left: 50%;
       width: 70%;
       
-       > button {
+      > button {
         width: 100%;
-       }
+      }
     }
   }
 }
@@ -1208,7 +1273,6 @@
 @media (max-width: 1413px) {
   .quemsomos {
     background-color: $dark-blue-2;
-    // background-color: red;
     padding: 60px 243px;
   }
 }
@@ -1650,8 +1714,8 @@
   .degustacaoAll {
   
     & > .degustacao {
-  width: 100vw;
-  border-radius: 0;
+    width: 100vw;
+    border-radius: 0;
       & > .leftSide {
         width: 100%;
         display: flex;

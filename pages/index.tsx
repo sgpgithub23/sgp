@@ -373,6 +373,40 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section className={styles.assinantes}>
+        <div className={styles.assinantesAll}>
+          <div className={styles.leftSide}>
+            <h1>Os assinantes do SLC e do SAM</h1>
+            <p>Poderão contar com a Orientação SGP, que atua na área do Direito Administrativo e Municipal, sendo composta por advogados altamente especializados e capacitados.</p>
+            <p>Também podemos disponibilizar aos assinantes a nossa Assessoria Jurídica In Loco, com visitações no órgão ou entidade, a fim de realizar assessoramento pessoal e diferenciado na área de licitações e contratos.</p>
+          </div>
+          <div className={styles.centerSide}>
+            <Image 
+              width={40} 
+              height={40} 
+              src={"/icons/book-open.svg"} 
+              alt='Ícone indicando que um item na lista está preenchido'
+            />
+            <p>
+              <b>Desejo solicitar </b> 
+              uma assinatura anual do  
+              <b> SLC OU SAM</b>
+            </p>
+            <Button color='blue' title='Assinatura anual' />
+          </div>
+          <div className={styles.rightSide}>
+            <Image 
+                width={10} 
+                height={10} 
+                src={"/icons/book-open.svg"} 
+                alt='Ícone indicando que um item na lista está preenchido'
+              />
+            <p>Necessito de orientações jurídicas e/ou assessoria local</p>
+            <Button color='darkBlue' title='Orientação Jurídica' />
+          </div>
+        </div>
+      </section>
     </>
   )
 }
