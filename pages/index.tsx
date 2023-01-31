@@ -223,6 +223,7 @@ export default function Home() {
             alt='Foto do centro de São Paulo' 
             width={416}
             height={700}
+            style={{width: "auto"}}
           />
         </div>
         <div className={styles.icon}>
@@ -273,6 +274,8 @@ export default function Home() {
                   alt="Sergio Ferraz - Integrante do Conselho Editorial da SGP " 
                   width={109}
                   height={15.71}
+                  style={{width: "auto"}}
+
               />
               <div className={styles.linhaVertical}></div>
               <p>Avaliação - SGP</p>
@@ -312,9 +315,8 @@ export default function Home() {
         </div>
 
         <div className={styles.topicosPeriodicos}>
-
           {Periodicos.map(({title, descricao}) => (
-            <div className={styles.item}>
+            <div key={title} className={styles.item}>
               <div className={styles.titleIcon}>
                 <Image width={10} height={10} src={"/icons/ticked.svg"} alt='Ícone indicando que um item na lista está preenchido'/>
                 <h1>{title}</h1>
@@ -322,6 +324,53 @@ export default function Home() {
               <p>{descricao}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className={styles.degustacaoAll}>
+        <div className={styles.degustacao}>
+          <div className={styles.leftSide}>
+            <h1>Desfrute de uma degustação gratuita de nossos periódicos.</h1>
+            <div className={styles.livroExplicacao}>
+              <Image 
+                width={10} 
+                height={10} 
+                src={"/icons/book-open.svg"} 
+                alt='Ícone indicando que um item na lista está preenchido'
+              />
+              <p>
+                Nossos periódicos em formato reduzido para você degustar.
+              </p>
+            </div>
+              <Button title='Degustar agora!' color='blue' />
+          </div>
+          <div className={styles.rightSide}>
+            <Image 
+              width={150} 
+              height={150} 
+              src={"/images/homepage/degustacao/degustacao-1.png"} 
+              alt='Ícone indicando que um item na lista está preenchido'
+            />
+            <Image 
+              width={150} 
+              height={150} 
+              src={"/images/homepage/degustacao/degustacao-2.png"} 
+              alt='Ícone indicando que um item na lista está preenchido'
+            />
+            <Image 
+              width={150} 
+              height={150} 
+              src={"/images/homepage/degustacao/degustacao-3.png"} 
+              alt='Ícone indicando que um item na lista está preenchido'
+            />
+            <Image 
+              width={150} 
+              height={150} 
+              src={"/images/homepage/degustacao/degustacao-4.png"} 
+              alt='Ícone indicando que um item na lista está preenchido'
+            />
+              
+          </div>
         </div>
       </section>
     </>

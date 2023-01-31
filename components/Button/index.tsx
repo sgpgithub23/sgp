@@ -1,8 +1,8 @@
 import classNames from "classnames";
-import React from "react";
+import React, { ButtonHTMLAttributes } from "react";
 import styles from "./Button.module.scss";
 
-type PropsButton = {
+type PropsButton = ButtonHTMLAttributes<HTMLButtonElement> & {
     title: string
     color: "blue" | "orange"
 }
