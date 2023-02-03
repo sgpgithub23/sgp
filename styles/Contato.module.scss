@@ -1,0 +1,207 @@
+@use '_index.scss' as *;
+
+.content {
+    background-image: url('../public/images/contato/header-contato.webp');
+    background-position: center;
+    min-width: 100vw;
+    height: 356.8px;
+    margin-left: -10px;
+    background-size: cover;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; 
+
+    .pageSize {
+        width: 80%;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+        background-color: white;
+
+        .mainContentForm {
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+            
+            & > .introduction {
+                
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+        
+                & > h2 {
+                    font-size: 2rem;
+                    color: $dark-blue-100;
+                }
+        
+                & > span {
+                    color: $grey-400;
+                    margin-bottom: 2rem;
+                    margin-top: 7px;
+                    width: 90%;
+                }
+
+                & > ul {
+                    list-style: none;
+
+                    & > li{ 
+                        color: $grey-400;
+
+                        &:first-child {
+                            color: $dark-blue-100;
+                            font-weight: 600;
+                            margin-bottom: 20px;
+                        }
+
+                        & > svg {
+                            color: $blue-100;
+                        }
+                    }
+                }
+
+                & > div {
+                    display: flex;
+                    gap: 10px;
+                    margin-bottom: 30px;
+                    margin-top: 10px;
+
+                    & > a {
+                        & > svg {
+                            font-size: 20px;
+                            color: $dark-blue-100;
+                        }
+                    }
+                }
+
+                
+        
+                & > img {
+                    object-fit: cover;
+                    // width: 85%;
+                    width: 250px;
+                    height: 280px;
+                    border-radius: 5px;
+                }
+            }
+        
+            & > .formContato {
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                gap: 2.33rem;
+        
+        
+                & > div {
+                    display: flex;
+                    gap: 3rem;
+                }
+        
+                & > .informacoes {
+                    font-size: 0.7rem;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.8rem;
+        
+                    p > b {
+                        cursor: pointer;
+                    }
+                }
+        
+                button {
+                    padding: 0.4rem;
+                    width: 100%;
+                    background-color: #000000;
+                    color: $grey-300;
+        
+        
+                    &:disabled {
+                        cursor: not-allowed;
+                        background-color: rgba($color: #000000, $alpha: 0.5);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+@media (min-width: 1012px) {
+    .mobile {
+        display: none;
+    }
+
+    .desktop {
+        display: block;
+    }
+}
+
+@media (max-width: 1012px) {
+    .mainContentForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        & > .introduction {
+
+            width: 80%;
+
+            
+            img {
+                display: none;
+            }
+        }
+        & > .formContato {
+            width: 80%;
+        }
+
+    }
+
+    .mobile {
+        display: none;
+    }
+
+    .desktop {
+        display: block;
+    }
+   
+}
+
+@media (max-width: 593px) {
+    .mainContentForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        & > .introduction {
+
+            width: 80%;
+            img {
+                display: none;
+            }
+        }
+        
+        & > .formContato {
+            width: 80%;
+            
+            > div {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+
+    .mobile {
+        display: block;
+    }
+
+    .desktop {
+        display: none;
+    }
+}

@@ -200,7 +200,7 @@ export default function Home() {
     }
 
     if(rede === "Twitter") {
-      return <BsLinkedin />
+      return <BsTwitter />
     }
 
     if(rede === "Instagram") {
@@ -363,12 +363,7 @@ export default function Home() {
           <div className={styles.leftSide}>
             <h1>Desfrute de uma degustação gratuita de nossos periódicos.</h1>
             <div className={styles.livroExplicacao}>
-              <Image 
-                width={10} 
-                height={10} 
-                src={"/icons/book-open.svg"} 
-                alt='Ícone indicando que um item na lista está preenchido'
-              />
+              <BookOpen strokeColor="#ffffff"  />
               <p>
                 Nossos periódicos em formato reduzido para você degustar.
               </p>
