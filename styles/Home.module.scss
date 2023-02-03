@@ -6,7 +6,6 @@
   font-size: 30px;
 }
 
-
 .main {
   display: flex;
   flex-direction: column;
@@ -480,9 +479,8 @@
         justify-content: center;
         gap: 10px;
         margin-bottom: 1px;
-        
-      color: $dark-blue-100;
-      font-weight: 100;
+        color: $dark-blue-100;
+        font-weight: 100;
         
         & > img {
           background-color: $dark-blue-2;
@@ -578,62 +576,223 @@
   align-items: center;
   
   & > .assinantesAll{
-    max-width: 60.5%;
+    width: 60.5%;
     overflow: hidden;
     height: auto;
-    display: grid;
-    grid-template-columns: repeat(3, 30%);
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 5%;
+    gap: 50px;
+    justify-content: center;
+
 
     & > .leftSide {
       @include centralizaVerticalmente;
       gap: 10px;
+      width: 100%;
+      display: block;
 
       & > h1 {
         width: 80%;
         color: $dark-blue-100;
+        margin-bottom: 20px;
+
       }
 
       & > p {
-        width: 80%;
+        width: 100%;
         color: $grey-400;
         font-size: 14px
       }
     }
 
-    & > .centerSide {
-      @include centralizaVerticalmente;
-      gap: 20px;
-      align-items: center;
+    & > .solicitacoes {
+      @include centralizaHorizontalmente;
+      gap: 10%;
 
-
-      & > img {
-        color: red;
-        height: 30px;
-        width: 30px;
+      & > .centerSide {
+        @include centralizaVerticalmente;
+        gap: 20px;
+        align-items: center;
+        padding-block: 25px;
+        padding-inline: 25px;
+        background-color: $dark-blue-100;
+        border-radius: 10px;
+        width: 35%;
+  
+        & > p {
+          text-align: center;
+          width: 80%;
+          color: white;
+        }
+  
+        & > svg {
+          border: 1px solid $blue-100; 
+          padding: 5px;
+          width: 30px;
+          height: 30px;
+          border-radius: 5px
+        }
       }
 
-      & > p {
-        text-align: center;
-        width: 80%;
+      & > .rightSide {
+        @include centralizaVerticalmente;
+        gap: 20px;
+        align-items: center;
+        padding-block: 25px;
+        padding-inline: 25px; 
+        border-radius: 10px;
+        width: 35%;
+        border: 1px solid $blue-100;
+  
+        & > p {
+          text-align: center;
+          width: 80%;
+          color: $dark-blue-100;
+        }
+
+        & > svg {
+          border: 1px solid $blue-100; 
+          padding: 5px;
+          width: 30px;
+          height: 30px;
+          border-radius: 5px
+        }
       }
     }
 
-    & > .rightSide {
-      @include centralizaVerticalmente;
-      gap: 20px;
-      align-items: center;
+   
 
-      & > p {
-        text-align: center;
-        width: 80%;
-      }
-    }
+   
   } 
 }
 
+.obrasExclusivas {
+  width: 100%;
+  margin-block: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
+  & > .obrasExclusivasAll {
+    width: 60.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+
+    & > svg {
+      color: $dark-blue-100;
+      font-size: 35px;
+    }
+    
+    & > hr {
+      width: 10%;
+      height: 3px;
+      background-color: $blue-100;
+      border: 1px solid $blue-100;
+      margin-top: 40px;
+    }
+
+    & > h1 {
+      margin-block: 20px;
+      color: $dark-blue-100;
+    }
+
+    & > div {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      gap: 30px;
+
+      & > .obra {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        & > img {
+          max-width: 200px;
+          height: auto;
+        }
+
+        & > h4 {
+          color: $dark-blue-100;
+          font-weight: 400;
+        }
+
+        & > p {
+          color: $grey-500;
+          font-size: 15px;
+        }
+      }
+
+    }
+  }
+}
+
+.redesSociais {
+  width: 100%;
+  margin-block: 150px;
+  @include centralizaVerticalmente;
+  align-items: center;
+
+  & > .redesSociaisAll {
+    width: 60.5%;
+    @include centralizaHorizontalmente;
+    align-items: center; 
+    height: 100%;
+
+    & > .linksSeguir {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 45px;
+
+      & > .introducao {
+        width: 95%;
+        display: flex;
+        flex-direction: row;
+  
+        & > h2 {
+          width: 100%;
+          color: $dark-blue-100;
+        }
+
+        span {
+          // width: 0%;
+          margin-top: 5px;
+          color: $grey-400;
+        }
+      }
+
+      & > .mappedSociais {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        
+        & > a {
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: $dark-blue-100;
+          border: 1px solid $grey-300;
+
+
+          & > svg {
+            font-size: 30px;
+          }
+        }
+      
+      }
+
+    }
+
+  }
+
+ 
+}
 
 
 
@@ -1756,5 +1915,70 @@
   
       
     }
+  }
+}
+
+// ASSINANTES
+
+@media (max-width: 875px) {
+  .assinantes {
+    
+    & > .assinantesAll{  
+  
+      & > .leftSide {
+        @include centralizaVerticalmente;
+        gap: 10px;
+        width: 100%;
+        display: block;
+      }
+  
+      & > .solicitacoes {
+        @include centralizaHorizontalmente;
+        flex-direction: column;
+        gap: 30px;
+  
+        & > .centerSide {
+          width: 100%;
+        }
+  
+        & > .rightSide {
+          width: 100%;
+        }
+      }
+  
+     
+  
+     
+    } 
+  }
+}
+
+@media (max-width: 899px) {
+  .obrasExclusivas {
+  
+    & > .obrasExclusivasAll {
+      width: 60.5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; 
+  
+      & > div {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        gap: 60px;
+  
+        & > .obra {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+  
+      }
+    }
+  
   }
 }

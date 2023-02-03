@@ -2,12 +2,17 @@ import Head from 'next/head'
 import styles from '@/styles/Home.module.scss'
 import Navbar from '@/components/Navbar'
 import { useSpringCarousel } from 'react-spring-carousel'
-import { BsArrowLeftCircle, BsArrowRightCircle, BsFillArrowDownCircleFill } from "react-icons/bs"
+import { BsArrowLeftCircle, BsArrowRightCircle, BsFillArrowDownCircleFill, BsInfoCircleFill } from "react-icons/bs"
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 import Button from '@/components/Button'
 import Image from 'next/image'
 import { Periodicos } from '@/utils/detalhes-periodicos'
+import BookOpen from '@/public/icons/book-open'
+import { ObrasExclusivas } from '@/utils/obras'
+import { RedesSociaisSGP } from '@/utils/redes-socias'
+import Link from 'next/link'
+import { BsFacebook, BsYoutube, BsLinkedin, BsTwitter, BsInstagram } from "react-icons/bs";
 
 export default function Home() {
   const { 
@@ -179,6 +184,28 @@ export default function Home() {
       }
     ]
   })
+
+  function getIconByName(rede: string){
+    if(rede === "Facebook") {
+      return <BsFacebook />
+    }
+
+    if(rede === "Youtube") {
+      return <BsYoutube />
+    }
+
+    if(rede === "LinkedIn") {
+      return <BsLinkedin />
+    }
+
+    if(rede === "Twitter") {
+      return <BsLinkedin />
+    }
+
+    if(rede === "Instagram") {
+      return <BsInstagram />
+    }
+  }
 
   return (
     <>
@@ -381,32 +408,75 @@ export default function Home() {
             <p>Poderão contar com a Orientação SGP, que atua na área do Direito Administrativo e Municipal, sendo composta por advogados altamente especializados e capacitados.</p>
             <p>Também podemos disponibilizar aos assinantes a nossa Assessoria Jurídica In Loco, com visitações no órgão ou entidade, a fim de realizar assessoramento pessoal e diferenciado na área de licitações e contratos.</p>
           </div>
-          <div className={styles.centerSide}>
-            <Image 
-              width={40} 
-              height={40} 
-              src={"/icons/book-open.svg"} 
-              alt='Ícone indicando que um item na lista está preenchido'
-            />
-            <p>
-              <b>Desejo solicitar </b> 
-              uma assinatura anual do  
-              <b> SLC OU SAM</b>
-            </p>
-            <Button color='blue' title='Assinatura anual' />
-          </div>
-          <div className={styles.rightSide}>
-            <Image 
-                width={10} 
-                height={10} 
-                src={"/icons/book-open.svg"} 
-                alt='Ícone indicando que um item na lista está preenchido'
+          <div className={styles.solicitacoes}>
+            <div className={styles.centerSide}>
+              <BookOpen
+                strokeColor="#ffffff"
               />
-            <p>Necessito de orientações jurídicas e/ou assessoria local</p>
-            <Button color='darkBlue' title='Orientação Jurídica' />
+              <p>
+                <b>Desejo solicitar </b> 
+                uma assinatura anual do  
+                <b> SLC OU SAM</b>
+              </p>
+              <Button color='blue' title='Assinatura anual' />
+            </div>
+            <div className={styles.rightSide}>
+              <BookOpen
+                strokeColor="#032752"
+              />
+              <p>Necessito de orientações jurídicas e/ou assessoria local</p>
+              <Button color='darkBlue' title='Orientação Jurídica' />
+            </div>
           </div>
         </div>
       </section>
+
+      <section className={styles.obrasExclusivas}>
+        <div className={styles.obrasExclusivasAll}>
+          <BsInfoCircleFill />
+          <hr />
+          <h1>Confira nossos livros e obras exclusivas</h1>
+          <div>
+            {ObrasExclusivas.map(({desc, img, title, alt}) => (
+              <div key={alt} className={styles.obra}>
+                <img src={img} alt={alt} />
+                <h4>{title}</h4>
+                <p>{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.redesSociais}>
+        <div className={styles.redesSociaisAll}>
+          <div className={styles.linksSeguir}>
+            <div className={styles.introducao}>
+              <h2>Siga-nos nas Redes Sociais</h2>
+              <span>Acompanhe a divulgação de nossos cursos e treinamentos e fique por dentro das principais notícias relacionadas ao direito administrativo.</span>
+            </div>
+            <div className={styles.mappedSociais}>
+              {RedesSociaisSGP.map(({link, name}) => (
+                <Link href={link} key={link} className={styles.rede} >
+                  {getIconByName(name)}
+                  <div>
+                    <p>Nosso perfil: </p>
+                    <p>{name}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div>
+            <Image src={"/images/homepage/homem-computador.webp"} 
+              alt="Homem sentado sorrindo mexendo no computador" 
+              width={287} 
+              height={284}
+            />
+          </div>
+        </div>
+      </section>
+      
     </>
   )
 }
