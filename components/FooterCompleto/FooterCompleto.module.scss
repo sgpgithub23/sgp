@@ -13,9 +13,8 @@
         text-align: left ;
         padding-top: 2rem;
         width: 80%;
-        color: $grey-300;
+        color: $grey-200;
         font-size: 0.8rem;
-        font-weight: 100;
         padding-bottom: 3rem;
     }
 
@@ -75,13 +74,64 @@
 
 
                 }
+            }
 
+            & > .colunasDown {
+
+                & > h2 {
+                    color: white;
+                    margin-block: 20px;
+
+                }
+
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
             }
         }
     }
 }
 
+@media (max-width: 1245px) {
+    .footer {
+        & > .informacoes {
 
+            & > .linksSite {
+                grid-template-columns: repeat(5, auto);
+                gap: 30px;
+            }
+        }
+    }   
+}
+
+@media (max-width: 1095px) {
+    .footer {
+        & > .informacoes {
+
+            & > .linksSite {
+                grid-template-columns: repeat(4, auto);
+                gap: 30px;
+
+                & > .colunas, .colunasDown {
+                    
+                }
+            }
+        }
+    }   
+}
+
+
+@media (max-width: 850px) {
+    .footer {
+        & > .informacoes {
+
+            & > .linksSite {
+                grid-template-columns: repeat(3, auto);
+                gap: 30px;
+            }
+        }
+    }   
+}
 
 @media (max-width: 700px) { 
     .footer {
@@ -95,6 +145,87 @@
 
     .main {
         padding-bottom: 2rem;
+
+        & > .contato {
+           flex-direction: column;
+            
+           & > div {
+            display: flex;
+            gap: 10px;
+
+            & > a {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+    
+                & > svg { 
+                    color:  $grey-200;
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+           }
+           
+        }
     }
 }
 
+@media (max-width: 471px) { 
+    .footer {
+        & > .informacoes {
+
+            & > .linksSite {
+                grid-template-columns: repeat(1, auto);
+                gap: 30px;
+            }
+        }
+        
+        & > p {
+            text-align: center;
+        }
+    }  
+}
+
+@media (max-width: 451px) { 
+    .footer {
+        font-size: 12px;
+
+
+        .main {
+            width: 80%; 
+            display: flex;
+            flex-direction: column;
+    
+            align-items: start;
+            gap: 20px;
+    
+            & > .contato {
+                display: flex;
+                justify-content: space-around;
+                align-items: start;
+                gap: 1rem;
+                color:  $grey-200;
+    
+        
+                & > a {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+        
+                    & > svg { 
+                        color:  $grey-200;
+                        width: 25px;
+                        height: 25px;
+                    }
+                }
+            }
+        }
+    }
+
+    .informacoes, .main {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+   
+}

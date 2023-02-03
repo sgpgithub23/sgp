@@ -55,12 +55,14 @@ export function FooterCompleto() {
         />
         <div className={styles.contato}>
           <span>Siga-nos nas redes sociais</span>
+          <div>
+            {RedesSociaisSGP.map(({ link, name }) => (
+              <Link href={link} key={link} className={styles.rede}>
+                {getIconByName(name)}
+              </Link>
+            ))}
+          </div>
 
-          {RedesSociaisSGP.map(({ link, name }) => (
-            <Link href={link} key={link} className={styles.rede}>
-              {getIconByName(name)}
-            </Link>
-          ))}
         </div>
       </div>
       <div className={styles.informacoes}>
@@ -77,11 +79,11 @@ export function FooterCompleto() {
             <Link href={"/"}>Soluções Inovadoras</Link>
             <Link href={"/"}>Canal SGP</Link>
             <Link href={"/"}>Área do Cliente</Link>
-            <Link href={"/"}>Nossos Professores</Link>
+            <Link href={"/"}>Documentações</Link>
             <Link href={"/"}>Galeria de Fotos</Link>
           </div>
           <div className={styles.colunas}>
-            <Link href={"/"}>Documentações</Link>
+            
             <Link href={"/"}>Trabalhe conosco</Link>
             <Link href={"/"}>Notícias</Link>
             <Link href={"/"}>Contato</Link>
@@ -102,8 +104,24 @@ export function FooterCompleto() {
           </div>
           <div>Mapa</div>
         </div>
+        <div className={styles.linksSite}>
+          <div className={styles.colunasDown}>
+            <h2>Central de atendimento</h2>
+            <p>(11) 3237 4232</p>
+            <p>(11) 9 7443 5898 (WhatsApp)</p>
+            <p>atendimento@sgpsolucoes.com.br</p>
+            <p>(das 08h30 às 17h30)</p>
+          </div>
+          <div className={styles.colunasDown}>
+          <h2>Políticas</h2>
+            <p>Política de Cookies</p>
+            <p>Política de Privacidade</p>
+            <p>Termo de Consentimento da Privacidade</p>
+          </div>
+
+        </div>
       </div>
-      {/* <p>{ano} &copy; SGP - Soluções em Gestão Públicas | Todos os direitos reservados </p> */}
+      <p>{ano} &copy; SGP - Soluções em Gestão Públicas | Todos os direitos reservados </p>
     </footer>
   );
 }
