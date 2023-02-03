@@ -1,0 +1,100 @@
+@use '../../styles/_index.scss' as *;
+
+.footer {
+    min-width: 100%;
+    background-color: $dark-blue-100;
+    color: #FFFFFF;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > p {
+        text-align: left ;
+        padding-top: 2rem;
+        width: 80%;
+        color: $grey-300;
+        font-size: 0.8rem;
+        font-weight: 100;
+        padding-bottom: 3rem;
+    }
+
+    .main {
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: rgba($grey-300, 0.3);
+        border-bottom: 1px solid $grey-400;
+        padding-block: 20px;
+
+        & > .contato {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 1rem;
+            color:  $grey-200;
+
+    
+            & > a {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+    
+                & > svg { 
+                    color:  $grey-200;
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+        }
+    }
+    
+    & > .informacoes {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        padding-top: 2rem;
+        border-bottom: 1px solid $grey-400;
+        box-sizing: border-box;
+
+        & > .linksSite {
+            display: grid;
+            grid-template-columns: repeat(6, auto);
+            margin-block: 20px;
+            color: $grey-300; 
+
+            & > .colunas {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+
+                & > a {
+                    text-decoration: none;
+                    color: $grey-300; 
+
+
+                }
+
+            }
+        }
+    }
+}
+
+
+
+@media (max-width: 700px) { 
+    .footer {
+        font-size: 12px;
+    }
+
+    .informacoes, .main {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .main {
+        padding-bottom: 2rem;
+    }
+}
+

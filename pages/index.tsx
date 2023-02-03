@@ -13,6 +13,7 @@ import { ObrasExclusivas } from '@/utils/obras'
 import { RedesSociaisSGP } from '@/utils/redes-socias'
 import Link from 'next/link'
 import { BsFacebook, BsYoutube, BsLinkedin, BsTwitter, BsInstagram } from "react-icons/bs";
+import { FooterCompleto } from '@/components/FooterCompleto'
 
 export default function Home() {
   const { 
@@ -227,6 +228,7 @@ export default function Home() {
           </button>
         </div>
       </main>
+
       <section className={styles.quemsomos}>
         <div className={styles.descricao}>
           <h1>Quem somos, um pouco da história da SGP. </h1>
@@ -257,6 +259,7 @@ export default function Home() {
           <BsFillArrowDownCircleFill size="25px" />
         </div>
       </section>
+
       <section className={styles.clientesContribuintes}>
         <h1 className={styles.titleDarkBlue}>Clientes que fazem parte deste sucesso</h1>
         <div className={styles.spaceTitleCarousel}>
@@ -277,6 +280,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <section className={styles.comentarios}>
         <div className={styles.comentariosContent}>
           <h1 className={styles.titleDarkBlue}>
@@ -396,7 +400,6 @@ export default function Home() {
               src={"/images/homepage/degustacao/degustacao-4.png"} 
               alt='Ícone indicando que um item na lista está preenchido'
             />
-              
           </div>
         </div>
       </section>
@@ -461,13 +464,13 @@ export default function Home() {
                   {getIconByName(name)}
                   <div>
                     <p>Nosso perfil: </p>
-                    <p>{name}</p>
+                    <p className={styles.nome}>{name}</p>
                   </div>
                 </Link>
               ))}
             </div>
           </div>
-          <div>
+          <div className={styles.img}>
             <Image src={"/images/homepage/homem-computador.webp"} 
               alt="Homem sentado sorrindo mexendo no computador" 
               width={287} 
@@ -476,7 +479,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
+      <FooterCompleto />
     </>
   )
 }
