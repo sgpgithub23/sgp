@@ -11,7 +11,7 @@ type InputProps = React.DetailedHTMLProps<
 
 type TextProps = InputProps & {
   label: string
-  as?: "textarea"
+  as?: "textarea" | "file"
   register?: UseFormRegisterReturn<string>
   error?: string
   mask?: string 
@@ -20,9 +20,8 @@ type TextProps = InputProps & {
 export default function Input({ name, register, label, mask,  ...props }: TextProps) {
   return (
     <div className={styles.main}>
-      <label htmlFor={name}>
+      <label htmlFor={name} >
         {label}
-        {name !== "mensagem" && "*"}
       </label>
       {props.as === "textarea" ? (
         <>
@@ -30,7 +29,14 @@ export default function Input({ name, register, label, mask,  ...props }: TextPr
           {props.error ? 
             <ErrorMessage error={props.error} /> : <></>}
         </>
-      ) : mask ? (
+      ) : props.as === "file" ?
+        <div className={styles.fileType}>
+          <input type="file" name={name} id="file" accept=""/>
+          <label htmlFor={name}>
+            Clique aqui para escolher o arquivo
+          </label>
+        </div>
+      : mask ? (
         <>
         {/* @ts-ignore */}
           <InputMask type={props.type} {...register} mask={mask} {...props}/>

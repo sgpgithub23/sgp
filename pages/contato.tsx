@@ -189,19 +189,33 @@ export default function orcamento() {
                 error={errors.mensagem?.message}
               />
             </div>
+            <div>
+              <Input
+                name="arquivo"
+                as="file"
+                label="Anexe seu arquivo"
+                register={register("arquivo")}
+                // @ts-ignore
+                error={errors.arquivo?.message}
+              />
+              <Input
+                name="dataEnvio"
+                type="date"
+                label="Data do envio"
+                register={register("dataEnvio")}
+                error={errors.dataEnvio?.message}
+              />
+            </div>
             <div className={styles.informacoes}>
               <p>Campos obrigatórios*</p>
               <p>
                 Ao enviar sua mensagem, você autoriza receber comunicações do
-                Grupo Cicareli, podendo cancelar a qualquer momento. Consulte
+                SGP - Soluções em Gestão Pública, podendo cancelar a qualquer momento. Consulte
                 nossa <b onClick={() => push("/politica-privacidade")}>Política de Privacidade</b>.
               </p>
             </div>
-            {/* <button onClick={sendMessageWppDesktop} className={styles.desktop} disabled={!isValid || isSubmitting}>
-              Enviar dados
-            </button>
-            <button onClick={sendMessageWppMobile} className={styles.mobile} disabled={!isValid || isSubmitting}>
-              Enviar dados
+            {/* <button className={styles.desktop} disabled={!isValid || isSubmitting}>
+                Enviar dados
             </button> */}
           </form>
         </div>

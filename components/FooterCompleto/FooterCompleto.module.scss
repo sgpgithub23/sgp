@@ -34,18 +34,22 @@
             gap: 1rem;
             color:  $grey-200;
 
-    
-            & > a {
+            & > div {
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
-    
-                & > svg { 
-                    color:  $grey-200;
-                    width: 25px;
-                    height: 25px;
+                gap: 10px;
+
+                & > a {
+                    text-decoration: none;
+                    & > svg { 
+                        color:  $grey-200;
+                        width: 25px;
+                        height: 25px;
+                    }
                 }
-            }
+    }
+           
         }
     }
     
