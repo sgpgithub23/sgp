@@ -110,20 +110,11 @@
                     }
                 }
 
-
-        
-                button {
-                    padding: 0.4rem;
-                    width: 100%;
-                    background-color: #000000;
-                    color: $grey-300;
-        
-        
-                    &:disabled {
-                        cursor: not-allowed;
-                        background-color: rgba($color: #000000, $alpha: 0.5);
-                    }
+                & > .buttonPosition {
+                    display: flex;
+                    justify-content: flex-end;
                 }
+                
             }
         }
     }
@@ -143,26 +134,38 @@
 }
 
 @media (max-width: 1012px) {
-    .mainContentForm {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    .main {
 
-        & > .introduction {
+        & > .pageSize {
 
-            width: 80%;
+            & > .mainContentForm {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+        
+        
+                & > .introduction {
+        
+                    width: 100%;
+                    
+                    img {
+                        display: none;
+                    }
 
-            
-            img {
-                display: none;
+                    & > div {
+                        margin-block: 20px;
+                    }
+                }
+                & > .formContato {
+                    width: 100%;
+                }
+        
             }
         }
-        & > .formContato {
-            width: 80%;
-        }
-
     }
+
 
     .mobile {
         display: none;

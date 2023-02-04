@@ -14,19 +14,21 @@ import { AiOutlineMail } from "react-icons/ai";
 import { RedesSociaisSGP } from "@/utils/redes-socias";
 import Link from "next/link";
 import Image from "next/image";
+import Button from "@/components/Button";
 
 const schema = yup.object().shape({
   nome: yup.string().required("Campo obrigatório"),
-  sobrenome: yup.string().required("Campo obrigatório"),
   email: yup.string().required("Campo obrigatório"),
-  telefone: yup.string().required("Campo obrigatório"),
-  tipoevento: yup.string().required("Campo obrigatório"),
-  dataevento: yup.string().required("Campo obrigatório"),
-  numconvidados: yup.string().required("Campo obrigatório"),
-  localevento: yup.string().required("Campo obrigatório"),
-  mensagem: yup.string(),
+  mensagem: yup.string().required("Campo obrigatório"),
+  arquivo: yup.mixed().nullable().required('A file is required'),
+  assunto: yup.string().required("Campo obrigatório"),
+  celular: yup.string().required("Campo obrigatório"),
+  conheceusgp: yup.string().required("Campo obrigatório"),
+  dataEnvio: yup.string().required("Campo obrigatório"),
+  empresa: yup.string().required("Campo obrigatório"),
+  facebook: yup.string().required("Campo obrigatório"),
+  telComl: yup.string().required("Campo obrigatório"),
 });
-
 
 export default function orcamento() {
   const { push } = useRouter()
@@ -36,6 +38,7 @@ export default function orcamento() {
     formState: { errors, isValid, isSubmitting },
     getValues,
     reset,
+
   } = useForm<FormContato>({
     defaultValues: {
       nome: "",
@@ -125,6 +128,7 @@ export default function orcamento() {
                 type="text"
                 label="Empresa"
                 register={register("empresa")}
+                placeholder="Razão social completo"
                 error={errors.empresa?.message}
               />
               <Input
@@ -132,6 +136,8 @@ export default function orcamento() {
                 label="Assunto"
                 register={register("assunto")}
                 error={errors.assunto?.message}
+                placeholder="Escolha um assunto"
+
               />
             </div>
             <div>
@@ -141,12 +147,14 @@ export default function orcamento() {
                 label="E-mail"
                 register={register("email")}
                 error={errors.email?.message}
+                placeholder="email@dominio.com.br"
               />
               <Input
                 name="nome"
                 label="Nome"
                 register={register("nome")}
                 error={errors.nome?.message}
+                placeholder="Nome completo"
               />
             </div>
             <div>
@@ -156,12 +164,14 @@ export default function orcamento() {
                 label="Tel.Coml"
                 register={register("telComl")}
                 error={errors.telComl?.message}
+                placeholder="(99) 99999-9999"
               />
               <Input
                 name="celular"
                 label="Celular"
                 register={register("celular")}
                 error={errors.celular?.message}
+                placeholder="(99) 99999-9999"
               />
             </div>
             <div>
@@ -170,6 +180,7 @@ export default function orcamento() {
                 label="Como conheceu a SGP?"
                 register={register("conheceusgp")}
                 error={errors.conheceusgp?.message}
+                placeholder="Marque uma opção de sua escolha"
               />
               <Input
                 name="facebook"
@@ -177,6 +188,7 @@ export default function orcamento() {
                 label="Facebook"
                 register={register("facebook")}
                 error={errors.facebook?.message}
+                placeholder="facebook.com/nomedeusuario"
               />
             </div>
             <div>
@@ -187,6 +199,7 @@ export default function orcamento() {
                 as="textarea"
                 register={register("mensagem")}
                 error={errors.mensagem?.message}
+                placeholder="Descreva sua mensagem de forma detalhada aqui, e logo será respondido."
               />
             </div>
             <div>
@@ -195,7 +208,6 @@ export default function orcamento() {
                 as="file"
                 label="Anexe seu arquivo"
                 register={register("arquivo")}
-                // @ts-ignore
                 error={errors.arquivo?.message}
               />
               <Input
@@ -214,9 +226,10 @@ export default function orcamento() {
                 nossa <b onClick={() => push("/politica-privacidade")}>Política de Privacidade</b>.
               </p>
             </div>
-            {/* <button className={styles.desktop} disabled={!isValid || isSubmitting}>
-                Enviar dados
-            </button> */}
+            <div className={styles.buttonPosition}>
+              <Button color="grey" title="Limpar" onClick={() => reset()} />
+              <Button color="darkBlue" title="Enviar informações" />
+            </div>
           </form>
         </div>
       </div>

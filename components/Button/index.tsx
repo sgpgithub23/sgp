@@ -4,7 +4,7 @@ import styles from "./Button.module.scss";
 
 type PropsButton = ButtonHTMLAttributes<HTMLButtonElement> & {
     title: string
-    color: "blue" | "orange" | "darkBlue"
+    color: "blue" | "orange" | "darkBlue" | "grey"
 }
 
 export default function Button({color, title}: PropsButton) {
@@ -18,6 +18,7 @@ export default function Button({color, title}: PropsButton) {
             [styles.buttonColorOrange]: color === "orange",
             [styles.buttonColorBlue]:  color === "blue",
             [styles.buttonColorDarkBlue]:  color === "darkBlue",
+            [styles.buttonColorGrey]:  color === "grey",
         }
     )}>{title}</button>
   );
