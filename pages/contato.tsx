@@ -184,7 +184,7 @@ export default function orcamento() {
                 register={register("conheceusgp")}
                 error={errors.conheceusgp?.message}
                 onChange={() => console.log(getValues())}
-                placeholder="Marque uma opção de sua escolha"
+                placeholder="Escreva aqui"
               />
               <Input
                 name="facebook"
