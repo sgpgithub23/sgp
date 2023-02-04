@@ -30,6 +30,20 @@ const schema = yup.object().shape({
   telComl: yup.string().required("Campo obrigatório"),
 });
 
+const initialValues = {
+  nome: "",
+  email: "",
+  mensagem: "",
+  arquivo: "", 
+  assunto: "", 
+  celular: "", 
+  conheceusgp: "", 
+  dataEnvio: undefined,
+  empresa: "", 
+  facebook: "", 
+  telComl: ""
+}
+
 export default function orcamento() {
   const { push } = useRouter()
 
@@ -40,22 +54,11 @@ export default function orcamento() {
     reset,
 
   } = useForm<FormContato>({
-    defaultValues: {
-      nome: "",
-      email: "",
-      mensagem: "",
-      arquivo: "", 
-      assunto: "", 
-      celular: "", 
-      conheceusgp: "", 
-      dataEnvio: undefined,
-      empresa: "", 
-      facebook: "", 
-      telComl: ""
-    },
+    defaultValues: initialValues,
     mode: "all",
     resolver: yupResolver(schema),
   });
+
 
 
   function getIconByName(rede: string){
@@ -180,6 +183,7 @@ export default function orcamento() {
                 label="Como conheceu a SGP?"
                 register={register("conheceusgp")}
                 error={errors.conheceusgp?.message}
+                onChange={() => console.log(getValues())}
                 placeholder="Marque uma opção de sua escolha"
               />
               <Input
@@ -227,8 +231,8 @@ export default function orcamento() {
               </p>
             </div>
             <div className={styles.buttonPosition}>
-              <Button color="grey" title="Limpar" onClick={() => reset()} />
-              <Button color="darkBlue" title="Enviar informações" />
+              <Button color="grey" title="Limpar" onClick={() => reset(initialValues)}  />
+              <Button color="darkBlue" title="Enviar informações" disabled={isSubmitting || !isValid} />
             </div>
           </form>
         </div>

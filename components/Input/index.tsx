@@ -34,7 +34,7 @@ export default function Input({ name, register, label, mask,  ...props }: TextPr
         </>
       ) : props.as === "file" ?
         <div className={styles.fileType}>
-          <input type="file" name={name} id="file" accept="text/plain, application/pdf, application/msword" onChange={(e) => {
+          <input type="file" {...props} name={name} id="file" accept="text/plain, application/pdf, application/msword" onChange={(e) => {
             console.log('e', e)
             setInputFileName(e.target.value.split("\\")[2])
           } }/>
@@ -53,7 +53,7 @@ export default function Input({ name, register, label, mask,  ...props }: TextPr
         </>
       ) : (
         <>
-          <input type={props.type} {...register} {...props} />
+          <input type={props.type}  {...register} {...props} />
           {props.error ? 
             <ErrorMessage error={props.error} /> : <></>}
         </>

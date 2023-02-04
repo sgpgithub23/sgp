@@ -7,19 +7,19 @@ type PropsButton = ButtonHTMLAttributes<HTMLButtonElement> & {
     color: "blue" | "orange" | "darkBlue" | "grey"
 }
 
-export default function Button({color, title}: PropsButton) {
+export default function Button(props: PropsButton) {
 
   
 
   return (
-    <button className={classNames(
+    <button {...props} className={classNames(
         styles.button, 
         {
-            [styles.buttonColorOrange]: color === "orange",
-            [styles.buttonColorBlue]:  color === "blue",
-            [styles.buttonColorDarkBlue]:  color === "darkBlue",
-            [styles.buttonColorGrey]:  color === "grey",
+            [styles.buttonColorOrange]: props.color === "orange",
+            [styles.buttonColorBlue]:  props.color === "blue",
+            [styles.buttonColorDarkBlue]:  props.color === "darkBlue",
+            [styles.buttonColorGrey]:  props.color === "grey",
         }
-    )}>{title}</button>
+    )}>{props.title}</button>
   );
 }
