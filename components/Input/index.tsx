@@ -3,6 +3,7 @@ import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import { ErrorMessage } from "../ErrorMessage";
 import styles from "./Input.module.scss";
 import InputMask from 'react-input-mask';
+import classNames from "classnames";
 
 type InputProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -15,6 +16,7 @@ type TextProps = InputProps & {
   register?: UseFormRegisterReturn<string>
   error?: string | any
   mask?: string 
+  withIcon?: boolean
 }
 
 export default function Input({ name, register, label, mask,  ...props }: TextProps) {
@@ -53,7 +55,10 @@ export default function Input({ name, register, label, mask,  ...props }: TextPr
         </>
       ) : (
         <>
-          <input type={props.type}  {...register} {...props} />
+          <input type={props.type} className={ classNames({
+              [styles.withIcon]: props.withIcon
+            })}  
+          {...register} {...props} />
           {props.error ? 
             <ErrorMessage error={props.error} /> : <></>}
         </>
