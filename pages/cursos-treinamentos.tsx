@@ -54,15 +54,13 @@ export default function orcamento() {
               </span>
             </div>
             <div className={styles.right}>
-              <div className={styles.inputLupa}>
-                <Input
-                  withIcon
-                  placeholder="Pesquisar curso..."
-                  label=""
-                  type="text"
-                  icon={<HiMagnifyingGlass />}
-                />
-              </div>
+              <Input
+                withIcon
+                placeholder="Pesquisar curso..."
+                label=""
+                type="text"
+                icon={<HiMagnifyingGlass />}
+              />
             </div>
           </div>
           <div className={styles.cursosNovos}>
@@ -127,16 +125,14 @@ export default function orcamento() {
             </span>
           </div>
           <div className={styles.right}>
-            <div className={styles.inputLupa}>
-              <HiMagnifyingGlass />
               <Input
                 withIcon
                 placeholder="Pesquisar treinamento..."
                 label=""
                 type="text"
+                icon={<HiMagnifyingGlass />}
               />
             </div>
-          </div>
         </div>
         <div className={styles.cursosNovos}>
           {Treinamentos.map(({ objetivo, publicoalvo, title, cursoNovo }) => (

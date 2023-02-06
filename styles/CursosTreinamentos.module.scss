@@ -239,16 +239,6 @@
             & > .right {
                 position: relative;
                 width: 30%;
-
-                & > .inputLupa {
-
-                    & > svg {
-                        position: absolute;
-                        top: 17%;
-                        margin-left: 10px;
-
-                    }
-                }
             }
         }
 
@@ -446,38 +436,40 @@
 
 
 // cursos
-@media (max-width: 1077px){
+@media (max-width: 835px){
     .main {
-
         & > .pageSize {
     
             & > .mainContentForm {
 
                 & > .introduction {
-                    display: flex;
-                    justify-content: space-between;
-                    // flex-direction: column;
-                    gap: 20px;
-            
+                    flex-direction: column;
+
                     .left {
-                        width: 60%;
-                        & > h2 {
-                            font-size: 2rem;
-                            color: $dark-blue-100;
-                        }
-                
-                        & > span {
-                            color: $grey-400;
-                            margin-bottom: 2rem;
-                            margin-top: 7px;
-    
-                        }
+                        width: 100%;
                     }
     
                     & > .right {
                         position: relative;
-                        width: 30%;
+                        width: 100%;
+                        display: flex;
+                        justify-content: flex-end;   
+                    }
+                }
+
+                & > .cursosNovos {
+                    grid-template-columns: repeat(2, 47%);
     
+                    & > .curso {
+    
+                        & > .isCursoNovo {
+                            width: 70%;
+                        }
+    
+                        & > .isCursoAntigo {
+                            width: 70%;
+                        }
+
                     }
                 }
 
@@ -514,7 +506,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                gap: 20px;
+
                 & > ul {
                     list-style-type: none;
         
@@ -526,112 +518,236 @@
         }
     
         .mainContentFormTreinamento {
-            margin-block: 30px;
-            width: 80%;
-            height: auto;
-            display: flex;
-            justify-content: space-between;
-            flex-direction: column;
-            
-            & > p {
-                text-align: center;
-                color: $dark-blue-100;
-                margin-block: 20px;
-            }
+
             
             & > .introduction {
-                display: flex;
-                justify-content: space-between;
+                flex-direction: column;
         
                 .left {
-                    width: 60%;
-                    & > h2 {
-                        font-size: 2rem;
-                        color: $dark-blue-100;
-                    }
-            
-                    & > span {
-                        color: $grey-400;
-                        margin-bottom: 2rem;
-                        margin-top: 7px;
-    
-                    }
+                    width: 100%;
                 }
     
                 & > .right {
-                    position: relative;
-                    width: 30%;
-    
-                    & > .inputLupa {
-    
-                        & > svg {
-                            position: absolute;
-                            top: 17%;
-                            margin-left: 10px;
-    
-                        }
-                    }
+                    margin-top: 10px;
+                    width: 100%;
                 }
             }
     
             & > .cursosNovos {
-                margin-block: 20px;
-                display: grid;
-                grid-template-columns: repeat(3, auto);
-                gap: 30px;
+                grid-template-columns: repeat(2, 47%);
+
     
                 & > .curso {
-                    background-color: $dark-blue-fulldark;
-                    color: white;
-                    border-radius: 10px;
-                    padding: 25px;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 30px;
-                    height: 230px;
     
                     & > .isCursoNovo {
-                        background-color: $blue-100;
-                        width: 40%;
-                        padding: 10px;
-                        text-align: center;
-                        border-radius: 5px;
-                        background-color: #fff;
+                 
+                        width: 70%;
     
-                        &::before {
-                            content: "Curso Novo";
-                        }
+
                     }
     
                     & > .isCursoAntigo {
-                        background-color: $orange-100;
-                        width: 50%;
-                        padding: 10px;
-                        text-align: center;
-                        border-radius: 5px;
+                        width: 70%;
     
-                        &::before {
-                            content: "Curso Antigo";
-                        }
                     }
-    
-                    & > div {
-                        position: relative;
-    
-                        & > h4 {
-                            font-size: 15px;
-                            margin-block: 15px;
-                            overflow: hidden;
-                            height: calc(230px - 170px);
-                        }
-    
-                        & > p {
-                            cursor: pointer;
-                        }
-                    }
+
                 }
             }
         } 
 
+    } 
+}
+
+@media (max-width: 585px){
+    .main {
+        & > .pageSize {
+    
+            & > .mainContentForm {
+
+                & > .introduction {
+                    flex-direction: column;
+
+                    .left {
+                        width: 100%;
+                    }
+    
+                    & > .right {
+                        position: relative;
+                        width: 100%;
+                        display: flex;
+                        justify-content: flex-end;   
+                    }
+                }
+
+                & > .cursosNovos {
+                    grid-template-columns: repeat(1, 100%);
+    
+                    & > .curso {
+    
+                        & > .isCursoNovo {
+                            width: 70%;
+                        }
+    
+                        & > .isCursoAntigo {
+                            width: 70%;
+                        }
+
+                    }
+                }
+
+            }
+        }
+    
+        & > .empresaIndicada {
+            background-image: url('../public/images/cursos-treinamentos/mesa.webp');
+            background-position: center;
+            min-width: 100vw;
+            height: 500px;
+            max-height: auto;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            gap: 20px;
+            text-align: center;
+    
+            & > hr {
+                width: 5%;
+                height: 3px;
+                background-color: $blue-100;
+                border: 1px solid $blue-100;
+                justify-content: flex-start;
+            }
+    
+            & > h2 {
+                width: 80%;
+            }
+    
+            & > div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+                & > ul {
+                    list-style-type: none;
+        
+                    li {
+                        width: auto;
+                    }
+                }
+            }
+        }
+    
+        .mainContentFormTreinamento {
+
+            
+            & > .introduction {
+                flex-direction: column;
+        
+                .left {
+                    width: 100%;
+                }
+    
+                & > .right {
+                    margin-top: 10px;
+                    width: 100%;
+                }
+            }
+    
+            & > .cursosNovos {
+                grid-template-columns: repeat(1, 100%);
+
+    
+                & > .curso {
+    
+                    & > .isCursoNovo {
+                 
+                        width: 70%;
+    
+
+                    }
+    
+                    & > .isCursoAntigo {
+                        width: 70%;
+    
+                    }
+
+                }
+            }
+        } 
+
+    } 
+}
+
+@media (max-width: 400px){
+    .main {
+        & > .pageSize {
+    
+            & > .mainContentForm {
+
+                & > .introduction {
+                    flex-direction: column;
+
+                    .left {
+                        width: 100%;
+                    }
+    
+                    & > .right {
+                        position: relative;
+                        width: 100%;
+                        display: flex;
+                        justify-content: flex-end;   
+                    }
+                }
+
+                & > .cursosNovos {
+                    grid-template-columns: repeat(1, 100%);
+                    & > .curso {
+                        & > .isCursoNovo {
+                            width: 70%;
+                        }
+                        & > .isCursoAntigo {
+                            width: 70%;
+                        }
+                    }
+                }
+            }
+        }
+    
+        & > .empresaIndicada {
+            background-image: url('../public/images/cursos-treinamentos/mesa.webp');
+            background-position: center;
+            min-width: 100vw;
+            height: 500px;
+            max-height: auto;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            gap: 20px;
+            text-align: center;
+    
+            & > hr {
+                display: none;
+            }
+    
+            & > h2 {
+                width: 80%;
+            }
+    
+        }
+
+        
+        & > .empresaIndicadaBottom {
+
+            & > h2 {
+                width: 70%;
+            }
+        }
     } 
 }
