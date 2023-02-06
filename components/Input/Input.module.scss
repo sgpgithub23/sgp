@@ -4,7 +4,29 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+
+    .inputIcon {
+        & > input {
+            height: 35px;
+            padding: 10px 10px;
+            width: 100%;
+            border: none;
+            color:$dark-blue-100;
+            border: 1px $grey-200 solid;
+            background-color: $dark-blue-2;
+            border-radius: 5px;
     
+            &:focus {
+                border: 1px $dark-blue-100 solid;
+                outline: none;
+            }
+    
+            &::placeholder {
+                font-size: 12px;
+            }
+        }
+    }
+
     & > label {
         color: $dark-blue-100;
         display: block;
@@ -79,5 +101,20 @@
 
     & > .withIcon {
         padding-left: 12%;
+    }
+
+    & > .inputIcon {
+        position: relative;
+
+        & > input {
+            padding-left: 10%;
+        }
+
+        & > svg {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 2%; 
+        }
     }
 }

@@ -55,12 +55,12 @@ export default function orcamento() {
             </div>
             <div className={styles.right}>
               <div className={styles.inputLupa}>
-                <HiMagnifyingGlass />
                 <Input
                   withIcon
                   placeholder="Pesquisar curso..."
                   label=""
                   type="text"
+                  icon={<HiMagnifyingGlass />}
                 />
               </div>
             </div>
