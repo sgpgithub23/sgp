@@ -50,32 +50,6 @@
 }
 
 
-.btnOrcamento {
-    border: 1px solid $grey-details;
-    padding: .5rem .875rem;
-    font-family: 'Manrope';
-    text-transform: uppercase;
-    color: white;
-    font-size: .875rem;
-    font-weight: 100;
-    letter-spacing: .0625rem;
-
-    &:hover {
-        cursor: pointer;
-        background-color: $grey-details;
-        color: white;
-        -webkit-transition: background-color .2s ease-out;
-        -moz-transition: background-color .2s ease-out;
-        -o-transition: background-color .2s ease-out;
-        transition: background-color .2s ease-out;
-    }
-
-    &.active  {
-        color: white;
-        background-color: $grey-details;
-    }
-}
-
 .logoNavbar {
     width: 11rem;
     cursor: pointer;
@@ -95,6 +69,10 @@
 .activeUrl {
     background-color: rgba($grey-details, 0.4);
     color: green;
+}
+
+.PeriodicosMensais, .Outros, .SolucoesInovadoras, .Login {
+    display: none;
 }
 
 
