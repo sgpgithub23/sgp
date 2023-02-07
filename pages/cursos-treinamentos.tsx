@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, Fragment, useState } from "react";
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/CursosTreinamentos.module.scss";
 import { FooterCompleto } from "@/components/FooterCompleto";
@@ -8,17 +8,19 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { CursosTreinamentosType } from "@/typings/CursosTreinamentos";
-import { BsPersonCircle } from "react-icons/bs";
+import { BsArrowLeftCircle, BsPersonCircle } from "react-icons/bs";
 import { Cursos, Treinamentos } from "@/utils/cursos-treinamentos";
 import classNames from "classnames";
+import { Dialog, Transition } from "@headlessui/react";
 
 export default function orcamento() {
   const { push } = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<CursosTreinamentosType>();
 
-  function modalState() {
+  function modalState(content: CursosTreinamentosType) {
     setIsModalOpen(!isModalOpen);
+    setModalContent(content)
   }
 
   return (
@@ -64,17 +66,17 @@ export default function orcamento() {
             </div>
           </div>
           <div className={styles.cursosNovos}>
-            {Cursos.map(({ objetivo, publicoalvo, title, cursoNovo }) => (
+            {Cursos.map((x) => (
               <div className={styles.curso}>
                 <div
                   className={classNames({
-                    [styles.isCursoNovo]: cursoNovo,
-                    [styles.isCursoAntigo]: !cursoNovo,
+                    [styles.isCursoNovo]: x.cursoNovo,
+                    [styles.isCursoAntigo]: !x.cursoNovo,
                   })}
                 ></div>
-                <div>
+                <div role="button" onClick={() => modalState(x)}>
                   <h4>
-                    <b>{title}</b>
+                    <b>{x.title}</b>
                   </h4>
                   <p role="button">
                     <span>
@@ -135,17 +137,17 @@ export default function orcamento() {
             </div>
         </div>
         <div className={styles.cursosNovos}>
-          {Treinamentos.map(({ objetivo, publicoalvo, title, cursoNovo }) => (
+          {Treinamentos.map((x) => (
             <div className={styles.curso}>
               <div
                 className={classNames({
-                  [styles.isCursoNovo]: cursoNovo,
-                  [styles.isCursoAntigo]: !cursoNovo,
+                  [styles.isCursoNovo]: x.cursoNovo,
+                  [styles.isCursoAntigo]: !x.cursoNovo,
                 })}
               ></div>
-              <div>
+              <div className={styles.detalhes} onClick={() => modalState(x)}>
                 <h4>
-                  <b>{title}</b>
+                  <b>{x.title}</b>
                 </h4>
                 <p role="button">
                   <span>
@@ -166,6 +168,45 @@ export default function orcamento() {
         <h2>“O conhecimento é a única coisa que não podem tirar de você”.</h2>
       </div>
       <FooterCompleto />
+      
+      <Transition appear show={isModalOpen} as={Fragment}>
+            <Dialog as="div" style={{zIndex: 40}} onClose={() => setIsModalOpen(false)}>
+              <div className={styles.fullBodyModal}>
+                <div className={styles.bodyModalStarted}>
+                    <Dialog.Panel className={styles.modalPanel}>
+                      <div className={styles.voltarParaInicio} onClick={() => setIsModalOpen(false)}>
+                        <BsArrowLeftCircle/>
+                        <span>Voltar para o início</span>
+                      </div>
+                      <Dialog.Title
+                        as="h3"
+                        className={styles.modalTitle}
+                      >
+                        <p>{modalContent?.title}</p>
+
+                        <span>Objetivo</span>
+                      </Dialog.Title>
+                      <div className={styles.contentAboveTitle}>
+                        <span>
+                          {modalContent?.objetivo}
+                        </span>
+                      </div>
+                      <Dialog.Title
+                        as="h3"
+                        className={styles.modalTitle}
+                      >
+                        <span>Público Alvo</span>
+                      </Dialog.Title>
+                      <div className={styles.contentAboveTitle}>
+                        <span>
+                        {modalContent?.publicoalvo}
+                        </span>
+                      </div>
+                    </Dialog.Panel>
+                </div>
+              </div>
+            </Dialog>
+          </Transition>
     </div>
   );
 }

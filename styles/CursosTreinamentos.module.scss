@@ -155,6 +155,7 @@
     
                         & > p {
                             cursor: pointer;
+                            // text-align: justify;
                         }
                     }
                 }
@@ -330,6 +331,98 @@
 
     }
 } 
+
+.fullBodyModal {
+    background-color: rgba(white, 0.4);
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+
+    
+    /* width */
+    ::-webkit-scrollbar {
+        width: 7px;
+      }
+      
+        ::-webkit-scrollbar-track {
+        background-color: #e4e4e4;
+        border-radius: 100px;
+        // height: 90%;
+        margin: 10px;
+
+      }
+      
+        ::-webkit-scrollbar-thumb {
+        background-color: #d4aa70;
+        border-radius: 100px;
+      }
+
+    & > .bodyModalStarted {
+        position: relative;
+        display: flex;
+        min-height: 100%;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        & > .modalPanel {
+            box-sizing: border-box;
+            max-width: 550px;
+            width: 530px;
+            margin: 1rem auto 0;
+            max-height: 400px;
+            border-radius: 16px;
+            background-color: $dark-blue-fulldark;
+            padding: 36px;
+            // scrollbar-gutter: 10px auto;
+            overflow: hidden;
+            text-align: left;
+            overflow-y: auto;
+            vertical-align: middle;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+
+            & > .voltarParaInicio {
+                display: flex;
+                gap: 5px;
+                color: white;
+                width: 100%;
+                align-items: center;
+                font-weight: 200;
+                margin-bottom: 30px;
+                cursor: pointer;
+            }
+
+            & > .modalTitle {
+                font-size: 1.125rem; /* 18px */
+                line-height: 1.75rem; /* 28px */
+                font-weight: 500;
+                line-height: 1.5rem; /* 24px */
+                color: white;
+                margin-block: 10px;
+
+                & > span {
+                    font-weight: 800;
+                    font-size: 22px;
+
+                }
+
+                & > p {
+                    margin-block: 20px;
+                }
+            }
+
+            & > .contentAboveTitle {
+                color: white;
+                font-weight: 300;
+            }
+        }
+    }
+}
 
 // header
 
