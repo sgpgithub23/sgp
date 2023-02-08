@@ -2,7 +2,7 @@ import { ProfessoresType } from '@/typings/Professores';
 import { InfosProfessor } from '@/utils/professores';
 import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment, useState } from 'react'
-import { BsArrowLeftCircle } from 'react-icons/bs';
+import { BsArrowLeftCircle, BsPersonCircle } from 'react-icons/bs';
 import { HiMagnifyingGlass } from 'react-icons/hi2'
 import Input from '../Input'
 import styles from "./Professores.module.scss"
@@ -38,9 +38,14 @@ export default function ProfessoresComponent() {
             <div className={styles.professoresTodos}> 
                 {InfosProfessor.map((x) => (
                     <div className={styles.professor} onClick={() => modalState(x)}>
-                        <div role="button" >
+                        <div role="button">
 
                         </div>
+                        <p role="button">
+                    <span>
+                      <BsPersonCircle /> Conferir detalhes
+                    </span>
+                  </p>
                     </div>
                 ))}
             </div>
@@ -57,17 +62,17 @@ export default function ProfessoresComponent() {
                         <BsArrowLeftCircle/>
                         <span>Voltar para o início</span>
                       </div>
-                      {/* <Dialog.Title
+                      <Dialog.Title
                         as="h3"
                         className={styles.modalTitle}
                       >
-                        <span>Público Alvo</span>
+                        <span>{modalContent?.nome} - Currículo</span>
                       </Dialog.Title>
                       <div className={styles.contentAboveTitle}>
                         <span>
-                        {modalContent?.publicoalvo}
+                            {modalContent?.linkCurriculo}
                         </span>
-                      </div> */}
+                      </div>
                     </Dialog.Panel>
                 </div>
               </div>
