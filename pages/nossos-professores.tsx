@@ -1,17 +1,12 @@
 import Head from "next/head";
-import React, { FormEvent, Fragment, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/NossosProfessores.module.scss";
 import { FooterCompleto } from "@/components/FooterCompleto";
 import { useRouter } from "next/router";
 import Button from "@/components/Button";
-import Input from "@/components/Input";
-import { HiMagnifyingGlass } from "react-icons/hi2";
 import { CursosTreinamentosType } from "@/typings/CursosTreinamentos";
-import { BsArrowLeftCircle, BsPersonCircle } from "react-icons/bs";
-import { Cursos, Treinamentos } from "@/utils/cursos-treinamentos";
-import classNames from "classnames";
-import { Dialog, Transition } from "@headlessui/react";
+import ProfessoresComponent from "@/components/Professores";
 
 export default function orcamento() {
   const { push } = useRouter();
@@ -44,79 +39,11 @@ export default function orcamento() {
         </div>
       </div>
       <div className={styles.pageSize}>
-        <div className={styles.mainContentForm}>
-          <div className={styles.introduction}>
-            <div className={styles.left}>
-              <h2>Nossos Professores</h2>
-              <span>
-              Professores qualificados que transferem conhecimento e experiências.
-              </span>
-            </div>
-            <div className={styles.right}>
-              <Input
-                withIcon
-                placeholder="Pesquisar professor..."
-                label=""
-                type="text"
-                icon={<HiMagnifyingGlass />}
-              />
-            </div>
-          </div>
-          <div className={styles.professoresTodos}>
-            {Cursos.map((x) => (
-              <div className={styles.professor}>
-                <div role="button" onClick={() => modalState(x)}>
-                  
-                </div>
-              </div>
-            ))}
-          </div>
-          <p>
-            Confira a lista completa{" "}
-            <b style={{ cursor: "pointer" }}>clicando aqui!</b>
-          </p>
-        </div>
+        <ProfessoresComponent />
       </div>
       <FooterCompleto />
       
-      <Transition appear show={isModalOpen} as={Fragment}>
-            <Dialog as="div" style={{zIndex: 40}} onClose={() => setIsModalOpen(false)}>
-              <div className={styles.fullBodyModal}>
-                <div className={styles.bodyModalStarted}>
-                    <Dialog.Panel className={styles.modalPanel}>
-                      <div className={styles.voltarParaInicio} onClick={() => setIsModalOpen(false)}>
-                        <BsArrowLeftCircle/>
-                        <span>Voltar para o início</span>
-                      </div>
-                      <Dialog.Title
-                        as="h3"
-                        className={styles.modalTitle}
-                      >
-                        <p>{modalContent?.title}</p>
 
-                        <span>Objetivo</span>
-                      </Dialog.Title>
-                      <div className={styles.contentAboveTitle}>
-                        <span>
-                          {modalContent?.objetivo}
-                        </span>
-                      </div>
-                      <Dialog.Title
-                        as="h3"
-                        className={styles.modalTitle}
-                      >
-                        <span>Público Alvo</span>
-                      </Dialog.Title>
-                      <div className={styles.contentAboveTitle}>
-                        <span>
-                        {modalContent?.publicoalvo}
-                        </span>
-                      </div>
-                    </Dialog.Panel>
-                </div>
-              </div>
-            </Dialog>
-          </Transition>
     </div>
   );
 }
