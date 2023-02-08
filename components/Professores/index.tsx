@@ -1,6 +1,7 @@
 import { ProfessoresType } from '@/typings/Professores';
 import { InfosProfessor } from '@/utils/professores';
 import { Dialog, Transition } from '@headlessui/react';
+import Image from 'next/image';
 import React, { Fragment, useState } from 'react'
 import { BsArrowLeftCircle, BsPersonCircle } from 'react-icons/bs';
 import { HiMagnifyingGlass } from 'react-icons/hi2'
@@ -37,15 +38,11 @@ export default function ProfessoresComponent() {
             </div>
             <div className={styles.professoresTodos}> 
                 {InfosProfessor.map((x) => (
-                    <div className={styles.professor} onClick={() => modalState(x)}>
-                        <div role="button">
-
-                        </div>
-                        <p role="button">
-                    <span>
-                      <BsPersonCircle /> Conferir detalhes
-                    </span>
-                  </p>
+                    <div className={styles.professor} >
+                      <Image src={x.img} alt={"Professor(a) - " + x.nome} fill />
+                        <span role="button" onClick={() => modalState(x)}>
+                          <BsPersonCircle /> Conferir detalhes
+                        </span>
                     </div>
                 ))}
             </div>

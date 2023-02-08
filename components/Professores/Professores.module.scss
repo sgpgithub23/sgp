@@ -41,23 +41,34 @@
     & > .professoresTodos {
         margin-block: 20px;
         display: grid;
-        grid-template-columns: repeat(3, auto);
+        grid-template-columns: repeat(3, 22%);
         gap: 30px;
+        align-items: center;
+        justify-content: center;
 
         & > .professor {
-            background-color: $dark-blue-fulldark;
+            background-color:white;
             color: white;
             border-radius: 10px;
             padding: 25px;
             display: flex;
             flex-direction: column;
             gap: 30px;
-            height: 330px;
+            height: 290px;
             position: relative;
+            // width: 70%;
+
+            & > img {
+                width: 10%;
+                height: 90%;
+            }
 
 
-            & > div {
-                position: relative;
+            & > span[role="button"] {
+                position: absolute;
+                bottom: 10%;
+                white-space: nowrap;
+                cursor: pointer;
             }
         }
     }

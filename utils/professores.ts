@@ -2,32 +2,32 @@ import { ProfessoresType } from "@/typings/Professores";
 
 export const InfosProfessor: ProfessoresType[] = [
     {
-        img: "", 
+        img: "/images/professores/alberto.webp", 
         linkCurriculo: "",
         nome: "Alberto Shinji Higa"
     },
     {
-        img: "", 
+        img: "/images/professores/alexandre.webp", 
         linkCurriculo: "Doutor e Mestre em Direito do Estado pela PUC-SP, Professor do Curso de Especialização em Direito Administrativo da PUC-SP, Procurador do Município de São Paulo e Membro efetivo da Comissão de Direito Administrativo da OAB/SP;",
         nome: "Alexandre Levin"
     }, 
     {
-        img: "", 
+        img: "/images/professores/ana-maria.webp", 
         linkCurriculo: "",
         nome: "Ana Maria Pedreira"
     },
     {
-        img: "", 
+        img: "/images/professores/claudia.webp", 
         linkCurriculo: "",
         nome: "Claudia Cristina Barrilari"
     },
     {
-        img: "", 
+        img: "/images/professores/christianne.webp", 
         linkCurriculo: "Doutora e Mestre em Direito pela PUC-SP, Professora de Direito Administrativo da PUC-SP, Assessora de Gabinete na Assessoria Jurídica de Controle Externo do TCM-SP, Ex-Assessora Jurídica na Secretaria Municipal da Saúde de São Paulo e Ex-Procuradora da USP;",
         nome: "Christianne de Carvalho Stroppa"
     }, 
     {
-        img: "", 
+        img: "/images/professores/gilberto.webp", 
         linkCurriculo: "Especialista em Direito Constitucional e Direito Administrativo pela Escola Paulista de Direito; Especialista em Interesses Difusos e Coletivos pela Escola Superior do Ministério Público de São Paulo; Consultor Jurídico na área de Licitações e Contratos Administrativos e Direito Administrativo; Editor, Professor e Diretor Jurídico da SGP – Soluções em Gestão Pública; Coordenador do MBA em Licitações e Contratações da Administração Pública da SGP; Coordenador e coautor do livro “A Boa Gestão Pública e o Novo Direito Administrativo: dos conflitos às melhores soluções práticas”, São Paulo: SGP, 2021; Coautor dos livros: “Temas Atuais de Direito Público – Estudos em Homenagem ao Professor Toshio Mukai”, Coord. Alberto Shinji Higa e Arthur Bezerra de Souza Junior, São Paulo: Thoth, 2019; e “Comentários ao Sistema Legal Brasileiro de Licitações e Contratos Administrativos”, Coord. Jessé Torres Pereira Junior, São Paulo: NDJ, 2016; Autor de diversos artigos jurídicos publicados em revistas especializadas. ",
         nome: "Gilberto Bernardino de Oliveira Filho"
     }, 
