@@ -16,7 +16,7 @@ type TextProps = InputProps & {
   register?: UseFormRegisterReturn<string>;
   error?: string | any;
   mask?: string;
-  withIcon?: boolean;
+  withicon?: boolean;
   icon?: any;
 };
 
@@ -73,7 +73,8 @@ export default function Input({
           <input
             type={props.type}
             className={classNames({
-              [styles.withIcon]: props.withIcon,
+              // @ts-ignore
+              [styles.withicon]: props.withicon,
             })}
             {...register}
             {...props}

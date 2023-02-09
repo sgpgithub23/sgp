@@ -42,34 +42,53 @@
         margin-block: 20px;
         display: grid;
         grid-template-columns: repeat(3, 22%);
-        gap: 30px;
+        gap: 60px;
         align-items: center;
+        overflow: hidden;
         justify-content: center;
 
         & > .professor {
-            background-color:white;
             color: white;
             border-radius: 10px;
-            padding: 25px;
             display: flex;
             flex-direction: column;
             gap: 30px;
-            height: 290px;
+            height: auto;
+            justify-content: center;
             position: relative;
-            // width: 70%;
-
-            & > img {
-                width: 10%;
-                height: 90%;
-            }
+            max-width: 325px;
+            overflow: hidden;
 
 
-            & > span[role="button"] {
+            & > div[role="button"] {
                 position: absolute;
                 bottom: 10%;
-                white-space: nowrap;
                 cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                overflow: hidden;
+                word-break: keep-all;
+                width: 100%;
+
+                & > img {
+                    box-shadow:
+                    0px 0px 11.4px rgba(130, 21, 21, 0.15),
+                    0px 0px 38.4px rgba(0, 0, 0, 0.097),
+                    0px 0px 172px rgba(0, 0, 0, 0.084);
+                }
+
+
+                & > .nomeProfessor {
+                    font-weight: 900;
+                    padding: 2px;
+                    background: linear-gradient(to bottom, rgba($dark-blue-100, 10%) 0%,rgba($dark-blue-100,0.45) 50%, rgba($dark-blue-100,0.95) 100%);
+                    text-align: center;
+                }
             }
+
         }
     }
 }
@@ -167,150 +186,118 @@
 }
 
 
-@media (max-width: 835px){
-    .main {
-        & > .pageSize {
-    
-            & > .mainContentForm {
 
-                & > .introduction {
+@media (max-width: 1021px) {
+    .mainContentForm {
+        & > .professoresTodos {
+            grid-template-columns: repeat(2, 50%);
+            justify-content: center;
+            align-items: center;
+    
+            & > .professor {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                & > div[role="button"] {
+                    
+                    position: absolute;
+                    bottom: 5%;
+                    // // width: 80%;
+                    display: flex;
                     flex-direction: column;
-
-                    .left {
-                        width: 100%;
-                    }
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    
     
-                    & > .right {
-                        position: relative;
-                        width: 100%;
-                        display: flex;
-                        justify-content: flex-end;   
+                    & > .nomeProfessor {
+                        text-align: center;
+                        
                     }
                 }
-
-                & > .professoresTodos {
-                    grid-template-columns: repeat(2, 47%);
     
-                    & > .professor {
-    
-                        & > .isCursoNovo {
-                            width: 70%;
-                        }
-    
-                        & > .isCursoAntigo {
-                            width: 70%;
-                        }
-
-                    }
-                }
-
             }
         }
-    
-    
-        .mainContentFormTreinamento {
+    }
 
-            
-            & > .introduction {
-                flex-direction: column;
-        
-                .left {
-                    width: 100%;
-                }
-    
-                & > .right {
-                    margin-top: 10px;
-                    width: 100%;
-                }
-            }
-    
-            & > .professoresTodos {
-                grid-template-columns: repeat(2, 47%);
-            }
-        } 
-
-    } 
 }
 
-@media (max-width: 585px){
-    .main {
-        & > .pageSize {
+@media (max-width: 809px) {
+    .mainContentForm {
+        & > .introduction {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            gap: 20px;
     
-            & > .mainContentForm {
-
-                & > .introduction {
-                    flex-direction: column;
-
-                    .left {
-                        width: 100%;
-                    }
+            .left {
+                width: 100%;
+                & > h2 {
+                    font-size: 2rem;
+                    color: $dark-blue-100;
+                }
+        
+                & > span {
+                    color: $grey-400;
+                    margin-bottom: 2rem;
+                    margin-top: 7px;
     
-                    & > .right {
-                        position: relative;
-                        width: 100%;
-                        display: flex;
-                        justify-content: flex-end;   
-                    }
                 }
-
-                & > .professoresTodos {
-                    grid-template-columns: repeat(1, 100%);
-                }
-
+            }
+    
+            & > .right {
+                position: relative;
+                width: 70%;
             }
         }
-
-        .mainContentFormTreinamento {
-
-            
-            & > .introduction {
-                flex-direction: column;
-        
-                .left {
-                    width: 100%;
-                }
+    }
     
-                & > .right {
-                    margin-top: 10px;
-                    width: 100%;
-                }
-            }
-    
-            & > .professoresTodos {
-                grid-template-columns: repeat(1, 100%);
-
-            }
-        } 
-
-    } 
 }
 
-@media (max-width: 400px){
-    .main {
-        & > .pageSize {
+@media (max-width: 511px) {
+    .mainContentForm {
+
+        & > .introduction {
     
-            & > .mainContentForm {
-
-                & > .introduction {
-                    flex-direction: column;
-
-                    .left {
-                        width: 100%;
-                    }
-    
-                    & > .right {
-                        position: relative;
-                        width: 100%;
-                        display: flex;
-                        justify-content: flex-end;   
-                    }
-                }
-
-                & > .professoresTodos {
-                    grid-template-columns: repeat(1, 100%);
-                }
+            & > .right {
+                position: relative;
+                width: 100%;
             }
         }
+    
 
-    } 
+        & > .professoresTodos {
+            grid-template-columns: repeat(1, 100%);
+            justify-content: center;
+            align-items: center;
+    
+            & > .professor {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                & > div[role="button"] {
+                    position: absolute;
+                    bottom: 5%;
+                    // width: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    
+    
+                    & > .nomeProfessor {
+                        text-align: center;
+                        
+                    }
+                }
+    
+            }
+        }
+    }
+
 }

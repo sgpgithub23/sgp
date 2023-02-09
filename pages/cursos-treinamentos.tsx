@@ -57,7 +57,7 @@ export default function orcamento() {
             </div>
             <div className={styles.right}>
               <Input
-                withIcon
+                withicon
                 placeholder="Pesquisar curso..."
                 label=""
                 type="text"
@@ -128,7 +128,7 @@ export default function orcamento() {
           </div>
           <div className={styles.right}>
               <Input
-                withIcon
+                withicon
                 placeholder="Pesquisar treinamento..."
                 label=""
                 type="text"
