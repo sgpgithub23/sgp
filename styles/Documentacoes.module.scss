@@ -1,0 +1,234 @@
+@use '_index.scss' as *;
+
+.content {
+    background-image: url('../public/images/documentacoes/analisando.webp');
+    background-position: center;
+    min-width: 100vw;
+    height: 356.8px;
+    margin-left: -10px;
+    background-size: cover;
+}
+
+
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; 
+
+    
+
+    .pageSize {
+        width: 80%;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+        background-color: white;
+        max-width: 1574px;
+
+        .mainContentForm {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+            
+            
+            & > .introduction {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+        
+                & > h2 {
+                    font-size: 2rem;
+                    color: $dark-blue-100;
+                    margin-bottom: 20px;
+                }
+        
+                & > span {
+                    color: $grey-400;
+                    // margin-bottom: 2rem;
+                    width: 100%;
+                    margin-bottom: 15px;
+
+                    & > b {
+                        cursor: pointer;
+                    }
+                }
+
+                & > ul {
+                    list-style: none;
+
+                    & > li{ 
+                        color: $grey-400;
+                        margin-bottom: 20px;
+
+                        &:first-child {
+                            color: $dark-blue-100;
+                            font-weight: 600;
+                            margin-top: 40px;
+                            margin-bottom: 10px;
+                            font-size: 25px;
+                        }
+
+                        & > svg {
+                            color: $blue-100;
+                        }
+                    }
+                }
+
+                & > div {
+                    display: flex;
+                    gap: 10px;
+                    margin-bottom: 30px;
+                    margin-top: 10px;
+
+                    & > a {
+                        & > svg {
+                            font-size: 20px;
+                            color: $dark-blue-100;
+                        }
+                    }
+                }
+
+                
+        
+                & > img {
+                    object-fit: cover;
+                    // width: 85%;
+                    width: 250px;
+                    height: 280px;
+                    border-radius: 5px;
+                }
+            }
+
+            & > .documentacoes {
+
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+        
+                & > h2 {
+                    font-size: 2rem;
+                    color: $dark-blue-100;
+                    margin-bottom: 20px;
+                    font-weight: 400;
+                }
+
+                & > .certidao {
+                    margin-bottom: 30px;
+                }
+
+                & > .certidoesDeclaracoesMap {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                }
+            }
+        }
+    }
+}
+
+.documentacaoBaixar {
+    color: $grey-300;
+    display: flex;
+    align-items: center;
+    // flex-direction: ;
+    cursor: pointer;
+    // gap: 5px;
+    word-break: keep-all;
+
+    & > svg {
+        font-size: 20px;
+        width: 10%;
+    }
+
+    & > span {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        word-break: keep-all;
+        width: 90%;
+
+    }
+
+    
+}
+
+@media (max-width: 825px) {
+    .main {
+    
+        .pageSize {
+    
+            .mainContentForm {
+                // height: auto;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+                gap: 50px;
+                
+                & > .introduction {                    
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+
+
+                    & > h2 {
+                        font-size: 2rem;
+                        color: $dark-blue-100;
+                        margin-bottom: 20px;
+    
+                    }
+            
+                    & > span {
+                        color: $grey-400;
+                        // margin-bottom: 2rem;
+                        width: 100%;
+                        // margin-bottom: 15px;
+    
+                        & > b {
+                            cursor: pointer;
+                        }
+                    }
+    
+    
+                    
+            
+                    & > .imgDiv {
+                        display: flex;
+                        justify-content: center;
+                        img {
+                            object-fit: cover;
+                            // width: 85%;
+                            width: 250px;
+                            height: 280px;
+                            border-radius: 5px;
+                        }
+                    }
+                }
+    
+                & > .documentacoes {
+    
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+            
+                    & > h2 {
+                        font-size: 2rem;
+                        color: $dark-blue-100;
+                        margin-bottom: 20px;
+                        font-weight: 400;
+                    }
+    
+                    & > .certidao {
+                        margin-bottom: 30px;
+                    }
+    
+                    & > .certidoesDeclaracoesMap {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+                    }
+                }
+            }
+        }
+    }
+    
+}
