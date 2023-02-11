@@ -14,7 +14,6 @@ export default function ProfessoresComponent() {
   const [professores, setProfessores] = useState<ProfessoresType[]>(InfosProfessor.slice(0, 6))
   const [isFotosIniciais, setIsFotosIniciais] = useState<boolean>(true)
   
-
   function modalState(content: ProfessoresType) {
       setIsModalOpen(!isModalOpen);
       setModalContent(content)

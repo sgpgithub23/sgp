@@ -3,7 +3,7 @@ import { TItemsMenu } from "@/typings/ItemsMenu";
 export const ItemsMenu: TItemsMenu[] = [
     {
         title: "Quem somos",
-        url: "quem-somos",
+        url: "/",
         className: "QuemSomos"
     },
     {
@@ -35,6 +35,11 @@ export const ItemsMenu: TItemsMenu[] = [
         title: "Canal SGP",
         url: "canal-sgp",
         className: "CanalSGP"
+    },
+    {
+        title: "Documentações",
+        url: "documentacoes",
+        className: "Documentacoes"
     },
     {
         title: "Outros",

@@ -71,9 +71,9 @@
     color: green;
 }
 
-.PeriodicosMensais, .Outros, .SolucoesInovadoras, .Login {
-    display: none;
-}
+// .PeriodicosMensais, .Outros, .SolucoesInovadoras, .Login {
+//     display: none;
+// }
 
 
 @media screen and (max-width:768px) { 
@@ -105,7 +105,7 @@
 
 
 @media (max-width: 1260px) {
-    .NossosProfessores {
+    .NossosProfessores, .Documentacoes {
         display: none;
     }
 } 

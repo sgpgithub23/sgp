@@ -89,7 +89,6 @@ export default function orcamento() {
   
         </div>
       </div>
-      {/* <WhatsappIcon /> */}
       <FooterCompleto />
     </div>
   );
