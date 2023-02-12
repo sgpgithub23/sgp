@@ -71,20 +71,14 @@ $height: 1rem;
     }
 }
 
-@media (min-width: 1452px) {
-    .Agenda {
-        display: none;
-    }
-} 
-
-@media (min-width: 1386px) {
-    .CanalSGP{
+@media (min-width: 1454px) {
+    .Agenda, .CanalSGP {
         display: none;
     }
 } 
 
 
-@media (min-width: 1260px) {
+@media (min-width: 1355px) {
     .NossosProfessores, .Documentacoes {
         display: none;
     }

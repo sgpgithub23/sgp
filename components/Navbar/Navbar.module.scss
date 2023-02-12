@@ -90,21 +90,16 @@
 
 }
 
-@media (max-width: 1452px) {
-    .Agenda {
+@media (max-width: 1454px) {
+    .Agenda, .CanalSGP {
         display: none;
     }
+    
 
 } 
 
-@media (max-width: 1386px) {
-    .CanalSGP{
-        display: none;
-    }
-} 
 
-
-@media (max-width: 1260px) {
+@media (max-width: 1355px) {
     .NossosProfessores, .Documentacoes {
         display: none;
     }

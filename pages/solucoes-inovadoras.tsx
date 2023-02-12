@@ -6,10 +6,6 @@ import { FooterCompleto } from "@/components/FooterCompleto";
 import { useRouter } from "next/router";
 import Button from "@/components/Button";
 import { CursosTreinamentosType } from "@/typings/CursosTreinamentos";
-import ProfessoresComponent from "@/components/Professores";
-import { Treinamentos } from "@/utils/cursos-treinamentos";
-import classNames from "classnames";
-import { BsPersonCircle } from "react-icons/bs";
 import { InfoOrientacoes } from "@/utils/orientacoes";
 
 export default function SolucoesInovadoras() {
@@ -50,9 +46,18 @@ export default function SolucoesInovadoras() {
       <div className={styles.pageSize}>
         {/* <ProfessoresComponent /> */}
         <div className={styles.orientacoes}>
-          {InfoOrientacoes.map(({descricao, tipo, title}) => (
-            <div key={descricao} className={styles.orientacao}>
-
+          {InfoOrientacoes.map(({descricao, tipo, title, img}) => (
+            <div key={descricao} style={{backgroundImage: `url(${img})`}} className={styles.orientacao}>
+              <div className={styles.headerTipos}>
+                {tipo.map((x, index) => (
+                    <span key={index}>{x}</span>
+                  )
+                )}
+              </div>
+              <div className={styles.descricao}>
+                <h2>{title}</h2>
+                <p>{descricao}</p>
+              </div>
             </div>
           ))}
         </div>
