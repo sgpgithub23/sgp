@@ -136,6 +136,16 @@
         }
         
     }
+
+    & > .image {
+        background-image: url("/images/solucoes-inovadoras/mao-segurando-bussola.webp");
+        background-position: center;
+        background-size: cover;
+        height: 500px;
+        background-repeat: no-repeat;
+        min-width: 100vw;
+        margin-bottom: 100px;
+    }
 } 
 
 

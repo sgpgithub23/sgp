@@ -62,6 +62,8 @@ export default function SolucoesInovadoras() {
           ))}
         </div>
       </div>
+      <div className={styles.image}></div>
+
       <FooterCompleto />
       
 
