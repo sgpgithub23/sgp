@@ -297,9 +297,71 @@
             }
         }
     }
+
+    & > .informacoesAssesoriaMentoria {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        gap: 70px;
+
+
+        & > .assesoriaLicitacoes, .mentoriaNovaLei {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 40px;
+            height: auto;
+            margin-bottom: 40px;
+    
+            & > .textos {
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+    
+                hr {
+                    width: 20%;
+                    height: 3px;
+                    background-color: $blue-100;
+                    border: 1px solid $blue-100;
+                    margin-bottom: 20px;
+                }  
+    
+                h1 {
+                    color: $dark-blue-100;
+                    margin-bottom: 20px;
+                }
+    
+                p {
+                    color: rgba(black, 0.9);
+                }
+    
+                button {
+                    width: 80%;
+                    margin-top: 20px;
+
+                }
+            }
+    
+            & > .img {
+                height: 100%;
+
+                > img {
+                    max-width: 100%;
+                    height: auto;
+                }
+            }
+        }
+
+        & > .assesoriaLicitacoes {
+            & > .textos {
+                button {
+                    width: 90%;
+                }
+            }
+        }
+    }
 } 
-
-
 
 
 @media (max-width: 1145px) {
@@ -364,9 +426,84 @@
                 }
             }
         }
+
+        & > .informacoesAssesoriaMentoria {
+    
+            & > .assesoriaLicitacoes, .mentoriaNovaLei {
+        
+                & > .textos {
+                    width: 50%;
+        
+                    button {
+                        width: 100%;
+                        margin-top: 20px;
+    
+                    }
+                }
+        
+            }
+        }
     }
 }
 
+@media (max-width: 920px) {
+    .main {
+        & > .informacoesAssesoriaMentoria {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            gap: 70px;
+    
+    
+            & > .assesoriaLicitacoes, .mentoriaNovaLei {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-direction: column;
+                gap: 40px;
+                height: auto;
+                margin-bottom: 40px;
+                width: 100%;
+        
+                & > .textos {
+                    width: 100%;
+    
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    // align-items: center;
+        
+                    hr {
+                        width: 10%;
+                        height: 3px;
+                        background-color: $blue-100;
+                        border: 1px solid $blue-100;
+                        margin-bottom: 20px;
+                    } 
+        
+                    button {
+                        width: 50%;
+                        margin-top: 20px;
+                        margin-left: 0;
+                    }
+                }
+        
+                & > .img {
+    
+                    > img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+
+            & > .mentoriaNovaLei  {
+                flex-direction: column-reverse;
+            }
+    
+        }
+    }
+}
 
 @media (max-width: 861px) {
     .content {
@@ -387,7 +524,6 @@
     
     }
 }
-
 
 @media (max-width: 625px) {
     .content {
@@ -645,7 +781,7 @@
     }
 }
 
-@media (max-width: 475px) {
+@media (max-width: 490px) {
     .main {
     
         & > .content {
@@ -707,5 +843,60 @@
                 }
             }
         }    
+
+        & > .informacoesAssesoriaMentoria {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            gap: 70px;
+    
+    
+            & > .assesoriaLicitacoes, .mentoriaNovaLei {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-direction: column;
+                gap: 40px;
+                height: auto;
+                margin-bottom: 40px;
+                width: 100%;
+        
+                & > .textos {
+                    width: 100%;
+    
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    // align-items: center;
+        
+                    hr {
+                        width: 10%;
+                        height: 3px;
+                        background-color: $blue-100;
+                        border: 1px solid $blue-100;
+                        margin-bottom: 20px;
+                    } 
+        
+                    button {
+                        width: 100%;
+                        margin-top: 20px;
+                        margin-left: 0;
+                    }
+                }
+        
+                & > .img {
+    
+                    > img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+
+            & > .mentoriaNovaLei  {
+                flex-direction: column-reverse;
+            }
+    
+        }
     } 
 }

@@ -119,6 +119,34 @@ export default function SolucoesInovadoras() {
         </div>
       </section>
 
+      <section className={styles.informacoesAssesoriaMentoria}>
+        <div className={styles.assesoriaLicitacoes}>
+            <div className={styles.textos}>
+              <hr />
+              <h1>Assessoria em Licitações Públicas para Empresas Privadas</h1>
+              <p>A qualidade dos nossos serviços, reconhecida pelos órgãos públicos em todo Brasil, agora à disposição das empresas privadas.</p>
+              <p>Se você quer vender seus produtos e serviços para o governo, mas não sabe como, a SGP vai lhe assessorar, desde o cadastramento até a participação na licitação ou processo de contratação direta.</p>
+              <Button color="darkBlue" title="Entre em contato"/>
+            </div>
+          <div className={styles.img}>
+            <Image src="/images/solucoes-inovadoras/homem-no-telefone.webp" width={432} height={451} alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando" />
+          </div>
+        </div>
+        <div className={styles.mentoriaNovaLei}>
+          <div className={styles.img}>
+            <Image src="/images/solucoes-inovadoras/mao-escrevendo.webp" width={355} height={401} alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando" />
+          </div>
+          <div className={styles.textos}>
+            <hr />
+            <h1>Mentoria da Nova Lei de Licitações e Contratos Administrativos - Lei nº 14.133/2021</h1>
+            <p>A SGP, pensando em novas soluções para o dia a dia dos nossos clientes, envolvidos na área de licitações e contratos, tanto do setor público como da iniciativa privada, acaba de lançar sua mais nova Solução técnica.</p>
+            <p>Nossa Mentoria consiste em 12 encontros semanais on-line, totalizando uma carga horária de 36 horas, com expedição de Certificado para os participantes.</p>
+            <p>Serão painéis on-line, com professores renomados do Direito Público, palestras de duas horas de duração e mais uma hora para esclarecimento de dúvidas ao vivo sobre o tema abordado.</p>
+            <Button color="darkBlue" title="Entre em contato"/>
+          </div>
+        </div>
+      </section>
+
       <FooterCompleto />
       
 
