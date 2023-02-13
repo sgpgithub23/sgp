@@ -7,6 +7,9 @@ import { useRouter } from "next/router";
 import Button from "@/components/Button";
 import { CursosTreinamentosType } from "@/typings/CursosTreinamentos";
 import { InfoOrientacoes } from "@/utils/orientacoes";
+import { TiposOrientacoes } from "@/utils/tipos-orientacoes";
+import { AiOutlineCheckCircle } from "react-icons/ai";
+import Image from "next/image";
 
 export default function SolucoesInovadoras() {
   const { push } = useRouter();
@@ -27,7 +30,7 @@ export default function SolucoesInovadoras() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <div className={styles.content}>
+      <section className={styles.content}>
         <div className={styles.bluredBall}></div>
         <div className={styles.headerContent}>
           <h1>Orientações SGP</h1>
@@ -42,8 +45,8 @@ export default function SolucoesInovadoras() {
 
           </div>
         </div>
-      </div>
-      <div className={styles.pageSize}>
+      </section>
+      <section className={styles.pageSize}>
         {/* <ProfessoresComponent /> */}
         <div className={styles.orientacoes}>
           {InfoOrientacoes.map(({descricao, tipo, title, img}) => (
@@ -61,8 +64,60 @@ export default function SolucoesInovadoras() {
             </div>
           ))}
         </div>
-      </div>
-      <div className={styles.image}></div>
+      </section>
+      <section className={styles.image}></section>
+      <section className={styles.topicosOrientacoes}>
+        <div className={styles.header}>
+          <h1>Orientação SGP Tradicional</h1>
+          <p>Atuante na área do Direito Administrativo e Direito Municipal.</p>
+          <hr />
+        </div>
+        <div className={styles.fullLista}>
+          {TiposOrientacoes.map((x, i) => (
+            <ul className={styles.topicosLista}>
+              <li className={styles.listaInterna}>
+                {x.map((x) => (
+
+                  <p><AiOutlineCheckCircle />{x}</p>
+                ))}  
+              </li>
+            </ul>
+          ))}
+        </div>
+      </section>
+      <section className={styles.orientacoesTributarias}>
+        <div className={styles.orientacaoSGPTributaria}>
+            <div className={styles.textos}>
+              <hr />
+              <h1>Orientação SGP Tributária</h1>
+              <p>Atuante na área do Direito Tributário em geral (inclusive impostos, taxas e contribuições, nos âmbitos municipal, estadual e federal.</p>
+              <Button color="darkBlue" title="Envie sua solicitação"/>
+            </div>
+          <div className={styles.img}>
+            <Image src="/images/solucoes-inovadoras/tres-maos.webp" width={593} height={385} alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando" />
+          </div>
+        </div>
+        <div className={styles.orientacaoSGPTributaria}>
+          <div className={styles.img}>
+            <Image src="/images/solucoes-inovadoras/pessoas-discutindo.webp" width={592} height={384} alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando" />
+          </div>
+          <div className={styles.textos}>
+            <hr />
+            <h1>Orientação SGP RH | DP | eSocial</h1>
+            <p>Atuante nas áreas de Recursos Humanos, Departamento Pessoal e eSocial.</p>
+            <Button color="darkBlue" title="Envie sua solicitação"/>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.assesoriaJuridicaInLoco}>
+        <div className={styles.texto}>
+          <hr />
+          <h1>Assessoria Jurídica <em>In Loco</em></h1>
+          <p>Fazemos visitações no órgão ou entidade, a fim de realizar um assessoramento pessoal e diferenciado, exclusivamente na área de licitações e contratos.</p>
+          <p>Num atendimento totalmente personalizado e exclusivo, nosso Corpo Jurídico, com toda sua expertise, poderá fazer quantas visitações forem necessárias para atender às suas necessidades administrativas.</p>
+        </div>
+      </section>
 
       <FooterCompleto />
       

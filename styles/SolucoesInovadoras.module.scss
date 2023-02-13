@@ -144,37 +144,226 @@
         height: 500px;
         background-repeat: no-repeat;
         min-width: 100vw;
+        margin-bottom: 50px;
+    }
+
+    & > .topicosOrientacoes {
+        width: 80%;
         margin-bottom: 100px;
+
+        & > .header {
+            h1 {
+                color: $dark-blue-100;
+                margin-bottom: 20px;
+            }
+
+            p {
+                color: rgba(black, 0.9);
+                margin-bottom: 20px;
+            }
+            
+            hr {
+                width: 5%;
+                height: 3px;
+                background-color: $blue-100;
+                border: 1px solid $blue-100;
+                margin-bottom: 30px;
+            }
+        }
+
+        & > .fullLista {
+            display: grid;
+            grid-template-columns: repeat(4, 25%);
+            // gap: 10px;
+
+            & > .topicosLista {
+                list-style-type: none;
+
+                & > .listaInterna {
+                    width: 90%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+
+                    p {
+                        display: flex;
+                        align-items: center;
+                        color: $grey-500;
+                        svg {
+                            width: 20px;
+                            min-width: 20px;
+                            margin-right: 5px;
+                            color: $blue-100;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    & > .orientacoesTributarias {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        gap: 70px;
+
+
+        & > .orientacaoSGPTributaria {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            height: 250px;
+            margin-bottom: 40px;
+            
+    
+            & > .textos {
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+    
+                hr {
+                    width: 20%;
+                    height: 3px;
+                    background-color: $blue-100;
+                    border: 1px solid $blue-100;
+                    margin-bottom: 10px;
+                }  
+    
+                h1 {
+                    color: $dark-blue-100;
+                    margin-bottom: 20px;
+                }
+    
+                p {
+                    color: rgba(black, 0.9);
+                    margin-bottom: 20px;
+                }
+    
+                button {
+                    width: 60%;
+                }
+            }
+    
+            & > .img {
+                height: 100%;
+                
+                > img {
+                    width: 343px;
+                    height: 235px;
+                }
+            }
+        }
+    }
+
+    & > .assesoriaJuridicaInLoco {
+        margin-block: 60px;
+        background-image: url("/images/solucoes-inovadoras/predio-vidro.webp");
+        background-position: center;
+        min-width: 100vw;
+        height: 400.8px;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 130px;
+
+        .texto {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+
+            hr {
+                width: 15%;
+                height: 3px;
+                background-color: $blue-100;
+                border: 1px solid $blue-100;
+                margin-bottom: 10px;
+            }  
+
+            h1 {
+                color: white;
+                margin-bottom: 20px;
+                width: 40%;
+            }
+
+            p {
+                color: white;
+                width: 40%;
+                margin-bottom: 20px;
+            }
+        }
     }
 } 
 
 
 
-// header
 
 @media (max-width: 1145px) {
-    .content {
-        // background-image: url('../public/images/cursos-treinamentos/homem-sorrindo.webp');
-        background-position: center;
-        min-width: 100vw;
-        height: 356.8px;
-        background-size: cover;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-    
-        & > .headerContent {
-            width: 40%;
-            margin-left: 10%;
-            margin-top: 3%;
-            display: flex;   
+    .main {
+        & > .content {
+            // background-image: url('../public/images/cursos-treinamentos/homem-sorrindo.webp');
+            background-position: center;
+            min-width: 100vw;
+            height: 356.8px;
+            background-size: cover;
+            display: flex;
             flex-direction: column;
-            gap: 15px;
+            justify-content: center;
             position: relative;
+        
+            & > .headerContent {
+                width: 40%;
+                margin-left: 10%;
+                margin-top: 3%;
+                display: flex;   
+                flex-direction: column;
+                gap: 15px;
+                position: relative;
     
+            }
+        
         }
     
+        & > .topicosOrientacoes {
+            & > .fullLista {
+                display: grid;
+                grid-template-columns: repeat(2, 50%);
+                gap: px;
+    
+                & > .topicosLista {
+                    list-style-type: none;
+                    margin-bottom: 50px;
+                }
+            }
+        }
+
+        & > .assesoriaJuridicaInLoco {
+            margin-block: 60px;
+            background-image: url("/images/solucoes-inovadoras/predio-vidro.webp");
+            background-position: center;
+            min-width: 100vw;
+            height: 400.8px;
+    
+            .texto {
+                width: 80%;
+    
+                h1 {
+                    color: white;
+                    margin-bottom: 20px;
+                    width: 70%;
+                }
+    
+                p {
+                    color: white;
+                    width: 70%;
+                    margin-bottom: 20px;
+                }
+            }
+        }
     }
 }
 
@@ -317,6 +506,137 @@
     
 }
 
+@media (max-width: 874px) {
+    .main {
+        & > .orientacoesTributarias {
+            gap: 200px;
+            margin-bottom: 50px;
+            & > .orientacaoSGPTributaria {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 40px;
+                height: 300px;
+
+                
+                &:last-child {
+                    flex-direction: column-reverse;
+                }
+                
+                & > .textos {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+        
+                    hr {
+                        width: 10%;
+                        height: 3px;
+                        background-color: $blue-100;
+                        border: 1px solid $blue-100;
+                        margin-bottom: 10px;
+                    }  
+        
+                    h1 {
+                        color: $dark-blue-100;
+                        margin-bottom: 20px;
+                    }
+        
+                    p {
+                        color: rgba(black, 0.9);
+                        margin-bottom: 20px;
+                    }
+        
+                    button {
+                        width: 40%;
+                    }
+                }
+        
+                & > .img {
+                    height: 100%;
+                    
+                    > img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+@media (max-width: 737px) {
+    .main {
+        & > .topicosOrientacoes {
+
+            & > .header {
+                hr {
+                    width: 20%;
+                }
+            }
+
+            & > .fullLista {
+                display: grid;
+                grid-template-columns: repeat(1, 100%);
+                gap: 0;
+                & > .topicosLista {
+                    list-style-type: none;
+                    // margin-bottom: 50px;
+                }
+            }
+        }
+
+        & > .assesoriaJuridicaInLoco {
+            margin-block: 60px;
+            background-image: url("/images/solucoes-inovadoras/predio-vidro.webp");
+            background-position: center;
+            min-width: 100vw;
+            height: auto;
+            margin: 0 auto;
+            padding: 40px;
+    
+            .texto {
+                width: 100%;
+    
+                h1 {
+                    color: white;
+                    margin-bottom: 20px;
+                    width: 100%;
+                }
+    
+                p {
+                    color: white;
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 684px) {
+    .main {
+        & > .orientacoesTributarias {
+            
+            & > .orientacaoSGPTributaria {
+                
+                & > .textos {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+        
+                    button {
+                        width: 60%;
+                    }
+                }
+            }
+        }
+    }    
+}
+
 @media (max-width: 626px){
     .content {
         & > .headerContent {
@@ -374,6 +694,18 @@
             }
             
         }
+        
+        & > .orientacoesTributarias {
+            
+            & > .orientacaoSGPTributaria {
+                
+                & > .textos {
+
+                    button {
+                        width: 100%;
+                    }
+                }
+            }
+        }    
     } 
-    
 }
