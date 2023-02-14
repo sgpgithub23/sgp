@@ -135,6 +135,12 @@ export default function SolucoesInovadoras() {
         <div className={styles.mentoriaNovaLei}>
           <div className={styles.img}>
             <Image src="/images/solucoes-inovadoras/mao-escrevendo.webp" width={355} height={401} alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando" />
+            <b>Mentoria</b>
+            <div className={styles.informacoes}>
+              <span>12 Encontros</span>
+              <span>36 Horas</span>
+              <span>Com certificado!</span>
+            </div>
           </div>
           <div className={styles.textos}>
             <hr />
@@ -143,6 +149,70 @@ export default function SolucoesInovadoras() {
             <p>Nossa Mentoria consiste em 12 encontros semanais on-line, totalizando uma carga horária de 36 horas, com expedição de Certificado para os participantes.</p>
             <p>Serão painéis on-line, com professores renomados do Direito Público, palestras de duas horas de duração e mais uma hora para esclarecimento de dúvidas ao vivo sobre o tema abordado.</p>
             <Button color="darkBlue" title="Entre em contato"/>
+          </div>
+        </div>
+      </section>                    
+      <section className={styles.mbaLicitacoesContratacoesADM}>
+        <h1>MBA em Licitações e Contratações da Administração Pública</h1>
+        <hr />
+        <div className={styles.objetivosHorarios}>
+          <div>
+            <h3>Objetivo Geral do curso</h3>
+            <p>O curso de MBA em Licitações e Contratações da Administração Pública tem o objetivo de propiciar uma visão moderna, atual, prática e dinâmica das Licitações e Contratações Públicas em geral, sob todas as suas formas, oferecendo subsídios teóricos e práticos, incentivando a pesquisa científica e preparando os profissionais no fomento de práticas inovadoras no âmbito jurídico e profissional.</p>
+          </div>
+          <div>
+            <h3>Objetivo Geral do curso</h3>
+            <ul>
+              <li>
+                <AiOutlineCheckCircle/>
+                <span>Capacitar profissionais para atuação nas demandas de Licitações Públicas e Contratos da Administração Pública;</span>
+              </li>
+              <li>
+                <AiOutlineCheckCircle/>
+                <span>Qualificar profissionais para a prática dos processos de contratação, desde a fase interna até a execução contratual;</span>
+              </li>
+              <li>
+                <AiOutlineCheckCircle/>
+                <span>Estimular a produção acadêmica e o debate crítico sobre as questões interdisciplinares, envolvendo a área do Direito e suas interfaces;</span>
+              </li>
+              <li>
+                <AiOutlineCheckCircle/>
+                <span>Desenvolver competências para a pesquisa e para a produção de conhecimento em Licitações Públicas e Contratos da Administração Pública.</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3>Objetivo Geral do curso</h3>
+            <ul>
+              <li>
+                <AiOutlineCheckCircle/>
+                <span>As aulas serão online e ministradas às sextas-feiras, no período noturno (19h - 23h00min) e aos sábados, no período matutino (8h30 - 12h30) e vespertino (13h30 - 17h30), conforme a carga horária da disciplina.</span>
+              </li>
+              <li>
+                <AiOutlineCheckCircle/>
+                <span>As aulas serão ofertadas preferencialmente duas vezes por semana.</span>
+              </li>
+              <li>
+                <AiOutlineCheckCircle/>
+                <span>Carga Horária: 360h</span>
+              </li>
+              <li>
+                <AiOutlineCheckCircle/>
+                <span>Inscrições abertas no período programado</span>
+              </li>
+              <li>
+                <Button color="darkBlue" title="Quero fazer minha inscrição!"/>
+              </li>
+            </ul>
+          </div>
+          <div className={styles.img}>
+            <Image src="/images/solucoes-inovadoras/pessoas-prestando-atencao.webp" width={387} height={301} alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando" />
+            <b>MBA</b>
+            <div className={styles.informacoes}>
+              <span>12 Encontros</span>
+              <span>36 Horas</span>
+              <span>Com certificado!</span>
+            </div>
           </div>
         </div>
       </section>

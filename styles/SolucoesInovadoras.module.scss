@@ -345,10 +345,39 @@
     
             & > .img {
                 height: 100%;
+                position: relative;
+            
 
                 > img {
                     max-width: 100%;
                     height: auto;
+                }
+
+                b {
+                    position: absolute;
+                    bottom: 10%;
+                    left: 10%;
+                    font-size: 40px;
+                    color: white;
+                }
+
+                .informacoes {
+                    position: absolute; 
+                    left: 10%;
+                    top: 7%;
+                    font-size: 12px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+
+                    
+                    & > span {
+                        padding: 5px 7px;
+                        background-color: $blue-100;
+                        color: white;
+                        font-weight: bold;
+                        border-radius: 5px;
+                    }
                 }
             }
         }
@@ -359,6 +388,112 @@
                     width: 90%;
                 }
             }
+        }
+    }
+
+    & > .mbaLicitacoesContratacoesADM {
+        margin-block: 80px;
+        width: 70%;
+        
+        h1 {
+            color: $dark-blue-100;
+        }
+
+        hr {
+            width: 10%;
+            height: 3px;
+            background-color: $blue-100;
+            border: 1px solid $blue-100;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        } 
+
+        .objetivosHorarios {
+            display: grid;
+            grid-template-columns: repeat(2, 50%);
+            gap: 50px;
+
+            & > div {
+                width: 90%;
+
+                > h3 {
+                    color: $dark-blue-100;
+                    margin-bottom: 20px;
+                }
+
+                > p, li {
+                    color: $grey-500;
+                }
+
+                ul {
+                    list-style-type: none;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    > li {
+                        display: flex;
+                        justify-content: flex-start;
+
+                        gap: 10px;
+
+                        > svg {
+                            width: 20px;
+                            min-width: 20px;
+                            // margin-right: 5px;
+                            color: $blue-100;
+                            margin-top: 1%;
+                            
+                        }
+                    }
+                }
+
+                button {
+                    margin-block: 20px;
+                }
+            }
+
+            & > .img {
+                height: 100%;
+                position: relative;
+                // display: flex;
+            
+
+                > img {
+                    max-width: 100%;
+                    height: auto;
+                }
+
+                b {
+                    position: absolute;
+                    bottom: 20%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    font-size: 40px;
+                    color: white;
+                }
+
+                .informacoes {
+                    position: absolute; 
+                    left: 50%;
+                    transform: translateX(-50%);
+                    top: 7%;
+                    font-size: 12px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    justify-content: center;
+                    
+                    & > span {
+                        padding: 5px 7px;
+                        background-color: $blue-100;
+                        color: white;
+                        font-weight: bold;
+                        border-radius: 5px;
+                    }
+                }
+            }
+            
         }
     }
 } 
@@ -441,6 +576,33 @@
                     }
                 }
         
+            }
+        }
+
+        & > .mbaLicitacoesContratacoesADM {
+            margin-block: 80px;
+            width: 80%;
+    
+            .objetivosHorarios {
+                // display: grid;
+                // grid-template-columns: repeat(2, 50%);
+                // gap: 50px;
+    
+                & > div {
+                    width: 90%;
+    
+                    > h3 {
+                        color: $dark-blue-100;
+                        margin-bottom: 20px;
+                    }
+    
+                    > p, li {
+                        color: $grey-500;
+                    }
+
+
+                }
+                
             }
         }
     }
@@ -749,6 +911,40 @@
                 }
             }
         }
+
+        & > .mbaLicitacoesContratacoesADM {
+            margin-block: 80px;
+            width: 80%;
+    
+            .objetivosHorarios {
+                display: grid;
+                grid-template-columns: repeat(1, 100%);
+                gap: 50px;
+    
+                & > div {
+                    width: 100%;
+                    justify-content: center;
+    
+                    > h3 {
+                        color: $dark-blue-100;
+                        margin-bottom: 20px;
+                    }
+    
+                    > p, li {
+                        color: $grey-500;
+                    }
+
+
+                }
+
+                & > .img {
+                    // width: fit-content;
+                    display: flex;
+                    justify-content: center; 
+                }
+                
+            }
+        }
     }
 }
 
@@ -897,6 +1093,46 @@
                 flex-direction: column-reverse;
             }
     
+        }
+
+        & > .mbaLicitacoesContratacoesADM {
+            margin-block: 80px;
+            width: 80%;
+    
+            .objetivosHorarios {
+                display: grid;
+                grid-template-columns: repeat(1, 100%);
+                gap: 50px;
+    
+                & > div {
+                    width: 100%;
+                    justify-content: center;
+    
+                    > h3 {
+                        color: $dark-blue-100;
+                        margin-bottom: 20px;
+                    }
+    
+                    > p, li {
+                        color: $grey-500;
+                    }
+
+                    > ul > li > button {
+                        width: 100%;
+                    }
+
+                    
+
+
+                }
+
+                & > .img {
+                    // width: fit-content;
+                    display: flex;
+                    justify-content: center; 
+                }
+                
+            }
         }
     } 
 }
