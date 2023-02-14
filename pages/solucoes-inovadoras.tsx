@@ -216,6 +216,34 @@ export default function SolucoesInovadoras() {
           </div>
         </div>
       </section>
+      <section className={styles.indicacoes}>
+        <div className={styles.contentIndicacoes}>
+          <hr />
+          <h1>Porque somos a empresa mais indicada em cursos e treinamentos?</h1>
+          <div className={styles.listaExplicativa}>
+            <ul>
+              <li>Profissionais altamente qualificados</li>
+              <li>Conteúdo programático completo</li>
+              <li>Temas relevantes e atuais</li>
+              <li>Saneamento de todas as dúvidas</li>
+              <li>Aulas expositivas</li>
+              <li>Dinâmicas em grupo</li>
+              <li>Alto índice de satisfação</li>
+            </ul>
+            <ul>
+              <li>Conhecimento prático e técnico</li>
+              <li>Material didático de qualidade</li>
+              <li>Adaptações às necessidades específicas</li>
+              <li>Metodologia diferenciada</li>
+              <li>Estudos de casos práticos</li>
+              <li>Carga horária adequada</li>
+              <li>Reconhecimento no mercado</li>
+            </ul>
+          </div>
+        </div>
+      
+      
+      </section>
 
       <FooterCompleto />
       

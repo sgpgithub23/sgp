@@ -496,13 +496,88 @@
             
         }
     }
+
+    & > .indicacoes {
+        background-image: url('../public/images/solucoes-inovadoras/mulher-olhando-pro-lado.webp');
+        background-position: center;
+        min-width: 100vw;
+        height: 400.8px;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        & > .contentIndicacoes {
+            width: 80%;
+
+            hr {
+                width: 5%;
+                height: 3px;
+                background-color: $blue-100;
+                border: 1px solid $blue-100;
+                margin-bottom: 10px;
+            }  
+
+            h1 {
+                color: white;
+                margin-bottom: 20px;
+                width: 40%;
+            }
+
+            & .listaExplicativa {
+                display: flex;
+                gap: 20px;
+
+                ul {
+                    list-style-type: none;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    color: white;
+                    font-size: 14px;
+                }
+            }
+        }
+
+    }
 } 
 
+
+@media (max-width: 1237px) {
+    .main {
+        & > .indicacoes {
+            height: 400.8px;
+    
+            & > .contentIndicacoes {
+                width: 80%;
+                
+                h1 {
+                    width: 45%;
+                }
+
+                & .listaExplicativa {
+                    display: flex;
+                    gap: 20px;
+    
+                    ul {
+                        list-style-type: none;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                        color: white;
+                        font-size: 14px;
+                    }
+                }
+            }
+    
+        }
+    }
+}
 
 @media (max-width: 1145px) {
     .main {
         & > .content {
-            // background-image: url('../public/images/cursos-treinamentos/homem-sorrindo.webp');
             background-position: center;
             min-width: 100vw;
             height: 356.8px;
@@ -605,6 +680,33 @@
                 
             }
         }
+
+        & > .indicacoes {
+            height: 400.8px;
+    
+            & > .contentIndicacoes {
+                width: 80%;
+                
+                h1 {
+                    width: 55%;
+                }
+                
+                & .listaExplicativa {
+                    display: flex;
+                    gap: 20px;
+    
+                    ul {
+                        list-style-type: none;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                        color: white;
+                        font-size: 14px;
+                    }
+                }
+            }
+    
+        }
     }
 }
 
@@ -664,6 +766,20 @@
             }
     
         }
+
+        & > .indicacoes {
+            height: 400.8px;
+    
+            & > .contentIndicacoes {
+                width: 80%;
+                
+                h1 {
+                    width: 63%;
+                }
+            
+            }
+    
+        }
     }
 }
 
@@ -681,9 +797,36 @@
     
         & > .headerContent {
             width: 60%;
+        }
+    }
+
+    .main {
+        & > .indicacoes {
+            height: 400.8px;
+    
+            & > .contentIndicacoes {
+                width: 80%;
+                
+                h1 {
+                    width: 65%;
+                }
+                
+                & .listaExplicativa {
+                    display: flex;
+                    gap: 20px;
+    
+                    ul {
+                        list-style-type: none;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                        color: white;
+                        font-size: 14px;
+                    }
+                }
+            }
     
         }
-    
     }
 }
 
@@ -737,6 +880,36 @@
             }
         }
     
+    }
+
+    .main {
+        & > .indicacoes {
+            height: 400.8px;
+    
+            & > .contentIndicacoes {
+                width: 80%;
+                
+                h1 {
+                    width: 100%;
+                    margin-bottom: 40px;
+                }
+                
+                & .listaExplicativa {
+                    display: flex;
+                    gap: 20px;
+    
+                    ul {
+                        list-style-type: none;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                        color: white;
+                        font-size: 14px;
+                    }
+                }
+            }
+    
+        }
     }
 }
 
@@ -1134,5 +1307,36 @@
                 
             }
         }
+
+        & > .indicacoes {
+            height: auto;
+    
+            & > .contentIndicacoes {
+                width: 80%;
+                
+                hr {
+                    margin-top: 20px;
+                    width: 40px;
+                }
+
+                h1 {
+                    width: 100%;
+                    margin-bottom: 30px;
+                }
+                
+                & .listaExplicativa {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    margin-bottom: 40px;
+
+                    ul {
+                        font-size: 12px;
+                    }
+                }
+            }
+    
+        }
+        
     } 
 }
