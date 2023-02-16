@@ -1,0 +1,158 @@
+@use '_index.scss' as *;
+
+.content {
+    background-color: $dark-blue-black;
+    background-position: center;
+    min-width: 100vw;
+    min-height: 356.8px;
+    height: auto;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .bluredBall {
+        position: absolute;
+        height: 60%;
+        width: 20%;
+        top: 0;
+        left: 50%;
+        border-radius: 50%;
+        z-index: 0;
+        background-color: $blue-100;
+        filter: blur(7rem);
+    }
+
+    & > .headerContent {
+        width: 80%;
+        margin-top: 10%;
+        margin-bottom: 4%;
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 15px;
+        position: relative;
+
+        b, p, div, span {    
+            color: white;
+        }
+
+        span {
+            font-weight: 300;
+            font-size: 15px;
+        }
+
+        .left {
+
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            & > h1 {    
+                font-size: 32px;
+                color: white;
+            }
+
+            & > div > hr {
+                width: 15%;
+                height: 3px;
+                background-color: $blue-100;
+                border: 1px solid $blue-100;
+            }
+    
+            & > p {
+                color: white;
+                margin-block: 5px;
+                width: 100%;
+            }
+        }
+
+        .center {
+
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            // width: 80%;
+
+            h3 {
+                font-weight: 400;
+            }
+
+            span {
+                font-weight: 300;
+            }
+
+        }
+
+        .right {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
+    }
+
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; 
+
+    & > .pageSize {
+        width: 80%;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+
+        
+    }
+} 
+
+@media (max-width: 1129px) {
+    
+    .content  {
+        & > .headerContent {
+            grid-template-columns: repeat(2, 50%) ;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            // white-space: nowrap;
+
+            .right {
+                display: inline-block;
+            }
+        }
+
+
+    }
+
+}
+
+@media (max-width: 699px) {
+    
+    .content  {
+        & > .headerContent {
+            margin-top: 90px;
+            grid-template-columns: repeat(1, 100%) ;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            // white-space: nowrap;
+
+            .left, .center {
+                gap: 10px;
+            }
+}
+
+
+    }
+
+}
