@@ -31,7 +31,7 @@ export default function SolucoesInovadoras() {
         <div className={styles.bluredBall}></div>
         <div className={styles.headerContent}>
           <div className={styles.left}>
-            <div>
+            <div className={styles.mainTitle}>
               <h1> MBA em Licitações </h1>
               <hr />
             </div>
@@ -72,9 +72,37 @@ export default function SolucoesInovadoras() {
               width={453}
               height={323}
             />
+            <div className={styles.title}>
+              <h1> MBA em Licitações </h1>
+              <hr />
+            </div>
           </div>
         </div>
       </section>
+      <div className={styles.pageSize}>
+        <section className={styles.professores}>
+          <h1>Corpo docente</h1>
+          <p>
+            Conheça nosso corpo docente de excelência e gabarito, que aplicam e
+            vivenciam as melhores boas práticas do mercado.
+          </p>
+          <Button
+            onClick={() => push("../nossos-professores")}
+            color="darkBlue"
+            title="Ver todos os professores"
+          />
+        </section>
+        <section className={styles.mbaLicitacoesContratacoesAdmPublica}>
+          <h1>MBA em Licitações e Contratações da Administração Pública</h1>
+          <hr />
+          <div>
+            <div className={styles.objGeralCurso}></div>
+            <div className={styles.objEspecificoCurso}></div>
+            <div className={styles.horarioELocal}></div>
+            <div className={styles.imagem}></div>
+          </div>
+        </section>
+      </div>
       <FooterCompleto />
     </div>
   );

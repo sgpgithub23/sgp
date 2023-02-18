@@ -38,6 +38,22 @@
             color: white;
         }
 
+        .title {
+            display: none;
+            & > h1 {    
+                font-size: 20px;
+                padding-top: 10px;
+                color: white;
+            }
+
+            & > hr {
+                width: 15%;
+                height: 3px;
+                background-color: $blue-100;
+                border: 1px solid $blue-100;
+            }
+        }
+
         span {
             font-weight: 300;
             font-size: 15px;
@@ -109,10 +125,43 @@
 
     & > .pageSize {
         width: 80%;
-        margin-top: 4rem;
+        margin-block: 4rem;
         margin-bottom: 4rem;
 
+        & > .professores {
+            display: flex;
+            width: 60%;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 4rem;
+
+            
+            h1 {
+                color: $dark-blue-100;
+            }
+
+            p {
+                color: $grey-500;
+            }
+
+            button {
+                width: 300px;
+            }
+        }
         
+        & > .mbaLicitacoesContratacoesAdmPublica {
+            h1 {
+                color: $dark-blue-100;
+            }
+
+            & > hr {
+                width: 15%;
+                height: 3px;
+                background-color: $blue-100;
+                border: 1px solid $blue-100;
+                margin-top: 10px;
+            }
+        }
     }
 } 
 
@@ -141,18 +190,37 @@
     .content  {
         & > .headerContent {
             margin-top: 90px;
-            grid-template-columns: repeat(1, 100%) ;
+            display: flex;
+            flex-direction: column-reverse;
             justify-content: center;
             align-items: center;
             gap: 40px;
             // white-space: nowrap;
 
-            .left, .center {
-                gap: 10px;
+            .title {
+                display: inline;
+            }
+
+            .mainTitle {
+                display: none;
             }
 }
 
 
     }
 
+}
+
+@media (max-width:581px) {
+    .main {
+        & > .pageSize {
+            & > .professores {
+                width: 100%;
+
+                button {
+                    width: 100%;
+                }
+            }
+        }
+    }
 }
