@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import Button from "@/components/Button";
 import { CursosTreinamentosType } from "@/typings/CursosTreinamentos";
 import Image from "next/image";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 
 export default function SolucoesInovadoras() {
   const { push } = useRouter();
@@ -95,11 +96,68 @@ export default function SolucoesInovadoras() {
         <section className={styles.mbaLicitacoesContratacoesAdmPublica}>
           <h1>MBA em Licitações e Contratações da Administração Pública</h1>
           <hr />
-          <div>
-            <div className={styles.objGeralCurso}></div>
-            <div className={styles.objEspecificoCurso}></div>
-            <div className={styles.horarioELocal}></div>
-            <div className={styles.imagem}></div>
+          <div className={styles.infosCurso}>
+            <div className={styles.objGeralCurso}>
+              <h2>Objetivo Geral do curso</h2>
+              <p> O curso de MBA On-Line em Licitações e Contratações da Administração Pública tem o objetivo de propiciar uma visão moderna, atual, prática e dinâmica das Licitações e Contratações Públicas em geral, sob todas as suas formas, oferecendo subsídios teóricos e práticos, incentivando a pesquisa científica e preparando os profissionais no fomento de práticas inovadoras no âmbito jurídico e profissional.</p>
+            </div>
+            <div className={styles.objEspecificoCurso}>
+              <h2>Objetivo específicos do curso </h2>
+              <ul>
+                <li> 
+                  <AiOutlineCheckCircle />  
+                  <span>Capacitar profissionais para atuação nas demandas de Licitações Públicas e Contratos da Administração Pública;</span>
+                </li>
+                <li> 
+                  <AiOutlineCheckCircle /> 
+                  <span>Qualificar profissionais para a prática dos processos de contratação, desde a fase interna até a execução contratual;</span>
+                </li>
+                <li> 
+                  <AiOutlineCheckCircle />
+                  <span>Estimular a produção acadêmica e o debate crítico sobre as questões interdisciplinares, envolvendo a área do Direito e suas interfaces;</span>
+                </li>
+                <li> 
+                  <AiOutlineCheckCircle /> 
+                  <span>Desenvolver competências para a pesquisa e para a produção de conhecimento em Licitações Públicas e Contratos da Administração Pública.</span>
+                </li>
+              </ul>
+            </div>
+            <div className={styles.horarioELocal}>
+              <h2>Conheça os dias, horários e local do curso</h2>
+              <ul>
+                <li> 
+                  <AiOutlineCheckCircle />  
+                  <span>As aulas serão on-line e ministradas às sextas-feiras, no período noturno (das 19h às 23h), e aos sábados, nos períodos matutino (das 8h30 às 12h30) e vespertino (das 13h30 às 17h30), conforme a carga horária da disciplina.</span>
+                </li>
+                <li> 
+                  <AiOutlineCheckCircle /> 
+                  <span>As aulas serão ofertadas preferencialmente duas vezes por semana.</span>
+                </li>
+                <li> 
+                  <AiOutlineCheckCircle />
+                  <span>Carga Horária: 360 horas.</span>
+                </li>
+                <li> 
+                  <AiOutlineCheckCircle /> 
+                  <span>Inscrições abertas no período programado.</span>
+                </li>
+                <li>
+                  <Button color="darkBlue" title="Quero fazer minha inscrição!"/>
+                </li>
+              </ul>
+            </div>
+            <div className={styles.imgSpace}>
+              <div className={styles.img}>
+                <Image src="/images/solucoes-inovadoras/pessoas-prestando-atencao.webp" width={387} height={301} alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando" />
+                <b>MBA</b>
+                <div className={styles.informacoes}>
+                  <span>12 Encontros</span>
+                  <span>36 Horas</span>
+                  <span>Com certificado!</span>
+                </div>
+              </div>
+            </div>
+            
           </div>
         </section>
       </div>
