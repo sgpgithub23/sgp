@@ -1,0 +1,289 @@
+@use '_index.scss' as *;
+
+.content {
+    background-color: $dark-blue-black;
+    background-position: center;
+    min-width: 100vw;
+    min-height: 356.8px;
+    height: auto;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .bluredBall {
+        position: absolute;
+        height: 60%;
+        width: 20%;
+        top: 0;
+        left: 50%;
+        border-radius: 50%;
+        z-index: 0;
+        background-color: $blue-100;
+        filter: blur(7rem);
+    }
+
+    & > .headerContent {
+        width: 80%;
+        margin-top: 10%;
+        margin-bottom: 4%;
+        display: grid;
+        grid-template-columns: 4fr 4fr 4fr;
+        gap: 100px;
+        position: relative;
+
+        b, p, div, span {    
+            color: white;
+        }
+        span {
+            font-weight: 300;
+            font-size: 15px;
+        }
+
+        & > .left {
+
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            & > .mainTitle {
+                & > h1 {    
+                    font-size: 32px;
+                    color: white;
+                }
+    
+                & > hr {
+                    width: 15%;
+                    height: 3px;
+                    background-color: $blue-100;
+                    border: 1px solid $blue-100;
+                }
+
+            }
+
+            
+        }
+
+        .center {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            // width: 80%;
+
+            h3 {
+                font-weight: 400;
+            }
+
+            span {
+                font-weight: 300;
+            }
+
+        }
+
+        .right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
+    }
+
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+
+    & > .pageSize {
+        width: 80%;
+        margin-block: 4rem;
+        margin-bottom: 4rem;
+        
+
+        & > .contentAll {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 40px;
+
+            .infoProduto {
+                color: $grey-500;
+
+                & > h1 {
+                    color: $dark-blue-100;
+                }
+
+                & > hr {
+                    width: 15%;
+                    height: 3px;
+                    background-color: $blue-100;
+                    border: 1px solid $blue-100;
+                    margin-top: 10px;
+                    margin-bottom: 20px;
+                }
+            }
+
+            .areasAtuacao {
+                display: grid;
+                grid-template-columns: repeat(2, 50%);
+                color: $grey-500;
+
+                .imageLei {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                }
+                
+                div {
+                    width: 80%;
+                    
+                    & > h1 {
+                        font-size: 22px;
+                        color: $dark-blue-100;
+                    }
+
+                    & > hr {
+                        width: 15%;
+                        height: 3px;
+                        background-color: $blue-100;
+                        border: 1px solid $blue-100;
+                        margin-top: 10px;
+                        margin-bottom: 20px;
+                    }
+
+                    ul {
+                        list-style-type: none;
+                        li {
+                            &:not(:last-child) {
+                                margin-bottom: 5px;
+                            }
+                        }
+                    }
+
+                    p {
+                        margin-block: 15px;
+                    }
+
+                    button {
+                        margin-block: 15px;
+                    }
+                }
+            }
+
+            .img {
+                background-image: url('../public/images/solucoes-inovadoras/projeto/escrevendo.webp');
+                background-position: center;
+                height: 356.8px;
+                background-size: cover;
+                position: relative;
+                margin-block: 50px;
+            }
+
+            & > .professores {
+                display: flex;
+                width: 60%;
+                flex-direction: column;
+                gap: 20px;
+                margin-bottom: 4rem;
+    
+                
+                h1 {
+                    color: $dark-blue-100;
+                }
+    
+                p {
+                    color: $grey-500;
+                }
+    
+                button {
+                    width: 300px;
+                }
+            }
+        }
+    }
+
+} 
+
+
+@media (max-width: 1129px) {
+    .content  {
+        & > .headerContent {
+            grid-template-columns: repeat(2, 50%) ;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+
+            .right {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+@media (max-width: 926px) {
+    .main {
+        & > .pageSize {
+            & > .contentAll {
+                
+                .areasAtuacao {
+                    grid-template-columns: repeat(1, 100%) ;
+                    
+                    div {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 699px) {
+    
+    .content  {
+        & > .headerContent {
+            margin-top: 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+
+            .title {
+                display: inline;
+            }
+        }
+
+
+    }
+
+}
+
+@media (max-width: 554px) {
+    .main {
+        & > .pageSize {
+            & > .contentAll { 
+                .professores {
+                    width: 100%;
+
+                    > button {
+                    width: 100%;
+                        
+                    }
+                }
+            }
+        }
+    }
+}
