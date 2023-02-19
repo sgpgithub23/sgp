@@ -11,7 +11,7 @@ type InputProps = React.DetailedHTMLProps<
 >;
 
 type TextProps = InputProps & {
-  label: string;
+  label?: string;
   as?: "textarea" | "file";
   register?: UseFormRegisterReturn<string>;
   error?: string | any;
@@ -43,38 +43,38 @@ export default function Input({
         </>
       ) : props.as === "file" ? (
         <div className={styles.fileType}>
-          <label htmlFor="file">{label}</label>
+          <label htmlFor="file"> {label} 
+          </label>
           <input
             type="file"
             {...props}
             name={name}
             id="file"
+            style={{display: "none"}}
             accept="text/plain, application/pdf, application/msword"
-            onChange={(e) => {
-              setInputFileName(e.target.value.split("\\")[2]);
-            }}
+            {...register}
+            {...props}
           />
-          <label htmlFor="file">
-            {!inputFileName
-              ? "Clique aqui para escolher o arquivo"
-              : inputFileName}
-          </label>
           {props.error ? <ErrorMessage error={props.error} /> : <></>}
         </div>
       ) : mask ? (
         <>
+          <label className={styles.labelComum} htmlFor={name}>{label}</label>
           {/* @ts-ignore */}
           <InputMask type={props.type} {...register} mask={mask} {...props} />
           {props.error ? <ErrorMessage error={props.error} /> : <></>}
         </>
       ) : (
-        <div className={styles.inputIcon}>
+        <div className={classNames({
+          [styles.inputIcon]: props.withicon
+        })}>
           {props.icon}
+          <label className={styles.labelComum} htmlFor={name}>{label}</label>
           <input
             type={props.type}
             className={classNames({
-              // @ts-ignore
               [styles.withicon]: props.withicon,
+              [styles.inputComum]: !props.withicon
             })}
             {...register}
             {...props}

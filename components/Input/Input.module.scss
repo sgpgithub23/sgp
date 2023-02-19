@@ -27,13 +27,13 @@
         }
     }
 
-    & > label {
+    & > label, .labelComum {
         color: $dark-blue-100;
         display: block;
         margin-block: 3px;
-    }   
+    }
 
-    & > input {
+    & > input, .inputComum {
         height: 35px;
         padding: 10px 10px;
         width: 100%;
