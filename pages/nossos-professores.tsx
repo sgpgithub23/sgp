@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import Button from "@/components/Button";
 import { CursosTreinamentosType } from "@/typings/CursosTreinamentos";
 import ProfessoresComponent from "@/components/Professores";
+import Dropdown from "@/components/Dropdown";
 
 export default function orcamento() {
   const { push } = useRouter();
@@ -39,8 +40,11 @@ export default function orcamento() {
         </div>
       </div>
       <div className={styles.pageSize}>
+        
         <ProfessoresComponent />
       </div>
+      <Dropdown />
+
       <FooterCompleto />
       
 
