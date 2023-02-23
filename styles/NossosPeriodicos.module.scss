@@ -1,0 +1,319 @@
+@use '_index.scss' as *;
+
+.content {
+    background-image: url('../public/images/nossos-periodicos/header.webp');
+    background-position: center;
+    min-width: 100vw;
+    height: 356.8px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+
+    .bluredBall {
+        position: absolute;
+        height: 60%;
+        width: 20%;
+        top: 0;
+        left: 25%;
+        border-radius: 50%;
+        z-index: 0;
+        background-color: #2676EF;
+        filter: blur(7rem);
+    }
+
+    & > .headerContent {
+        width: 30%;
+        margin-left: 10%;
+        margin-top: 3%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+
+        & > h1 {
+            color: white;
+        }
+
+        & > hr {
+            width: 15%;
+            height: 3px;
+            background-color: $blue-100;
+            border: 1px solid $blue-100;
+        }
+
+        & > p {
+            color: white;
+            margin-block: 5px;
+        }
+
+    }
+
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    & > .pageSize {
+        width: 80%;
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+
+        & > .periodicos {
+
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            gap: 40px;
+            
+            .left {
+                
+                h2 {
+                    color: $dark-blue-100;
+                    padding-bottom: 40px;
+
+                }
+
+                .dropdowns {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    
+                    & > .individual {
+                        display: flex;
+                        align-items: center;
+                        gap: 30px;
+
+                        span {
+                            text-align: right;
+                            width: 20%;
+                        }
+
+
+                    }
+                }
+
+                .button {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    padding-block: 40px;
+                }
+            }
+
+            .right {
+                display: grid;
+                grid-template-columns: repeat(2, 50%);
+                justify-content: center;
+                gap: 20px;
+                .slc, .sam {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+
+                    img {
+                        // width: 284px;
+                        height: auto;
+                        max-width: 100%;
+                    }
+
+                    span {
+                        display: block;
+                        text-align: center;
+                        padding-block: 15px;
+                        width: 65%;
+                    
+                    }
+                }
+
+                .slc > span > strong {
+                    color: $blue-100;
+
+                }
+
+                .sam > span > strong {
+                    color: $orange-100;
+
+                }
+            }
+        }
+
+    }
+}
+
+
+@media (max-width: 1145px) {
+    .content {
+        // background-image: url('../public/images/cursos-treinamentos/homem-sorrindo.webp');
+        background-position: center;
+        min-width: 100vw;
+        height: 356.8px;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+
+        & > .headerContent {
+            width: 40%;
+            margin-left: 10%;
+            margin-top: 3%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+
+        }
+
+    }
+}
+
+@media (max-width: 1008px) {
+    .main {
+    
+        & > .pageSize {
+       
+    
+            & > .periodicos {
+    
+                display: grid;
+                grid-template-columns: repeat(1, auto);
+                
+                .left {
+                    
+                    h2 {
+                        color: $dark-blue-100;
+                        text-align: center;
+                    }
+    
+                    .dropdowns {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100%;
+                        gap: 20px;
+                        
+                        & > .individual {
+    
+                            span {
+                                text-align: right;
+                                width: 20%;
+                            }
+    
+    
+                        }
+                    }
+
+                    .button {
+                        justify-content: center;
+                    }
+
+                }
+            }
+    
+        }
+    }
+}
+
+
+
+@media (max-width: 861px) {
+    .content {
+
+        background-position: center;
+        min-width: 100vw;
+        height: 356.8px;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+
+        & > .headerContent {
+            width: 60%;
+
+        }
+
+    }
+}
+
+@media (max-width: 700px) {
+    .main {
+    
+        & > .pageSize {
+       
+    
+            & > .periodicos {
+    
+                display: grid;
+                grid-template-columns: repeat(1, auto);
+                
+                .right {
+                    display: grid;
+                    grid-template-columns: repeat(1, 100%);
+                    justify-content: center;
+                    gap: 20px;
+                }
+            }
+    
+        }
+    }
+}
+
+
+@media (max-width: 625px) {
+    .content {
+        // background-image: url('../public/images/cursos-treinamentos/homem-sorrindo.webp');
+        background-position: center;
+        min-width: 100vw;
+        height: 356.8px;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+
+        & > .headerContent {
+            width: 90%;
+            margin-left: 10%;
+            margin-top: 3%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+
+            & > button {
+                width: 40%;
+            }
+        }
+
+    }
+}
+
+@media (max-width: 625px) {
+    .content {
+        // background-image: url('../public/images/cursos-treinamentos/homem-sorrindo.webp');
+        background-position: center;
+        min-width: 100vw;
+        min-height: 356.8px;
+        height: auto;
+        max-height: 400px;
+
+        & > .headerContent {
+            width: 90%;
+            margin-left: 10%;
+            margin-top: 15%;
+            display: flex;
+            justify-content: center;
+
+            & > button {
+                width: 70%;
+            }
+        }
+
+    }
+}

@@ -5,20 +5,21 @@ import { BsChevronDown } from 'react-icons/bs'
 import styles from "./Dropdown.module.scss"
 
 
-
 type PropsDropdown = {
   values: {value: any, label: any}[]
 }
 
-
 export default function Dropdown(props: PropsDropdown) {
+
+  const [label, setLabel] = useState<{value: any, label: any}>()
+
   return (
 
     <div className={styles.main}>
       <Menu as="div" className={styles.menuAsDiv}>
         <div>
           <Menu.Button className={styles.menuButton}>
-            Options
+            {label?.label ?? "Escolha..."}
             <BsChevronDown
               aria-hidden="true"
               className={styles.svg}
@@ -38,10 +39,10 @@ export default function Dropdown(props: PropsDropdown) {
             <div >
               {props.values?.length > 0 ? 
                 props.values?.map((x) => (
-                  <Menu.Item>
+                  <Menu.Item key={x.value}>
                     {({ active }) => (
-                      <button >
-                        Delete
+                      <button onClick={() => setLabel(x)} className={styles.dropdown}>
+                        {x.label}
                       </button>
                     )}
                   </Menu.Item>
