@@ -79,15 +79,15 @@ function LoginPrincipal(props: any) {
                         <div>
                             <Input type="password" label="Senha" placeholder="Senha de 8 caracteres"/>
                         </div>
-                        <a href="">Esqueci minha Senha</a>
-                        <div className={styles.botoes}>
-
-                            <Button color="blue" title="Entrar" 
-                                onClick={() => {
+                        <a onClick={() => {
                                     props.setIsTelaPreencherCampo(true)
                                     props.setIsAreaCliente(false)
                                     props.setIsFormAlterarSenha(false)
-                                }} 
+                                }} >Esqueci minha Senha</a>
+                        <div className={styles.botoes}>
+
+                            <Button color="blue" title="Entrar" 
+                                
                             />
                         </div>
                     </form>
