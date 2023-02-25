@@ -44,7 +44,7 @@ const initialValues = {
   telComl: ""
 }
 
-export default function orcamento() {
+export default function Contato() {
   const { push } = useRouter()
 
   const {

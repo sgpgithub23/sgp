@@ -1,0 +1,265 @@
+@use '_index.scss' as *;
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    height: auto;
+
+    & > .pageSize {
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+    
+        & > .formulario {
+            margin-top: 5%;
+            margin-left: 20%;
+            margin-right: 16%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+
+            h1 {color: $dark-blue-100}
+
+            p, a {color: $grey-500}
+
+            a {
+                text-decoration: none;
+                text-align: end;
+                margin-top: -14px;
+                font-size: 14px;
+
+                &:hover {
+                    color: $grey-600
+                }
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+                .botoes {
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 10px;
+                    margin-block: 10px;
+                }
+        
+            }
+        }
+
+        & > .imagemRight {
+            background-image: url('../public/images/login/arranha-ceu.webp');
+            background-size: cover;
+            min-width: 100%;
+            height: 700px;
+        }
+    }
+
+    & > .formularioPreencherCampo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+
+        gap: 20px;
+        width: 40%;
+
+        h1 {color: $dark-blue-100}
+
+        p {color: $grey-500}
+        
+        .botoes {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-block: 40px;
+        }
+    }
+
+    & > .pageSizeRecuperaSenha {
+        width: 50%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+
+        & > .formularioRecuperaSenha {
+            padding-top: 130px;
+            padding-bottom: 80px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+
+            h1, h3 {color: $dark-blue-100}
+
+            p {color: $grey-500}
+
+            h3 {text-align: left; padding-top: 10px; display: flex; align-items: center; gap: 10px;}
+            
+            form {
+                text-align: left;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                
+                .botoes {
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 10px;
+                    // margin-block: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 818px) {
+    .main {
+        & > .formularioPreencherCampo {
+    
+            gap: 20px;
+            width: 60%;
+            
+            .botoes {
+                display: flex;
+                justify-content: flex-end;
+                gap: 10px;
+                margin-block: 40px;
+            }
+        }
+
+        & > .pageSizeRecuperaSenha {
+            width: 70%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+    
+            & > .formularioRecuperaSenha {
+                padding-top: 130px;
+                padding-bottom: 80px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+    
+                
+                form {
+                    text-align: left;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    
+                    .botoes {
+                        display: flex;
+                        justify-content: flex-end;
+                        gap: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 790px) {
+    .main {
+        & > .pageSize {
+            display: grid;
+            grid-template-columns: repeat(1, 100%);
+            width: 80%;
+        
+            & > .formulario {
+                margin-top: 100px;
+                margin-left: 0;
+                margin-right: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 20px;
+    
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+    
+                    .botoes {
+                        display: flex;
+                        justify-content: flex-end;
+                        gap: 10px;
+                        margin-block: 10px;
+                    }
+            
+                }
+            }
+    
+            & > .imagemRight {
+                display: none;
+            }
+        }  
+    }
+}
+
+@media (max-width: 636px) {
+    .main {
+
+        & > .pageSizeRecuperaSenha {
+            width: 80%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+    
+            & > .formularioRecuperaSenha {
+                padding-top: 130px;
+                padding-bottom: 80px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+    
+                
+                form {
+                    text-align: left;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    
+                    .botoes {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-end;
+                        gap: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 550px) {
+    .main {
+        & > .formularioPreencherCampo {
+            padding-top: 100px;
+            gap: 20px;
+            width: 80%;
+            
+            .botoes {
+                display: flex;
+                justify-content: flex-end;
+                flex-direction: column;
+                gap: 10px;
+                margin-block: 40px;
+            }
+        }
+    }
+}

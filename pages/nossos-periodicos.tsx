@@ -15,7 +15,7 @@ import BookOpen from "@/public/icons/book-open";
 
 
 
-export default function orcamento() {
+export default function NossosPeriodicos() {
   const { push } = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<CursosTreinamentosType>();

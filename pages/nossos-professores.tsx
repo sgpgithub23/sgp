@@ -9,7 +9,7 @@ import { CursosTreinamentosType } from "@/typings/CursosTreinamentos";
 import ProfessoresComponent from "@/components/Professores";
 import Dropdown from "@/components/Dropdown";
 
-export default function orcamento() {
+export default function NossosProfessores() {
   const { push } = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<CursosTreinamentosType>();
@@ -43,7 +43,6 @@ export default function orcamento() {
         
         <ProfessoresComponent />
       </div>
-      <Dropdown />
 
       <FooterCompleto />
       

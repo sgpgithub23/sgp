@@ -13,7 +13,7 @@ import { Cursos, Treinamentos } from "@/utils/cursos-treinamentos";
 import classNames from "classnames";
 import { Dialog, Transition } from "@headlessui/react";
 
-export default function orcamento() {
+export default function CursosTreinamentos() {
   const { push } = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<CursosTreinamentosType>();
