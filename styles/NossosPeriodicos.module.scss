@@ -142,6 +142,73 @@
             }
         }
 
+        & > .principaisSolucoesInovadoras {
+            margin-block: 150px;
+            height: auto;
+            background-color: $dark-blue-100;
+            border-radius: 16px;
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            justify-content: space-between;
+
+            & > .bluredBall {
+                position: absolute;
+                height: 60%;
+                width: 20%;
+                top: 0;
+                left: 50%;
+                border-radius: 50%;
+                // z-index: 0;
+                background-color: #2676EF;
+                filter: blur(7rem);
+            }
+
+            & > .imagem {
+
+
+                & > img {
+                    max-width: 100%;
+                    height: auto;
+                    position: absolute;
+                    bottom: 0;
+                    right: 6%;
+                }
+                
+            }
+
+            & > .descricao {
+                width: 55%;
+                padding: 6%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                color: white;
+                gap: 40px;
+
+                div {
+                    display: flex;
+                    gap: 10px;
+
+                    svg {
+                        border: 1px solid white;
+                        border-radius: 5px;
+                        min-width: 30px;
+                        min-height: 30px;
+                        padding: 6px;
+                        display: inline-block;
+                    }
+                }
+
+                button {
+                    width: 60%;
+                }
+
+            }
+
+
+        }
+
     }
 }
 
@@ -214,6 +281,69 @@
 
                 }
             }
+
+            & > .principaisSolucoesInovadoras {
+    
+                & > .imagem {
+    
+    
+                    & > img {
+                        bottom: 0;
+                        right: 0%;
+                    }
+                    
+                }
+    
+                & > .descricao {
+                    width: 65%;
+
+                    button {
+                        width: 70%;
+                    }
+    
+                }
+    
+    
+            }
+    
+        }
+    }
+}
+
+@media (max-width: 944px) {
+    .main {
+    
+        & > .pageSize {
+    
+            & > .principaisSolucoesInovadoras {
+    
+                padding: 50px 0 30px 0;
+
+                & > .imagem {
+    
+    
+                    & > img {
+                        bottom: 0;
+                        right: 0%;
+                    }
+                    
+                }
+    
+                & > .descricao {
+                    width: 75%;
+
+                    button {
+                        width: 50%;
+                    }
+
+                    div {
+                        width: 75%;
+                    }
+    
+                }
+    
+    
+            }
     
         }
     }
@@ -222,23 +352,73 @@
 
 
 @media (max-width: 861px) {
-    .content {
+    .main {
+        .content {
 
-        background-position: center;
-        min-width: 100vw;
-        height: 356.8px;
-        background-size: cover;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-
-        & > .headerContent {
-            width: 60%;
-
+            background-position: center;
+            min-width: 100vw;
+            height: 356.8px;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+    
+            & > .headerContent {
+                width: 60%;
+            }
+    
         }
 
+        .pageSize {
+
+            & > .principaisSolucoesInovadoras {
+                grid-template-columns: repeat(1, 100%);
+    
+                & > .bluredBall {
+                    position: absolute;
+                    height: 60%;
+                    width: 20%;
+                    top: 0;
+                    left: 50%;
+                    border-radius: 50%;
+                    // z-index: 0;
+                    background-color: #2676EF;
+                    filter: blur(7rem);
+                }
+    
+                & > .imagem {
+                    display: none;
+                    
+                }
+    
+                & > .descricao {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    padding-left: 0;
+                    padding: 40px;
+                    justify-content: center;
+                    color: white;
+                    gap: 40px;
+                    align-items: center;
+    
+                    text-align: center;
+
+    
+                    button {
+                        width: 60%;
+                    }
+    
+                }
+    
+    
+            }
+        }
+
+
     }
+    
 }
 
 @media (max-width: 700px) {
@@ -266,54 +446,88 @@
 
 
 @media (max-width: 625px) {
-    .content {
-        // background-image: url('../public/images/cursos-treinamentos/homem-sorrindo.webp');
-        background-position: center;
-        min-width: 100vw;
-        height: 356.8px;
-        background-size: cover;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
 
-        & > .headerContent {
-            width: 90%;
-            margin-left: 10%;
-            margin-top: 3%;
+    .main {
+        .content {
+            background-position: center;
+            min-width: 100vw;
+            height: 356.8px;
+            background-size: cover;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            position: relative;
-
-            & > button {
-                width: 40%;
-            }
-        }
-
-    }
-}
-
-@media (max-width: 625px) {
-    .content {
-        // background-image: url('../public/images/cursos-treinamentos/homem-sorrindo.webp');
-        background-position: center;
-        min-width: 100vw;
-        min-height: 356.8px;
-        height: auto;
-        max-height: 400px;
-
-        & > .headerContent {
-            width: 90%;
-            margin-left: 10%;
-            margin-top: 15%;
-            display: flex;
             justify-content: center;
-
-            & > button {
-                width: 70%;
-            }
+            position: relative;
+    
+            & > .headerContent {
+                width: 80%;
+                // padding: 20px;
+                margin-top: 3%;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                position: relative;
+            }    
         }
 
+        & > .pageSize {
+    
+            & > .principaisSolucoesInovadoras {
+    
+                & > .imagem {
+    
+    
+                    & > img {
+                        bottom: 0;
+                        right: 0%;
+                    }
+                    
+                }
+    
+                & > .descricao {
+                    width: 100%;
+
+                    button {
+                        width: 100%;
+                    }
+
+                    div {
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100%;
+                    }
+    
+                }
+    
+    
+            }
+    
+        }
     }
+
+   
 }
+
+// @media (max-width: 625px) {
+//     .content {
+//         // background-image: url('../public/images/cursos-treinamentos/homem-sorrindo.webp');
+//         background-position: center;
+//         min-width: 100vw;
+//         min-height: 356.8px;
+//         height: auto;
+//         max-height: 400px;
+
+//         & > .headerContent {
+//             width: 90%;
+//             margin-left: 10%;
+//             margin-top: 15%;
+//             display: flex;
+//             justify-content: center;
+
+//             & > button {
+//                 width: 70%;
+//             }
+//         }
+
+//     }
+// }

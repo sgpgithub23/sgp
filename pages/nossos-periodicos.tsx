@@ -10,6 +10,7 @@ import ProfessoresComponent from "@/components/Professores";
 import Dropdown from "@/components/Dropdown";
 import { anoPeriodico, dropdownValuesTipoPeriodico, mesPeriodico } from "@/utils/nossos-periodicos";
 import Image from "next/image";
+import BookOpen from "@/public/icons/book-open";
 
 
 
@@ -36,7 +37,6 @@ export default function orcamento() {
           <p> Edição reduzida para degustação. Informe-se também sobre cursos e treinamentos em nosso site. </p>
         </div>
       </div>
-      <div className={styles.main}>
         <div className={styles.pageSize}>
           <div className={styles.periodicos}>
             <div className={styles.left}>
@@ -75,10 +75,21 @@ export default function orcamento() {
             </div>
           </div>
           <div className={styles.principaisSolucoesInovadoras}>
-            
+            <div className={styles.bluredBall}></div>
+
+            <div className={styles.descricao}>
+              <h1>Conheça nossas principais soluções Inovadoras</h1>
+              <div>
+                <BookOpen strokeColor="#ffffff"  />
+                <span>Caso queira saber mais sobre a empresa SGP Soluções em Gestão Pública entre em contato através de nossos canais de atendimento.</span>
+              </div>
+              <Button color="blue" title="Conhecer agora!" />
+            </div>
+            <div className={styles.imagem}>
+              <Image src="/images/nossos-periodicos/homem-apontando.webp" height={433} width={412} alt="Homem aprensentando as principais soluções inovadoras" />
+            </div>
           </div>
         </div>
-      </div>
       
       {/* <Dropdown /> */}
 
