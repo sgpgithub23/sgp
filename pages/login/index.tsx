@@ -79,7 +79,7 @@ function LoginPrincipal(props: any) {
                         <div>
                             <Input type="password" label="Senha" placeholder="Senha de 8 caracteres"/>
                         </div>
-                        <a onClick={() => {
+                        <a role="button" onClick={() => {
                                     props.setIsTelaPreencherCampo(true)
                                     props.setIsAreaCliente(false)
                                     props.setIsFormAlterarSenha(false)
