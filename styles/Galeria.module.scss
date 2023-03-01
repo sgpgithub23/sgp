@@ -1,0 +1,139 @@
+@use '_index.scss' as *;
+
+.content {
+    background-image: url('../public/images/galeria/ponte.webp');
+    background-position: center;
+    min-width: 100vw;
+    height: 356.8px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+
+    .bluredBall {
+        position: absolute;
+        height: 60%;
+        width: 20%;
+        top: 0;
+        left: 25%;
+        border-radius: 50%;
+        z-index: 0;
+        background-color: #2676EF;
+        filter: blur(7rem);
+    }
+
+    & > .headerContent {
+        width: 30%;
+        margin-left: 10%;
+        margin-top: 3%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+
+        & > h1 {
+            color: white;
+        }
+
+        & > hr {
+            width: 15%;
+            height: 3px;
+            background-color: $blue-100;
+            border: 1px solid $blue-100;
+        }
+
+        & > p {
+            color: white;
+            margin-block: 5px;
+        }
+
+    }
+
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+}
+
+
+@media (max-width: 1145px) {
+    .content {
+        // background-image: url('../public/images/cursos-treinamentos/homem-sorrindo.webp');
+        background-position: center;
+        min-width: 100vw;
+        height: 356.8px;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+
+        & > .headerContent {
+            width: 40%;
+            margin-left: 10%;
+            margin-top: 3%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+
+        }
+
+    }
+}
+
+@media (max-width: 861px) {
+    .main {
+        .content {
+
+            background-position: center;
+            min-width: 100vw;
+            height: 356.8px;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+    
+            & > .headerContent {
+                width: 60%;
+            }
+        }
+    }
+}
+
+
+
+
+@media (max-width: 625px) {
+
+    .main {
+        .content {
+            background-position: center;
+            min-width: 100vw;
+            height: 356.8px;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+    
+            & > .headerContent {
+                width: 80%;
+                // padding: 20px;
+                margin-top: 3%;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                position: relative;
+            }    
+        }
+
+    }
+}
