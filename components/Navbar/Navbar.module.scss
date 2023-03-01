@@ -16,6 +16,7 @@
     min-width: 100%;
     color: white;
     padding-inline: 10%;
+
 }
 
 .navbar {
@@ -30,25 +31,26 @@
         display: flex;
         gap: 1rem;
         align-items: center;
+        height: 100%;
 
         & > li {
             font-weight: 100;
+            height: 100%;
 
-                & > a {
-                    text-decoration: none;
-        
-                    &:hover {
-                        color: white;
-                    }
-        
-                    &:active {
-                        color: white;
-                    }
+            & > a {
+                text-decoration: none;
+    
+                &:hover {
+                    color: white;
+                }
+    
+                &:active {
+                    color: white;
                 }
             }
         }
+    }
 }
-
 
 .logoNavbar {
     width: 11rem;
@@ -70,11 +72,6 @@
     background-color: rgba($grey-details, 0.4);
     color: green;
 }
-
-// .PeriodicosMensais, .Outros, .SolucoesInovadoras, .Login {
-//     display: none;
-// }
-
 
 @media screen and (max-width:768px) { 
     .active {

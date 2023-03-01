@@ -1,16 +1,11 @@
 import Head from "next/head";
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/Galeria.module.scss";
 import { FooterCompleto } from "@/components/FooterCompleto";
-import { useRouter } from "next/router";
-import { CursosTreinamentosType } from "@/typings/CursosTreinamentos";
 
 
-export default function NossosPeriodicos() {
-    const { push } = useRouter();
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-    const [modalContent, setModalContent] = useState<CursosTreinamentosType>();
+export default function Galeria() {
 
     return (
         <div className={styles.main}>
