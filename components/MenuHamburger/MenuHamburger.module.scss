@@ -49,8 +49,6 @@ $height: 1rem;
         list-style: none;
         overflow: hidden;
 
-
-
         & > li {
             & > a {
                 text-decoration: none;
@@ -133,26 +131,11 @@ $height: 1rem;
     .Contato, .Login {
         display: none;
     }
-
-    .itemsMenuHamburger {
-        & > ul  {
-            // display: flex;
-            // flex-direction: column;
-            // justify-content: center;
-            // align-items: center;
-        }
-    }
 } 
 
 @media screen and (max-width:768px) {
     .itemsMenuHamburger {
         width: 90%;
-        & > ul  {
-            // display: flex;
-            // flex-direction: column;
-            // justify-content: center;
-            // align-items: center;
-        }
     }
 }
 

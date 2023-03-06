@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { ItemsMenu } from "../../utils/items-menu";
 import classNames from "classnames";
 import MenuHamburger from "../MenuHamburger";
@@ -9,6 +9,7 @@ import styles from "./Navbar.module.scss";
 
 export default function Navbar() {
   const { pathname, push } = useRouter();
+  const [isShow, setIsShow] = useState<boolean>(false);
 
   return (
     <header className={styles.header}>
@@ -20,28 +21,65 @@ export default function Navbar() {
         priority
         width={100}
         height={50}
-        style={{width: "auto", height: "auto"}}
+        style={{ width: "auto", height: "auto" }}
         alt="Logo da SGP"
       />
       <div className={styles.menuEnavbar}>
         <nav className={styles.navbar}>
           <ul className={styles.listNavbar}>
             {ItemsMenu.map(({ title, url, className }, index: number) => {
-              return (
-                <li className={classNames(styles.itemsMenu, styles[className!])} key={index}>
-                <Link
-                  href={url}
-                  style={
-                    pathname === url
-                      ? { color: "white", fontWeight: "bold" }
-                      : { color: "white" }
-                  }
-                >
-                  {title}
-                </Link>
-              </li>
-              )})}
-
+              if (title === "Outros") {
+                return (
+                  <>
+                    <li
+                      onClick={() => setIsShow(!isShow)}
+                      className={classNames(
+                        styles.itemsMenu,
+                        styles[className!]
+                      )}
+                      key={index}
+                    >
+                      <span>{title}</span>
+                    </li>
+                    {isShow && (
+                      <div className={styles.itemsOutros}>
+                        <ul>
+                          <li>
+                            <a href="">oi</a>
+                          </li>
+                          <li>
+                            <a href="">oi</a>
+                          </li>
+                          <li>
+                            <a href="">oi</a>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                  </>
+                );
+              } else {
+                return (
+                  <li
+                    role="button"
+                    onClick={() => push(`/${url}`)}
+                    className={classNames(styles.itemsMenu, styles[className!])}
+                    key={index}
+                  >
+                    <Link
+                      href={url}
+                      style={
+                        pathname === url
+                          ? { color: "white", fontWeight: "bold" }
+                          : { color: "white" }
+                      }
+                    >
+                      {title}
+                    </Link>
+                  </li>
+                );
+              }
+            })}
           </ul>
         </nav>
         <MenuHamburger />

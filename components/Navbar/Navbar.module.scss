@@ -52,6 +52,46 @@
     }
 }
 
+.itemsOutros {
+    position: absolute;
+    top: 4rem;
+    right: 0;
+    width: 400px;
+    max-height: 500px;
+    background-color: $grey-100;
+    overflow: hidden;
+    overflow-y: auto;
+    margin: 5px;
+    border-radius: 20px;
+    padding-inline: 20px;
+    border: 1px solid $grey-200;
+    font-size: 20px;
+    margin-right: 10px;
+
+    & > ul {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        list-style: none;
+        overflow: hidden;
+
+        & > li {
+            & > a {
+                text-decoration: none;
+                color: $grey-500;
+            }
+
+            cursor: pointer;
+        }
+    } 
+}
+
+.Outros {
+    cursor: pointer;
+}
+
 .logoNavbar {
     width: 11rem;
     cursor: pointer;
@@ -70,7 +110,6 @@
 
 .activeUrl {
     background-color: rgba($grey-details, 0.4);
-    color: green;
 }
 
 @media screen and (max-width:768px) { 
@@ -78,7 +117,6 @@
         color: white;
     }
 }
-
 
 @media (min-width: 1140px) {
     .header{
@@ -91,8 +129,6 @@
     .Agenda, .CanalSGP {
         display: none;
     }
-    
-
 } 
 
 
