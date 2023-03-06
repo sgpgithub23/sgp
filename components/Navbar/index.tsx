@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
-import { ItemsMenu } from "../../utils/items-menu";
+import React, { useEffect, useState } from "react";
+import { ItemsMenu, MenuOutros } from "../../utils/items-menu";
 import classNames from "classnames";
 import MenuHamburger from "../MenuHamburger";
 import styles from "./Navbar.module.scss";
@@ -44,15 +44,13 @@ export default function Navbar() {
                     {isShow && (
                       <div className={styles.itemsOutros}>
                         <ul>
-                          <li>
-                            <a href="">oi</a>
-                          </li>
-                          <li>
-                            <a href="">oi</a>
-                          </li>
-                          <li>
-                            <a href="">oi</a>
-                          </li>
+                          {MenuOutros.map(
+                            ({ title, url, className, disabled }) => (
+                              <li className={styles[className!]}>
+                                <Link href={url}>{title}</Link>
+                              </li>
+                            )
+                          )}
                         </ul>
                       </div>
                     )}
