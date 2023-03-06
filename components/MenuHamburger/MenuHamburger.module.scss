@@ -28,10 +28,17 @@ $height: 1rem;
     position: absolute;
     top: 4rem;
     right: 0;
-    width: 50%;
-    height: auto;
-    background-color: $grey-details;
-    overflow-y: scroll;
+    width: 400px;
+    max-height: 500px;
+    background-color: $grey-100;
+    overflow: hidden;
+    overflow-y: auto;
+    margin: 5px;
+    border-radius: 20px;
+    padding-inline: 20px;
+    border: 1px solid $grey-200;
+    font-size: 20px;
+    margin-right: 10px;
 
     & > ul {
         display: flex;
@@ -39,13 +46,15 @@ $height: 1rem;
         gap: 2rem;
         margin-top: 2rem;
         margin-bottom: 2rem;
-        font-size: 3rem;
         list-style: none;
+        overflow: hidden;
+
+
 
         & > li {
             & > a {
                 text-decoration: none;
-                color: white;
+                color: $grey-500;
             }
         }
     } 
@@ -124,19 +133,25 @@ $height: 1rem;
     .Contato, .Login {
         display: none;
     }
+
+    .itemsMenuHamburger {
+        & > ul  {
+            // display: flex;
+            // flex-direction: column;
+            // justify-content: center;
+            // align-items: center;
+        }
+    }
 } 
 
 @media screen and (max-width:768px) {
     .itemsMenuHamburger {
+        width: 90%;
         & > ul  {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        & > ul > li > a {
-            font-size: 1.5rem;
+            // display: flex;
+            // flex-direction: column;
+            // justify-content: center;
+            // align-items: center;
         }
     }
 }
