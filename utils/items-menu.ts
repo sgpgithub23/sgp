@@ -8,37 +8,37 @@ export const ItemsMenu: TItemsMenu[] = [
   },
   {
     title: "Periódicos Mensais",
-    url: "periodicos-mensais",
+    url: "/#periodicos-mensais",
     className: "PeriodicosMensais",
   },
   {
     title: "Cursos e Treinamentos",
-    url: "cursos-treinamentos",
+    url: "/cursos-treinamentos",
     className: "CursosTreinamentos",
   },
   {
     title: "Nossos Professores",
-    url: "nossos-professores",
+    url: "/nossos-professores",
     className: "NossosProfessores",
   },
   {
     title: "Agenda",
-    url: "agenda",
+    url: "/agenda",
     className: "Agenda",
   },
   {
     title: "Soluções Inovadoras",
-    url: "solucoes-inovadoras",
+    url: "/solucoes-inovadoras",
     className: "SolucoesInovadoras",
   },
   {
     title: "Canal SGP",
-    url: "canal-sgp",
+    url: "/canal-sgp",
     className: "CanalSGP",
   },
   {
     title: "Documentações",
-    url: "documentacoes",
+    url: "/documentacoes",
     className: "Documentacoes",
   },
   {
@@ -48,12 +48,12 @@ export const ItemsMenu: TItemsMenu[] = [
   },
   {
     title: "Contato",
-    url: "contato",
+    url: "/contato",
     className: "Contato",
   },
   {
     title: "Login",
-    url: "login",
+    url: "/login",
     className: "Login",
   },
 ];

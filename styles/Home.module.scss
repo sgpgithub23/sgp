@@ -1,5 +1,9 @@
 @use '_index.scss' as *;
 
+.fullPage {
+  scroll-behavior: smooth;
+}
+
 .titleDarkBlue {
   color: $dark-blue-100;
   font-weight: 700;

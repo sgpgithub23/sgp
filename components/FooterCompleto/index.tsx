@@ -62,31 +62,31 @@ export function FooterCompleto() {
               </Link>
             ))}
           </div>
-
         </div>
       </div>
       <div className={styles.informacoes}>
         <h2>Mapa do site</h2>
         <div className={styles.linksSite}>
           <div className={styles.colunas}>
-            <Link href={"/quem-somos"}>Quem somos</Link>
-            <Link href={"/periodicos-mensais"}>Periódicos</Link>
-            <Link href={"/"}>Cursos e Treinamentos</Link>
-            <Link href={"/"}>Nossos Professores</Link>
+            <Link href={"/"}>Quem somos</Link>
+            <Link href={"/nossos-periodicos"}>Periódicos</Link>
+            <Link href={"/cursos-treinamentos"}>Cursos e Treinamentos</Link>
+            <Link href={"/nossos-professores"}>Nossos Professores</Link>
             <Link href={"/"}>Agenda</Link>
           </div>
           <div className={styles.colunas}>
-            <Link href={"/"}>Soluções Inovadoras</Link>
-            <Link href={"/"}>Canal SGP</Link>
-            <Link href={"/"}>Área do Cliente</Link>
-            <Link href={"/"}>Documentações</Link>
-            <Link href={"/"}>Galeria de Fotos</Link>
+            <Link href={"/solucoes-inovadoras"}>Soluções Inovadoras</Link>
+            <Link href={"/canal-sgp"}>Canal SGP</Link>
+            <Link href={"/login"}>Área do Cliente</Link>
+            <Link href={"/documentacoes"}>Documentações</Link>
+            <Link href={"/galeria"}>Galeria de Fotos</Link>
           </div>
           <div className={styles.colunas}>
-            
-            <Link href={"/"}>Trabalhe conosco</Link>
-            <Link href={"/"}>Notícias</Link>
-            <Link href={"/"}>Contato</Link>
+            <Link href={"/contato"}>Trabalhe conosco</Link>
+            <Link href="#" style={{ cursor: "not-allowed" }}>
+              Notícias
+            </Link>
+            <Link href={"/contato"}>Contato</Link>
           </div>
           <div className={styles.colunas}>
             {RedesSociaisSGP.map(({ link, name }) => (
@@ -113,15 +113,35 @@ export function FooterCompleto() {
             <p>(das 08h30 às 17h30)</p>
           </div>
           <div className={styles.colunasDown}>
-          <h2>Políticas</h2>
-            <p>Política de Cookies</p>
-            <p>Política de Privacidade</p>
-            <p>Termo de Consentimento da Privacidade</p>
+            <h2>Políticas</h2>
+            <p
+              role="button"
+              style={{ cursor: "pointer" }}
+              onClick={() => push("/documentacoes/cookies")}
+            >
+              Política de Cookies
+            </p>
+            <p
+              role="button"
+              style={{ cursor: "pointer" }}
+              onClick={() => push("/documentacoes/politica-privacidade")}
+            >
+              Política de Privacidade
+            </p>
+            <p
+              role="button"
+              style={{ cursor: "pointer" }}
+              onClick={() => push("/documentacoes/termos-uso")}
+            >
+              Termo de Consentimento da Privacidade
+            </p>
           </div>
-
         </div>
       </div>
-      <p>{ano} &copy; SGP - Soluções em Gestão Públicas | Todos os direitos reservados </p>
+      <p>
+        {ano} &copy; SGP - Soluções em Gestão Públicas | Todos os direitos
+        reservados{" "}
+      </p>
     </footer>
   );
 }

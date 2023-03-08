@@ -15,7 +15,7 @@ export default function Navbar() {
     <header className={styles.header}>
       <Image
         role="button"
-        onClick={() => push("/quem-somos")}
+        onClick={() => push("/")}
         className={styles.logoNavbar}
         src={"/logo.svg"}
         priority
