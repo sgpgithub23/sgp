@@ -56,33 +56,20 @@ export const ItemsMenu: TItemsMenu[] = [
     url: "/login",
     className: "Login",
   },
-];
-
-export const MenuOutros: TItemsMenu[] = [
   {
-    title: "Nossos Professores",
-    url: "/nossos-professores",
-    className: "NossosProfessores",
+    title: "Trabalhe conosco",
+    url: "/contato",
+    className: "TrabalheConosco",
+  },
+  {
+    title: "Notícias",
+    url: "/noticias",
+    className: "Noticias"
   },
   {
     title: "Galeria de Fotos",
     url: "/galeria-fotos",
     className: "GaleriaFotos",
   },
-  {
-    title: "Documentações",
-    url: "/documentacoes",
-    className: "Documentacoes",
-  },
-  {
-    title: "Trabalhe conosco",
-    url: "/contato",
-    className: "/contato",
-  },
-  {
-    title: "Notícias",
-    url: "/noticias",
-    className: "Notificas",
-    disabled: true,
-  },
 ];
+

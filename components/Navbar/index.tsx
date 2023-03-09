@@ -2,14 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { ItemsMenu, MenuOutros } from "../../utils/items-menu";
+import { ItemsMenu } from "../../utils/items-menu";
 import classNames from "classnames";
 import MenuHamburger from "../MenuHamburger";
 import styles from "./Navbar.module.scss";
+import { Menu } from "@headlessui/react";
 
 export default function Navbar() {
-  const { pathname, push } = useRouter();
-  const [isShow, setIsShow] = useState<boolean>(false);
+  const { asPath, push } = useRouter();
 
   return (
     <header className={styles.header}>
@@ -28,46 +28,65 @@ export default function Navbar() {
         <nav className={styles.navbar}>
           <ul className={styles.listNavbar}>
             {ItemsMenu.map(({ title, url, className }, index: number) => {
-              if (title === "Outros") {
+              if (url === "/solucoes-inovadoras") {
                 return (
-                  <>
-                    <li
-                      onClick={() => setIsShow(!isShow)}
-                      className={classNames(
-                        styles.itemsMenu,
-                        styles[className!]
-                      )}
-                      key={index}
-                    >
-                      <span>{title}</span>
-                    </li>
-                    {isShow && (
-                      <div className={styles.itemsOutros}>
-                        <ul>
-                          {MenuOutros.map(
-                            ({ title, url, className, disabled }) => (
-                              <li className={styles[className!]}>
-                                <Link href={url}>{title}</Link>
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </div>
+                  <Menu as="li" className={classNames(styles[className!])}>
+                    {({ open }) => (
+                      <>
+                        <Menu.Button as="div">
+                          <span>{title}</span>
+                        </Menu.Button>
+                        {open && (
+                          <>
+                            <Menu.Items
+                              as="div"
+                              className={styles.itemsMenuSolucoes}
+                              key={index}
+                            >
+                              <Menu.Item>
+                                <Link href={"/solucoes-inovadoras"}>
+                                  Orientaçoes SGP
+                                </Link>
+                              </Menu.Item>
+                              <Menu.Item>
+                                <Link href={""}>
+                                  Assessoria <em>in Loco</em>
+                                </Link>
+                              </Menu.Item>
+                              <Menu.Item>
+                                <Link href={""}>
+                                  Assessoria Hora Certa
+                                </Link>
+                              </Menu.Item>
+                              <Menu.Item>
+                                <Link href={""}>
+                                  Assessoria para Empresas Privadas
+                                </Link>
+                              </Menu.Item>
+                              <Menu.Item>
+                                <Link href={""}>
+                                  Implantaçao de Leis
+                                </Link>
+                              </Menu.Item>
+                            </Menu.Items>
+                          </>
+                        )}
+                      </>
                     )}
-                  </>
+                  </Menu>
                 );
               } else {
                 return (
                   <li
                     role="button"
-                    onClick={() => push(`/${url}`)}
+                    // onClick={() => push(url)}
                     className={classNames(styles.itemsMenu, styles[className!])}
                     key={index}
                   >
                     <Link
                       href={url}
                       style={
-                        pathname === url
+                        asPath === url
                           ? { color: "white", fontWeight: "bold" }
                           : { color: "white" }
                       }

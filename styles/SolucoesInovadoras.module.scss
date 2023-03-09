@@ -69,6 +69,60 @@
 
 }
 
+.topicosOrientacoes {
+    width: 80%;
+    margin-block: 100px;
+
+    & > .header {
+        h1 {
+            color: $dark-blue-100;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: rgba(black, 0.9);
+            margin-bottom: 20px;
+        }
+        
+        hr {
+            width: 5%;
+            height: 3px;
+            background-color: $blue-100;
+            border: 1px solid $blue-100;
+            margin-bottom: 30px;
+        }
+    }
+
+    & > .fullLista {
+        display: grid;
+        grid-template-columns: repeat(4, 25%);
+        // gap: 10px;
+
+        & > .topicosLista {
+            list-style-type: none;
+
+            & > .listaInterna {
+                width: 90%;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+                p {
+                    display: flex;
+                    align-items: center;
+                    color: $grey-500;
+                    svg {
+                        width: 20px;
+                        min-width: 20px;
+                        margin-right: 5px;
+                        color: $blue-100;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .main {
     display: flex;
     justify-content: center;
@@ -79,6 +133,7 @@
         width: 80%;
         margin-top: 4rem;
         margin-bottom: 4rem;
+        height: auto;
 
         & .orientacoes {
             display: grid;
@@ -144,7 +199,37 @@
         height: 500px;
         background-repeat: no-repeat;
         min-width: 100vw;
-        margin-bottom: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 130px;
+        & > .texto {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+
+            hr {
+                width: 15%;
+                height: 3px;
+                background-color: $blue-100;
+                border: 1px solid $blue-100;
+                margin-bottom: 10px;
+            }  
+
+            h1 {
+                color: white;
+                margin-bottom: 20px;
+                width: 40%;
+            }
+
+            p {
+                color: white;
+                width: 40%;
+                margin-bottom: 20px;
+            }
+        }
     }
 
     & > .topicosOrientacoes {
@@ -258,7 +343,7 @@
     }
 
     & > .assesoriaJuridicaInLoco {
-        margin-block: 60px;
+        // margin-block: 60px;
         background-image: url("/images/solucoes-inovadoras/predio-vidro.webp");
         background-position: center;
         min-width: 100vw;
@@ -303,6 +388,7 @@
         display: flex;
         flex-direction: column;
         gap: 70px;
+        margin-top: 100px;
 
 
         & > .assesoriaLicitacoes, .mentoriaNovaLei {
@@ -407,6 +493,17 @@
             margin-top: 10px;
             margin-bottom: 30px;
         } 
+
+        & > div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 70px;
+            h3 {
+                color: $dark-blue-100;
+            }
+    
+        }
 
         .objetivosHorarios {
             display: grid;
@@ -598,6 +695,24 @@
     
             }
         
+        }
+
+        .image {
+            .texto {
+                width: 80%;
+    
+                h1 {
+                    color: white;
+                    margin-bottom: 20px;
+                    width: 70%;
+                }
+    
+                p {
+                    color: white;
+                    width: 70%;
+                    margin-bottom: 20px;
+                }
+            }
         }
     
         & > .topicosOrientacoes {
@@ -1040,6 +1155,26 @@
 
 @media (max-width: 737px) {
     .main {
+
+        .image {
+            padding: 40px;
+    
+            .texto {
+                width: 100%;
+    
+                h1 {
+                    color: white;
+                    margin-bottom: 20px;
+                    width: 100%;
+                }
+    
+                p {
+                    color: white;
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+            }
+        }
         & > .topicosOrientacoes {
 
             & > .header {
