@@ -49,17 +49,17 @@ export default function Navbar() {
                                 </Link>
                               </Menu.Item>
                               <Menu.Item>
-                                <Link href={""}>
+                                <Link href={"/solucoes-inovadoras/#inloco"}>
                                   Assessoria <em>in Loco</em>
                                 </Link>
                               </Menu.Item>
                               <Menu.Item>
-                                <Link href={""}>
+                                <Link href={"/solucoes-inovadoras/assessoria"}>
                                   Assessoria Hora Certa
                                 </Link>
                               </Menu.Item>
                               <Menu.Item>
-                                <Link href={""}>
+                                <Link href={"/solucoes-inovadoras/#assessoria-empresas-privadas"}>
                                   Assessoria para Empresas Privadas
                                 </Link>
                               </Menu.Item>

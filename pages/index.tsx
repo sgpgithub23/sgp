@@ -279,7 +279,9 @@ export default function Home() {
       </Head>
       <Navbar />
       <main className={styles.main}>
-        <div className={styles.carouselSpace}>
+        <div
+          className={styles.carouselSpace}
+        >
           <button className={styles.slideToPrevItem} onClick={slideToPrevItem}>
             <BsArrowLeftCircle />
           </button>
@@ -291,39 +293,82 @@ export default function Home() {
       </main>
 
       <section className={styles.quemsomos} id="quem-somos">
-        <div className={styles.descricao}>
-          <h1>Quem somos, um pouco da história da SGP. </h1>
-          <hr />
-          <p>
-            <b>
-              {" "}
-              Experientes profissionais do segmento de cursos e treinamentos de
-              capacitação profissional{" "}
-            </b>
-            uniram esforços em uma nova empreitada, com o intuito de continuar a
-            atualizar, informar, capacitar e trazer inovações aos profissionais
-            que atuam na
-            <b> área do Direito Público.</b>
-          </p>
-          <p className={styles.descricaoPt2}>
-            <b>Assim nasceu a SGP - Soluções em Gestão Pública, </b>
-            uma empresa qu¢e veio inovar no mercado de eventos técnicos e
-            jurídicos, capacitação e aperfeiçoamento profissional, mas contando
-            com uma
-            <b> equipe jurídica altamente qualificada,</b>
-            detentora de um know-how singular, obtido ao longo de mais de 20
-            anos de experiência no
-            <b> segmento da boa Gestão Pública.</b>
-          </p>
-        </div>
-        <div className={styles.foto}>
-          <Image
-            src={"/images/homepage/cidadesp.webp"}
-            alt="Foto do centro de São Paulo"
-            width={416}
-            height={700}
-            style={{ width: "auto" }}
-          />
+        <div className={styles.textoEImagem}>
+          <div className={styles.descricao}>
+            <h1>Quem somos, um pouco da história da SGP. </h1>
+            <hr />
+            <div className={styles.historiaSgp}>
+              <p>
+                Experientes profissionais dos segmentos de Cursos e Treinamentos
+                de capacitação profissional, Editoração, Assessoramento
+                Tecnico-Jurídico e Vendas para a Poder Público uniram esforços
+                em uma nova e arrojada empreitada, com o intuito de continuar a
+                atualizar, informar, capacitar e trazer as mais variadas
+                Soluções inovadoras e de alta qualidade aos profissionais que
+                atuam na área do Direito Público.
+              </p>
+              <p className={styles.descricaoPt2}>
+                {" "}
+                Assim nasceu a SGP – Soluções em Gestão Pública, uma empresa que
+                veio inovar no mercado de eventos técnicos e jurídicos,
+                capacitação e aperfeiçoamento profissional, editoração de
+                periódicos mensais nas áreas das Licitações e Contratos, Direito
+                Administrativo, Direito Municipal, Direito Tributário, Direito
+                Constitucional, Direito Eleitoral, Direito Urbanístico e Direito
+                Público como um todo, bem como livros de alta relevância para a
+                Administração Pública.
+              </p>
+              <p>
+                E não parou por aí... A SGP avançou e expandiu suas Soluções,
+                passando a atuar em diversos segmentos de Assessoramentos
+                Técnicos e Jurídicos, por escrito, de forma presencial ou
+                on-line, sob os mais variados temas.{" "}
+              </p>
+              <p>
+                Tanto nos Cursos e Treinamentos quanto nas mais diversas formas
+                de Assessoramento, a SGP conta com uma equipe altamente
+                qualificada em cada segmento, detentora de um know-how singular,
+                obtido ao longo de mais de 25 anos de experiência no segmento da
+                boa Gestão Pública.{" "}
+              </p>
+              <p>
+                Sempre pensando em novas Soluções, a SGP também oferece a mais
+                completa Pós-Graduação: MBA Lato Sensu On-Line em Licitações e
+                Contratações da Administração Pública, com um quadro de
+                professores de fazer inveja, composto de 70% de Pós-Doutores,
+                Doutores e Mestres na sua área de atuação.{" "}
+              </p>
+              <p>
+                Mais recentemente, a fim de aproveitar ainda mais sua equipe
+                altamente qualificada, a SGP apresentou ao mercado sua mais nova
+                Solução: a elaboração de minutas de regulamentos da nova Lei de
+                Licitações e Contratos (Lei nº 14.133/2021), bem como a
+                elaboração de minutas de Regimentos Internos, Leis Orgânicas
+                Municipais, Estatutos de Servidores Públicos Municipais e
+                Reestruturação de Cargos e Salários dos Servidores Municipais.
+              </p>
+              <p>
+                Esta é a SGP, uma empresa que dia após dia se reinventa,
+                buscando sempre o seu aperfeiçoamento, a fim de cada vez mais
+                criar Soluções inovadoras e eficazes para uma Gestão Pública de
+                excelência.{" "}
+              </p>
+            </div>
+          </div>
+          <div className={styles.foto}>
+            <Image
+              src={"/images/homepage/cidadesp.webp"}
+              alt="Foto do centro de São Paulo"
+              width={416}
+              height={700}
+            />
+            <Image
+              src={"/images/homepage/predio.webp"}
+              alt="Foto do centro de São Paulo"
+              width={416}
+              height={468}
+            />
+          </div>
         </div>
         <div className={styles.icon}>
           <BsFillArrowDownCircleFill

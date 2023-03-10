@@ -236,51 +236,66 @@
 
 }
 
+
 .quemsomos {
-  background-color: $dark-blue-2;
-  padding: 60px 100px;
+  padding-block: 100px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   word-break: keep-all;
   position: relative;
+  background-color: $dark-blue-2;
 
-  & > .descricao, .foto {
-    width: 50%;
-  }
+  & > .textoEImagem {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
 
-  & > .descricao > h1 {
-    width: 90%;
-    color: $dark-blue-100;
-    font-weight: 700;
-    font-size: 30px;
-  }
+    & > .descricao {
+      hr {
+        height: 3px;
+        width: 50px;
+        background-color: $blue-100;
+        border: none;
+        margin-block: 20px;
+        // margin-top: 10px;
+      }
 
-  hr {
-    height: 3px;
-    width: 50px;
-    background-color: $blue-100;
-    border: none;
-    margin-block: 20px;
-    // margin-top: 10px;
-  }
+      & > h1 {
+        width: 90%;
+        color: $dark-blue-100;
+        font-weight: 700;
+        font-size: 30px;
+      }
 
-  p {
-    font-size: 15px;
-    color: $grey-400;
-    margin-right: 30px;
-  }
+      & > .historiaSgp {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
 
-  .descricaoPt2 {
-    margin-top: 25px;
-  }
+      p {
+        font-size: 15px;
+        color: $grey-400;
+        margin-right: 30px;
+      }
+    }
 
-  .foto {
-    & > img {
-      min-width: 100%;
-      height: auto;
+    .foto {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 30px;
+      
+      img {
+        max-width: 100%;
+        height: auto;
+      }
     }
   }
+
+
 
   .icon {
     position: absolute;
@@ -1449,79 +1464,68 @@
   }
 }
 
+
+
 // QUEM SOMOS
 
-@media (max-width: 1904px) {
-  .quemsomos {
-    padding: 60px 517px;
-  }
-}
 
-@media (max-width: 1700px) {
-  .quemsomos {
-    padding: 60px 417px;
-  }
-}
 
-@media (max-width: 1413px) {
-  .quemsomos {
-    background-color: $dark-blue-2;
-    padding: 60px 243px;
-  }
-}
-
-@media (max-width: 1173px) {
-  .quemsomos {
-    background-color: $dark-blue-2;
-    padding: 60px 130px;
-
-    .foto {
-      & > img {
-        min-width: 100%;
-        height: auto;
-      }
-    }
-  }
-}
-
-@media (max-width: 1005px) {
-  .quemsomos {
-    background-color: $dark-blue-2;
-    padding: 60px 90px;
-
-    .foto {
-      & > img {
-        min-width: 100%;
-        height: auto;
-      }
-    }
-  }
-}
 
 @media (max-width: 971px) {
   .quemsomos {
-    flex-direction: column;
-    justify-content: center;
+    padding-block: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
     word-break: keep-all;
+    position: relative;
+    background-color: $dark-blue-2;
   
-    & > .descricao, .foto {
-      width: 100%;
-    }
+    & > .textoEImagem {
+      width: 80%;
+      display: grid;
+      grid-template-columns: repeat(1, 100%);
   
-    & > .descricao > h1 {
-      width: 100%;
-    }  
+      & > .descricao {
+        hr {
+          height: 3px;
+          width: 50px;
+          background-color: $blue-100;
+          border: none;
+          margin-block: 20px;
+          // margin-top: 10px;
+        }
   
-    .foto {
-      margin-top: 40px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
+        & > h1 {
+          width: 90%;
+          color: $dark-blue-100;
+          font-weight: 700;
+          font-size: 30px;
+        }
+  
+        & > .historiaSgp {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+  
+        p {
+          font-size: 15px;
+          color: $grey-400;
+          margin-right: 30px;
+        }
 
-      & > img {
-        min-width: 300px;
-        height: 500px;
+      
       }
+
+      .foto {
+        padding-block: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+  
     }
   
   }
@@ -1529,33 +1533,66 @@
 
 @media (max-width: 581px) {
   .quemsomos {
-    padding: 60px 60px;
-    // text-align: center;
+    padding-block: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    word-break: keep-all;
+    position: relative;
+    background-color: $dark-blue-2;
   
-    .foto {
+    & > .textoEImagem {
+      width: 80%;
+      display: grid;
+      grid-template-columns: repeat(1, 100%);
+  
+      & > .descricao {
+        hr {
+          height: 3px;
+          width: 50px;
+          background-color: $blue-100;
+          border: none;
+          margin-block: 20px;
+          // margin-top: 10px;
+        }
+  
+        & > h1 {
+          width: 90%;
+          color: $dark-blue-100;
+          font-weight: 700;
+          font-size: 30px;
+        }
+  
+        & > .historiaSgp {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+  
+        p {
+          font-size: 15px;
+          color: $grey-400;
+          margin-right: 30px;
+        }
 
-      & > img {
-        min-width: 200px;
-        height: auto;
+      
       }
+
+      .foto {
+        padding-block: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+  
     }
   
   }
 }
 
 @media (max-width: 315px) {
-  .quemsomos {
-    padding: 60px 30px;
-    // text-align: center;
   
-    .foto {
-
-      & > img {
-        min-width: 200px;
-        height: auto;
-      }
-    }
-  }
 }
 
 // COLABORADORES

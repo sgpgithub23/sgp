@@ -36,7 +36,7 @@ export default function SolucoesInovadoras() {
           <div className={styles.buttonFrase}>
             <b>Tradicional, tributário e RH | DP | eSocial</b>
             <Button
-              onClick={() => push("/contato")}
+              onClick={() => push("#lista")}
               color="blue"
               title="Saber Mais!"
             />
@@ -49,7 +49,7 @@ export default function SolucoesInovadoras() {
           <p>Atuante na área do Direito Administrativo e Direito Municipal.</p>
           <hr />
         </div>
-        <div className={styles.fullLista}>
+        <div className={styles.fullLista} id="lista">
           {TiposOrientacoes.map((x, i) => (
             <ul className={styles.topicosLista}>
               <li className={styles.listaInterna}>
@@ -114,7 +114,7 @@ export default function SolucoesInovadoras() {
         </div>
       </section>
 
-      <section className={styles.image}>
+      <section className={styles.image} id="inloco">
         <div className={styles.texto}>
           <hr />
           <h1>
@@ -163,7 +163,9 @@ export default function SolucoesInovadoras() {
             />
           </div>
           <div className={styles.textos}>
-            <h1>Assessoria <em>On-line</em> Hora Certa</h1>
+            <h1>
+              Assessoria <em>On-line</em> Hora Certa
+            </h1>
             <hr />
             {/* <p>A SGP, pensando em novas soluções para o dia a dia dos nossos clientes, envolvidos na área de licitações e contratos, tanto do setor público como da iniciativa privada, acaba de lançar sua mais nova Solução técnica.</p> */}
             <p>
@@ -174,24 +176,26 @@ export default function SolucoesInovadoras() {
             </p>
             {/* <p>Serão painéis on-line, com professores renomados do Direito Público, palestras de duas horas de duração e mais uma hora para esclarecimento de dúvidas ao vivo sobre o tema abordado.</p> */}
             <Button
+            id="assessoria-empresas-privadas"
               onClick={() => push("/solucoes-inovadoras/assessoria")}
               color="darkBlue"
               title="Saiba mais!"
             />
           </div>
         </div>
-        <div className={styles.assesoriaLicitacoes}>
+        <div className={styles.assesoriaLicitacoes} >
           <div className={styles.textos}>
             <h1>Assessoria em Licitações Públicas para Empresas Privadas</h1>
             <hr />
             <p>
-              A qualidade dos nossos serviços, reconhecida pelos órgãos públicos
-              em todo Brasil, agora à disposição das empresas privadas.
+              A qualidade dos nossos serviços, reconhecida por{" "}
+              <strong>entidades e órgãos públicos</strong> em todo Brasil, agora
+              à disposição das empresas privada
             </p>
             <p>
               Se você quer vender seus produtos e serviços para o governo, mas
-              não sabe como, a SGP vai lhe assessorar, desde o cadastramento até
-              a participação na licitação ou processo de contratação direta.
+              não sabe como,<strong> podemos assessorá-lo</strong>, desde o cadastramento até a
+              participação na licitação ou processo de contratação direta.
             </p>
             <Button
               onClick={() => push("/contato")}
@@ -291,7 +295,7 @@ export default function SolucoesInovadoras() {
               src="/images/solucoes-inovadoras/direito.webp"
               width={592}
               height={480}
-              style={{width:"400px", height: "350px"}}
+              style={{ width: "400px", height: "350px" }}
               alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
             />
           </div>
@@ -302,27 +306,94 @@ export default function SolucoesInovadoras() {
         <hr />
         <div>
           <h3>Introdução</h3>
-          <p>A SGP – Soluções em Gestão Pública, em parceria com Centro de Ensino Superior de São Gotardo – CESG, apresenta o curso de MBA On-Line em Licitações e Contratações da Administração Pública, em conformidade com a nova Lei de Licitações e Contratos Administrativos (Lei n° 14.133/2021).</p>
-          <p>Conscientes de nossa função institucional e social, temos como prioridade evidente a formação, o aperfeiçoamento e a atualização dos profissionais das diversas áreas do Direito, que estejam aptos a refletir de maneira apropriada acerca dos problemas postos pelo Direito na contemporaneidade e produzir literatura de qualidade, amparada em sérios procedimentos de pesquisa, a orbitar em torno de sua área de concentração.</p>
-          <p>Assim, a função precípua do Programa, que se insere numa instituição de ensino privado, é a formação, preparação e diplomação de profissionais destinados ao amplo campo de trabalho oferecido na área, seja no âmbito público seja no privado.</p>
-          <p>O curso oferece um Corpo Docente composto por pesquisadores qualificados em suas respectivas áreas de conhecimento, com participação efetiva em todas as dimensões da graduação e pós-graduação, como orientação, docência e pesquisa.</p>
-          <p>Dessa forma, a SGP – Soluções em Gestão Pública, de forma eficiente, flexível e moderna, atenta às necessidades educacionais e conjunturais do mercado de trabalho, oferece à comunidade o curso de MBA On-Line em Licitações e Contratações da Administração Pública, destinado a profissionais que buscam, por meio do ensino superior de qualidade, princípio desta Instituição, oportunidades de atualização e especialização em várias áreas do conhecimento.</p>
-          <p>Com a oferta deste curso de MBA, proporcionamos aos profissionais envolvidos informações e inovações, detalhadas em cada área abrangida, bem como orientações didático-metodológicas, esperando, dessa forma, contribuir com o processo educacional perante as necessidades nacionais de atualização, revisão e complementação dos conhecimentos anteriormente adquiridos. </p>
-       
-       
+          <p>
+            A SGP – Soluções em Gestão Pública, em parceria com Centro de Ensino
+            Superior de São Gotardo – CESG, apresenta o curso de MBA On-Line em
+            Licitações e Contratações da Administração Pública, em conformidade
+            com a nova Lei de Licitações e Contratos Administrativos (Lei n°
+            14.133/2021).
+          </p>
+          <p>
+            Conscientes de nossa função institucional e social, temos como
+            prioridade evidente a formação, o aperfeiçoamento e a atualização
+            dos profissionais das diversas áreas do Direito, que estejam aptos a
+            refletir de maneira apropriada acerca dos problemas postos pelo
+            Direito na contemporaneidade e produzir literatura de qualidade,
+            amparada em sérios procedimentos de pesquisa, a orbitar em torno de
+            sua área de concentração.
+          </p>
+          <p>
+            Assim, a função precípua do Programa, que se insere numa instituição
+            de ensino privado, é a formação, preparação e diplomação de
+            profissionais destinados ao amplo campo de trabalho oferecido na
+            área, seja no âmbito público seja no privado.
+          </p>
+          <p>
+            O curso oferece um Corpo Docente composto por pesquisadores
+            qualificados em suas respectivas áreas de conhecimento, com
+            participação efetiva em todas as dimensões da graduação e
+            pós-graduação, como orientação, docência e pesquisa.
+          </p>
+          <p>
+            Dessa forma, a SGP – Soluções em Gestão Pública, de forma eficiente,
+            flexível e moderna, atenta às necessidades educacionais e
+            conjunturais do mercado de trabalho, oferece à comunidade o curso de
+            MBA On-Line em Licitações e Contratações da Administração Pública,
+            destinado a profissionais que buscam, por meio do ensino superior de
+            qualidade, princípio desta Instituição, oportunidades de atualização
+            e especialização em várias áreas do conhecimento.
+          </p>
+          <p>
+            Com a oferta deste curso de MBA, proporcionamos aos profissionais
+            envolvidos informações e inovações, detalhadas em cada área
+            abrangida, bem como orientações didático-metodológicas, esperando,
+            dessa forma, contribuir com o processo educacional perante as
+            necessidades nacionais de atualização, revisão e complementação dos
+            conhecimentos anteriormente adquiridos.{" "}
+          </p>
         </div>
         <div className={styles.objetivosHorarios}>
-        <div>
-            <Image alt="Foto referente ao MBA" src="/images/solucoes-inovadoras/mba/mba.webp" width={453} height={323} style={{maxWidth: "100%", width: "460px", height: "auto"}}/>
+          <div>
+            <Image
+              alt="Foto referente ao MBA"
+              src="/images/solucoes-inovadoras/mba/mba.webp"
+              width={453}
+              height={323}
+              style={{ maxWidth: "100%", width: "460px", height: "auto" }}
+            />
           </div>
-          <div style={{color: "#032752", display: "flex", flexDirection: "column", gap: "8px"}}>
-            <p style={{color: "#032752"}}><strong>Identificação do curso</strong></p>
-            <p style={{color: "#032752"}}><strong>Nome do Curso: </strong>MBA On-Line em Licitações e Contratações da Administração Pública</p>
-            <p style={{color: "#032752"}}><strong>Nível do curso: </strong>Pós-Graduação MBA Lato Sensu</p>
-            <p style={{color: "#032752"}}><strong>Modalidade: </strong>Especialização para o mercado de trabalho</p>
-            <p style={{color: "#032752"}}><strong>Carga horária: </strong>360 horas</p>
-            <p style={{color: "#032752"}}><strong>Amparo Legal: </strong>CNE/CES Resolução nº 1, de 6 de abril de 2018</p>
-            <p style={{color: "#032752"}}><strong>Duração: </strong>10 meses</p>
+          <div
+            style={{
+              color: "#032752",
+              display: "flex",
+              flexDirection: "column",
+              gap: "8px",
+            }}
+          >
+            <p style={{ color: "#032752" }}>
+              <strong>Identificação do curso</strong>
+            </p>
+            <p style={{ color: "#032752" }}>
+              <strong>Nome do Curso: </strong>MBA On-Line em Licitações e
+              Contratações da Administração Pública
+            </p>
+            <p style={{ color: "#032752" }}>
+              <strong>Nível do curso: </strong>Pós-Graduação MBA Lato Sensu
+            </p>
+            <p style={{ color: "#032752" }}>
+              <strong>Modalidade: </strong>Especialização para o mercado de
+              trabalho
+            </p>
+            <p style={{ color: "#032752" }}>
+              <strong>Carga horária: </strong>360 horas
+            </p>
+            <p style={{ color: "#032752" }}>
+              <strong>Amparo Legal: </strong>CNE/CES Resolução nº 1, de 6 de
+              abril de 2018
+            </p>
+            <p style={{ color: "#032752" }}>
+              <strong>Duração: </strong>10 meses
+            </p>
           </div>
           <div>
             <h3>Objetivo Geral do curso</h3>
@@ -377,7 +448,7 @@ export default function SolucoesInovadoras() {
               <li>
                 <AiOutlineCheckCircle />
                 <span>
-                  As aulas serão online e ministradas às sextas-feiras, no
+                  As aulas serão on-line e ministradas às sextas-feiras, no
                   período noturno (19h - 23h00min) e aos sábados, no período
                   matutino (8h30 - 12h30) e vespertino (13h30 - 17h30), conforme
                   a carga horária da disciplina.
@@ -400,7 +471,7 @@ export default function SolucoesInovadoras() {
               </li>
               <li>
                 <Button
-                  onClick={() => push("/contato")}
+                  onClick={() => push("/solucoes-inovadoras/mba")}
                   color="darkBlue"
                   title="Quero fazer minha inscrição!"
                 />
@@ -423,7 +494,10 @@ export default function SolucoesInovadoras() {
           </div>
         </div>
       </section>
-      <section style={{marginTop: "-50px"}} className={styles.informacoesAssesoriaMentoria}>
+      <section
+        style={{ marginTop: "-50px" }}
+        className={styles.informacoesAssesoriaMentoria}
+      >
         <div className={styles.mentoriaNovaLei}>
           <div className={styles.img}>
             <Image
@@ -431,22 +505,32 @@ export default function SolucoesInovadoras() {
               width={592}
               height={559}
               alt="Símbolo do direito e um martelo de madeira"
-              style={{maxWidth: "100%", width: "350px", height: "auto"}}
+              style={{ maxWidth: "100%", width: "350px", height: "auto" }}
             />
           </div>
           <div className={styles.textos}>
             <h1>Projeto SGP de Regulamentação e/ou Revisão Legislativa</h1>
             <hr />
-            <p> A fim de aproveitar ainda mais adequadamente sua equipe altamente qualificada, a SGP apresenta ao mercado sua mais nova <strong>Solução Inovadora</strong>: a elaboração de minutas de regulamentos da nova Lei de Licitações e Contratos (Lei nº 14.133/2021), bem como a elaboração de minutas de Regimentos Internos, Leis Orgânicas Municipais, Estatutos de Servidores Públicos Municipais e Reestruturação de Cargos e Salários dos Servidores Municipais.</p>
+            <p>
+              {" "}
+              A fim de aproveitar ainda mais adequadamente sua equipe altamente
+              qualificada, a SGP apresenta ao mercado sua mais nova{" "}
+              <strong>Solução Inovadora</strong>: a elaboração de minutas de
+              regulamentos da nova Lei de Licitações e Contratos (Lei nº
+              14.133/2021), bem como a elaboração de minutas de Regimentos
+              Internos, Leis Orgânicas Municipais, Estatutos de Servidores
+              Públicos Municipais e Reestruturação de Cargos e Salários dos
+              Servidores Municipais.
+            </p>
             <Button
-              onClick={() => push("/solucoes-inovadoras/assessoria")}
+              onClick={() => push("/solucoes-inovadoras/projeto-sgp")}
               color="darkBlue"
               title="Saiba mais!"
             />
           </div>
         </div>
       </section>
-      
+
       <section className={styles.indicacoes}>
         <div className={styles.contentIndicacoes}>
           <hr />
