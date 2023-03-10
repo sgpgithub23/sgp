@@ -14,13 +14,14 @@ import classNames from "classnames";
 import { Dialog, Transition } from "@headlessui/react";
 
 export default function CursosTreinamentos() {
-  const { push } = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<CursosTreinamentosType>();
+  const [curso, setCurso] = useState<string>("");
+  const [treinamento, setTreinamento] = useState<string>("");
 
   function modalState(content: CursosTreinamentosType) {
     setIsModalOpen(!isModalOpen);
-    setModalContent(content)
+    setModalContent(content);
   }
 
   return (
@@ -62,11 +63,22 @@ export default function CursosTreinamentos() {
                 label=""
                 type="text"
                 icon={<HiMagnifyingGlass />}
+                onChange={(e) => setCurso(e.target.value)}
               />
             </div>
           </div>
           <div className={styles.cursosNovos}>
-            {Cursos.map((x) => (
+            {Cursos.filter((p) => {
+              if (curso === "" || curso?.trim() === "") {
+                return p;
+              } else if (
+                p?.objetivo.toLowerCase().includes(curso.toLowerCase()) ||
+                p.title.toLowerCase().includes(curso.toLowerCase()) ||
+                p.publicoalvo.toLowerCase().includes(curso.toLowerCase())
+              ) {
+                return p;
+              }
+            }).map((x) => (
               <div className={styles.curso}>
                 <div
                   className={classNames({
@@ -127,17 +139,29 @@ export default function CursosTreinamentos() {
             </span>
           </div>
           <div className={styles.right}>
-              <Input
-                withicon
-                placeholder="Pesquisar treinamento..."
-                label=""
-                type="text"
-                icon={<HiMagnifyingGlass />}
-              />
-            </div>
+            <Input
+              withicon
+              placeholder="Pesquisar treinamento..."
+              label=""
+              type="text"
+              icon={<HiMagnifyingGlass />}
+              onChange={(e) => setTreinamento(e.target.value)}
+
+            />
+          </div>
         </div>
         <div className={styles.cursosNovos}>
-          {Treinamentos.map((x) => (
+        {Treinamentos.filter((p) => {
+              if (treinamento === "" || treinamento?.trim() === "") {
+                return p;
+              } else if (
+                p?.objetivo.toLowerCase().includes(treinamento.toLowerCase()) ||
+                p.title.toLowerCase().includes(treinamento.toLowerCase()) ||
+                p.publicoalvo.toLowerCase().includes(treinamento.toLowerCase())
+              ) {
+                return p;
+              }
+            }).map((x) => (
             <div className={styles.curso}>
               <div
                 className={classNames({
@@ -168,45 +192,42 @@ export default function CursosTreinamentos() {
         <h2>“O conhecimento é a única coisa que não podem tirar de você”.</h2>
       </div>
       <FooterCompleto />
-      
-      <Transition appear show={isModalOpen} as={Fragment}>
-            <Dialog as="div" style={{zIndex: 40}} onClose={() => setIsModalOpen(false)}>
-              <div className={styles.fullBodyModal}>
-                <div className={styles.bodyModalStarted}>
-                    <Dialog.Panel className={styles.modalPanel}>
-                      <div className={styles.voltarParaInicio} onClick={() => setIsModalOpen(false)}>
-                        <BsArrowLeftCircle/>
-                        <span>Voltar para o início</span>
-                      </div>
-                      <Dialog.Title
-                        as="h3"
-                        className={styles.modalTitle}
-                      >
-                        <p>{modalContent?.title}</p>
 
-                        <span>Objetivo</span>
-                      </Dialog.Title>
-                      <div className={styles.contentAboveTitle}>
-                        <span>
-                          {modalContent?.objetivo}
-                        </span>
-                      </div>
-                      <Dialog.Title
-                        as="h3"
-                        className={styles.modalTitle}
-                      >
-                        <span>Público Alvo</span>
-                      </Dialog.Title>
-                      <div className={styles.contentAboveTitle}>
-                        <span>
-                        {modalContent?.publicoalvo}
-                        </span>
-                      </div>
-                    </Dialog.Panel>
+      <Transition appear show={isModalOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          style={{ zIndex: 40 }}
+          onClose={() => setIsModalOpen(false)}
+        >
+          <div className={styles.fullBodyModal}>
+            <div className={styles.bodyModalStarted}>
+              <Dialog.Panel className={styles.modalPanel}>
+                <div
+                  className={styles.voltarParaInicio}
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  <BsArrowLeftCircle />
+                  <span>Voltar para o início</span>
                 </div>
-              </div>
-            </Dialog>
-          </Transition>
+                <Dialog.Title as="h3" className={styles.modalTitle}>
+                  <p>{modalContent?.title}</p>
+
+                  <span>Objetivo</span>
+                </Dialog.Title>
+                <div className={styles.contentAboveTitle}>
+                  <span>{modalContent?.objetivo}</span>
+                </div>
+                <Dialog.Title as="h3" className={styles.modalTitle}>
+                  <span>Público Alvo</span>
+                </Dialog.Title>
+                <div className={styles.contentAboveTitle}>
+                  <span>{modalContent?.publicoalvo}</span>
+                </div>
+              </Dialog.Panel>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
     </div>
   );
 }

@@ -106,7 +106,7 @@
             & > .cursosNovos {
                 margin-block: 20px;
                 display: grid;
-                grid-template-columns: repeat(3, auto);
+                grid-template-columns: repeat(3, 33%);
                 gap: 30px;
 
                 & > .curso {
@@ -246,7 +246,7 @@
         & > .cursosNovos {
             margin-block: 20px;
             display: grid;
-            grid-template-columns: repeat(3, auto);
+            grid-template-columns: repeat(3, 33%);
             gap: 30px;
 
             & > .curso {
