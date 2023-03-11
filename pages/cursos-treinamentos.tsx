@@ -3,7 +3,6 @@ import React, { FormEvent, Fragment, useState } from "react";
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/CursosTreinamentos.module.scss";
 import { FooterCompleto } from "@/components/FooterCompleto";
-import { useRouter } from "next/router";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { HiMagnifyingGlass } from "react-icons/hi2";
@@ -28,7 +27,7 @@ export async function getStaticProps(){
 }
 
 
-export default function CursosTreinamentos({ clientes }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<CursosTreinamentosType>();
   const [curso, setCurso] = useState<string>("");
