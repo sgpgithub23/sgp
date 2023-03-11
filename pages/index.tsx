@@ -289,6 +289,7 @@ export default function Home() {
           <button className={styles.slideToNextItem} onClick={slideToNextItem}>
             <BsArrowRightCircle />
           </button>
+          <span>asdlkjaslkdjk</span>
         </div>
       </main>
 

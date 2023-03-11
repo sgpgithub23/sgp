@@ -27,11 +27,11 @@
 }
 
 .carouselSpace {
-  height: 400px;
-  max-height: 400px;
+  height: 500px;
+  max-height: 500px;
   min-width: 100vw;
   margin-top: -1rem;
-  position: relative;
+  z-index: 20;
 
   & > button {
     border: none;
@@ -39,6 +39,7 @@
     cursor: pointer;
     font-size: 25px;
     color: rgba(white, 0.4);
+    z-index: 20;
     transition: .2s ease all;
     
 
@@ -50,15 +51,17 @@
 
   & > .slideToNextItem {
     position: absolute;
-    bottom: 40%;
+    top: 40%;
     right: 2%;
+    color: $dark-blue-70
   }
 
   & > .slideToPrevItem {
     position: absolute;
-    bottom: 40%;
+    top: 40%;
     left: 2%;
-    z-index: 10;
+    color: $dark-blue-70
+
   }
 }
 
