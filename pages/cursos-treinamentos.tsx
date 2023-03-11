@@ -12,6 +12,7 @@ import { BsArrowLeftCircle, BsPersonCircle } from "react-icons/bs";
 import { Cursos, Treinamentos } from "@/utils/cursos-treinamentos";
 import classNames from "classnames";
 import { Dialog, Transition } from "@headlessui/react";
+import Image from "next/image";
 
 export default function CursosTreinamentos() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -39,14 +40,89 @@ export default function CursosTreinamentos() {
           <h1>Cursos e Treinamentos</h1>
           <hr />
           <p>
-            <b>A SGP Soluções</b> registra todos os momentos especiais para
-            nunca esquecer que o mais importante sempre será você{" "}
-            <b>nosso cliente</b>.
+            Contamos com uma equipe altamente qualificada de professores,
+            verdadeiramente especialistas em cada tema, com vasta bagagem
+            acadêmica e efetivo conhecimento prático, proporcionando aos
+            participantes a oportunidade de seu aperfeiçoamento e capacitação
+            devidamente certificada.
           </p>
           <Button color="blue" title="Saber Mais!" />
         </div>
       </div>
       <div className={styles.pageSize}>
+        <div className={styles.tiposDeCurso}>
+          <div className={styles.imgOnRightSide}>
+            <div>
+              <h1>Cursos e Treinamentos On-Line</h1>
+              <hr />
+              <p>
+                Aulas ao vivo, em datas e horários predeterminados, com
+                transmissão via internet em plataforma específica,
+                interatividade entre aluno e professor, com material didático e
+                Certificação.
+              </p>
+            </div>
+            <Image
+              src="/images/cursos-treinamentos/homem-olhando-papel.webp"
+              alt="Homem olhando pro papel, tentando ler algo"
+              width={696}
+              height={384}
+            />
+          </div>
+          <div className={styles.imgOnLeftSide}>
+            <Image
+              src="/images/cursos-treinamentos/mao-no-computador.webp"
+              alt="Uma mão mexendo em um notebook, com várias ideias saindo dele em forma gráfica."
+              width={696}
+              height={384}
+            />
+            <div>
+              <h1>Cursos e Treinamentos EaD</h1>
+              <hr />
+              <p>
+                Aulas já gravadas e editadas, onde os alunos poderão assistir na
+                melhor oportunidade, mediante login de acesso e senha, podendo,
+                ainda, esclarecer eventuais dúvidas sobre o tema num período de
+                7 (sete) dias após o seu respectivo acesso, com material
+                didático e Certificação.
+              </p>
+            </div>
+          </div>
+          <div className={styles.imgOnRightSide}>
+            <div>
+              <h1>Cursos e Treinamentos Presenciais</h1>
+              <hr />
+              <p>
+              Aulas presenciais, em sala de aula devidamente equipada, com material didático apropriado, cofee-breaks e Certificação.
+
+              </p>
+            </div>
+            <Image
+              src="/images/cursos-treinamentos/palestra.webp"
+              alt="Homem dando aula enquanto pessoas o ouvem com atenção"
+              width={696}
+              height={384}
+              // onLoadingComplete={true}
+              placeholder="blur"
+              blurDataURL="/images/cursos-treinamentos/palestra.webp"
+            />
+          </div>
+          <div className={styles.imgOnLeftSide}>
+            <Image
+              src="/images/cursos-treinamentos/arranhaceu.webp"
+              alt="Foto de um prédio grande todo espelhado."
+              width={696}
+              height={384}
+            />
+            <div>
+              <h1>Cursos e Treinamentos <em>In Company</em></h1>
+              <hr />
+              <p>
+              Aulas presenciais ou on-line, especialmente elaboradas para atender às necessidades específicas de seu órgão, entidade ou empresa, tendo em vista suas peculiaridades próprias, que muitas vezes acabam por não ser abordadas em eventos abertos para o público em geral, também com material didático e Certificação.
+              </p>
+            </div>
+          </div>
+        </div>
         <div className={styles.mainContentForm}>
           <div className={styles.introduction}>
             <div className={styles.left}>
@@ -146,22 +222,21 @@ export default function CursosTreinamentos() {
               type="text"
               icon={<HiMagnifyingGlass />}
               onChange={(e) => setTreinamento(e.target.value)}
-
             />
           </div>
         </div>
         <div className={styles.cursosNovos}>
-        {Treinamentos.filter((p) => {
-              if (treinamento === "" || treinamento?.trim() === "") {
-                return p;
-              } else if (
-                p?.objetivo.toLowerCase().includes(treinamento.toLowerCase()) ||
-                p.title.toLowerCase().includes(treinamento.toLowerCase()) ||
-                p.publicoalvo.toLowerCase().includes(treinamento.toLowerCase())
-              ) {
-                return p;
-              }
-            }).map((x) => (
+          {Treinamentos.filter((p) => {
+            if (treinamento === "" || treinamento?.trim() === "") {
+              return p;
+            } else if (
+              p?.objetivo.toLowerCase().includes(treinamento.toLowerCase()) ||
+              p.title.toLowerCase().includes(treinamento.toLowerCase()) ||
+              p.publicoalvo.toLowerCase().includes(treinamento.toLowerCase())
+            ) {
+              return p;
+            }
+          }).map((x) => (
             <div className={styles.curso}>
               <div
                 className={classNames({

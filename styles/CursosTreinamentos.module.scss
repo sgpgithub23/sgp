@@ -4,7 +4,7 @@
     background-image: url('../public/images/cursos-treinamentos/homem-sorrindo.webp');
     background-position: center;
     min-width: 100vw;
-    height: 356.8px;
+    height: 400px;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -65,6 +65,54 @@
         width: 80%;
         margin-top: 4rem;
         margin-bottom: 4rem;
+
+        & > .tiposDeCurso {
+            margin-bottom: 80px;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+
+            .imgOnRightSide, .imgOnLeftSide {
+                display: grid;
+                grid-template-columns: repeat(2, 50%);
+                gap: 20px;
+                align-items: center;
+
+                & > div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    gap: 20px;
+                    width: 80%;
+
+
+                    h1 {
+                        color: $dark-blue-100;
+                    }
+        
+                    hr {
+                        margin-top: -10px;
+                        width: 15%;
+                        height: 3px;
+                        background-color: $blue-100;
+                        border: 1px solid $blue-100;
+                    }
+
+                    p {
+                        color: $grey-500;
+                    }
+                }
+
+                img {
+                    max-width: 100%;
+                    width: 450px;
+                    height: auto;
+                }
+            }
+
+            
+        }
 
         & > .mainContentForm {
             height: auto;
@@ -160,6 +208,8 @@
                     }
                 }
             }
+
+         
         }
     }
 
@@ -532,6 +582,56 @@
 @media (max-width: 835px){
     .main {
         & > .pageSize {
+
+            & > .tiposDeCurso {
+    
+                .imgOnRightSide, .imgOnLeftSide {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    align-items: center;
+                    justify-content: center;
+    
+                    & > div {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        gap: 20px;
+                        width: 100%;
+                        justify-content: center;
+
+    
+    
+                        h1 {
+                            color: $dark-blue-100;
+                        }
+            
+                        hr {
+                            margin-top: -10px;
+                            width: 15%;
+                            height: 3px;
+                            background-color: $blue-100;
+                            border: 1px solid $blue-100;
+                        }
+    
+                        p {
+                            color: $grey-500;
+                        }
+                    }
+    
+                    img {
+                        max-width: 100%;
+                        width: 450px;
+                        height: auto;
+                    }
+                }
+
+                .imgOnLeftSide {
+                    flex-direction: column-reverse;
+                }
+    
+                
+            }
     
             & > .mainContentForm {
 
@@ -777,6 +877,13 @@
 
 @media (max-width: 400px){
     .main {
+        .content {
+            .headerContent {
+                button {
+                    display: none;
+                }
+            }
+        }
         & > .pageSize {
     
             & > .mainContentForm {
