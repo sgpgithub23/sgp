@@ -63,9 +63,7 @@ export default function Agenda({ agenda }: InferGetStaticPropsType<typeof getSta
                             <p>
                                 Temos horário flexível <br /> Das 8h30 às 17h30 <br /> Na SGP ou <em>In Company</em>!
                             </p>
-                            <Button color="darkBlue" title="Conhecer nossos professores" 
-                            // onClick={() => router.push("/nossos-professores")} 
-                            />
+                            <Button color="darkBlue" title="Conhecer nossos professores" onClick={() => push("/nossos-professores")}/>
                         </div>
                         <div className={styles.imagem}>
                             <Image
@@ -120,10 +118,77 @@ export default function Agenda({ agenda }: InferGetStaticPropsType<typeof getSta
                     </p>
                 </div>
             </div>
-            <div className={styles.empresaIndicadaBottom}>
+            <div className={styles.professores}>
+                <h1>Corpo docente</h1>
+                <p>
+                    Conheça nosso corpo docente de excelência e gabarito, que aplicam e
+                    vivenciam as melhores boas práticas do mercado.
+                </p>
+                <Button
+                    onClick={() => push("/nossos-professores")}
+                    color="darkBlue"
+                    title="Ver todos os professores"
+                />
+            </div>
+            {/* <div className={styles.empresaIndicadaBottom}>
                 <hr />
                 <h2>“O conhecimento é a única coisa que não podem tirar de você”.</h2>
+            </div> */}
+            <section className={styles.degustacaoAll}>
+                <div className={styles.degustacao}>
+                    <div className={styles.leftSide}>
+                        <h1>Publique conosco seu artigo ou parecer.</h1>
+                        <div className={styles.livroExplicacao}>
+                            <p>Publique conosco seu artigo ou parecer. <br />Queremos difundir novas ideias e pensamentos.</p>
+                        </div>
+                        <Button
+                            title="Publicar agora!"
+                            onClick={() => push("/contato")}
+                            color="blue"
+                        />
+                    </div>
+                    <div className={styles.rightSide}>
+                        <Image
+                            width={307.71}
+                            height={307.71}
+                            src={"/images/agenda/p1.webp"}
+                            alt="Exemplo do com a foto do autor com o periódico publicado "
+                        />
+                        <Image
+                            width={307.71}
+                            height={307.71}
+                            src={"/images/agenda/p2.webp"}
+                            alt="Capa do periódico públicado. SLC - Solução em Licitações e Contratos"
+                        />
+                        <Image
+                            width={307.71}
+                            height={307.71}
+                            src={"/images/agenda/p3.webp"}
+                            alt="Exemplo de capa de um perídico mostrando soluções autorais"
+                        />
+                        <Image
+                            width={307.71}
+                            height={307.71}
+                            src={"/images/agenda/p4.webp"}
+                            alt="Exemplo do com a foto do autor com o periódico publicado"
+                        />
+                    </div>
+                </div>
+            </section>
+            <div className={styles.professores}>
+                <h1>Inicie um contato preenchendo o formulário</h1>
+                <p>
+                    Disponibilizamos vários canais de comunicação e este é um deles para que você possa se comunicar mais rápido conosco!
+
+                </p>
+                <Button
+                    onClick={() => push("/nossos-professores")}
+                    color="darkBlue"
+                    title="Entrar em contato"
+                />
             </div>
+            
+
             <FooterCompleto />
 
             <Transition appear show={isModalOpen} as={Fragment}>
@@ -155,18 +220,19 @@ export default function Agenda({ agenda }: InferGetStaticPropsType<typeof getSta
                         <div className={styles.contentAboveTitle}>
                             <span>{modalContent?.publicoalvo}</span>
                         </div>
-                        <Dialog.Title as="h3" className={styles.modalTitle}>
-                            <span>Nome do Professor</span>
-                        </Dialog.Title>
-                        <div className={styles.contentAboveTitle}>
-                            <span>{modalContent?.nomeprofessor}</span>
+                        <div className={styles.contentAboveTitleProfessor}>
+                            <p>Professor</p>
+                            <p style={{textAlign:"center"}}>{modalContent?.nomeprofessor}</p>
+                        </div>
+                        <div className={styles.imageAboveTitle}>
+                            <Image alt={`Foto do(a) professor(a) ${modalContent?.nomeprofessor}`} width={200} height={200} src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`}/>
                         </div>
                         <Dialog.Title as="h3" className={styles.modalTitle}>
                             <span>Qualificação do Professor</span>
                         </Dialog.Title>
                         <div className={styles.contentAboveTitle}>
                             <span>{modalContent?.qualificacaoprofessor}</span>
-                        </div>
+                        </div>       
                         {/* <I */}
                         
                     </Dialog.Panel>
