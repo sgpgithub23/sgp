@@ -29,9 +29,28 @@ import {
 } from "react-icons/bs";
 import { FooterCompleto } from "@/components/FooterCompleto";
 import { useRouter } from "next/router";
+import { ClientesRequisicao } from "@/typings/Requisicoes/Clientes";
+import { InferGetStaticPropsType } from "next";
+import { useState } from "react";
 
-export default function Home() {
+export async function getStaticProps(){
+  const res = await fetch(`${process.env.NEXT_GET_INFOS_SGP_CONTATO}?action=1&model=logosclientesempresas`)
+  const clientes: ClientesRequisicao[] = await res.json()
+
+  return {
+      props: {
+          clientes
+      }, 
+      revalidate: 600
+  }
+  
+}
+
+
+export default function Home({ clientes }: InferGetStaticPropsType<typeof getStaticProps>) {
+  
   const { push } = useRouter();
+  const [atualClienteSlide, setAtualClienteSlide] = useState<ClientesRequisicao>()
 
   const { carouselFragment, slideToPrevItem, slideToNextItem } =
     useSpringCarousel({
@@ -191,60 +210,25 @@ export default function Home() {
     itemsPerSlide: 2,
     withLoop: true,
     initialActiveItem: 1,
-    items: [
-      {
-        id: "1",
+    // @ts-ignore
+    items: clientes.map((cliente, index) => {
+      return ({
+        id: cliente.sequencia,
         renderItem: (
-          <div className={styles.carouselParceirosItem}>
-            <Image
-              src={"/images/homepage/carousel/saae.png"}
-              alt="araras"
-              width={311}
-              height={127}
-            />
+          <div className={styles.englobaTudo}>
+            <div className={styles.carouselParceirosItem}>
+              <Image
+              // src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`
+                src={`https://www.sgpsolucoes.com.br/crm/imagens_sistema/logosclientesempresas/${cliente.nomearquivologo}`}
+                alt={String(cliente.sequencia)}
+                width={811}
+                height={225}
+              />
+          </div>
           </div>
         ),
-      },
-      {
-        id: "2",
-        renderItem: (
-          <div className={styles.carouselParceirosItem}>
-            <Image
-              src={"/images/homepage/carousel/pg.png"}
-              alt="araras"
-              width={311}
-              height={127}
-            />
-          </div>
-        ),
-      },
-      {
-        id: "3",
-        renderItem: (
-          <div className={styles.carouselParceirosItem}>
-            <Image
-              src={"/images/homepage/carousel/araras.png"}
-              alt="araras"
-              width={311}
-              height={127}
-            />
-          </div>
-        ),
-      },
-      {
-        id: "4",
-        renderItem: (
-          <div className={styles.carouselParceirosItem}>
-            <Image
-              src={"/images/homepage/carousel/sao-joaquim.png"}
-              alt="araras"
-              width={311}
-              height={127}
-            />
-          </div>
-        ),
-      },
-    ],
+      })
+    })
   });
 
   function getIconByName(rede: string) {

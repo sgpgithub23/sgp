@@ -389,6 +389,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  p{
+    display: inline-block;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    width: 311px;
+  }
 }
 
 .comentarios {
@@ -1678,10 +1688,11 @@
   }
 
   .carouselParceirosItem {
-     & > img {
+
+    img {
       width: 150px;
       height: 60px;
-     }
+    }
   }
   
 }

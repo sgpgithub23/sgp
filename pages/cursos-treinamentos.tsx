@@ -13,8 +13,22 @@ import { Cursos, Treinamentos } from "@/utils/cursos-treinamentos";
 import classNames from "classnames";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
+import { InferGetStaticPropsType } from "next";
 
-export default function CursosTreinamentos() {
+export async function getStaticProps(){
+  const res = await fetch(`${process.env.NEXT_GET_INFOS_SGP_CONTATO}?action=1&model=temascursostreinamentos`)
+  const cursosTreinamentos: CursosTreinamentosType[] = await res.json()
+
+  return {
+      props: {
+          cursosTreinamentos
+      }, 
+      revalidate: 600
+  }
+}
+
+
+export default function CursosTreinamentos({ clientes }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<CursosTreinamentosType>();
   const [curso, setCurso] = useState<string>("");
