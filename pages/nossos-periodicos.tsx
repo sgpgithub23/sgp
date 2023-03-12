@@ -26,8 +26,14 @@ export default function NossosPeriodicos() {
   const [mes, setMes] = useState<PropsDropdown>()
 
   async function getPeriodico(){
+    const query = `tipo=${periodico?.label}&ano=${ano?.label}&mes=${mes?.value}`
     try {
-      const res = await axios.get(`https://www.sgpsolucoes.com.br/crm/api/?action=1&model=periodicosdegustacao&tipo=${periodico?.label}&ano=${ano?.label}&mes=${mes?.value}`)
+      const res = await fetch(`${process.env.NEXT_GET_INFOS_SGP_CONTATO}?action=1&model=periodicosdegustacao&tipo=${periodico?.label}&ano=${(Number(ano?.value))}&mes=${Number(mes?.value)}`, {
+        headers: {
+          'Content-Type':  'application/json',
+        }
+      })
+      // const res = await fetch("/api/degustacaoperiodicos/" + query)
       
       console.log('res', res)
     } catch (error) {

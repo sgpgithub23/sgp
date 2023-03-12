@@ -2,6 +2,7 @@ import axios from 'axios'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    console.warn("CHEGIY iuoqiwue")
     try {
         const url = `${process.env.NEXT_GET_INFOS_SGP_CONTATO}?action=1&model=periodicosdegustacao`
         const result = await axios.get(url, {
