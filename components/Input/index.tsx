@@ -27,8 +27,6 @@ export default function Input({
   mask,
   ...props
 }: TextProps) {
-  const [inputFileName, setInputFileName] = useState<string>();
-
   return (
     <div className={styles.main}>
       {props.as === "textarea" ? (
@@ -72,7 +70,7 @@ export default function Input({
           <label className={styles.labelComum} htmlFor={name}>{label}</label>
           <input
             type={props.type}
-            className={classNames({
+            className={classNames(styles.inputComum, {
               [styles.withicon]: props.withicon === true,
               [styles.inputComum]: props.withicon === false
             })}
