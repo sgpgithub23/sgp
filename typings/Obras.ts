@@ -3,4 +3,5 @@ export type Obras = {
     title: string
     desc: string
     alt: string
+    cor?: string
 }

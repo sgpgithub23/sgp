@@ -583,11 +583,16 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
           <hr />
           <h1>Confira nossos livros e obras exclusivas</h1>
           <div>
-            {ObrasExclusivas.map(({ desc, img, title, alt }) => (
+            {ObrasExclusivas.map(({ desc, img, title, alt, cor }) => (
               <div key={alt} className={styles.obra}>
                 <img src={img} alt={alt} />
                 <h4>{title}</h4>
                 <p>{desc}</p>
+                <Button 
+                  color="darkBlue" 
+                  title="Saiba mais" 
+                  onClick={() => push(`/periodicos/${cor}`)}
+                />
               </div>
             ))}
           </div>

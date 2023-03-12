@@ -67,7 +67,7 @@ export default function Agenda({ agenda }: InferGetStaticPropsType<typeof getSta
                         </div>
                         <div className={styles.imagem}>
                             <Image
-                                src="/images/cursos-treinamentos/homem-olhando-papel.webp"
+                                src="/images/agenda/calendario.webp"
                                 alt="Homem olhando pro papel, tentando ler algo"
                                 width={696}
                                 height={384}

@@ -102,7 +102,9 @@ export function FooterCompleto() {
             <p>Rua Sete de Abril, 252 | 12°</p>
             <p>Andar | Cj: 120/121</p>
           </div>
-          <div>Mapa</div>
+          <div className={styles.iframeSection}>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3657.638149853922!2d-46.64347088538432!3d-23.545513666891484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1srua%20sete%20de%20abril%2C%20252%2012o.%20andar%20conjunto%20120%20e%20121!5e0!3m2!1spt-BR!2sbr!4v1665499844026!5m2!1spt-BR!2sbr" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+          </div>
         </div>
         <div className={styles.linksSite}>
           <div className={styles.colunasDown}>

@@ -42,11 +42,6 @@ export const ItemsMenu: TItemsMenu[] = [
     className: "Documentacoes",
   },
   {
-    title: "Outros",
-    url: "#",
-    className: "Outros",
-  },
-  {
     title: "Contato",
     url: "/contato",
     className: "Contato",

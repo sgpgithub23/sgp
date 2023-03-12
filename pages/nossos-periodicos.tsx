@@ -8,37 +8,34 @@ import Button from "@/components/Button";
 import { CursosTreinamentosType } from "@/typings/CursosTreinamentos";
 import ProfessoresComponent from "@/components/Professores";
 import Dropdown from "@/components/Dropdown";
-import { anoPeriodico, dropdownValuesTipoPeriodico, mesPeriodico } from "@/utils/nossos-periodicos";
+import {
+  anoPeriodico,
+  dropdownValuesTipoPeriodico,
+  mesPeriodico,
+} from "@/utils/nossos-periodicos";
 import Image from "next/image";
 import BookOpen from "@/public/icons/book-open";
 import axios from "axios";
-
+import { InferGetStaticPropsType } from "next";
 
 type PropsDropdown = {
-  label: string
-  value: any
-}
+  label: string;
+  value: any;
+};
 
 export default function NossosPeriodicos() {
   const { push } = useRouter();
-  const [periodico, setPeriodico] = useState<PropsDropdown>()
-  const [ano, setAno] = useState<PropsDropdown>()
-  const [mes, setMes] = useState<PropsDropdown>()
+  const [periodico, setPeriodico] = useState<PropsDropdown>();
+  const [ano, setAno] = useState<PropsDropdown>();
+  const [mes, setMes] = useState<PropsDropdown>();
 
-  async function getPeriodico(){
-    const query = `tipo=${periodico?.label}&ano=${ano?.label}&mes=${mes?.value}`
+  async function getPeriodico() {
+    const query = `tipo=${periodico?.label}&ano=${ano?.label}&mes=${mes?.value}`;
     try {
-      const res = await fetch(`${process.env.NEXT_GET_INFOS_SGP_CONTATO}?action=1&model=periodicosdegustacao&tipo=${periodico?.label}&ano=${(Number(ano?.value))}&mes=${Number(mes?.value)}`, {
-        headers: {
-          'Content-Type':  'application/json',
-        }
-      })
-      // const res = await fetch("/api/degustacaoperiodicos/" + query)
-      
-      console.log('res', res)
+      const res = await fetch(`/api/degustacaoperiodicos`);
+      const result = res.json();
     } catch (error) {
-      console.log('error', error)
-      
+      console.log("error", error);
     }
   }
 
@@ -56,68 +53,99 @@ export default function NossosPeriodicos() {
         <div className={styles.headerContent}>
           <h1>Nossos periódicos</h1>
           <hr />
-          <p> Edição reduzida para degustação. Informe-se também sobre cursos e treinamentos em nosso site. </p>
+          <p>
+            {" "}
+            Edição reduzida para degustação. Informe-se também sobre cursos e
+            treinamentos em nosso site.{" "}
+          </p>
         </div>
       </div>
-        <div className={styles.pageSize}>
-          <div className={styles.periodicos}>
-            <div className={styles.left}>
-              <h2>Assinale as opções</h2>
-              <div className={styles.dropdowns}>
-                <div className={styles.individual}>
-                  <span>Periódico:</span>
-                  <Dropdown values={dropdownValuesTipoPeriodico} returnedValues={setPeriodico}  />
-                </div>
-                <div className={styles.individual}>
-                  <span>Ano:</span>
-                  <Dropdown values={anoPeriodico}  returnedValues={setAno} />
-                </div>
-                <div className={styles.individual}>
-                  <span>Mês:</span>
-                  <Dropdown values={mesPeriodico} returnedValues={setMes} />
-                </div>
-              </div>
-              <div className={styles.button}>
-                <Button color="darkBlue" title="Pesquisar periódico"
-                  onClick={getPeriodico}
+      <div className={styles.pageSize}>
+        <div className={styles.periodicos}>
+          <div className={styles.left}>
+            <h2>Assinale as opções</h2>
+            <div className={styles.dropdowns}>
+              <div className={styles.individual}>
+                <span>Periódico:</span>
+                <Dropdown
+                  values={dropdownValuesTipoPeriodico}
+                  returnedValues={setPeriodico}
                 />
               </div>
+              <div className={styles.individual}>
+                <span>Ano:</span>
+                <Dropdown values={anoPeriodico} returnedValues={setAno} />
+              </div>
+              <div className={styles.individual}>
+                <span>Mês:</span>
+                <Dropdown values={mesPeriodico} returnedValues={setMes} />
+              </div>
             </div>
-            <div className={styles.right}>
-              <div className={styles.slc}>
-                <Image alt="Solução em Licitações e Contratos" width={384} height={292} src="/images/nossos-periodicos/slc.webp"  />
-                <span>
-                  <strong>SLC - </strong>Solução em licitações e contratos
-                </span>
-              </div>
-              <div className={styles.sam}>
-                <Image alt="Solução em Licitações e Contratos" width={384} height={292} src="/images/nossos-periodicos/sam.webp"  />
-                <span>
-                  <strong>SAM - </strong>Solução em direito administrativo e municipal
-                </span>
-              </div>
+            <div className={styles.button}>
+              <Button
+                color="darkBlue"
+                title="Pesquisar periódico"
+                onClick={getPeriodico}
+              />
             </div>
           </div>
-          <div className={styles.principaisSolucoesInovadoras}>
-            <div className={styles.bluredBall}></div>
-
-            <div className={styles.descricao}>
-              <h1>Conheça nossas principais soluções Inovadoras</h1>
-              <div>
-                <BookOpen strokeColor="#ffffff"  />
-                <span>Caso queira saber mais sobre a empresa SGP Soluções em Gestão Pública entre em contato através de nossos canais de atendimento.</span>
-              </div>
-              <Button color="blue" title="Conhecer agora!" onClick={() => push("/solucoes-inovadoras")} />
+          <div className={styles.right}>
+            <div className={styles.slc}>
+              <Image
+                alt="Solução em Licitações e Contratos"
+                width={384}
+                height={292}
+                src="/images/nossos-periodicos/slc.webp"
+              />
+              <span>
+                <strong>SLC - </strong>Solução em licitações e contratos
+              </span>
             </div>
-            <div className={styles.imagem}>
-              <Image src="/images/nossos-periodicos/homem-apontando.webp" height={433} width={412} alt="Homem aprensentando as principais soluções inovadoras" />
+            <div className={styles.sam}>
+              <Image
+                alt="Solução em Licitações e Contratos"
+                width={384}
+                height={292}
+                src="/images/nossos-periodicos/sam.webp"
+              />
+              <span>
+                <strong>SAM - </strong>Solução em direito administrativo e
+                municipal
+              </span>
             </div>
           </div>
         </div>
-    
-      <FooterCompleto />
-      
+        <div className={styles.principaisSolucoesInovadoras}>
+          <div className={styles.bluredBall}></div>
 
+          <div className={styles.descricao}>
+            <h1>Conheça nossas principais soluções Inovadoras</h1>
+            <div>
+              <BookOpen strokeColor="#ffffff" />
+              <span>
+                Caso queira saber mais sobre a empresa SGP Soluções em Gestão
+                Pública entre em contato através de nossos canais de
+                atendimento.
+              </span>
+            </div>
+            <Button
+              color="blue"
+              title="Conhecer agora!"
+              onClick={() => push("/solucoes-inovadoras")}
+            />
+          </div>
+          <div className={styles.imagem}>
+            <Image
+              src="/images/nossos-periodicos/homem-apontando.webp"
+              height={433}
+              width={412}
+              alt="Homem aprensentando as principais soluções inovadoras"
+            />
+          </div>
+        </div>
+      </div>
+
+      <FooterCompleto />
     </div>
   );
 }
