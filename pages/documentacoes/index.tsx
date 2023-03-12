@@ -77,8 +77,8 @@ export default function Documentacoes() {
             </p>
             <h2 className={styles.certidao} style={{marginTop: "30px"}}>Certidões e Declarações</h2>
             <div className={styles.certidoesDeclaracoesMap}>
-              {CertidoesDeclaracoes.map(({titulo, link}) => (
-                <p className={styles.documentacaoBaixar}>
+              {CertidoesDeclaracoes.map(({titulo, link}, i) => (
+                <p className={styles.documentacaoBaixar} key={i}>
                   <AiOutlinePaperClip style={{fontSize: "20px"}} /> 
                   <span>{titulo}</span>
                 </p>

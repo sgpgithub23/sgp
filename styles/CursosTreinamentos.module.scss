@@ -169,13 +169,14 @@
 
                     & > .isCursoNovo {
                         background-color: $blue-100;
-                        width: 50%;
+                        width: 35%;
                         padding: 10px;
+                        font-weight: 600;
                         text-align: center;
                         border-radius: 5px;
 
                         &::before {
-                            content: "Curso Novo";
+                            content: "Curso";
                         }
                     }
 
@@ -184,10 +185,11 @@
                         width: 50%;
                         padding: 10px;
                         text-align: center;
+                        font-weight: 600;
                         border-radius: 5px;
 
                         &::before {
-                            content: "Curso Antigo";
+                            content: "Treinamento";
                         }
                     }
 
@@ -313,12 +315,13 @@
                     background-color: $blue-100;
                     width: 40%;
                     padding: 10px;
+                    font-weight: 600;
                     text-align: center;
                     border-radius: 5px;
                     background-color: #fff;
 
                     &::before {
-                        content: "Curso Novo";
+                        content: "Curso";
                     }
                 }
 
@@ -326,11 +329,12 @@
                     background-color: $orange-100;
                     width: 50%;
                     padding: 10px;
+                    font-weight: 600;
                     text-align: center;
                     border-radius: 5px;
 
                     &::before {
-                        content: "Curso Antigo";
+                        content: "Treinamento";
                     }
                 }
 
@@ -394,20 +398,18 @@
     /* width */
     ::-webkit-scrollbar {
         width: 7px;
-      }
-      
-        ::-webkit-scrollbar-track {
+    }
+
+    ::-webkit-scrollbar-track {
         background-color: #e4e4e4;
         border-radius: 100px;
-        // height: 90%;
         margin: 10px;
+    }
 
-      }
-      
-        ::-webkit-scrollbar-thumb {
+    ::-webkit-scrollbar-thumb {
         background-color: #d4aa70;
         border-radius: 100px;
-      }
+    }
 
     & > .bodyModalStarted {
         position: relative;
@@ -442,8 +444,9 @@
                 color: white;
                 width: 100%;
                 align-items: center;
-                font-weight: 200;
+                font-weight: 400;
                 margin-bottom: 30px;
+                font-size: 17px;
                 cursor: pointer;
             }
 

@@ -88,8 +88,8 @@ export default function Agenda({ agenda }: InferGetStaticPropsType<typeof getSta
                         </div>
                     </div>
                     <div className={styles.cursosNovos}>
-                        {cursoArray.map((x) => (
-                            <div className={styles.curso}>
+                        {cursoArray.map((x, i) => (
+                            <div className={styles.curso} key={i}>
                                 <div className={styles.detalhes}>
                                     <div
                                         className={classNames({

@@ -30,7 +30,7 @@ export default function Navbar() {
             {ItemsMenu.map(({ title, url, className }, index: number) => {
               if (url === "/solucoes-inovadoras") {
                 return (
-                  <Menu as="li" className={classNames(styles[className!])}>
+                  <Menu as="li" key={url} className={classNames(styles[className!])}>
                     {({ open }) => (
                       <>
                         <Menu.Button as="div">

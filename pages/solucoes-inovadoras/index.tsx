@@ -51,10 +51,10 @@ export default function SolucoesInovadoras() {
         </div>
         <div className={styles.fullLista} id="lista">
           {TiposOrientacoes.map((x, i) => (
-            <ul className={styles.topicosLista}>
+            <ul className={styles.topicosLista} key={i}>
               <li className={styles.listaInterna}>
-                {x.map((x) => (
-                  <p>
+                {x.map((x, i) => (
+                  <p key={i}>
                     <AiOutlineCheckCircle />
                     {x}
                   </p>

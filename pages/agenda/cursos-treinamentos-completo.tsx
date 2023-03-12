@@ -76,20 +76,18 @@ export default function Agenda({ agenda }: InferGetStaticPropsType<typeof getSta
                     </div>
                     <div className={styles.cursosNovos}>
                         {agenda?.filter((p) => {
-                        if (curso === "" || curso?.trim() === "") {
-                            return p;
-                        } else if (
-                            p?.objetivo?.toLowerCase().includes(curso.toLowerCase()) ||
-                            p.titulocursotreinamento?.toLowerCase().includes(curso.toLowerCase()) ||
-                            p.publicoalvo?.toLowerCase().includes(curso.toLowerCase()) ||
-                            p.presencialonline?.toLowerCase().includes(curso.toLowerCase()) ||
-                            p.nomeprofessor?.toLowerCase().includes(curso.toLowerCase()) 
+                            if (curso === "" || curso?.trim() === "") {
+                                return p;
+                            } else if (
+                                p?.objetivo?.toLowerCase().includes(curso.toLowerCase()) ||
+                                p.titulocursotreinamento?.toLowerCase().includes(curso.toLowerCase()) ||
+                                p.publicoalvo?.toLowerCase().includes(curso.toLowerCase()) ||
+                                p.presencialonline?.toLowerCase().includes(curso.toLowerCase()) ||
+                                p.nomeprofessor?.toLowerCase().includes(curso.toLowerCase()) 
 
-                        ) {
-                            return p;
-                        }
-                        }).map((x) => (
-                            <div className={styles.curso}>
+                            ) { return p; }
+                        }).map((x, i) => (
+                            <div className={styles.curso} key={i}>
                                 <div className={styles.detalhes}>
                                     <div
                                         className={classNames({

@@ -215,7 +215,7 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
       return ({
         id: cliente.sequencia,
         renderItem: (
-          <div className={styles.englobaTudo}>
+          <div key={index} className={styles.englobaTudo}>
             <div className={styles.carouselParceirosItem}>
               <Image
               // src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`

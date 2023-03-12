@@ -519,8 +519,8 @@ export default function SolucoesInovadoras() {
               <div className={styles.opcoesPagamento}>
                 <p>Indique abaixo a via de pagamento que foi utilizada: *</p>
                 <div>
-                {tiposPagamento.map(x => (
-                  <div className={styles.inputRadio}>
+                {tiposPagamento.map((x, i) => (
+                  <div className={styles.inputRadio} key={i}>
                     <input type="radio" id={x.id} name="tipoPagamento" value={x.label} />
                     <label htmlFor={x.id}>{x.label}</label>
                   </div>

@@ -1,22 +1,23 @@
 import Head from "next/head";
-import React, { FormEvent, Fragment, useState } from "react";
+import React, { FormEvent, Fragment, useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/CursosTreinamentos.module.scss";
 import { FooterCompleto } from "@/components/FooterCompleto";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { HiMagnifyingGlass } from "react-icons/hi2";
-import { CursosTreinamentosType } from "@/typings/CursosTreinamentos";
 import { BsArrowLeftCircle, BsPersonCircle } from "react-icons/bs";
 import { Cursos, Treinamentos } from "@/utils/cursos-treinamentos";
 import classNames from "classnames";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import { InferGetStaticPropsType } from "next";
+import { CursosTreinamentosRequisicao } from "@/typings/Requisicoes/CursosTreinamentos";
+import { useRouter } from "next/router";
 
 export async function getStaticProps(){
   const res = await fetch(`${process.env.NEXT_GET_INFOS_SGP_CONTATO}?action=1&model=temascursostreinamentos`)
-  const cursosTreinamentos: CursosTreinamentosType[] = await res.json()
+  const cursosTreinamentos: CursosTreinamentosRequisicao[] = await res.json()
 
   return {
       props: {
@@ -26,17 +27,33 @@ export async function getStaticProps(){
   }
 }
 
-
 export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [modalContent, setModalContent] = useState<CursosTreinamentosType>();
-  const [curso, setCurso] = useState<string>("");
-  const [treinamento, setTreinamento] = useState<string>("");
+    const { push } = useRouter()
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [modalContent, setModalContent] = useState<CursosTreinamentosRequisicao>();
+    const [curso, setCurso] = useState<string>("");
+    const [treinamento, setTreinamento] = useState<string>("");
+    
+    const [primeirosCursos, setPrimeirosCursos] = useState<CursosTreinamentosRequisicao[]>()
+    const [primeirosTreinamentos, setPrimeirosTreinamentos] = useState<CursosTreinamentosRequisicao[]>()
 
-  function modalState(content: CursosTreinamentosType) {
-    setIsModalOpen(!isModalOpen);
-    setModalContent(content);
-  }
+    function modalState(content: CursosTreinamentosRequisicao) {
+        setIsModalOpen(!isModalOpen);
+        setModalContent(content);
+    }
+
+  useEffect(() => {
+    // CursosTreinamentosRequisicao[] = 
+
+    const tiposCursos = cursosTreinamentos.filter((x) => x.modalidade.toLowerCase() === "c").slice(0, 6)
+    const tipoTreinamentos = cursosTreinamentos.filter((x) => x.modalidade.toLowerCase() === "t").slice(0, 6)
+
+    setPrimeirosCursos(tiposCursos)
+    setPrimeirosTreinamentos(tipoTreinamentos)
+
+
+  }, [cursosTreinamentos])
+  
 
   return (
     <div className={styles.main}>
@@ -146,38 +163,27 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
               </span>
             </div>
             <div className={styles.right}>
-              <Input
-                withicon
+              {/* <Input
+                withicon={true}
                 placeholder="Pesquisar curso..."
                 label=""
                 type="text"
                 icon={<HiMagnifyingGlass />}
                 onChange={(e) => setCurso(e.target.value)}
-              />
+              /> */}
             </div>
           </div>
           <div className={styles.cursosNovos}>
-            {Cursos.filter((p) => {
-              if (curso === "" || curso?.trim() === "") {
-                return p;
-              } else if (
-                p?.objetivo.toLowerCase().includes(curso.toLowerCase()) ||
-                p.title.toLowerCase().includes(curso.toLowerCase()) ||
-                p.publicoalvo.toLowerCase().includes(curso.toLowerCase())
-              ) {
-                return p;
-              }
-            }).map((x) => (
-              <div className={styles.curso}>
+            {primeirosCursos?.map((x, i) => (
+              <div className={styles.curso} key={i}>
                 <div
                   className={classNames({
-                    [styles.isCursoNovo]: x.cursoNovo,
-                    [styles.isCursoAntigo]: !x.cursoNovo,
+                    [styles.isCursoNovo]: x.modalidade.toLocaleLowerCase() === "c"
                   })}
                 ></div>
                 <div role="button" onClick={() => modalState(x)}>
                   <h4>
-                    <b>{x.title}</b>
+                    <b>{x.titulocursotreinamento}</b>
                   </h4>
                   <p role="button">
                     <span>
@@ -188,8 +194,8 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
               </div>
             ))}
           </div>
-          <p>
-            Confira a lista completa{" "}
+          <p onClick={() => push("/cursos-treinamentos/cursos")}>
+            Confira a lista completa de cursos{" "}
             <b style={{ cursor: "pointer" }}>clicando aqui!</b>
           </p>
         </div>
@@ -239,27 +245,16 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
           </div>
         </div>
         <div className={styles.cursosNovos}>
-          {Treinamentos.filter((p) => {
-            if (treinamento === "" || treinamento?.trim() === "") {
-              return p;
-            } else if (
-              p?.objetivo.toLowerCase().includes(treinamento.toLowerCase()) ||
-              p.title.toLowerCase().includes(treinamento.toLowerCase()) ||
-              p.publicoalvo.toLowerCase().includes(treinamento.toLowerCase())
-            ) {
-              return p;
-            }
-          }).map((x) => (
-            <div className={styles.curso}>
+          {primeirosTreinamentos?.map((x, i) => (
+            <div className={styles.curso} key={i}>
               <div
                 className={classNames({
-                  [styles.isCursoNovo]: x.cursoNovo,
-                  [styles.isCursoAntigo]: !x.cursoNovo,
+                  [styles.isCursoAntigo]: x.modalidade.toLowerCase() === "t"
                 })}
               ></div>
               <div className={styles.detalhes} onClick={() => modalState(x)}>
                 <h4>
-                  <b>{x.title}</b>
+                  <b>{x.titulocursotreinamento}</b>
                 </h4>
                 <p role="button">
                   <span>
@@ -271,7 +266,7 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
           ))}
         </div>
         <p>
-          Confira a lista completa{" "}
+          Confira a lista completa de treinamentos{" "}
           <b style={{ cursor: "pointer" }}>clicando aqui!</b>
         </p>
       </div>
@@ -298,7 +293,7 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
                   <span>Voltar para o início</span>
                 </div>
                 <Dialog.Title as="h3" className={styles.modalTitle}>
-                  <p>{modalContent?.title}</p>
+                  <p>{modalContent?.titulocursotreinamento}</p>
 
                   <span>Objetivo</span>
                 </Dialog.Title>
