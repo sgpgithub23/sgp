@@ -66,15 +66,15 @@ export default function Input({
         </>
       ) : (
         <div className={classNames({
-          [styles.inputIcon]: props.withicon
+          [styles.inputIcon]: props.withicon === true
         })}>
           {props.icon}
           <label className={styles.labelComum} htmlFor={name}>{label}</label>
           <input
             type={props.type}
             className={classNames({
-              [styles.withicon]: props.withicon,
-              [styles.inputComum]: !props.withicon
+              [styles.withicon]: props.withicon === true,
+              [styles.inputComum]: props.withicon === false
             })}
             {...register}
             {...props}

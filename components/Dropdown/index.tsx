@@ -3,15 +3,23 @@ import classNames from 'classnames'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { BsChevronDown } from 'react-icons/bs'
 import styles from "./Dropdown.module.scss"
-
+type PropsValuesFromOutside = {
+  label: string
+  value: any
+}
 
 type PropsDropdown = {
-  values: {value: any, label: any}[]
+  values: {value: any, label: any}[], 
+  returnedValues: React.Dispatch<React.SetStateAction<PropsValuesFromOutside | undefined >>
 }
 
 export default function Dropdown(props: PropsDropdown) {
 
   const [label, setLabel] = useState<{value: any, label: any}>()
+
+  useEffect(() => { 
+    props.returnedValues(label)
+  }, [])
 
   return (
 
@@ -41,7 +49,10 @@ export default function Dropdown(props: PropsDropdown) {
                 props.values?.map((x) => (
                   <Menu.Item key={x.value}>
                     {({ active }) => (
-                      <button onClick={() => setLabel(x)} className={styles.dropdown}>
+                      <button onClick={() => {
+                        setLabel(x)
+                        props.returnedValues(x)
+                      }} className={styles.dropdown}>
                         {x.label}
                       </button>
                     )}

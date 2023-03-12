@@ -65,7 +65,7 @@ export default function Agenda({ agenda }: InferGetStaticPropsType<typeof getSta
                         </div>
                         <div className={styles.right}>
                             <Input
-                                withicon
+                                withicon={true}
                                 placeholder="Pesquisar curso..."
                                 label=""
                                 type="text"

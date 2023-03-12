@@ -48,7 +48,7 @@ export default function ProfessoresComponent() {
         </div>
         <div className={styles.right}>
           <Input
-            withicon
+            withicon={true}
             placeholder="Pesquisar professor..."
             label=""
             type="text"

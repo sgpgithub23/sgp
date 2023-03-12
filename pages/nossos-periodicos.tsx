@@ -11,14 +11,30 @@ import Dropdown from "@/components/Dropdown";
 import { anoPeriodico, dropdownValuesTipoPeriodico, mesPeriodico } from "@/utils/nossos-periodicos";
 import Image from "next/image";
 import BookOpen from "@/public/icons/book-open";
+import axios from "axios";
 
 
-
+type PropsDropdown = {
+  label: string
+  value: any
+}
 
 export default function NossosPeriodicos() {
   const { push } = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [modalContent, setModalContent] = useState<CursosTreinamentosType>();
+  const [periodico, setPeriodico] = useState<PropsDropdown>()
+  const [ano, setAno] = useState<PropsDropdown>()
+  const [mes, setMes] = useState<PropsDropdown>()
+
+  async function getPeriodico(){
+    try {
+      const res = await axios.get(`https://www.sgpsolucoes.com.br/crm/api/?action=1&model=periodicosdegustacao&tipo=${periodico?.label}&ano=${ano?.label}&mes=${mes?.value}`)
+      
+      console.log('res', res)
+    } catch (error) {
+      console.log('error', error)
+      
+    }
+  }
 
   return (
     <div className={styles.main}>
@@ -44,19 +60,21 @@ export default function NossosPeriodicos() {
               <div className={styles.dropdowns}>
                 <div className={styles.individual}>
                   <span>Periódico:</span>
-                  <Dropdown values={dropdownValuesTipoPeriodico} />
+                  <Dropdown values={dropdownValuesTipoPeriodico} returnedValues={setPeriodico}  />
                 </div>
                 <div className={styles.individual}>
                   <span>Ano:</span>
-                  <Dropdown values={anoPeriodico}  />
+                  <Dropdown values={anoPeriodico}  returnedValues={setAno} />
                 </div>
                 <div className={styles.individual}>
                   <span>Mês:</span>
-                  <Dropdown values={mesPeriodico} />
+                  <Dropdown values={mesPeriodico} returnedValues={setMes} />
                 </div>
               </div>
               <div className={styles.button}>
-                <Button color="darkBlue" title="Pesquisar periódico"/>
+                <Button color="darkBlue" title="Pesquisar periódico"
+                  onClick={getPeriodico}
+                />
               </div>
             </div>
             <div className={styles.right}>
@@ -90,9 +108,7 @@ export default function NossosPeriodicos() {
             </div>
           </div>
         </div>
-      
-      {/* <Dropdown /> */}
-
+    
       <FooterCompleto />
       
 

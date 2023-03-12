@@ -122,10 +122,7 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
             <div>
               <h1>Cursos e Treinamentos Presenciais</h1>
               <hr />
-              <p>
-              Aulas presenciais, em sala de aula devidamente equipada, com material didático apropriado, cofee-breaks e Certificação.
-
-              </p>
+              <p>  Aulas presenciais, em sala de aula devidamente equipada, com material didático apropriado, cofee-breaks e Certificação.</p>
             </div>
             <Image
               src="/images/cursos-treinamentos/palestra.webp"
@@ -234,14 +231,14 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
             </span>
           </div>
           <div className={styles.right}>
-            <Input
-              withicon
+            {/* <Input
+              withicon={true}
               placeholder="Pesquisar treinamento..."
               label=""
               type="text"
               icon={<HiMagnifyingGlass />}
               onChange={(e) => setTreinamento(e.target.value)}
-            />
+            /> */}
           </div>
         </div>
         <div className={styles.cursosNovos}>
@@ -265,7 +262,7 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
             </div>
           ))}
         </div>
-        <p>
+        <p onClick={() => push("/cursos-treinamentos/treinamentos")}>
           Confira a lista completa de treinamentos{" "}
           <b style={{ cursor: "pointer" }}>clicando aqui!</b>
         </p>
