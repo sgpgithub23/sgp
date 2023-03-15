@@ -1,0 +1,40 @@
+import axios from 'axios'
+import { NextApiRequest, NextApiResponse } from 'next';
+import locaweb from 'smtp-locaweb-nodejs' 
+
+
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    try {
+        const url = process.env.URL_SMTP_LOCAWEB!
+        const result = axios.post(url, {
+            data: {
+                to: ['barbarapereira123@hotmail.com'],
+                subject: 'Um título bem legal!!!',
+                from: 'babi.silva1163@gmail.com',
+                body: 'O conteúdo da mensagem.',
+                cc: ['copia_opcional@email.com'],
+            }, 
+        })
+        res.status(200).json((await result).data)
+    } catch (error) {
+        console.log('error', error)
+    }
+}
+
+// let mensagem = {  
+//     to: ['barbarapereira123@hotmail.com'],
+//     subject: 'Um título bem legal!!!',
+//     from: 'babi.silva1163@gmail.com',
+//     body: 'O conteúdo da mensagem.',
+//     cc: ['copia_opcional@email.com'],
+//     headers: {
+//         "Content-Type": "text/plain", 
+//         "x-auth-token": process.env.TOKEN,
+//         "x-source": "https://api.smtplw.com.br/v1/messages"
+//     }
+// }
+
+// var email = new locaweb.Email(mensagem);
+
+// locaweb.sendMail(email);

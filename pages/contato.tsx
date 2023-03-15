@@ -85,6 +85,17 @@ export default function Contato() {
 
   const onSubmit = async (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
+    const res = await fetch("/api/sendEmail", {
+      headers: {
+        "Content-Type": "text/plain", 
+        "x-auth-token": process.env.TOKEN!,
+        "x-source": "https://api.smtplw.com.br/v1/messages"
+      }, 
+      method: "POST"
+    })
+    const result = await res.json()
+    console.log('res', res)
+    console.log('result', result)
   };
 
   return (
