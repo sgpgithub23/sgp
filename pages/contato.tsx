@@ -95,7 +95,7 @@ export default function Contato() {
     })
     const result = await res.json()
     console.log('res', res)
-    console.log('result', result)
+    console.log('result', result);
   };
 
   return (
