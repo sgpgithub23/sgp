@@ -87,7 +87,7 @@ export default function Contato() {
     ev.preventDefault();
     const res = await fetch("/api/sendEmail", {
       headers: {
-        "Content-Type": "text/plain", 
+        "Content-Type": "application/json", 
         "x-auth-token": process.env.TOKEN!,
         "x-source": "https://api.smtplw.com.br/v1/messages"
       }, 
