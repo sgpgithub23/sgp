@@ -99,7 +99,7 @@ export default function Contato() {
       console.log('res', res)
       console.log('result', result);
     } catch(error) {
-      console.log("error requisicao contato")
+      console.log("error requisicao contato", error)
     }
   };
 
