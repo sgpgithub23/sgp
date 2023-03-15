@@ -9,11 +9,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const url = process.env.NEXT_PUBLIC_URL_SMTP_LOCAWEB!
         const result = axios.post(url, {
             data: {
-                to: ['barbarapereira123@hotmail.com'],
-                subject: 'Um título bem legal!!!',
-                from: 'suporte@bytechsolutions.com.br ',
-                body: 'O conteúdo da mensagem.',
-                cc: ['suporte@bytechsolutions.com.br '],
+                "to": "string",
+                "subject": "Um título bem legal!!!",
+                "from": "suporte@bytechsolutions.com.br",
+                "body": "O conteúdo da mensagem.",
+                "cc": "suporte@bytechsolutions.com.br"
             }, 
         })
         res.status(200).json((await result).data)
