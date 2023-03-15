@@ -17,7 +17,7 @@ import { InferGetStaticPropsType } from "next";
 import { AgendaRequisicao } from "@/typings/Requisicoes/Agenda";
 
 export async function getStaticProps(){
-    const res = await fetch(`${process.env.NEXT_GET_INFOS_SGP_CONTATO}?action=1&model=agendaturmas`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=agendaturmas`)
     const agenda: AgendaRequisicao[] = await res.json()
 
     return {

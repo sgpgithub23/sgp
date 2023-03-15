@@ -34,7 +34,7 @@ import { InferGetStaticPropsType } from "next";
 import { useState } from "react";
 
 export async function getStaticProps(){
-  const res = await fetch(`${process.env.NEXT_GET_INFOS_SGP_CONTATO}?action=1&model=logosclientesempresas`)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=logosclientesempresas`)
   const clientes: ClientesRequisicao[] = await res.json()
 
   return {
