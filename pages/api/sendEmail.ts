@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             data: {
                 to: ['barbarapereira123@hotmail.com'],
                 subject: 'Um título bem legal!!!',
-                from: 'babi.silva1163@gmail.com',
+                from: 'suporte@bytechsolutions.com.br ',
                 body: 'O conteúdo da mensagem.',
                 cc: ['copia_opcional@email.com'],
             }, 

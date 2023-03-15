@@ -89,7 +89,8 @@ export default function Contato() {
       headers: {
         "Content-Type": "application/json", 
         "x-auth-token": process.env.TOKEN!,
-        "x-source": "https://api.smtplw.com.br/v1/messages"
+        "x-source": process.env.URL_SMTP_LOCAWEB!,
+        'User-Agent': 'locaweb-smtp-nodejs'
       }, 
       method: "POST"
     })
