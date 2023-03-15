@@ -88,8 +88,8 @@ export default function Contato() {
     const res = await fetch("/api/sendEmail", {
       headers: {
         "Content-Type": "application/json", 
-        "x-auth-token": process.env.TOKEN!,
-        "x-source": process.env.URL_SMTP_LOCAWEB!,
+        "x-auth-NEXT_PUBLIC_TOKEN": process.env.NEXT_PUBLIC_TOKEN!,
+        "x-source": process.env.NEXT_PUBLIC_URL_SMTP_LOCAWEB!,
         'User-Agent': 'locaweb-smtp-nodejs'
       }, 
       method: "POST"

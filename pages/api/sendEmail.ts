@@ -6,7 +6,7 @@ import locaweb from 'smtp-locaweb-nodejs'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const url = process.env.URL_SMTP_LOCAWEB!
+        const url = process.env.NEXT_PUBLIC_URL_SMTP_LOCAWEB!
         const result = axios.post(url, {
             data: {
                 to: ['barbarapereira123@hotmail.com'],
@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 //     cc: ['copia_opcional@email.com'],
 //     headers: {
 //         "Content-Type": "text/plain", 
-//         "x-auth-token": process.env.TOKEN,
+//         "x-auth-NEXT_PUBLIC_TOKEN": process.env.NEXT_PUBLIC_TOKEN,
 //         "x-source": "https://api.smtplw.com.br/v1/messages"
 //     }
 // }

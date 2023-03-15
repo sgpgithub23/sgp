@@ -13,7 +13,7 @@ import { InferGetStaticPropsType } from "next";
 import { CursosTreinamentosRequisicao } from "@/typings/Requisicoes/CursosTreinamentos";
 
 export async function getStaticProps(){
-  const res = await fetch(`${process.env.NEXT_GET_INFOS_SGP_CONTATO}?action=1&model=temascursostreinamentos`)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=temascursostreinamentos`)
   const cursosTreinamentos: CursosTreinamentosRequisicao[] = await res.json()
 
   return {
