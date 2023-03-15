@@ -85,18 +85,22 @@ export default function Contato() {
 
   const onSubmit = async (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    const res = await fetch("/api/sendEmail", {
-      headers: {
-        "Content-Type": "application/json", 
-        "x-auth-token": process.env.NEXT_PUBLIC_TOKEN!,
-        "x-source": process.env.NEXT_PUBLIC_URL_SMTP_LOCAWEB!,
-        'User-Agent': 'locaweb-smtp-nodejs'
-      }, 
-      method: "POST"
-    })
-    const result = await res.json()
-    console.log('res', res)
-    console.log('result', result);
+    try {
+      const res = await fetch("/api/sendEmail", {
+        headers: {
+          "Content-Type": "application/json", 
+          "x-auth-token": process.env.NEXT_PUBLIC_TOKEN!,
+          "x-source": process.env.NEXT_PUBLIC_URL_SMTP_LOCAWEB!,
+          'User-Agent': 'locaweb-smtp-nodejs'
+        }, 
+        method: "POST"
+      })
+      const result = await res.json()
+      console.log('res', res)
+      console.log('result', result);
+    } catch(error) {
+      console.log("error requisicao contato")
+    }
   };
 
   return (
