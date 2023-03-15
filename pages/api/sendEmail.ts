@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 subject: 'Um título bem legal!!!',
                 from: 'suporte@bytechsolutions.com.br ',
                 body: 'O conteúdo da mensagem.',
-                cc: ['copia_opcional@email.com'],
+                cc: ['suporte@bytechsolutions.com.br '],
             }, 
         })
         res.status(200).json((await result).data)
