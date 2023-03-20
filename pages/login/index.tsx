@@ -8,8 +8,7 @@ import { FooterCompleto } from "@/components/FooterCompleto";
 import Button from "@/components/Button";
 import { useRouter } from "next/router";
 
-export default function Login() {
-  const { asPath } = useRouter();
+export default function Login({isInternal}: any) {
 
   const [isAreaCliente, setIsAreaCliente] = useState<boolean>(true);
   const [isTelaPreencherCampo, setIsTelaPreencherCampo] =
@@ -23,7 +22,7 @@ export default function Login() {
           setIsTelaPreencherCampo={setIsTelaPreencherCampo}
           setIsAreaCliente={setIsAreaCliente}
           setIsFormAlterarSenha={setIsFormAlterarSenha}
-          asPath={asPath}
+          isInternal={isInternal}
         />
       );
     }
@@ -34,7 +33,8 @@ export default function Login() {
           setIsTelaPreencherCampo={setIsTelaPreencherCampo}
           setIsAreaCliente={setIsAreaCliente}
           setIsFormAlterarSenha={setIsFormAlterarSenha}
-          asPath={asPath}
+          isInternal={isInternal}
+
         />
       );
     }
@@ -45,7 +45,8 @@ export default function Login() {
           setIsTelaPreencherCampo={setIsTelaPreencherCampo}
           setIsAreaCliente={setIsAreaCliente}
           setIsFormAlterarSenha={setIsFormAlterarSenha}
-          asPath={asPath}
+          isInternal={isInternal}
+
         />
       );
     }
@@ -87,6 +88,8 @@ function LoginPrincipal(props: any) {
             propriedade, portanto, pessoal e intrasferível. Altere sua senha no
             primeiro acesso, caso seu usuário seja do tipo "monousuário"!
           </p>
+
+          {props.isInternal ? (
             <form>
               <div>
                 <Input
@@ -116,6 +119,10 @@ function LoginPrincipal(props: any) {
                 <Button color="blue" title="Entrar" />
               </div>
             </form>
+          ) : (
+            <h2>Não é permitido acessar diretamente pela url.</h2>
+          )} 
+         
         </div>
         <div className={styles.imagemRight}></div>
       </div>
@@ -235,4 +242,16 @@ function RecuperacaoSenha(props: any) {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps({req}: any) {
+  const referer = req.headers.referer || '';
+  const isInternal = referer.startsWith('http://localhost:3000/');
+  console.log('isInternal', isInternal)
+
+  return {
+    props: {
+      isInternal
+    }
+  }
 }
