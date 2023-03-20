@@ -246,8 +246,7 @@ function RecuperacaoSenha(props: any) {
 
 export async function getServerSideProps({req}: any) {
   const referer = req.headers.referer || '';
-  const isInternal = referer.startsWith('http://localhost:3000/');
-  console.log('isInternal', isInternal)
+  const isInternal = referer.startsWith(process.env.NEXT_PUBLIC_ENVIRONMENT_URL);
 
   return {
     props: {
