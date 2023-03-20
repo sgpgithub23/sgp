@@ -5,6 +5,8 @@ import locaweb from 'smtp-locaweb-nodejs'
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    console.log('res', res)
+    console.log('req', req)
     try {
         const url = process.env.NEXT_PUBLIC_URL_SMTP_LOCAWEB!
         const result = axios.post(url, {

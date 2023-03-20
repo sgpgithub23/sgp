@@ -63,7 +63,7 @@ export const ItemsMenu: TItemsMenu[] = [
   },
   {
     title: "Galeria de Fotos",
-    url: "/galeria-fotos",
+    url: "/galeria",
     className: "GaleriaFotos",
   },
 ];

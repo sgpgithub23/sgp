@@ -180,7 +180,7 @@ export default function Contato() {
               <Input
                 name="telComl"
                 type="text"
-                label="Tel.Coml"
+                label="Telefone"
                 register={register("telComl")}
                 error={errors.telComl?.message}
                 placeholder="(99) 99999-9999"
