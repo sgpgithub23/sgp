@@ -57,7 +57,7 @@ export function FooterCompleto() {
           <span>Siga-nos nas redes sociais</span>
           <div>
             {RedesSociaisSGP.map(({ link, name }) => (
-              <Link href={link} key={link} className={styles.rede}>
+              <Link href={link} key={link} target="_blank" className={styles.rede}>
                 {getIconByName(name)}
               </Link>
             ))}
@@ -72,7 +72,7 @@ export function FooterCompleto() {
             <Link href={"/nossos-periodicos"}>Periódicos</Link>
             <Link href={"/cursos-treinamentos"}>Cursos e Treinamentos</Link>
             <Link href={"/nossos-professores"}>Nossos Professores</Link>
-            <Link href={"/"}>Agenda</Link>
+            <Link href={"/agenda"}>Agenda</Link>
           </div>
           <div className={styles.colunas}>
             <Link href={"/solucoes-inovadoras"}>Soluções Inovadoras</Link>
@@ -90,7 +90,7 @@ export function FooterCompleto() {
           </div>
           <div className={styles.colunas}>
             {RedesSociaisSGP.map(({ link, name }) => (
-              <Link href={link} key={link} className={styles.rede}>
+              <Link href={link} key={link} target="_blank" className={styles.rede}>
                 {name}
               </Link>
             ))}

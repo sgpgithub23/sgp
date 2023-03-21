@@ -39,7 +39,7 @@ export const comoConheceu: string[] =  [
     "Pesquisa Google",
     "Twitter",
     "Youtube",
-    "Outrosh",
+    "Outros",
 ]
 
 export const assunto: string[] = [

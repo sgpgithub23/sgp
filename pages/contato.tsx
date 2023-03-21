@@ -128,7 +128,7 @@ export default function Contato() {
 
             <div >
               {RedesSociaisSGP.map(({link, name}) => (
-                <Link href={link} key={link} className={styles.rede} >
+                <Link href={link} key={link} target="_blank" className={styles.rede} >
                   {getIconByName(name)}
                 </Link>
               ))}

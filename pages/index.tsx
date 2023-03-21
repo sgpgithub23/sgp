@@ -31,7 +31,7 @@ import { FooterCompleto } from "@/components/FooterCompleto";
 import { useRouter } from "next/router";
 import { ClientesRequisicao } from "@/typings/Requisicoes/Clientes";
 import { InferGetStaticPropsType } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Depoimentos } from "@/utils/depoimentos";
 
 export async function getStaticProps(){
@@ -44,15 +44,13 @@ export async function getStaticProps(){
       }, 
       revalidate: 600
   }
-  
 }
 
 
 export default function Home({ clientes }: InferGetStaticPropsType<typeof getStaticProps>) {
-  
-  const { push } = useRouter();
-  const [atualClienteSlide, setAtualClienteSlide] = useState<ClientesRequisicao>()
 
+  const { push } = useRouter();
+  
   const { carouselFragment, slideToPrevItem, slideToNextItem } =
     useSpringCarousel({
       itemsPerSlide: 3,
@@ -85,7 +83,7 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
                 de <span className={styles.italicTiny}>Professores</span>,
                 <br /> Consultores e Técnicos
                 <Button
-                  onClick={() => push("#quem-somos")}
+                  onClick={() => push("/nossos-professores")}
                   title="Saber Mais Agora!"
                   color="blue"
                 />
@@ -160,7 +158,7 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
                   <b>Capacitação</b> técnica que faz a diferença
                 </p>
                 <Button
-                  onClick={() => push("#quem-somos")}
+                  onClick={() => push("/solucoes-inovadoras")}
                   title="SGP é a solução!"
                   color="blue"
                 />
@@ -232,23 +230,33 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
     })
   });
 
-  const carouselDepoimentos = useSpringCarousel({
-    itemsPerSlide: 1,
-    withLoop: true,
-    initialActiveItem: 1,
-    // @ts-ignore
-    items: Depoimentos.map((cliente, index) => {
-      return ({
-        id: index,
-        renderItem: (
-          <div key={index} className={styles.depoimentosClientes}>
-            <p>{cliente.descricao}</p>
-            <p>{cliente.nomecargo}</p>
-          </div>
-        ),
-      })
-    })
-  });
+  useEffect(() => {
+    const interval = setInterval(() => {
+      slideToNextItem()
+      carouselParceiros.slideToNextItem()
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [])
+  
+
+  // const carouselDepoimentos = useSpringCarousel({
+  //   itemsPerSlide: 1,
+  //   withLoop: true,
+  //   initialActiveItem: 1,
+  //   // @ts-ignore
+  //   items: Depoimentos.map((cliente, index) => {
+  //     return ({
+  //       id: index,
+  //       renderItem: (
+  //         <div key={index} className={styles.depoimentosClientes}>
+  //           <p>{cliente.descricao}</p>
+  //           <p>{cliente.nomecargo}</p>
+  //         </div>
+  //       ),
+  //     })
+  //   })
+  // });
 
   function getIconByName(rede: string) {
     if (rede === "Facebook") {
@@ -427,11 +435,11 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
       <section className={styles.comentarios}>
         <div className={styles.comentariosContent}>
           <h1 className={styles.titleDarkBlue}>
-            Clientes e Parceiros comentam sobre a SGP...
+            Clientes e Parceiros comentam sobre a SGP Soluções...
           </h1>
           <div className={styles.carouselDepoimentosAll}>
             <div className={styles.carosel}>
-              {carouselDepoimentos.carouselFragment}
+              {/* {carouselDepoimentos.carouselFragment} */}
             </div>
           </div>
         </div>
@@ -604,7 +612,7 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
             </div>
             <div className={styles.mappedSociais}>
               {RedesSociaisSGP.map(({ link, name }) => (
-                <Link href={link} key={link} className={styles.rede}>
+                <Link href={link} target="_blank" key={link} className={styles.rede}>
                   {getIconByName(name)}
                   <div>
                     <p>Nosso perfil: </p>
