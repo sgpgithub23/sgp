@@ -8,8 +8,12 @@ import Button from "@/components/Button";
 import { CursosTreinamentosType } from "@/typings/CursosTreinamentos";
 import ProfessoresComponent from "@/components/Professores";
 import Dropdown from "@/components/Dropdown";
+import { ProfessorReq } from "@/typings/Requisicoes/Professores";
+import { InferGetServerSidePropsType } from "next";
 
-export default function NossosProfessores() {
+
+
+export default function NossosProfessores({ profsAll }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { push } = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<CursosTreinamentosType>();
@@ -18,6 +22,8 @@ export default function NossosProfessores() {
     setIsModalOpen(!isModalOpen);
     setModalContent(content)
   }
+
+  
 
   return (
     <div className={styles.main}>
@@ -41,7 +47,7 @@ export default function NossosProfessores() {
       </div>
       <div className={styles.pageSize}>
         
-        <ProfessoresComponent />
+        <ProfessoresComponent profsAll={profsAll} />
       </div>
 
       <FooterCompleto />
@@ -49,4 +55,15 @@ export default function NossosProfessores() {
 
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=professores`);
+  const profsAll: ProfessorReq[] = await res.json();
+
+  return {
+    props: {
+      profsAll
+    }
+  };
 }

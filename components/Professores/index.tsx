@@ -7,18 +7,20 @@ import { BsArrowLeftCircle, BsPersonCircle } from "react-icons/bs";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import Input from "../Input";
 import styles from "./Professores.module.scss";
+import { ProfessorReq } from "@/typings/Requisicoes/Professores";
 
-export default function ProfessoresComponent() {
+
+export default function ProfessoresComponent(props: any) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [modalContent, setModalContent] = useState<ProfessoresType>();
+  const [modalContent, setModalContent] = useState<ProfessorReq>();
 
-  const [professores, setProfessores] = useState<ProfessoresType[]>(
-    InfosProfessor.slice(0, 6)
+  const [professores, setProfessores] = useState<ProfessorReq[]>(
+    props.profsAll?.slice(0, 6)
   );
   const [isFotosIniciais, setIsFotosIniciais] = useState<boolean>(true);
   const [professor, setProfessor] = useState<string>("");
 
-  function modalState(content: ProfessoresType) {
+  function modalState(content: ProfessorReq) {
     setIsModalOpen(!isModalOpen);
     setModalContent(content);
   }
@@ -27,12 +29,12 @@ export default function ProfessoresComponent() {
     setIsFotosIniciais(!isFotosIniciais);
 
     if (!isFotosIniciais) {
-      setProfessores(InfosProfessor);
+      setProfessores(props.profsAll);
       return;
     }
 
     if (isFotosIniciais) {
-      setProfessores(InfosProfessor.slice(0, 6));
+      setProfessores(props.profsAll.slice(0, 6));
       return;
     }
   }
@@ -58,24 +60,22 @@ export default function ProfessoresComponent() {
         </div>
       </div>
       <div className={styles.professoresTodos}>
-        {InfosProfessor.filter((p) => {
+        {props.profsAll?.filter((p: any) => {
           if (professor === "" || professor?.trim() === "") {
             return p;
           } else if (
             p.nome.toLowerCase().includes(professor.toLowerCase()) ||
-            p.linkCurriculo.toLowerCase().includes(professor.toLowerCase())
+            p.qualificacao.toLowerCase().includes(professor.toLowerCase())
           ) {
             return p;
           }
-        }).map((x, index) => (
+        }).map((x: ProfessorReq, index: any) => (
           <div key={index} className={styles.professor}>
             <Image
               priority
               style={{ maxWidth: "100%", height: "auto" }}
-              src={
-                x.img ||
-                "https://pbs.twimg.com/profile_images/956910864698953730/FDAqZ5hv_400x400.jpg"
-              }
+              src={`https://www.sgpsolucoes.com.br/crm/imagens_sistema/fotosprofessores/${x.nomearquivofoto}` ||
+                "https://pbs.twimg.com/profile_images/956910864698953730/FDAqZ5hv_400x400.jpg"}
               alt={"Professor(a) - " + x.nome}
               width={294}
               height={362}
@@ -89,7 +89,7 @@ export default function ProfessoresComponent() {
           </div>
         ))}
       </div>
-      {professores.length === 6 ? (
+      {professores?.length === 6 ? (
         <p role={"button"} onClick={changeQuantidadeFotosProfessores}>
           Confira a lista completa{" "}
           <b style={{ cursor: "pointer" }}>clicando aqui!</b>
@@ -120,7 +120,7 @@ export default function ProfessoresComponent() {
                   <span>{modalContent?.nome} - Currículo</span>
                 </Dialog.Title>
                 <div className={styles.contentAboveTitle}>
-                  <span>{modalContent?.linkCurriculo}</span>
+                  <span>{modalContent?.qualificacao}</span>
                 </div>
               </Dialog.Panel>
             </div>
