@@ -728,7 +728,7 @@
   align-items: center;
 
   & > .obrasExclusivasAll {
-    width: 60.5%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -754,8 +754,6 @@
 
     & > div {
       display: flex;
-      flex-wrap: nowrap;
-      flex-direction: row;
       gap: 30px;
 
       & > .obra {
@@ -766,9 +764,6 @@
         gap: 10px;
         width: 33.3%;
 
-        & > button {
-          width: 100%;
-        }
 
         & > img {
           max-width: 200px;
@@ -2065,26 +2060,36 @@
 
 @media (max-width: 899px) {
   .obrasExclusivas {
-  
+    justify-content: center;
+    text-align: center;
+    
     & > .obrasExclusivasAll {
-      width: 60.5%;
+      width: 75%;
       display: flex;
+
       flex-direction: column;
+      align-items: center;
       justify-content: center;
-      align-items: center; 
-  
+      
       & > div {
         display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
         gap: 60px;
-  
+        
         & > .obra {
           display: flex;
+          width: 80%;
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          text-align: center;
+
+          img {
+            max-width: 100%;
+            height: auto;
+          }
         }
   
       }

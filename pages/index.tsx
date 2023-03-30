@@ -34,23 +34,25 @@ import { InferGetStaticPropsType } from "next";
 import { useEffect, useState } from "react";
 import { Depoimentos } from "@/utils/depoimentos";
 
-export async function getStaticProps(){
-  const res = await fetch(`${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=logosclientesempresas`)
-  const clientes: ClientesRequisicao[] = await res.json()
+export async function getStaticProps() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=logosclientesempresas`
+  );
+  const clientes: ClientesRequisicao[] = await res.json();
 
   return {
-      props: {
-          clientes
-      }, 
-      revalidate: 600
-  }
+    props: {
+      clientes,
+    },
+    revalidate: 600,
+  };
 }
 
-
-export default function Home({ clientes }: InferGetStaticPropsType<typeof getStaticProps>) {
-
+export default function Home({
+  clientes,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const { push } = useRouter();
-  
+
   const { carouselFragment, slideToPrevItem, slideToNextItem } =
     useSpringCarousel({
       itemsPerSlide: 3,
@@ -211,35 +213,34 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
     initialActiveItem: 1,
     // @ts-ignore
     items: clientes.map((cliente, index) => {
-      return ({
+      return {
         id: cliente.sequencia,
         renderItem: (
           <div key={index} className={styles.englobaTudo}>
             <div className={styles.carouselParceirosItem}>
               <Image
-              // src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`
+                // src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`
                 src={`https://www.sgpsolucoes.com.br/crm/imagens_sistema/logosclientesempresas/${cliente.nomearquivologo}`}
                 alt={String(cliente.sequencia)}
                 width={811}
                 height={225}
                 className={"imgOnHover"}
               />
-          </div>
+            </div>
           </div>
         ),
-      })
-    })
+      };
+    }),
   });
 
   useEffect(() => {
     const interval = setInterval(() => {
-      slideToNextItem()
-      carouselParceiros.slideToNextItem()
+      slideToNextItem();
+      carouselParceiros.slideToNextItem();
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [])
-  
+  }, []);
 
   // const carouselDepoimentos = useSpringCarousel({
   //   itemsPerSlide: 1,
@@ -291,9 +292,7 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
       </Head>
       <Navbar />
       <main className={styles.main}>
-        <div
-          className={styles.carouselSpace}
-        >
+        <div className={styles.carouselSpace}>
           <button className={styles.slideToPrevItem} onClick={slideToPrevItem}>
             <BsArrowLeftCircle />
           </button>
@@ -598,9 +597,9 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
                 <img src={img} alt={alt} />
                 <h4>{title}</h4>
                 <p>{desc}</p>
-                <Button 
-                  color="darkBlue" 
-                  title="Saiba mais" 
+                <Button
+                  color="darkBlue"
+                  title="Saiba mais"
                   onClick={() => push(`/periodicos/${cor}`)}
                 />
               </div>
@@ -622,7 +621,12 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
             </div>
             <div className={styles.mappedSociais}>
               {RedesSociaisSGP.map(({ link, name }) => (
-                <Link href={link} target="_blank" key={link} className={styles.rede}>
+                <Link
+                  href={link}
+                  target="_blank"
+                  key={link}
+                  className={styles.rede}
+                >
                   {getIconByName(name)}
                   <div>
                     <p>Nosso perfil: </p>
