@@ -233,14 +233,14 @@ export default function Home({
     }),
   });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      slideToNextItem();
-      carouselParceiros.slideToNextItem();
-    }, 5000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     slideToNextItem();
+  //     carouselParceiros.slideToNextItem();
+  //   }, 5000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   // const carouselDepoimentos = useSpringCarousel({
   //   itemsPerSlide: 1,

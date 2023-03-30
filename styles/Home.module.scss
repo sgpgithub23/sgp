@@ -163,8 +163,8 @@
 }
 
 .imgMarcia {
-  background-image: url("/images/carousel/marcia.webp");
-  background-position: 40%;
+  background-image: url("/images/carousel/pregao-gilberto-desktop.webp");
+  background-position: center;
   background-size: cover;
   width: 100%;
 }
@@ -1275,17 +1275,40 @@
 
 // MARCIA
 
-@media (max-width: 639px) {
+@media (max-width: 547px) {
   .imgMarcia {
-    background-position: 35% 65%;
+    background-image: url("/images/carousel/pregao-gilberto-tablet.webp");
+    background-position: center;
+    
   }
 }
 
-@media (max-width: 639px) {
+@media (max-width: 450px) {
   .imgMarcia {
-    background-position: 35% 65%;
+    background-image: url("/images/carousel/pregao-gilberto/mobile/400-mobile-pregão-gilberto.jpg");
+    background-position: center;
+    
   }
 }
+
+
+@media (max-width: 320px) {
+  .imgMarcia {
+    background-image: url("/images/carousel/pregao-gilberto/mobile/320-mobile-pregão-gilberto.jpg");
+    background-position: center;
+    background-size: contain;
+    
+  }
+}
+// @media (max-width: 437px) {
+//   .imgMarcia {
+//     background-image: url("/images/carousel/pregao-gilberto-mobile.webp");
+//     background-position: center;
+//     background-size: contain;
+//     background-repeat: no-repeat;
+    
+//   }
+// }
 
 // TRES PESSOAS
 @media (max-width: 1145px) {
