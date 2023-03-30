@@ -761,7 +761,14 @@
       & > .obra {
         display: flex;
         flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
         gap: 10px;
+        width: 33.3%;
+
+        & > button {
+          width: 100%;
+        }
 
         & > img {
           max-width: 200px;

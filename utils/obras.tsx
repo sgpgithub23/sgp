@@ -11,7 +11,7 @@ export const ObrasExclusivas: Obras[] = [
     {
         img: "/images/homepage/obras/verde.png",
         title:"Agenda 2030 - Direito e Desenvolvimento Sustentável: governança, sociedade e meio ambiente",
-        desc: "Conheça as principais questões da Agenda de Sustentabilidade do séc. XXI, em função do Acordo de Paris (2015) e da Agenda 2030 da Resolução da ONU, tratando das 17 metas dos Objetivos de Desenvolvimento Sustentável (ODS).",
+        desc: "Conheça as principais questões da Agenda de Sustentabilidade do séc. XXI, em função do Acordo de Paris (2015) e da Agenda 2030 da Resolução da ONU, tratando das 17 metas...",
         alt: "Livro que tem a cor verde claro/escuro",
         cor: "2D4820"        
     },
