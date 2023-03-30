@@ -156,7 +156,7 @@ export default function Agenda({ agenda }: InferGetStaticPropsType<typeof getSta
                             <p style={{textAlign:"center"}}>{modalContent?.nomeprofessor}</p>
                         </div>
                         <div className={styles.imageAboveTitle}>
-                            <Image alt={`Foto do(a) professor(a) ${modalContent?.nomeprofessor}`} width={200} height={200} src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`}/>
+                            <Image className={"imgOnHover"} alt={`Foto do(a) professor(a) ${modalContent?.nomeprofessor}`} width={200} height={200} src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`}/>
                         </div>
                         <Dialog.Title as="h3" className={styles.modalTitle}>
                             <span>Qualificação do Professor</span>

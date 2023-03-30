@@ -38,6 +38,7 @@ export default function SolucoesInovadoras() {
                 src="/images/solucoes-inovadoras/assessoria/header.webp"
                 width={453}
                 height={323}
+                className={"imgOnHover"}
                 />
             </div>
             </div>

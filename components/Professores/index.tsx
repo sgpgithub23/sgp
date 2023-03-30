@@ -79,6 +79,7 @@ export default function ProfessoresComponent(props: any) {
               alt={"Professor(a) - " + x.nome}
               width={294}
               height={362}
+              className={"imgOnHover"}
             />
             <div role="button" onClick={() => modalState(x)}>
               <span className={styles.nomeProfessor}>{x.nome}</span>

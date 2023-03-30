@@ -222,6 +222,7 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
                 alt={String(cliente.sequencia)}
                 width={811}
                 height={225}
+                className={"imgOnHover"}
               />
           </div>
           </div>
@@ -373,12 +374,14 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
               alt="Foto do centro de São Paulo"
               width={416}
               height={700}
+              className={"imgOnHover"}
             />
             <Image
               src={"/images/homepage/predio.webp"}
               alt="Foto do centro de São Paulo"
               width={416}
               height={468}
+              className={"imgOnHover"}
             />
           </div>
         </div>
@@ -463,12 +466,14 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
               alt="Foto do centro de São Paulo"
               width={200.44}
               height={300.32}
+              className={"imgOnHover"}
             />
             <Image
               src={"/images/homepage/periodicos/laranja.png"}
               alt="Foto do centro de São Paulo"
               width={200.44}
               height={300.32}
+              className={"imgOnHover"}
             />
           </div>
         </div>
@@ -482,6 +487,7 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
                   height={10}
                   src={"/icons/ticked.svg"}
                   alt="Ícone indicando que um item na lista está preenchido"
+                  className={"imgOnHover"}
                 />
                 <h1>{title}</h1>
               </div>
@@ -511,24 +517,28 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
               height={150}
               src={"/images/homepage/degustacao/degustacao-1.png"}
               alt="Ícone indicando que um item na lista está preenchido"
+              className={"imgOnHover"}
             />
             <Image
               width={150}
               height={150}
               src={"/images/homepage/degustacao/degustacao-2.png"}
               alt="Ícone indicando que um item na lista está preenchido"
+              className={"imgOnHover"}
             />
             <Image
               width={150}
               height={150}
               src={"/images/homepage/degustacao/degustacao-3.png"}
               alt="Ícone indicando que um item na lista está preenchido"
+              className={"imgOnHover"}
             />
             <Image
               width={150}
               height={150}
               src={"/images/homepage/degustacao/degustacao-4.png"}
               alt="Ícone indicando que um item na lista está preenchido"
+              className={"imgOnHover"}
             />
           </div>
         </div>
@@ -628,6 +638,7 @@ export default function Home({ clientes }: InferGetStaticPropsType<typeof getSta
               alt="Homem sentado sorrindo mexendo no computador"
               width={287}
               height={284}
+              className={"imgOnHover"}
             />
           </div>
         </div>

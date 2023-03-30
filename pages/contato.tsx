@@ -1,26 +1,35 @@
 import Head from "next/head";
-import React, { FormEvent } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import Input from "@/components/Input";
 import Navbar from "@/components/Navbar";
-import styles from '@/styles/Contato.module.scss'
+import styles from "@/styles/Contato.module.scss";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FooterCompleto } from "@/components/FooterCompleto";
 import { useRouter } from "next/router";
 import { FormContato } from "@/typings/FormContato";
-import { BsFacebook, BsInstagram, BsLinkedin,BsTelephone, BsTwitter, BsYoutube } from "react-icons/bs";
+import {
+  BsFacebook,
+  BsInstagram,
+  BsLinkedin,
+  BsTelephone,
+  BsTwitter,
+  BsYoutube,
+} from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
 import { RedesSociaisSGP } from "@/utils/redes-socias";
 import Link from "next/link";
 import Image from "next/image";
+import ReCAPTCHA from "react-google-recaptcha";
+import axios from "axios";
 import Button from "@/components/Button";
 
 const schema = yup.object().shape({
   nome: yup.string().required("Campo obrigatório"),
   email: yup.string().required("Campo obrigatório"),
   mensagem: yup.string().required("Campo obrigatório"),
-  arquivo: yup.mixed().nullable().required('A file is required'),
+  arquivo: yup.mixed().nullable().required("A file is required"),
   assunto: yup.string().required("Campo obrigatório"),
   celular: yup.string().required("Campo obrigatório"),
   conheceusgp: yup.string().required("Campo obrigatório"),
@@ -34,74 +43,86 @@ const initialValues = {
   nome: "",
   email: "",
   mensagem: "",
-  arquivo: "", 
-  assunto: "", 
-  celular: "", 
-  conheceusgp: "", 
+  arquivo: "",
+  assunto: "",
+  celular: "",
+  conheceusgp: "",
   dataEnvio: undefined,
-  empresa: "", 
-  facebook: "", 
-  telComl: ""
-}
+  empresa: "",
+  facebook: "",
+  telComl: "",
+};
 
 export default function Contato() {
-  const { push } = useRouter()
+  const { push } = useRouter();
+  const captchaRef = useRef(null);
+  const [recaptchaResponse, setRecaptchaResponse] = useState<any>();
 
   const {
     register,
     formState: { errors, isValid, isSubmitting },
     getValues,
     reset,
-
   } = useForm<FormContato>({
     defaultValues: initialValues,
     mode: "all",
     resolver: yupResolver(schema),
   });
 
-
-
-  function getIconByName(rede: string){
-    if(rede === "Facebook") {
-      return <BsFacebook />
+  function getIconByName(rede: string) {
+    if (rede === "Facebook") {
+      return <BsFacebook />;
     }
 
-    if(rede === "Youtube") {
-      return <BsYoutube />
+    if (rede === "Youtube") {
+      return <BsYoutube />;
     }
 
-    if(rede === "LinkedIn") {
-      return <BsLinkedin />
+    if (rede === "LinkedIn") {
+      return <BsLinkedin />;
     }
 
-    if(rede === "Twitter") {
-      return <BsTwitter />
+    if (rede === "Twitter") {
+      return <BsTwitter />;
     }
 
-    if(rede === "Instagram") {
-      return <BsInstagram />
+    if (rede === "Instagram") {
+      return <BsInstagram />;
     }
   }
 
   const onSubmit = async (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
+
+    const response = await fetch('/api/verify-token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ token: recaptchaResponse })
+    });
+  
+    const result = await response.json();
+
+
     try {
       const res = await fetch("/api/sendEmail", {
         headers: {
-          "Content-Type": "application/json", 
+          "Content-Type": "application/json",
           "x-auth-token": process.env.NEXT_PUBLIC_TOKEN!,
           "x-source": process.env.NEXT_PUBLIC_URL_SMTP_LOCAWEB!,
-          'User-Agent': 'locaweb-smtp-nodejs'
-        }, 
-        method: "POST"
-      })
-      const result = await res.json()
-      console.log('res', res)
-      console.log('result', result);
-    } catch(error) {
-      console.log("error requisicao contato", error)
+          "User-Agent": "locaweb-smtp-nodejs",
+        },
+        method: "POST",
+      });
+      const result = await res.json();
+      console.log("res", res);
+      console.log("result", result);
+    } catch (error) {
+      console.log("error requisicao contato", error);
     }
   };
+
 
   return (
     <div className={styles.main}>
@@ -117,28 +138,46 @@ export default function Contato() {
         <div className={styles.mainContentForm}>
           <div className={styles.introduction}>
             <h2>Inicie um contato preenchendo o formulário</h2>
-            <span>Disponibilizamos vários canais de comunicação e este é um deles para que você possa se comunicar mais rápido conosco!</span>
-            
+            <span>
+              Disponibilizamos vários canais de comunicação e este é um deles
+              para que você possa se comunicar mais rápido conosco!
+            </span>
+
             <ul>
               <li>Central de Atendimento</li>
-              <li> <BsTelephone/> (11) 3237-4232</li>
-              <li> <BsTelephone/> (11) 97443-5898</li>
-              <li> <AiOutlineMail/> atendimento@sgpsolucoes.com.br</li>
+              <li>
+                {" "}
+                <BsTelephone /> (11) 3237-4232
+              </li>
+              <li>
+                {" "}
+                <BsTelephone /> (11) 97443-5898
+              </li>
+              <li>
+                {" "}
+                <AiOutlineMail /> atendimento@sgpsolucoes.com.br
+              </li>
             </ul>
 
-            <div >
-              {RedesSociaisSGP.map(({link, name}) => (
-                <Link href={link} key={link} target="_blank" className={styles.rede} >
+            <div>
+              {RedesSociaisSGP.map(({ link, name }) => (
+                <Link
+                  href={link}
+                  key={link}
+                  target="_blank"
+                  className={styles.rede}
+                >
                   {getIconByName(name)}
                 </Link>
               ))}
             </div>
-            
+
             <Image
               src={"/images/contato/mulher-sorrindo.webp"}
               alt="Bolo de chocolate"
               width={416}
               height={435}
+              className={"imgOnHover"}
             />
           </div>
           <form className={styles.formContato} onSubmit={onSubmit}>
@@ -156,7 +195,6 @@ export default function Contato() {
                 register={register("assunto")}
                 error={errors.assunto?.message}
                 placeholder="Escolha um assunto"
-
               />
             </div>
             <div>
@@ -242,13 +280,31 @@ export default function Contato() {
               <p>Campos obrigatórios*</p>
               <p>
                 Ao enviar sua mensagem, você autoriza receber comunicações do
-                SGP - Soluções em Gestão Pública, podendo cancelar a qualquer momento. Consulte
-                nossa <b onClick={() => push("/politica-privacidade")}>Política de Privacidade</b>.
+                SGP - Soluções em Gestão Pública, podendo cancelar a qualquer
+                momento. Consulte nossa{" "}
+                <b onClick={() => push("/politica-privacidade")}>
+                  Política de Privacidade
+                </b>
+                .
               </p>
             </div>
+            <ReCAPTCHA
+            // @ts-ignore
+              sitekey={process.env.NEXT_PUBLIC_API_RECAPTCHA_SIE}
+              ref={captchaRef}
+              onChange={(value) => setRecaptchaResponse(value)}
+            />
             <div className={styles.buttonPosition}>
-              <Button color="grey" title="Limpar" onClick={() => reset(initialValues)}  />
-              <Button color="darkBlue" title="Enviar informações" disabled={isSubmitting || !isValid} />
+              <Button
+                color="grey"
+                title="Limpar"
+                onClick={() => reset(initialValues)}
+              />
+              <Button
+                color="darkBlue"
+                title="Enviar informações"
+                disabled={isSubmitting || !isValid}
+              />
             </div>
           </form>
         </div>

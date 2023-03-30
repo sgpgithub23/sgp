@@ -71,6 +71,7 @@ export default function Agenda({ agenda }: InferGetStaticPropsType<typeof getSta
                                 alt="Homem olhando pro papel, tentando ler algo"
                                 width={696}
                                 height={384}
+                                className={"imgOnHover"}
                             />
                         </div>
                     </div>
@@ -153,22 +154,26 @@ export default function Agenda({ agenda }: InferGetStaticPropsType<typeof getSta
                             height={307.71}
                             src={"/images/agenda/p1.webp"}
                             alt="Exemplo do com a foto do autor com o periódico publicado "
+                            className={"imgOnHover"}
                         />
                         <Image
                             width={307.71}
                             height={307.71}
                             src={"/images/agenda/p2.webp"}
                             alt="Capa do periódico públicado. SLC - Solução em Licitações e Contratos"
+                            className={"imgOnHover"}
                         />
                         <Image
                             width={307.71}
                             height={307.71}
                             src={"/images/agenda/p3.webp"}
+                            className={"imgOnHover"}
                             alt="Exemplo de capa de um perídico mostrando soluções autorais"
                         />
                         <Image
                             width={307.71}
                             height={307.71}
+                            className={"imgOnHover"}
                             src={"/images/agenda/p4.webp"}
                             alt="Exemplo do com a foto do autor com o periódico publicado"
                         />
@@ -225,7 +230,7 @@ export default function Agenda({ agenda }: InferGetStaticPropsType<typeof getSta
                             <p style={{textAlign:"center"}}>{modalContent?.nomeprofessor}</p>
                         </div>
                         <div className={styles.imageAboveTitle}>
-                            <Image alt={`Foto do(a) professor(a) ${modalContent?.nomeprofessor}`} width={200} height={200} src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`}/>
+                            <Image className={"imgOnHover"} alt={`Foto do(a) professor(a) ${modalContent?.nomeprofessor}`} width={200} height={200} src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`}/>
                         </div>
                         <Dialog.Title as="h3" className={styles.modalTitle}>
                             <span>Qualificação do Professor</span>

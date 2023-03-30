@@ -65,6 +65,7 @@ export default function Documentacoes() {
                 src={"/images/contato/mulher-sorrindo.webp"}
                 alt="Bolo de chocolate"
                 width={416}
+                className={"imgOnHover"}
                 height={435}
               />
             </div>

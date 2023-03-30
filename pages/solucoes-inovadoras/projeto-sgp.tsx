@@ -38,6 +38,7 @@ export default function SolucoesInovadoras() {
                     src="/images/solucoes-inovadoras/projeto/martelo.webp"
                     width={453}
                     height={323}
+                    className={"imgOnHover"}
                 />
             </div>
             </div>
@@ -72,7 +73,7 @@ export default function SolucoesInovadoras() {
                         <Button color="blue" title="Solicite um orçamento"/>
                     </div>
                     <div className={styles.imageLei}>
-                        <Image src={"/images/solucoes-inovadoras/projeto/lei.webp"} alt="Lei" width={592} height={583} />
+                        <Image className={"imgOnHover"}  src={"/images/solucoes-inovadoras/projeto/lei.webp"} alt="Lei" width={592} height={583} />
                     </div>
                 </div>
                 <div className={styles.img}></div>

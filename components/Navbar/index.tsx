@@ -16,7 +16,7 @@ export default function Navbar() {
       <Image
         role="button"
         onClick={() => push("/")}
-        className={styles.logoNavbar}
+        className={classNames(styles.logoNavbar, "imgOnHover")}
         src={"/logo.svg"}
         priority
         width={100}

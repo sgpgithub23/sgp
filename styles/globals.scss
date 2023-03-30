@@ -82,3 +82,14 @@ body {
   overflow-x: hidden;
 }
 
+.imgOnHover {
+  transition: .2s ease all;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+
+}
+
+

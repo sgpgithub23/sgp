@@ -110,6 +110,7 @@ export default function Verde() {
               alt="Fly falando sobre o MBA Online em licitações e contratações da administração Pública"
               src="/images/periodicos/decisoes-conscientes.webp"
               width={453}
+              className={"imgOnHover"}
               height={323}
             />
             <div className={styles.title}>

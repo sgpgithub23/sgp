@@ -13,6 +13,7 @@ import {
   BsTwitter,
   BsYoutube,
 } from "react-icons/bs";
+import classNames from "classnames";
 
 export function FooterCompleto() {
   const { push } = useRouter();
@@ -46,7 +47,8 @@ export function FooterCompleto() {
         <Image
           role="button"
           onClick={() => push("/")}
-          className={styles.logoNavbar}
+          // className={styles.logoNavbar,}
+          className={classNames(styles.logoNavbar, "imgOnHover")}
           src={"/logo.svg"}
           loading="lazy"
           width={120}

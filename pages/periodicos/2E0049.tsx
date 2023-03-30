@@ -108,6 +108,7 @@ export default function Verde() {
               src="/images/periodicos/boa-gestao.webp"
               width={453}
               height={323}
+              className={"imgOnHover"}
             />
             <div className={styles.title}>
               <h1> MBA em Licitações </h1>

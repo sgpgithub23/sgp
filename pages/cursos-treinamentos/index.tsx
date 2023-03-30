@@ -97,6 +97,7 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
               alt="Homem olhando pro papel, tentando ler algo"
               width={696}
               height={384}
+              className={"imgOnHover"}
             />
           </div>
           <div className={styles.imgOnLeftSide}>
@@ -104,6 +105,7 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
               src="/images/cursos-treinamentos/mao-no-computador.webp"
               alt="Uma mão mexendo em um notebook, com várias ideias saindo dele em forma gráfica."
               width={696}
+              className={"imgOnHover"}
               height={384}
             />
             <div>
@@ -129,6 +131,7 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
               alt="Homem dando aula enquanto pessoas o ouvem com atenção"
               width={696}
               height={384}
+              className={"imgOnHover"}
               // onLoadingComplete={true}
               placeholder="blur"
               blurDataURL="/images/cursos-treinamentos/palestra.webp"
@@ -140,6 +143,7 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
               alt="Foto de um prédio grande todo espelhado."
               width={696}
               height={384}
+              className={"imgOnHover"}
             />
             <div>
               <h1>Cursos e Treinamentos <em>In Company</em></h1>

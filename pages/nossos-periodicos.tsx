@@ -96,6 +96,7 @@ export default function NossosPeriodicos() {
                 width={384}
                 height={292}
                 src="/images/nossos-periodicos/slc.webp"
+                className={"imgOnHover"}
               />
               <span>
                 <strong>SLC - </strong>Solução em licitações e contratos
@@ -107,6 +108,7 @@ export default function NossosPeriodicos() {
                 width={384}
                 height={292}
                 src="/images/nossos-periodicos/sam.webp"
+                className={"imgOnHover"}
               />
               <span>
                 <strong>SAM - </strong>Solução em direito administrativo e
@@ -140,6 +142,7 @@ export default function NossosPeriodicos() {
               height={433}
               width={412}
               alt="Homem aprensentando as principais soluções inovadoras"
+              className={"imgOnHover"}
             />
           </div>
         </div>

@@ -151,6 +151,7 @@ export default function SolucoesInovadoras() {
               alt="Fly falando sobre o MBA Online em licitações e contratações da administração Pública"
               src="/images/solucoes-inovadoras/mba/mba.webp"
               width={453}
+              className={"imgOnHover"}
               height={323}
             />
             <div className={styles.title}>
@@ -228,7 +229,7 @@ export default function SolucoesInovadoras() {
             </div>
             <div className={styles.imgSpace}>
               <div className={styles.img}>
-                <Image src="/images/solucoes-inovadoras/pessoas-prestando-atencao.webp" width={387} height={301} alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando" />
+                <Image className={"imgOnHover"} src="/images/solucoes-inovadoras/pessoas-prestando-atencao.webp" width={387} height={301} alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando" />
                 <b>MBA</b>
                 <div className={styles.informacoes}>
                   <span>12 Encontros</span>

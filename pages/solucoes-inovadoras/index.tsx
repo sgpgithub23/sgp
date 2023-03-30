@@ -84,6 +84,7 @@ export default function SolucoesInovadoras() {
             <Image
               src="/images/solucoes-inovadoras/tres-maos.webp"
               width={593}
+              className={"imgOnHover"}
               height={385}
               alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
             />
@@ -95,6 +96,7 @@ export default function SolucoesInovadoras() {
               src="/images/solucoes-inovadoras/pessoas-discutindo.webp"
               width={592}
               height={384}
+              className={"imgOnHover"}
               alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
             />
           </div>
@@ -117,18 +119,19 @@ export default function SolucoesInovadoras() {
       <section className={styles.image} id="inloco">
         <div className={styles.texto}>
           <hr />
-          <h1>
-            Assessoria Jurídica <em>In Loco</em>
-          </h1>
+
           <p>
-            Fazemos visitações no órgão ou entidade, a fim de realizar um
-            assessoramento pessoal e diferenciado, exclusivamente na área de
-            licitações e contratos.
+            A Orientação SGP presta suporte técnico-jurídico aos assinantes dos
+            nossos periódicos mensais, por meio de orientações escritas,
+            devidamente balizadas, sempre que possível, em doutrinas e
+            jurisprudências atuais.
           </p>
           <p>
-            Num atendimento totalmente personalizado e exclusivo, nosso Corpo
-            Jurídico, com toda sua expertise, poderá fazer quantas visitações
-            forem necessárias para atender às suas necessidades administrativas.
+            Os assinantes encaminham suas dúvidas e casos concretos por escrito,
+            via e-mail ou pelo nosso site, e recebem, num prazo de 24 a 72
+            horas, orientações escritas e seguras, que refletem o atual
+            entendimento da Orientação SGP e certamente auxiliarão na tomada de
+            decisão de cada órgão ou entidade.
           </p>
         </div>
       </section>
@@ -159,6 +162,7 @@ export default function SolucoesInovadoras() {
               src="/images/solucoes-inovadoras/homem-sorrindo.webp"
               width={432}
               height={451}
+              className={"imgOnHover"}
               alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
             />
           </div>
@@ -176,14 +180,14 @@ export default function SolucoesInovadoras() {
             </p>
             {/* <p>Serão painéis on-line, com professores renomados do Direito Público, palestras de duas horas de duração e mais uma hora para esclarecimento de dúvidas ao vivo sobre o tema abordado.</p> */}
             <Button
-            id="assessoria-empresas-privadas"
+              id="assessoria-empresas-privadas"
               onClick={() => push("/solucoes-inovadoras/assessoria")}
               color="darkBlue"
               title="Saiba mais!"
             />
           </div>
         </div>
-        <div className={styles.assesoriaLicitacoes} >
+        <div className={styles.assesoriaLicitacoes}>
           <div className={styles.textos}>
             <h1>Assessoria em Licitações Públicas para Empresas Privadas</h1>
             <hr />
@@ -194,8 +198,9 @@ export default function SolucoesInovadoras() {
             </p>
             <p>
               Se você quer vender seus produtos e serviços para o governo, mas
-              não sabe como,<strong> podemos assessorá-lo</strong>, desde o cadastramento até a
-              participação na licitação ou processo de contratação direta.
+              não sabe como,<strong> podemos assessorá-lo</strong>, desde o
+              cadastramento até a participação na licitação ou processo de
+              contratação direta.
             </p>
             <Button
               onClick={() => push("/contato")}
@@ -208,6 +213,7 @@ export default function SolucoesInovadoras() {
               src="/images/solucoes-inovadoras/homem-no-telefone.webp"
               width={432}
               height={451}
+              className={"imgOnHover"}
               alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
             />
           </div>
@@ -219,6 +225,7 @@ export default function SolucoesInovadoras() {
               src="/images/solucoes-inovadoras/mao-escrevendo.webp"
               width={563}
               height={1063}
+              className={"imgOnHover"}
               alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
             />
             <b>Mentoria</b>
@@ -295,6 +302,7 @@ export default function SolucoesInovadoras() {
               src="/images/solucoes-inovadoras/direito.webp"
               width={592}
               height={480}
+              className={"imgOnHover"}
               style={{ width: "400px", height: "350px" }}
               alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
             />
@@ -358,6 +366,7 @@ export default function SolucoesInovadoras() {
               alt="Foto referente ao MBA"
               src="/images/solucoes-inovadoras/mba/mba.webp"
               width={453}
+              className={"imgOnHover"}
               height={323}
               style={{ maxWidth: "100%", width: "460px", height: "auto" }}
             />
@@ -483,6 +492,7 @@ export default function SolucoesInovadoras() {
               src="/images/solucoes-inovadoras/pessoas-prestando-atencao.webp"
               width={387}
               height={301}
+              className={"imgOnHover"}
               alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
             />
             <b>MBA</b>
@@ -504,6 +514,7 @@ export default function SolucoesInovadoras() {
               src="/images/solucoes-inovadoras/leis-do-direito.webp"
               width={592}
               height={559}
+              className={"imgOnHover"}
               alt="Símbolo do direito e um martelo de madeira"
               style={{ maxWidth: "100%", width: "350px", height: "auto" }}
             />

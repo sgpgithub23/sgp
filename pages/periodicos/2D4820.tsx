@@ -111,6 +111,7 @@ export default function Verde() {
               src="/images/periodicos/agenda2030.webp"
               width={453}
               height={323}
+              className={"imgOnHover"}
             />
             <div className={styles.title}>
               <hr />
