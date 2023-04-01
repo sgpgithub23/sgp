@@ -60,149 +60,39 @@ export default function Home({
       items: [
         {
           id: "item-1",
-          renderItem: (
-            <div className={styles.imgBannerPublicacoes}>
-              <div className={styles.boldHigher}>
-                <span>
-                  Publicações de qualidade e que fazem a
-                  <span className={styles.italicTiny}> diferença! </span>
-                </span>
-                <Button
-                  onClick={() => push("#quem-somos")}
-                  title="Saber Mais Agora!"
-                  color="blue"
-                />
-              </div>
-            </div>
-          ),
+          renderItem: <div className={styles.imgBannerPublicacoes}></div>,
         },
         {
           id: "item-2",
-          renderItem: (
-            <div className={styles.imgCaraGravata}>
-              <div>
-                <p className={styles.boldHigher}>Dream Team</p>
-                de <span className={styles.italicTiny}>Professores</span>,
-                <br /> Consultores e Técnicos
-                <Button
-                  onClick={() => push("/nossos-professores")}
-                  title="Saber Mais Agora!"
-                  color="blue"
-                />
-              </div>
-            </div>
-          ),
+          renderItem: <div className={styles.imgCaraGravata}></div>,
         },
         {
           id: "item-3",
-          renderItem: (
-            <div className={styles.imgDuasConversando}>
-              <span>
-                <b>Pós Graduação </b>
-                com Professores de alto
-                <em className={styles.italicTiny}> padrão </em>
-                <Button
-                  onClick={() => push("/nossos-professores")}
-                  title="Consultar disponibilidade"
-                  color="orange"
-                />
-              </span>
-            </div>
-          ),
+          renderItem: <div className={styles.imgPosGraduacao}></div>,
         },
         {
           id: "item-4",
-          renderItem: (
-            <div className={styles.imgHomemTelefone}>
-              <div>
-                <h3>Eventos In Company</h3>
-                <span>Consulte nossa agenda de cursos e Treinamentos</span>
-                <Button
-                  onClick={() => push("/cursos-treinamentos")}
-                  title="Consultar disponibilidade"
-                  color="blue"
-                />
-              </div>
-            </div>
-          ),
+          renderItem: <div className={styles.imgAgendaCursos}></div>,
         },
         {
           id: "item-5",
-          renderItem: (
-            <div className={styles.imgMao}>
-              <div>
-                <Button
-                  onClick={() => push("/solucoes-inovadoras")}
-                  title="Soluções Inovadoras em:"
-                  color="blue"
-                />
-
-                <p>
-                  Periódicos informativos Orientação Jurídica Cursos e
-                  Treinamentos
-                  <em> Eventos In Company </em>
-                  Assessorias para empresas privadas
-                </p>
-              </div>
-            </div>
-          ),
+          renderItem: <div className={styles.imgSolucoesInovadoras}></div>,
         },
         {
           id: "item-6",
-          renderItem: <div className={styles.imgMarcia}></div>,
+          renderItem: <div className={styles.imgInCompany}></div>,
         },
         {
           id: "item-7",
-          renderItem: (
-            <div className={styles.imgModelTresPessoas}>
-              <div>
-                <p>
-                  <b>Capacitação</b> técnica que faz a diferença
-                </p>
-                <Button
-                  onClick={() => push("/solucoes-inovadoras")}
-                  title="SGP é a solução!"
-                  color="blue"
-                />
-              </div>
-            </div>
-          ),
+          renderItem: <div className={styles.imgCapacitacaoTecnica}></div>,
         },
         {
           id: "item-8",
-          renderItem: (
-            <div className={styles.imgModel}>
-              <div>
-                <p>
-                  <b>Informação de qualidade</b>, sempre atual seguindo as{" "}
-                  <em> boas práticas </em>
-                  do mercado.
-                </p>
-                <Button
-                  onClick={() => push("#quem-somos")}
-                  title="SGP é a solução!"
-                  color="blue"
-                />
-              </div>
-            </div>
-          ),
+          renderItem: <div className={styles.imgModel}></div>,
         },
         {
           id: "item-9",
-          renderItem: (
-            <div className={styles.imgPublico}>
-              <div>
-                <p>
-                  <b>Cansado de</b> "cursinho" e "palestrinha"???
-                </p>
-                <Button
-                  onClick={() => push("/cursos-treinamentos")}
-                  title="SGP é a solução!"
-                  color="orange"
-                />
-              </div>
-            </div>
-          ),
+          renderItem: <div className={styles.imgPublico}></div>,
         },
       ],
     });

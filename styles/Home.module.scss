@@ -73,24 +73,16 @@
 }
 
 .imgBannerPublicacoes {
-  background-image: url("/images/carousel/banner-publicacoes.webp");
+  background-image: url("/images/carousel/publicacoes/1920.webp");
   background-position: center;
   background-size: cover;
   min-width: 100vw;
   position: relative;
 
-  & > div {
-    position: absolute;
-    top: 40%;
-    left: 20%;
-    font-size: xx-large;
-    width: 23%;
-    color: #fff;
-  }
 }
 
 .imgCaraGravata {
-  background-image: url("/images/carousel/cara-de-gravata.webp");
+  background-image: url("/images/carousel/dreamteam/1920_.webp");
   background-position: center;
   background-size: cover;
   background-position: 60%;
@@ -107,91 +99,44 @@
 
 }
 
-.imgDuasConversando {
-  background-image: url("/images/carousel/duas-pessoas-conversando.webp");
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-  
-  & > span {
-    position: absolute;
-    top: 40%;
-    left: 20%;
-    font-size: xx-large;
-    width: 21%;
-    color: #fff;
-  }
-}
-
-.imgHomemTelefone {
-  background-image: url("/images/carousel/homem-no-telefone.webp");
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-
-  & > div{
-    position: absolute;
-    top: 40%;
-    left: 20%;
-    font-size: xx-large;
-    width: 28%;
-    color: #fff;
-
-  }
-}
-
-.imgMao {
-  background-image: url("/images/carousel/mao.webp");
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-
-  & > div {
-    position: absolute;
-    top: 30%;
-    left: 20%;
-    font-size: 25px;
-    width: 20%;
-    color: #fff;
-
-    > p {
-      margin-top: 10px;
-    }
-  }
-
-
-}
-
-.imgMarcia {
-  background-image: url("/images/carousel/pregao-gilberto-desktop.webp");
+.imgPosGraduacao {
+  background-image: url("/images/carousel/posgraduacao/1920.webp");
   background-position: center;
   background-size: cover;
   width: 100%;
 }
 
-.imgModelTresPessoas {
-  background-image: url("/images/carousel/model-tres-pessoas.webp");
+.imgAgendaCursos {
+  background-image: url("/images/carousel/agenda/1920.webp");
   background-position: center;
   background-size: cover;
   width: 100%;
+}
 
-  & > div {
-    position: absolute;
-    top: 40%;
-    left: 20%;
-    font-size: 25px;
-    width: 20%;
-    color: #fff;
+.imgSolucoesInovadoras {
+  background-image: url("/images/carousel/solucoes/1920.webp");
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+}
 
-    > p {
-      margin-bottom: 20px;
-    }
-  }
+.imgInCompany {
+  background-image: url("/images/carousel/incompany/1920.webp");
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+}
+
+.imgCapacitacaoTecnica {
+  background-image: url("/images/carousel/capacitacao/1920.webp");
+  background-position: center;
+  background-size: cover;
+  width: 100%;
 
 }
 
 .imgModel {
-  background-image: url("/images/carousel/model.webp");
+  background-image: url("/images/carousel/infoqualidade/1920.webp");
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -202,7 +147,7 @@
     left: 20%;
     font-size: 25px;
     width: 30%;
-    color: #fff;
+    color: #c91616;
 
     > p {
       margin-bottom: 10px;
@@ -213,29 +158,11 @@
 }
 
 .imgPublico {
-  background-image: url("/images/carousel/publico.webp");
+  background-image: url("/images/carousel/palestrinha/1920.webp");
   background-position: center;
   background-size: cover;
   width: 100%;
 
-  & > div{
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: xx-large;
-    width: 28%;
-    text-align: center;
-    color: #fff;
-
-    > button {
-      text-align: center;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      margin-top: 20px ;
-    }
-  }
 
 }
 
@@ -986,548 +913,161 @@
   }
 }
 
-// BANNER PUBLICAÇÕES
-@media (max-width: 1130px) {
-  .imgBannerPublicacoes {
-    & > div {
-      left: 10%;
-      width: 40%;
-    }
-  }
-  
-}
 
-@media (max-width: 666px) {
-  .imgBannerPublicacoes {
-    background-image: 
-      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), 
-      url("/images/carousel/banner-publicacoes.webp");
-  // opacity: 0.6;
-
-    & > div { 
-      // background-color: #fff;
-      top: 50%;
-      transform: translateY(-20%);
-
-      left: 10%;
-      width: 80%;
-      text-align: center;
-
-      > button {
-        margin-top: 20px ;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80%;
-
-      }
-    }
-  }
-}
-
-@media (max-width: 409px) {
-  .imgBannerPublicacoes {
-    & > div {
-      left: 10%;
-      top: 35%;
-      // background-color: #fff;
-    }
-  }
-  
-}
-
-// HOMEM DE GRAVATA
-@media (max-width: 1069px) {
+@media (max-width: 1600px) {
   .imgCaraGravata {
-  
-    & > div {
-      top: 30%;
-    }
-  
+    background-image: url("/images/carousel/dreamteam/1600_.webp");
+  }
+
+  .imgModel {
+    background-image: url("/images/carousel/infoqualidade/1600.webp");
+  }
+
+  .imgCapacitacaoTecnica {
+    background-image: url("/images/carousel/capacitacao/1600.webp"); 
+  }
+
+  .imgPosGraduacao {
+    background-image: url("/images/carousel/posgraduacao/1600.webp");
+  }
+
+  .imgBannerPublicacoes {
+    background-image: url("/images/carousel/publicacoes/1600.webp"); 
+  }
+
+  .imgPublico {
+    background-image: url("/images/carousel/palestrinha/1600.webp");
+  }
+
+  .imgSolucoesInovadoras {
+    background-image: url("/images/carousel/solucoes/1600.webp");
+  }
+
+  .imgAgendaCursos {
+    background-image: url("/images/carousel/agenda/1600.webp");
+  }
+
+  .imgInCompany {
+    background-image: url("/images/carousel/incompany/1600.webp");
   }
 }
 
-@media (max-width: 857px) {
+@media (max-width: 1100px) {
   .imgCaraGravata {
-    & > div {
-      top: 30%;
-      left: 20%;
-      width: 60%;
-      // background-color: #fff;
-      text-align: center;
-      
-      & > button {
-        margin-top: 20px ;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
+    background-image: url("/images/carousel/dreamteam/1100_.webp");
+  }
+
+  .imgModel {
+    background-image: url("/images/carousel/infoqualidade/1100.webp");
+  }
+
+  .imgCapacitacaoTecnica {
+    background-image: url("/images/carousel/capacitacao/1100.webp"); 
+  }
+
+  .imgPosGraduacao {
+    background-image: url("/images/carousel/posgraduacao/1100.webp");
+  }
+
+  .imgBannerPublicacoes {
+    background-image: url("/images/carousel/publicacoes/1100.webp"); 
+  }
+
+  .imgPublico {
+    background-image: url("/images/carousel/palestrinha/1100.webp"); 
+  }
+
+  .imgSolucoesInovadoras {
+    background-image: url("/images/carousel/solucoes/1100.webp");
+  }
+
+  .imgAgendaCursos {
+    background-image: url("/images/carousel/agenda/1100.webp");
+  }
+
+  .imgInCompany {
+    background-image: url("/images/carousel/incompany/1100.webp");
   }
 }
 
-@media (max-width: 481px) {
+@media (max-width: 800px) {
   .imgCaraGravata {
-    & > div {
-      top: 50%;
-      left: 50%;
-      transform: translateY(-50%);
-      left: 20%;
-      width: 60%;
-      text-align: center;
-      
-      & > button {
-        margin-top: 20px ;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-      }
-    }
+    background-image: url("/images/carousel/dreamteam/800_.webp");
   }
-}
-
-// PESSOAS CONVERSANDO
-@media (max-width: 1162px) {
-  .imgDuasConversando {
-    & > span {
-      top: 40%;
-      width: 25%;
-
-      > button {
-        margin-top: 20px ;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-      }
-    }
-  }
-}
-
-@media (max-width: 972px) {
-  .imgDuasConversando {
-    & > span {
-      top: 40%;
-      width:35%;
-
-      > button {
-        margin-top: 20px ;
-        position: absolute;
-        left: 40%;
-        transform: translateX(-50%);
-        width: 80%;
-
-      }
-    }
-  }
-}
-
-@media (max-width: 872px) {
-  .imgDuasConversando {
-    & > span {
-      top: 40%;
-      width: 45%;
-
-      & > button {
-        margin-top: 20px ;
-        position: absolute;
-        left: 40%;
-        transform: translateX(-50%);
-        width: 80%;
-
-      }
-    }
-  }
-}
-
-@media (max-width: 686px) {
-  .imgDuasConversando {
-    & > span {
-      top: 30%;
-      width: 70%;
-      text-align: center;
-
-      & > button {
-        margin-top: 20px ;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80%;
-
-      }
-    }
-  }
-}
-
-// HOMEM NO TELEFONE
-@media (max-width: 1320px) {
-  .imgHomemTelefone {
-    width: 100%;
-  
-    & > div{
-      position: absolute;
-      top: 40%;
-      left: 20%;
-      font-size: xx-large;
-      width: 35%;
-      color: #fff;
-    }
-  }
-}
-
-@media (max-width: 1059px) {
-  .imgHomemTelefone {
-    width: 100%;
-  
-    & > div{
-      top: 40%;
-      left: 20%;
-      width: 45%;
-    }
-  }
-}
-
-@media (max-width: 824px) {
-  .imgHomemTelefone {
-    width: 100%;
-  
-    & > div{
-      top: 25%;
-      left: 20%;
-      width: 70%;
-
-      > button {
-        margin-top: 10px;
-      }
-    }
-  }
-}
-
-// RELÓGIO
-@media (max-width: 1341px) {
-  .imgMao {
-  
-    & > div {
-      top: 30%;
-      left: 20%;
-      width:30%;
-  
-      > p {
-        margin-top: 10px;
-      }
-    }
-  
-  
-  }
-}
-
-@media (max-width: 889px) {
-  .imgMao {
-  
-    & > div {
-      top: 30%;
-      left: 20%;
-      width: 45%;
-  
-      > p {
-        margin-top: 10px;
-      }
-    }
-  
-  
-  }
-}
-
-@media (max-width: 585px) {
-  .imgMao {
-  
-    & > div {
-      top: 25%;
-      left: 20%;
-      width: 70%;
-  
-      > p {
-        margin-top: 10px;
-      }
-    }
-  
-  
-  }
-}
-
-@media (max-width: 381px) {
-  .imgMao {
-  
-    & > div {
-      top: 25%;
-      left: 15%;
-      width: 78%;
-      text-align: center;
-      font-size: 22px;
-  
-      > p {
-        margin-top: 10px;
-      }
-    }  
-  }
-}
-
-// MARCIA
-
-@media (max-width: 547px) {
-  .imgMarcia {
-    background-image: url("/images/carousel/pregao-gilberto-tablet.webp");
-    background-position: center;
-    
-  }
-}
-
-@media (max-width: 450px) {
-  .imgMarcia {
-    background-image: url("/images/carousel/pregao-gilberto/mobile/400-mobile-pregão-gilberto.jpg");
-    background-position: center;
-    
-  }
-}
-
-
-@media (max-width: 320px) {
-  .imgMarcia {
-    background-image: url("/images/carousel/pregao-gilberto/mobile/320-mobile-pregão-gilberto.jpg");
-    background-position: center;
-    background-size: contain;
-    
-  }
-}
-// @media (max-width: 437px) {
-//   .imgMarcia {
-//     background-image: url("/images/carousel/pregao-gilberto-mobile.webp");
-//     background-position: center;
-//     background-size: contain;
-//     background-repeat: no-repeat;
-    
-//   }
-// }
-
-// TRES PESSOAS
-@media (max-width: 1145px) {
-  .imgModelTresPessoas {
-    & > div {
-      top: 40%;
-      left: 20%;
-      width: 25%;
-  
-      > p {
-        margin-bottom: 20px;
-      }
-    }
-  
-  }
-}
-
-@media (max-width: 917px) {
-  .imgModelTresPessoas {
-    & > div {
-      top: 40%;
-      left: 20%;
-      width: 30%;
-  
-      > p {
-        margin-bottom: 20px;
-      }
-    }
-  
-  }
-}
-
-@media (max-width: 621px) {
-  .imgModelTresPessoas {
-    & > div {
-      top: 40%;
-      left: 20%;
-      width: 40%;
-  
-      > p {
-        margin-bottom: 20px;
-      }
-    }
-  
-  }
-}
-
-@media (max-width: 457px) {
-  .imgModelTresPessoas {
-    & > div {
-      top: 40%;
-      left: 20%;
-      width: 50%;
-  
-      > p {
-        margin-bottom: 20px;
-      }
-    }
-  
-  }
-}
-
-@media (max-width: 365px) {
-  .imgModelTresPessoas {
-    & > div {
-      top: 34%;
-      left: 20%;
-      width: 60%;
-    }
-  
-  }
-}
-
-// TELA PRINCIPAL MÃO NO TABLET
-@media (max-width: 997px) {
   .imgModel {
+    background-image: url("/images/carousel/infoqualidade/800.webp");
+  }
 
-    & > div {
-      left: 20%;
-      width: 35%;
-  
-      > p {
-        margin-bottom: 10px;
-      }
-    }
-  
-  
+  .imgCapacitacaoTecnica {
+    background-image: url("/images/carousel/capacitacao/800.webp"); 
+  }
+
+  .imgPosGraduacao {
+    background-image: url("/images/carousel/posgraduacao/800.webp");
+  }
+
+  .imgBannerPublicacoes {
+    background-image: url("/images/carousel/publicacoes/800.webp"); 
+  }
+
+  .imgPublico {
+    background-image: url("/images/carousel/palestrinha/800.webp"); 
+  }
+
+  .imgSolucoesInovadoras {
+    background-image: url("/images/carousel/solucoes/800.webp");
+  }
+
+  .imgAgendaCursos {
+    background-image: url("/images/carousel/agenda/800.webp");
+  }
+
+  .imgInCompany {
+    background-image: url("/images/carousel/incompany/800.webp");
   }
 }
 
-@media (max-width: 997px) {
+@media (max-width: 460px) {
+  .imgCaraGravata {
+    background-image: url("/images/carousel/dreamteam/410_.webp");
+  }
+
   .imgModel {
-
-    & > div {
-      left: 20%;
-      width: 35%;
-    }
+    background-image: url("/images/carousel/infoqualidade/410.webp");
   }
-}
 
-@media (max-width: 849px) {
-  .imgModel {
-
-    & > div {
-      left: 20%;
-      width: 43%;
-    }
+  .imgCapacitacaoTecnica {
+    background-image: url("/images/carousel/capacitacao/410.webp"); 
   }
-}
 
-@media (max-width: 697px) {
-  .imgModel {
-
-    & > div {
-      left: 20%;
-      width: 50%;
-    }
+  .imgPosGraduacao {
+    background-image: url("/images/carousel/posgraduacao/410.webp");
   }
-}
 
-@media (max-width: 505px) {
-  .imgModel {
-
-    & > div {
-      top: 35%;
-      left: 20%;
-      width: 50%;
-    }
+  .imgBannerPublicacoes {
+    background-image: url("/images/carousel/publicacoes/410.webp"); 
   }
-}
 
-@media (max-width: 409px) {
-  .imgModel {
-
-    & > div {
-      top: 30%;
-      left: 20%;
-      width: 60%;
-    }
-  }
-}
-
-// PALESTRA PUBLICO
-@media (max-width: 1319px) {
   .imgPublico {
-    & > div {
-      top: 40%;
-      left: 50%;
-      width: 35%;
-    }
-  
+    background-image: url("/images/carousel/palestrinha/410.webp"); 
   }
-}
 
-@media (max-width: 1071px) {
-  .imgPublico {
-    & > div {
-      top: 40%;
-      left: 50%;
-      width: 40%;
-    }
-  
+  .imgSolucoesInovadoras {
+    background-image: url("/images/carousel/solucoes/410.webp");
   }
-}
 
-@media (max-width: 899px) {
-  .imgPublico {
-    & > div {
-      top: 40%;
-      left: 50%;
-      width: 60%;
-    }
+  .imgAgendaCursos {
+    background-image: url("/images/carousel/agenda/410.webp");
   }
-}
 
-@media (max-width: 599px) {
-  .imgPublico {
-    & > div {
-      top: 40%;
-      left: 50%;
-      width: 70%;
-      // background-color: #fff;
-    }
-  }
-}
-
-@media (max-width: 519px) {
-  .imgPublico {
-    & > div {
-      top: 40%;
-      left: 50%;
-      width: 70%;
-       > button {
-        width: 70%;
-       }
-    }
-  }
-}
-
-@media (max-width: 319px) {
-  .imgPublico {
-    & > div {
-      top: 40%;
-      left: 50%;
-      width: 70%;
-      
-      > button {
-        width: 100%;
-      }
-    }
+  .imgInCompany {
+    background-image: url("/images/carousel/incompany/410.webp");
   }
 }
 
 
 
-// QUEM SOMOS
-
-
-
+// quem somos
 
 @media (max-width: 971px) {
   .quemsomos {
@@ -1649,9 +1189,6 @@
   }
 }
 
-@media (max-width: 315px) {
-  
-}
 
 // COLABORADORES
 
