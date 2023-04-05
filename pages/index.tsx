@@ -94,6 +94,10 @@ export default function Home({
           id: "item-9",
           renderItem: <div className={styles.imgPublico}></div>,
         },
+        {
+          id: "item-10",
+          renderItem: <div className={styles.banner1}></div>,
+        },
       ],
     });
 
@@ -123,32 +127,31 @@ export default function Home({
     }),
   });
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     slideToNextItem();
-  //     carouselParceiros.slideToNextItem();
-  //   }, 5000);
-
-  //   return () => clearInterval(interval);
-  // }, []);
-
-  // const carouselDepoimentos = useSpringCarousel({
-  //   itemsPerSlide: 1,
-  //   withLoop: true,
-  //   initialActiveItem: 1,
-  //   // @ts-ignore
-  //   items: Depoimentos.map((cliente, index) => {
-  //     return ({
-  //       id: index,
-  //       renderItem: (
-  //         <div key={index} className={styles.depoimentosClientes}>
-  //           <p>{cliente.descricao}</p>
-  //           <p>{cliente.nomecargo}</p>
-  //         </div>
-  //       ),
-  //     })
-  //   })
-  // });
+  const carouselObrasE = useSpringCarousel({
+    itemsPerSlide: 2,
+    withLoop: true,
+    initialActiveItem: 1,
+    // @ts-ignore
+    items: clientes.map((cliente, index) => {
+      return {
+        id: cliente.sequencia,
+        renderItem: (
+          <div key={index} className={styles.englobaTudo}>
+            <div className={styles.carouselParceirosItem}>
+              <Image
+                // src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`
+                src={`https://www.sgpsolucoes.com.br/crm/imagens_sistema/logosclientesempresas/${cliente.nomearquivologo}`}
+                alt={String(cliente.sequencia)}
+                width={811}
+                height={225}
+                className={"imgOnHover"}
+              />
+            </div>
+          </div>
+        ),
+      };
+    }),
+  });
 
   function getIconByName(rede: string) {
     if (rede === "Facebook") {
@@ -194,131 +197,122 @@ export default function Home({
         </div>
       </main>
 
-      <section className={styles.quemsomos} id="quem-somos">
-        <div className={styles.textoEImagem}>
-          <div className={styles.descricao}>
-            <h1>Quem somos, um pouco da história da SGP. </h1>
-            <hr />
-            <div className={styles.historiaSgp}>
-              <p>
-                Experientes profissionais dos segmentos de Cursos e Treinamentos
-                de capacitação profissional, Editoração, Assessoramento
-                Tecnico-Jurídico e Vendas para a Poder Público uniram esforços
-                em uma nova e arrojada empreitada, com o intuito de continuar a
-                atualizar, informar, capacitar e trazer as mais variadas
-                Soluções inovadoras e de alta qualidade aos profissionais que
-                atuam na área do Direito Público.
-              </p>
-              <p className={styles.descricaoPt2}>
-                {" "}
-                Assim nasceu a SGP – Soluções em Gestão Pública, uma empresa que
-                veio inovar no mercado de eventos técnicos e jurídicos,
-                capacitação e aperfeiçoamento profissional, editoração de
-                periódicos mensais nas áreas das Licitações e Contratos, Direito
-                Administrativo, Direito Municipal, Direito Tributário, Direito
-                Constitucional, Direito Eleitoral, Direito Urbanístico e Direito
-                Público como um todo, bem como livros de alta relevância para a
-                Administração Pública.
-              </p>
-              <p>
-                E não parou por aí... A SGP avançou e expandiu suas Soluções,
-                passando a atuar em diversos segmentos de Assessoramentos
-                Técnicos e Jurídicos, por escrito, de forma presencial ou
-                on-line, sob os mais variados temas.{" "}
-              </p>
-              <p>
-                Tanto nos Cursos e Treinamentos quanto nas mais diversas formas
-                de Assessoramento, a SGP conta com uma equipe altamente
-                qualificada em cada segmento, detentora de um know-how singular,
-                obtido ao longo de mais de 25 anos de experiência no segmento da
-                boa Gestão Pública.{" "}
-              </p>
-              <p>
-                Sempre pensando em novas Soluções, a SGP também oferece a mais
-                completa Pós-Graduação: MBA Lato Sensu On-Line em Licitações e
-                Contratações da Administração Pública, com um quadro de
-                professores de fazer inveja, composto de 70% de Pós-Doutores,
-                Doutores e Mestres na sua área de atuação.{" "}
-              </p>
-              <p>
-                Mais recentemente, a fim de aproveitar ainda mais sua equipe
-                altamente qualificada, a SGP apresentou ao mercado sua mais nova
-                Solução: a elaboração de minutas de regulamentos da nova Lei de
-                Licitações e Contratos (Lei nº 14.133/2021), bem como a
-                elaboração de minutas de Regimentos Internos, Leis Orgânicas
-                Municipais, Estatutos de Servidores Públicos Municipais e
-                Reestruturação de Cargos e Salários dos Servidores Municipais.
-              </p>
-              <p>
-                Esta é a SGP, uma empresa que dia após dia se reinventa,
-                buscando sempre o seu aperfeiçoamento, a fim de cada vez mais
-                criar Soluções inovadoras e eficazes para uma Gestão Pública de
-                excelência.{" "}
-              </p>
+      <section className={styles.quemSomosAll}>
+        <div className={styles.quemsomos}>
+          <div className={styles.textoEImagem}>
+            <div className={styles.descricao}>
+              <h1>Quem somos, um pouco da história da SGP. </h1>
+              <hr />
+              <div className={styles.historiaSgp}>
+                <p>
+                  Experientes profissionais dos segmentos de Cursos e
+                  Treinamentos de capacitação profissional, Editoração,
+                  Assessoramento Tecnico-Jurídico e Vendas para a Poder Público
+                  uniram esforços em uma nova e arrojada empreitada, com o
+                  intuito de continuar a atualizar, informar, capacitar e trazer
+                  as mais variadas Soluções inovadoras e de alta qualidade aos
+                  profissionais que atuam na área do Direito Público.
+                </p>
+                <p className={styles.descricaoPt2}>
+                  {" "}
+                  Assim nasceu a SGP – Soluções em Gestão Pública, uma empresa
+                  que veio inovar no mercado de eventos técnicos e jurídicos,
+                  capacitação e aperfeiçoamento profissional, editoração de
+                  periódicos mensais nas áreas das Licitações e Contratos,
+                  Direito Administrativo, Direito Municipal, Direito Tributário,
+                  Direito Constitucional, Direito Eleitoral, Direito Urbanístico
+                  e Direito Público como um todo, bem como livros de alta
+                  relevância para a Administração Pública.
+                </p>
+                <p>
+                  E não parou por aí... A SGP avançou e expandiu suas Soluções,
+                  passando a atuar em diversos segmentos de Assessoramentos
+                  Técnicos e Jurídicos, por escrito, de forma presencial ou
+                  on-line, sob os mais variados temas.{" "}
+                </p>
+                <p>
+                  Tanto nos Cursos e Treinamentos quanto nas mais diversas
+                  formas de Assessoramento, a SGP conta com uma equipe altamente
+                  qualificada em cada segmento, detentora de um know-how
+                  singular, obtido ao longo de mais de 25 anos de experiência no
+                  segmento da boa Gestão Pública.{" "}
+                </p>
+                <p>
+                  Sempre pensando em novas Soluções, a SGP também oferece a mais
+                  completa Pós-Graduação: MBA Lato Sensu On-Line em Licitações e
+                  Contratações da Administração Pública, com um quadro de
+                  professores de fazer inveja, composto de 70% de Pós-Doutores,
+                  Doutores e Mestres na sua área de atuação.{" "}
+                </p>
+                <p>
+                  Mais recentemente, a fim de aproveitar ainda mais sua equipe
+                  altamente qualificada, a SGP apresentou ao mercado sua mais
+                  nova Solução: a elaboração de minutas de regulamentos da nova
+                  Lei de Licitações e Contratos (Lei nº 14.133/2021), bem como a
+                  elaboração de minutas de Regimentos Internos, Leis Orgânicas
+                  Municipais, Estatutos de Servidores Públicos Municipais e
+                  Reestruturação de Cargos e Salários dos Servidores Municipais.
+                </p>
+                <p>
+                  Esta é a SGP, uma empresa que dia após dia se reinventa,
+                  buscando sempre o seu aperfeiçoamento, a fim de cada vez mais
+                  criar Soluções inovadoras e eficazes para uma Gestão Pública
+                  de excelência.{" "}
+                </p>
+              </div>
+            </div>
+            <div className={styles.foto}>
+              <Image
+                alt="Foto referente a cidade de São Paulo"
+                src="/images/homepage/cidadesp.webp"
+                height={335}
+                width={1216}
+              />
+              <p>Foto centro de São Paulo</p>
             </div>
           </div>
-          <div className={styles.foto}>
-            <Image
-              src={"/images/homepage/cidadesp.webp"}
-              alt="Foto do centro de São Paulo"
-              width={416}
-              height={700}
-              className={"imgOnHover"}
-            />
-            <Image
-              src={"/images/homepage/predio.webp"}
-              alt="Foto do centro de São Paulo"
-              width={416}
-              height={468}
-              className={"imgOnHover"}
-            />
-          </div>
-        </div>
-        <div className={styles.icon}>
-          <BsFillArrowDownCircleFill
-            size="25px"
-            onClick={() => push("#clientes")}
-          />
         </div>
       </section>
 
-      <section className={styles.clientesContribuintes} id="clientes">
-        <h1 className={styles.titleDarkBlue}>
-          Clientes que fazem parte deste sucesso
-        </h1>
-        <div className={styles.spaceTitleCarousel}>
-          <div className={styles.explicacao}>
-            <p>
-              Contar com clientes em potencial é o que nos motiva como empresa a
-              cada ano.
-            </p>
-            <p>
-              Vivenciando dificuldades e participando de experiências
-              profissionais de nossos clientes, nos trouxe uma bagagem onde
-              sempre podemos direciona-los por um caminho mais tranquilo,
-              estratégico e muito mais profissional.
-            </p>
-            <p>
-              Esta é a razão da SGP Soluções em ser sempre lembrada quando
-              existir necessidade de se capacitar em cursos e treinamentos,
-              adquirir um material com conteúdo didático ou orientações no
-              segmento de Gestão Pública.
-            </p>
-          </div>
-          <div className={styles.carouselAll}>
-            <div className={styles.carousel}>
-              {carouselParceiros.carouselFragment}
+      <section className={styles.clientesContribuintesAll} id="clientes">
+        <div className={styles.clientesContribuintes}>
+          <h1 className={styles.titleDarkBlue}>
+            Clientes que fazem parte deste sucesso
+          </h1>
+          <div className={styles.spaceTitleCarousel}>
+            <div className={styles.explicacao}>
+              <p>
+                Contar com clientes em potencial é o que nos motiva como empresa
+                a cada ano.
+              </p>
+              <p>
+                Vivenciando dificuldades e participando de experiências
+                profissionais de nossos clientes, nos trouxe uma bagagem onde
+                sempre podemos direciona-los por um caminho mais tranquilo,
+                estratégico e muito mais profissional.
+              </p>
+              <p>
+                Esta é a razão da SGP Soluções em ser sempre lembrada quando
+                existir necessidade de se capacitar em cursos e treinamentos,
+                adquirir um material com conteúdo didático ou orientações no
+                segmento de Gestão Pública.
+              </p>
             </div>
-            <div className={styles.controles}>
-              <MdOutlineKeyboardArrowLeft
-                onClick={carouselParceiros.slideToPrevItem}
-                className={styles.arrowLeft}
-              />
-              <MdOutlineKeyboardArrowRight
-                onClick={carouselParceiros.slideToNextItem}
-                className={styles.arrowRight}
-              />
-              <span>Clique nos botões para interagir</span>
+            <div className={styles.carouselAll}>
+              <div className={styles.carousel}>
+                {carouselParceiros.carouselFragment}
+              </div>
+              <div className={styles.controles}>
+                <MdOutlineKeyboardArrowLeft
+                  onClick={carouselParceiros.slideToPrevItem}
+                  className={styles.arrowLeft}
+                />
+                <MdOutlineKeyboardArrowRight
+                  onClick={carouselParceiros.slideToNextItem}
+                  className={styles.arrowRight}
+                />
+                <span>Clique nos botões para interagir</span>
+              </div>
             </div>
           </div>
         </div>
@@ -327,62 +321,91 @@ export default function Home({
       <section className={styles.comentarios}>
         <div className={styles.comentariosContent}>
           <h1 className={styles.titleDarkBlue}>
-            Clientes e Parceiros comentam sobre a SGP Soluções...
+            Clientes e Parceiros comentam sobre a SGP...
           </h1>
-          <div className={styles.carouselDepoimentosAll}>
-            <div className={styles.carosel}>
-              {/* {carouselDepoimentos.carouselFragment} */}
+          <div className={styles.sergio}>
+            <div className={styles.nomefoto}>
+              <Image
+                src={"/images/homepage/sergio.png"}
+                alt="Sergio Ferraz - Integrante do Conselho Editorial da SGP "
+                width={52}
+                height={52}
+              />
+              <p>
+                <b>Sergio Ferraz - </b>
+                Integrante do nosso Conselho Editorial
+              </p>
+            </div>
+            <div className={styles.review}>
+              <Image
+                src={"/images/homepage/rant-stars.svg"}
+                alt="Sergio Ferraz - Integrante do Conselho Editorial da SGP "
+                width={109}
+                height={15.71}
+                style={{ width: "auto" }}
+              />
+              <div className={styles.linhaVertical}></div>
+              <p>Avaliação - SGP</p>
             </div>
           </div>
+          <p className={styles.comentarioSergio}>
+            O periódico SLC - Solução em Licitações e Contratos é uma referência
+            imprescindível, tanto para doutrinadores como para exercentes da
+            advocacia. Trata-se do mais atualizado e abrangente repositório de
+            tudo quanto se produz, em qualquer das vertentes do Direito, no
+            campo da constatação administrativa.
+          </p>
         </div>
       </section>
 
-      <section className={styles.periodicosExclusivos} id="periodicos-mensais">
-        <div className={styles.periodicos}>
-          <div className={styles.introducao}>
-            <h1 className={styles.titleDarkBlue}>
-              Conheça nossos periódicos exclusivos
-            </h1>
-            <p>
-              A SGP - Soluções em Gestão Pública atua no mercado editorial,
-              oferecendo publicações especializadas mensais de qualidade e
-              extremamente práticas, na área do Direito Público.
-            </p>
-          </div>
-          <div className={styles.fotosPeriodicos}>
-            <Image
-              src={"/images/homepage/periodicos/azul.png"}
-              alt="Foto do centro de São Paulo"
-              width={200.44}
-              height={300.32}
-              className={"imgOnHover"}
-            />
-            <Image
-              src={"/images/homepage/periodicos/laranja.png"}
-              alt="Foto do centro de São Paulo"
-              width={200.44}
-              height={300.32}
-              className={"imgOnHover"}
-            />
-          </div>
-        </div>
-
-        <div className={styles.topicosPeriodicos}>
-          {Periodicos.map(({ title, descricao }) => (
-            <div key={title} className={styles.item}>
-              <div className={styles.titleIcon}>
-                <Image
-                  width={10}
-                  height={10}
-                  src={"/icons/ticked.svg"}
-                  alt="Ícone indicando que um item na lista está preenchido"
-                  className={"imgOnHover"}
-                />
-                <h1>{title}</h1>
-              </div>
-              <p>{descricao}</p>
+      <section className={styles.periodicosExclusivosAll} id="periodicos-mensais">
+        <div className={styles.periodicosExclusivos}>
+          <div className={styles.periodicos}>
+            <div className={styles.introducao}>
+              <h1 className={styles.titleDarkBlue}>
+                Conheça nossos periódicos exclusivos
+              </h1>
+              <p>
+                A SGP - Soluções em Gestão Pública atua no mercado editorial,
+                oferecendo publicações especializadas mensais de qualidade e
+                extremamente práticas, na área do Direito Público.
+              </p>
             </div>
-          ))}
+            <div className={styles.fotosPeriodicos}>
+              <Image
+                src={"/images/homepage/periodicos/azul.png"}
+                alt="Foto do centro de São Paulo"
+                width={200.44}
+                height={300.32}
+                className={"imgOnHover"}
+              />
+              <Image
+                src={"/images/homepage/periodicos/laranja.png"}
+                alt="Foto do centro de São Paulo"
+                width={200.44}
+                height={300.32}
+                className={"imgOnHover"}
+              />
+            </div>
+          </div>
+
+          <div className={styles.topicosPeriodicos}>
+            {Periodicos.map(({ title, descricao }) => (
+              <div key={title} className={styles.item}>
+                <div className={styles.titleIcon}>
+                  <Image
+                    width={10}
+                    height={10}
+                    src={"/icons/ticked.svg"}
+                    alt="Ícone indicando que um item na lista está preenchido"
+                    className={"imgOnHover"}
+                  />
+                  <h1>{title}</h1>
+                </div>
+                <p>{descricao}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
