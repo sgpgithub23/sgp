@@ -98,6 +98,22 @@ export default function Home({
           id: "item-10",
           renderItem: <div className={styles.banner1}></div>,
         },
+        {
+          id: "item-11",
+          renderItem: <div className={styles.banner2}></div>,
+        },
+        {
+          id: "item-12",
+          renderItem: <div className={styles.banner3}></div>,
+        },
+        {
+          id: "item-13",
+          renderItem: <div className={styles.banner4}></div>,
+        },
+        {
+          id: "item-14",
+          renderItem: <div className={styles.banner5}></div>,
+        },
       ],
     });
 
@@ -225,6 +241,14 @@ export default function Home({
       },
     ],
   });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      slideToNextItem();
+      carouselParceiros.slideToNextItem();
+    }, 8000)
+    return () => clearInterval(interval);
+  })
 
   function getIconByName(rede: string) {
     if (rede === "Facebook") {

@@ -141,6 +141,35 @@
   width: 100%;
 }
 
+.banner2 {
+  background-image: url("/images/carousel/banners/2/1920.webp");
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+}
+
+.banner3 {
+  background-image: url("/images/carousel/banners/3/1920.webp");
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+}
+
+.banner4 {
+  background-image: url("/images/carousel/banners/4/1920.webp");
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+}
+
+.banner5 {
+  background-image: url("/images/carousel/banners/5/1920.webp");
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+}
+
+
 .quemSomosAll {
   width: 100%;
   display: flex;
@@ -833,6 +862,22 @@
   .banner1 {
     background-image: url("/images/carousel/banners/1/1600.webp");
   }
+
+  .banner2 {
+    background-image: url("/images/carousel/banners/2/1600.webp");
+  }
+
+  .banner3 {
+    background-image: url("/images/carousel/banners/3/1600.webp");
+  }
+
+  .banner4 {
+    background-image: url("/images/carousel/banners/4/1600.webp");
+  }
+
+  .banner5 {
+    background-image: url("/images/carousel/banners/5/1600.webp");
+  }
 }
 
 @media (max-width: 1100px) {
@@ -875,6 +920,23 @@
   .banner1 {
     background-image: url("/images/carousel/banners/1/1100.webp");
   }
+
+  .banner2 {
+    background-image: url("/images/carousel/banners/2/1100.webp");
+  }
+
+  .banner3 {
+    background-image: url("/images/carousel/banners/3/1100.webp");
+  }
+
+  .banner4 {
+    background-image: url("/images/carousel/banners/4/1100.webp");
+  }
+
+  .banner5 {
+    background-image: url("/images/carousel/banners/5/1100.webp");
+  }
+
 }
 
 @media (max-width: 800px) {
@@ -915,6 +977,22 @@
 
   .banner1 {
     background-image: url("/images/carousel/banners/1/800.webp");
+  }
+
+  .banner2 {
+    background-image: url("/images/carousel/banners/2/800.webp");
+  }
+
+  .banner3 {
+    background-image: url("/images/carousel/banners/3/800.webp");
+  }
+
+  .banner4 {
+    background-image: url("/images/carousel/banners/4/800.webp");
+  }
+
+  .banner5 {
+    background-image: url("/images/carousel/banners/5/800.webp");
   }
 }
 
@@ -957,6 +1035,22 @@
 
   .banner1 {
     background-image: url("/images/carousel/banners/1/410.webp");
+  }
+
+  .banner2 {
+    background-image: url("/images/carousel/banners/2/410.webp");
+  }
+
+  .banner3 {
+    background-image: url("/images/carousel/banners/3/410.webp");
+  }
+
+  .banner4 {
+    background-image: url("/images/carousel/banners/4/410.webp");
+  }
+
+  .banner5 {
+    background-image: url("/images/carousel/banners/5/410.webp");
   }
 }
 
