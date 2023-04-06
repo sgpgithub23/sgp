@@ -127,30 +127,103 @@ export default function Home({
     }),
   });
 
-  const carouselObrasE = useSpringCarousel({
+  const carouselDegustacao = useSpringCarousel({
     itemsPerSlide: 2,
-    withLoop: true,
-    initialActiveItem: 1,
-    // @ts-ignore
-    items: clientes.map((cliente, index) => {
-      return {
-        id: cliente.sequencia,
+    withLoop: true, 
+    items: [
+      {
+        id: "1",
         renderItem: (
-          <div key={index} className={styles.englobaTudo}>
-            <div className={styles.carouselParceirosItem}>
-              <Image
-                // src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`
-                src={`https://www.sgpsolucoes.com.br/crm/imagens_sistema/logosclientesempresas/${cliente.nomearquivologo}`}
-                alt={String(cliente.sequencia)}
-                width={811}
-                height={225}
-                className={"imgOnHover"}
-              />
-            </div>
+          <div className={styles.carouselPeriodicoIndividual}>
+            <Image
+              width={150}
+              height={150}
+              src={"/images/homepage/degustacao/degustacao-1.png"}
+              alt="Ícone indicando que um item na lista está preenchido"
+              className={"imgOnHover"}
+            />
           </div>
         ),
-      };
-    }),
+      },
+      {
+        id: "2",
+        renderItem: (
+          <div className={styles.carouselPeriodicoIndividual}>
+            <Image
+              width={150}
+              height={150}
+              src={"/images/homepage/degustacao/degustacao-2.png"}
+              alt="Ícone indicando que um item na lista está preenchido"
+              className={"imgOnHover"}
+            />
+          </div>
+        ),
+      },
+      {
+        id: "3",
+        renderItem: (
+          <div className={styles.carouselPeriodicoIndividual}>
+            <Image
+              width={150}
+              height={150}
+              src={"/images/homepage/degustacao/degustacao-3.png"}
+              alt="Ícone indicando que um item na lista está preenchido"
+              className={"imgOnHover"}
+            />
+          </div>
+        ),
+      },
+      {
+        id: "4",
+        renderItem: (
+          <div className={styles.carouselPeriodicoIndividual}>
+            <Image
+              width={150}
+              height={150}
+              src={"/images/homepage/degustacao/degustacao-4.png"}
+              alt="Ícone indicando que um item na lista está preenchido"
+              className={"imgOnHover"}
+            />
+          </div>
+        ),
+      },
+    ],
+  });
+
+  const carouselPeriodicosExclusivos = useSpringCarousel({
+    itemsPerSlide: 1,
+    withLoop: true,
+    // initialActiveItem: 1,
+    items: [
+      {
+        id: "1",
+        renderItem: (
+          <div className={styles.carouselPeriodicoIndividual}>
+            <Image
+              width={2084}
+              height={2323}
+              src={"/images/homepage/periodicos/SAM.webp"}
+              alt="Ícone indicando que um item na lista está preenchido"
+              className={"imgOnHover"}
+            />
+          </div>
+        ),
+      },
+      {
+        id: "2",
+        renderItem: (
+          <div className={styles.carouselPeriodicoIndividual}>
+            <Image
+              width={2084}
+              height={2323}
+              src={"/images/homepage/periodicos/SLC.webp"}
+              alt="Ícone indicando que um item na lista está preenchido"
+              className={"imgOnHover"}
+            />
+          </div>
+        ),
+      },
+    ],
   });
 
   function getIconByName(rede: string) {
@@ -358,7 +431,10 @@ export default function Home({
         </div>
       </section>
 
-      <section className={styles.periodicosExclusivosAll} id="periodicos-mensais">
+      <section
+        className={styles.periodicosExclusivosAll}
+        id="periodicos-mensais"
+      >
         <div className={styles.periodicosExclusivos}>
           <div className={styles.periodicos}>
             <div className={styles.introducao}>
@@ -375,17 +451,31 @@ export default function Home({
               <Image
                 src={"/images/homepage/periodicos/azul.png"}
                 alt="Foto do centro de São Paulo"
-                width={200.44}
-                height={300.32}
+                width={312}
+                height={383}
                 className={"imgOnHover"}
               />
               <Image
                 src={"/images/homepage/periodicos/laranja.png"}
                 alt="Foto do centro de São Paulo"
-                width={200.44}
-                height={300.32}
+                width={312}
+                height={383}
                 className={"imgOnHover"}
               />
+            </div>
+            <div className={styles.carouselIPeriodicos}>
+              {carouselPeriodicosExclusivos.carouselFragment}
+            </div>
+            <div className={styles.controles}>
+              <MdOutlineKeyboardArrowLeft
+                onClick={carouselPeriodicosExclusivos.slideToPrevItem}
+                className={styles.arrowLeft}
+              />
+              <MdOutlineKeyboardArrowRight
+                onClick={carouselPeriodicosExclusivos.slideToNextItem}
+                className={styles.arrowRight}
+              />
+              <span>Clique nos botões para interagir</span>
             </div>
           </div>
 
@@ -400,9 +490,11 @@ export default function Home({
                     alt="Ícone indicando que um item na lista está preenchido"
                     className={"imgOnHover"}
                   />
-                  <h1>{title}</h1>
                 </div>
-                <p>{descricao}</p>
+                <div className={styles.info}>
+                  <h1>{title}</h1>
+                  <p>{descricao}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -424,34 +516,20 @@ export default function Home({
             />
           </div>
           <div className={styles.rightSide}>
-            <Image
-              width={150}
-              height={150}
-              src={"/images/homepage/degustacao/degustacao-1.png"}
-              alt="Ícone indicando que um item na lista está preenchido"
-              className={"imgOnHover"}
-            />
-            <Image
-              width={150}
-              height={150}
-              src={"/images/homepage/degustacao/degustacao-2.png"}
-              alt="Ícone indicando que um item na lista está preenchido"
-              className={"imgOnHover"}
-            />
-            <Image
-              width={150}
-              height={150}
-              src={"/images/homepage/degustacao/degustacao-3.png"}
-              alt="Ícone indicando que um item na lista está preenchido"
-              className={"imgOnHover"}
-            />
-            <Image
-              width={150}
-              height={150}
-              src={"/images/homepage/degustacao/degustacao-4.png"}
-              alt="Ícone indicando que um item na lista está preenchido"
-              className={"imgOnHover"}
-            />
+            <div className={styles.carouselIPeriodicos}>
+              {carouselDegustacao.carouselFragment}
+            </div>
+            <div className={styles.controles}>
+              <MdOutlineKeyboardArrowLeft
+                onClick={carouselDegustacao.slideToPrevItem}
+                className={styles.arrowLeft}
+              />
+              <MdOutlineKeyboardArrowRight
+                onClick={carouselDegustacao.slideToNextItem}
+                className={styles.arrowRight}
+              />
+              <span>Clique nos botões para interagir</span>
+            </div>
           </div>
         </div>
       </section>
