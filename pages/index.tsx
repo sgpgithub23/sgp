@@ -46,7 +46,7 @@ export async function getStaticProps() {
     },
     revalidate: 600,
   };
-}  
+}
 
 export default function Home({
   clientes,
