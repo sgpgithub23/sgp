@@ -30,91 +30,110 @@ import {
 import { FooterCompleto } from "@/components/FooterCompleto";
 import { useRouter } from "next/router";
 import { ClientesRequisicao } from "@/typings/Requisicoes/Clientes";
-import { InferGetStaticPropsType } from "next";
+import { InferGetServerSidePropsType, InferGetStaticPropsType } from "next";
 import { useEffect, useState } from "react";
 import { Depoimentos } from "@/utils/depoimentos";
-
-export async function getStaticProps() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=logosclientesempresas`
-  );
-  const clientes: ClientesRequisicao[] = await res.json();
-
-  return {
-    props: {
-      clientes,
-    },
-    revalidate: 600,
-  };
-}
+import { ProfessorReq } from "@/typings/Requisicoes/Professores";
 
 export default function Home({
+  imgsJson,
   clientes,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { push } = useRouter();
 
+  const arr = [
+    {
+      formato: "410",
+      sequencia: 0,
+      nomearquivoimagem: "00-imagem-banner-carousel.webp",
+      caminhoarquivologo:
+        "https://www.sgpsolucoes.com.br/crm/imagens_sistema/imagensbannerscarousel/410/",
+      situacaoimagem: "Ativo",
+      formatoimagem: "410",
+      caminhohref: "index#contato",
+      tituloalthref: "Imagem - Carousel",
+      textoadicional1: "",
+      textoadicional2: "",
+      textoadicional3: "",
+    },
+    {
+      formato: "800",
+      sequencia: 11,
+      nomearquivoimagem: "11-imagem-banner-carousel.webp",
+      caminhoarquivologo:
+        "https://www.sgpsolucoes.com.br/crm/imagens_sistema/imagensbannerscarousel/800/",
+      situacaoimagem: "Ativo",
+      formatoimagem: "800",
+      caminhohref: "index#contato",
+      tituloalthref: "Imagem - Carousel",
+      textoadicional1: "",
+      textoadicional2: "",
+      textoadicional3: "",
+    },
+    {
+      formato: "1100",
+      sequencia: 11,
+      nomearquivoimagem: "11-imagem-banner-carousel.webp",
+      caminhoarquivologo:
+        "https://www.sgpsolucoes.com.br/crm/imagens_sistema/imagensbannerscarousel/1100/",
+      situacaoimagem: "Ativo",
+      formatoimagem: "1100",
+      caminhohref: "index#contato",
+      tituloalthref: "Imagem - Carousel",
+      textoadicional1: "",
+      textoadicional2: "",
+      textoadicional3: "",
+    },
+    {
+      formato: "1600",
+      sequencia: 13,
+      nomearquivoimagem: "13-imagem-banner-carousel.webp",
+      caminhoarquivologo:
+        "https://www.sgpsolucoes.com.br/crm/imagens_sistema/imagensbannerscarousel/1600/",
+      situacaoimagem: "Ativo",
+      formatoimagem: "1600",
+      caminhohref: "index#contato",
+      tituloalthref: "Imagem - Carousel",
+      textoadicional1: "",
+      textoadicional2: "",
+      textoadicional3: "",
+    },
+    {
+      formato: "1600",
+      sequencia: 13,
+      nomearquivoimagem: "13-imagem-banner-carousel.webp",
+      caminhoarquivologo:
+        "https://www.sgpsolucoes.com.br/crm/imagens_sistema/imagensbannerscarousel/1920/",
+      situacaoimagem: "Ativo",
+      formatoimagem: "1600",
+      caminhohref: "index#contato",
+      tituloalthref: "Imagem - Carousel",
+      textoadicional1: "",
+      textoadicional2: "",
+      textoadicional3: "",
+    },
+  ];
   const { carouselFragment, slideToPrevItem, slideToNextItem } =
     useSpringCarousel({
       itemsPerSlide: 3,
       withLoop: true,
-      items: [
-        {
-          id: "item-1",
-          renderItem: <div className={styles.imgBannerPublicacoes}></div>,
-        },
-        {
-          id: "item-2",
-          renderItem: <div className={styles.imgCaraGravata}></div>,
-        },
-        {
-          id: "item-3",
-          renderItem: <div className={styles.imgPosGraduacao}></div>,
-        },
-        {
-          id: "item-4",
-          renderItem: <div className={styles.imgAgendaCursos}></div>,
-        },
-        {
-          id: "item-5",
-          renderItem: <div className={styles.imgSolucoesInovadoras}></div>,
-        },
-        {
-          id: "item-6",
-          renderItem: <div className={styles.imgInCompany}></div>,
-        },
-        {
-          id: "item-7",
-          renderItem: <div className={styles.imgCapacitacaoTecnica}></div>,
-        },
-        {
-          id: "item-8",
-          renderItem: <div className={styles.imgModel}></div>,
-        },
-        {
-          id: "item-9",
-          renderItem: <div className={styles.imgPublico}></div>,
-        },
-        {
-          id: "item-10",
-          renderItem: <div className={styles.banner1}></div>,
-        },
-        {
-          id: "item-11",
-          renderItem: <div className={styles.banner2}></div>,
-        },
-        {
-          id: "item-12",
-          renderItem: <div className={styles.banner3}></div>,
-        },
-        {
-          id: "item-13",
-          renderItem: <div className={styles.banner4}></div>,
-        },
-        {
-          id: "item-14",
-          renderItem: <div className={styles.banner5}></div>,
-        },
-      ],
+      // @ts-ignore
+      items: arr.map((x: RegularImageType, index: number) => ({
+        id: index,
+        renderItem: (
+          <div
+            className={styles[x.nomeclass]}
+            style={{
+              backgroundImage:
+                "https://www.sgpsolucoes.com.br//crm//imagens_sistema//imagensbannerscarousel//410//00-imagem-banner-carousel.webp",
+              height: "500px",
+              backgroundColor: "red",
+            }}
+          >
+            {/* {x.} */}
+          </div>
+        ),
+      })),
     });
 
   const carouselParceiros = useSpringCarousel({
@@ -145,7 +164,7 @@ export default function Home({
 
   const carouselDegustacao = useSpringCarousel({
     itemsPerSlide: 2,
-    withLoop: true, 
+    withLoop: true,
     items: [
       {
         id: "1",
@@ -246,9 +265,9 @@ export default function Home({
     const interval = setInterval(() => {
       slideToNextItem();
       carouselParceiros.slideToNextItem();
-    }, 8000)
+    }, 8000);
     return () => clearInterval(interval);
-  })
+  });
 
   function getIconByName(rede: string) {
     if (rede === "Facebook") {
@@ -666,4 +685,51 @@ export default function Home({
       <FooterCompleto />
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=professores`
+  );
+  const profsAll: ProfessorReq[] = await res.json();
+
+  const imgsCarouselFetch = await await fetch(
+    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=2&model=bannerscarousel`
+  );
+
+  const imgsJson: ImagensCarousel[] = await imgsCarouselFetch.json();
+
+  const newImgsType = imgsJson.map((obj: any) => {
+    const chave = Object.keys(obj)[0];
+    const valor = obj[chave];
+    return {
+      formato: chave,
+      nomeclass: `img${chave}`,
+      sequencia: valor.sequencia,
+      nomearquivoimagem: valor.nomearquivoimagem,
+      caminhoarquivologo: valor.caminhoarquivologo,
+      caminhoimagem: `${valor.caminhoarquivologo}${valor.nomearquivoimagem}`,
+      situacaoimagem: valor.situacaoimagem,
+      formatoimagem: valor.formatoimagem,
+      caminhohref: valor.caminhohref,
+      tituloalthref: valor.tituloalthref,
+      textoadicional1: valor.textoadicional1,
+      textoadicional2: valor.textoadicional2,
+      textoadicional3: valor.textoadicional3,
+    };
+  });
+
+  console.log("newImgsType", newImgsType);
+  const resClientes = await fetch(
+    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=logosclientesempresas`
+  );
+  const clientes: ClientesRequisicao[] = await resClientes.json();
+
+  return {
+    props: {
+      profsAll,
+      imgsJson: newImgsType,
+      clientes,
+    },
+  };
 }

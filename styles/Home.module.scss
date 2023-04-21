@@ -69,22 +69,6 @@
   object-fit: cover;
 }
 
-.imgBannerPublicacoes {
-  background-image: url("/images/carousel/publicacoes/1920.webp");
-  background-position: center;
-  background-size: cover;
-  min-width: 100vw;
-  position: relative;
-}
-
-.imgCaraGravata {
-  background-image: url("/images/carousel/dreamteam/1920_.webp");
-  background-position: center;
-  background-size: cover;
-  background-position: 60%;
-  width: 100%;
-}
-
 .imgPosGraduacao {
   background-image: url("/images/carousel/posgraduacao/1920.webp");
   background-position: center;
@@ -92,83 +76,12 @@
   width: 100%;
 }
 
-.imgAgendaCursos {
-  background-image: url("/images/carousel/agenda/1920.webp");
+.img1920 {
+  background-color: red;
   background-position: center;
   background-size: cover;
   width: 100%;
 }
-
-.imgSolucoesInovadoras {
-  background-image: url("/images/carousel/solucoes/1920.webp");
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-}
-
-.imgInCompany {
-  background-image: url("/images/carousel/incompany/1920.webp");
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-}
-
-.imgCapacitacaoTecnica {
-  background-image: url("/images/carousel/capacitacao/1920.webp");
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-}
-
-.imgModel {
-  background-image: url("/images/carousel/infoqualidade/1920.webp");
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-}
-
-.imgPublico {
-  background-image: url("/images/carousel/palestrinha/1920.webp");
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-}
-
-.banner1 {
-  background-image: url("/images/carousel/banners/1/1920.webp");
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-}
-
-.banner2 {
-  background-image: url("/images/carousel/banners/2/1920.webp");
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-}
-
-.banner3 {
-  background-image: url("/images/carousel/banners/3/1920.webp");
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-}
-
-.banner4 {
-  background-image: url("/images/carousel/banners/4/1920.webp");
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-}
-
-.banner5 {
-  background-image: url("/images/carousel/banners/5/1920.webp");
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-}
-
 
 .quemSomosAll {
   width: 100%;
@@ -709,7 +622,7 @@
     & > div {
       display: flex;
       gap: 30px;
-      
+
       & > .obra {
         display: flex;
         flex-direction: column;
@@ -743,7 +656,6 @@
   margin-block: 150px;
   @include centralizaVerticalmente;
   align-items: center;
-
 
   & > .redesSociaisAll {
     width: 80%;
@@ -781,7 +693,6 @@
         display: grid;
         grid-template-columns: repeat(3, auto);
         gap: 10px;
-        
 
         & > a {
           text-decoration: none;
@@ -936,7 +847,6 @@
   .banner5 {
     background-image: url("/images/carousel/banners/5/1100.webp");
   }
-
 }
 
 @media (max-width: 800px) {
@@ -1553,7 +1463,6 @@
 
 @media (max-width: 963px) {
   .degustacaoAll {
-  
     & > .degustacao {
       width: 80%;
       background-color: $dark-blue-100;
@@ -1566,20 +1475,20 @@
       text-align: center;
       align-items: center;
       color: white;
-  
+
       & > .leftSide {
         width: 100%;
         display: flex;
         flex-direction: column;
         gap: 28px;
         align-items: center;
-  
+
         & > .livroExplicacao {
           display: flex;
           // grid-template-columns: repeat(2, auto);
           gap: 15px;
           align-items: center;
-  
+
           & > svg {
             width: 30px;
             height: 30px;
@@ -1594,10 +1503,8 @@
         }
 
         margin-bottom: 50px;
-
       }
-      
-  
+
       & > .rightSide {
         display: flex;
         flex-direction: column;
@@ -1606,20 +1513,20 @@
         gap: 10px;
         overflow: hidden;
         width: 100%;
-  
+
         .carouselIPeriodicos {
           display: flex;
           justify-content: center;
           align-items: center;
           width: 70%;
-  
+
           .carouselPeriodicoIndividual {
             display: flex;
             width: 100%;
             gap: 20px;
             justify-content: center;
             align-items: center;
-  
+
             img {
               max-width: 100%;
               width: 200px;
@@ -1627,14 +1534,14 @@
             }
           }
         }
-  
+
         & > .controles {
           display: flex;
           align-items: center;
           gap: 15px;
           margin-top: 20px;
           user-select: none;
-  
+
           & > .arrowLeft,
           .arrowRight {
             width: 30px;
@@ -1645,7 +1552,7 @@
             color: $dark-blue-2;
             cursor: pointer;
           }
-  
+
           & > span {
             color: $grey-300;
             font-size: 14px;
@@ -1660,7 +1567,7 @@
 @media (max-width: 670px) {
   .degustacaoAll {
     padding: 0;
-  
+
     & > .degustacao {
       width: 80%;
       background-color: $dark-blue-100;
@@ -1673,21 +1580,21 @@
       text-align: center;
       align-items: center;
       color: white;
-  
+
       & > .leftSide {
         width: 100%;
         display: flex;
         flex-direction: column;
         gap: 28px;
         align-items: center;
-  
+
         & > .livroExplicacao {
           display: flex;
           // grid-template-columns: repeat(2, auto);
           gap: 15px;
           flex-direction: column;
           align-items: center;
-  
+
           & > svg {
             width: 30px;
             height: 30px;
@@ -1702,10 +1609,8 @@
         }
 
         margin-bottom: 50px;
-
       }
-      
-  
+
       & > .rightSide {
         display: flex;
         flex-direction: column;
@@ -1714,20 +1619,20 @@
         gap: 10px;
         overflow: hidden;
         width: 100%;
-  
+
         .carouselIPeriodicos {
           display: flex;
           justify-content: center;
           align-items: center;
           width: 70%;
-  
+
           .carouselPeriodicoIndividual {
             display: flex;
             width: 100%;
             gap: 20px;
             justify-content: center;
             align-items: center;
-  
+
             img {
               max-width: 100%;
               width: 200px;
@@ -1735,14 +1640,14 @@
             }
           }
         }
-  
+
         & > .controles {
           display: flex;
           align-items: center;
           gap: 15px;
           margin-top: 20px;
           user-select: none;
-  
+
           & > .arrowLeft,
           .arrowRight {
             width: 30px;
@@ -1753,7 +1658,7 @@
             color: $dark-blue-2;
             cursor: pointer;
           }
-  
+
           & > span {
             color: $grey-300;
             font-size: 14px;
