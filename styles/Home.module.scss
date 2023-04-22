@@ -31,6 +31,7 @@
   max-height: 500px;
   min-width: 100vw;
   margin-top: -1rem;
+  position: relative;
   z-index: 20;
 
   & > button {
@@ -49,35 +50,24 @@
 
   & > .slideToNextItem {
     position: absolute;
-    top: 40%;
+    top: 50%;
     right: 2%;
     color: $dark-blue-70;
   }
 
   & > .slideToPrevItem {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 2%;
     color: $dark-blue-70;
   }
 }
 
-.imgCarousel {
-  width: 100%;
-  height: auto;
-  min-height: 300px;
-  object-fit: cover;
-}
-
-.imgPosGraduacao {
-  background-image: url("/images/carousel/posgraduacao/1920.webp");
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-}
-
-.img1920 {
-  background-color: red;
+.img1920,
+.img1600,
+.img1100,
+.img800,
+.img410 {
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -725,244 +715,6 @@
 }
 
 // ----------------- CAROUSEL ----------------- //
-
-@media (max-width: 982px) {
-  .imgCarousel {
-    height: auto;
-    min-width: 100%;
-  }
-}
-
-@media (max-width: 1600px) {
-  .imgCaraGravata {
-    background-image: url("/images/carousel/dreamteam/1600_.webp");
-  }
-
-  .imgModel {
-    background-image: url("/images/carousel/infoqualidade/1600.webp");
-  }
-
-  .imgCapacitacaoTecnica {
-    background-image: url("/images/carousel/capacitacao/1600.webp");
-  }
-
-  .imgPosGraduacao {
-    background-image: url("/images/carousel/posgraduacao/1600.webp");
-  }
-
-  .imgBannerPublicacoes {
-    background-image: url("/images/carousel/publicacoes/1600.webp");
-  }
-
-  .imgPublico {
-    background-image: url("/images/carousel/palestrinha/1600.webp");
-  }
-
-  .imgSolucoesInovadoras {
-    background-image: url("/images/carousel/solucoes/1600.webp");
-  }
-
-  .imgAgendaCursos {
-    background-image: url("/images/carousel/agenda/1600.webp");
-  }
-
-  .imgInCompany {
-    background-image: url("/images/carousel/incompany/1600.webp");
-  }
-
-  .banner1 {
-    background-image: url("/images/carousel/banners/1/1600.webp");
-  }
-
-  .banner2 {
-    background-image: url("/images/carousel/banners/2/1600.webp");
-  }
-
-  .banner3 {
-    background-image: url("/images/carousel/banners/3/1600.webp");
-  }
-
-  .banner4 {
-    background-image: url("/images/carousel/banners/4/1600.webp");
-  }
-
-  .banner5 {
-    background-image: url("/images/carousel/banners/5/1600.webp");
-  }
-}
-
-@media (max-width: 1100px) {
-  .imgCaraGravata {
-    background-image: url("/images/carousel/dreamteam/1100_.webp");
-  }
-
-  .imgModel {
-    background-image: url("/images/carousel/infoqualidade/1100.webp");
-  }
-
-  .imgCapacitacaoTecnica {
-    background-image: url("/images/carousel/capacitacao/1100.webp");
-  }
-
-  .imgPosGraduacao {
-    background-image: url("/images/carousel/posgraduacao/1100.webp");
-  }
-
-  .imgBannerPublicacoes {
-    background-image: url("/images/carousel/publicacoes/1100.webp");
-  }
-
-  .imgPublico {
-    background-image: url("/images/carousel/palestrinha/1100.webp");
-  }
-
-  .imgSolucoesInovadoras {
-    background-image: url("/images/carousel/solucoes/1100.webp");
-  }
-
-  .imgAgendaCursos {
-    background-image: url("/images/carousel/agenda/1100.webp");
-  }
-
-  .imgInCompany {
-    background-image: url("/images/carousel/incompany/1100.webp");
-  }
-
-  .banner1 {
-    background-image: url("/images/carousel/banners/1/1100.webp");
-  }
-
-  .banner2 {
-    background-image: url("/images/carousel/banners/2/1100.webp");
-  }
-
-  .banner3 {
-    background-image: url("/images/carousel/banners/3/1100.webp");
-  }
-
-  .banner4 {
-    background-image: url("/images/carousel/banners/4/1100.webp");
-  }
-
-  .banner5 {
-    background-image: url("/images/carousel/banners/5/1100.webp");
-  }
-}
-
-@media (max-width: 800px) {
-  .imgCaraGravata {
-    background-image: url("/images/carousel/dreamteam/800_.webp");
-  }
-  .imgModel {
-    background-image: url("/images/carousel/infoqualidade/800.webp");
-  }
-
-  .imgCapacitacaoTecnica {
-    background-image: url("/images/carousel/capacitacao/800.webp");
-  }
-
-  .imgPosGraduacao {
-    background-image: url("/images/carousel/posgraduacao/800.webp");
-  }
-
-  .imgBannerPublicacoes {
-    background-image: url("/images/carousel/publicacoes/800.webp");
-  }
-
-  .imgPublico {
-    background-image: url("/images/carousel/palestrinha/800.webp");
-  }
-
-  .imgSolucoesInovadoras {
-    background-image: url("/images/carousel/solucoes/800.webp");
-  }
-
-  .imgAgendaCursos {
-    background-image: url("/images/carousel/agenda/800.webp");
-  }
-
-  .imgInCompany {
-    background-image: url("/images/carousel/incompany/800.webp");
-  }
-
-  .banner1 {
-    background-image: url("/images/carousel/banners/1/800.webp");
-  }
-
-  .banner2 {
-    background-image: url("/images/carousel/banners/2/800.webp");
-  }
-
-  .banner3 {
-    background-image: url("/images/carousel/banners/3/800.webp");
-  }
-
-  .banner4 {
-    background-image: url("/images/carousel/banners/4/800.webp");
-  }
-
-  .banner5 {
-    background-image: url("/images/carousel/banners/5/800.webp");
-  }
-}
-
-@media (max-width: 460px) {
-  .imgCaraGravata {
-    background-image: url("/images/carousel/dreamteam/410_.webp");
-  }
-
-  .imgModel {
-    background-image: url("/images/carousel/infoqualidade/410.webp");
-  }
-
-  .imgCapacitacaoTecnica {
-    background-image: url("/images/carousel/capacitacao/410.webp");
-  }
-
-  .imgPosGraduacao {
-    background-image: url("/images/carousel/posgraduacao/410.webp");
-  }
-
-  .imgBannerPublicacoes {
-    background-image: url("/images/carousel/publicacoes/410.webp");
-  }
-
-  .imgPublico {
-    background-image: url("/images/carousel/palestrinha/410.webp");
-  }
-
-  .imgSolucoesInovadoras {
-    background-image: url("/images/carousel/solucoes/410.webp");
-  }
-
-  .imgAgendaCursos {
-    background-image: url("/images/carousel/agenda/410.webp");
-  }
-
-  .imgInCompany {
-    background-image: url("/images/carousel/incompany/410.webp");
-  }
-
-  .banner1 {
-    background-image: url("/images/carousel/banners/1/410.webp");
-  }
-
-  .banner2 {
-    background-image: url("/images/carousel/banners/2/410.webp");
-  }
-
-  .banner3 {
-    background-image: url("/images/carousel/banners/3/410.webp");
-  }
-
-  .banner4 {
-    background-image: url("/images/carousel/banners/4/410.webp");
-  }
-
-  .banner5 {
-    background-image: url("/images/carousel/banners/5/410.webp");
-  }
-}
 
 // quem somos
 

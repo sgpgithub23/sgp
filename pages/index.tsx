@@ -34,106 +34,74 @@ import { InferGetServerSidePropsType, InferGetStaticPropsType } from "next";
 import { useEffect, useState } from "react";
 import { Depoimentos } from "@/utils/depoimentos";
 import { ProfessorReq } from "@/typings/Requisicoes/Professores";
+import { cloneDeep } from "lodash";
 
 export default function Home({
   imgsJson,
   clientes,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { push } = useRouter();
+  const [mainCarouselImg, setMainCarouselImg] =
+    useState<RegularImageType[]>(imgsJson);
 
-  const arr = [
-    {
-      formato: "410",
-      sequencia: 0,
-      nomearquivoimagem: "00-imagem-banner-carousel.webp",
-      caminhoarquivologo:
-        "https://www.sgpsolucoes.com.br/crm/imagens_sistema/imagensbannerscarousel/410/",
-      situacaoimagem: "Ativo",
-      formatoimagem: "410",
-      caminhohref: "index#contato",
-      tituloalthref: "Imagem - Carousel",
-      textoadicional1: "",
-      textoadicional2: "",
-      textoadicional3: "",
-    },
-    {
-      formato: "800",
-      sequencia: 11,
-      nomearquivoimagem: "11-imagem-banner-carousel.webp",
-      caminhoarquivologo:
-        "https://www.sgpsolucoes.com.br/crm/imagens_sistema/imagensbannerscarousel/800/",
-      situacaoimagem: "Ativo",
-      formatoimagem: "800",
-      caminhohref: "index#contato",
-      tituloalthref: "Imagem - Carousel",
-      textoadicional1: "",
-      textoadicional2: "",
-      textoadicional3: "",
-    },
-    {
-      formato: "1100",
-      sequencia: 11,
-      nomearquivoimagem: "11-imagem-banner-carousel.webp",
-      caminhoarquivologo:
-        "https://www.sgpsolucoes.com.br/crm/imagens_sistema/imagensbannerscarousel/1100/",
-      situacaoimagem: "Ativo",
-      formatoimagem: "1100",
-      caminhohref: "index#contato",
-      tituloalthref: "Imagem - Carousel",
-      textoadicional1: "",
-      textoadicional2: "",
-      textoadicional3: "",
-    },
-    {
-      formato: "1600",
-      sequencia: 13,
-      nomearquivoimagem: "13-imagem-banner-carousel.webp",
-      caminhoarquivologo:
-        "https://www.sgpsolucoes.com.br/crm/imagens_sistema/imagensbannerscarousel/1600/",
-      situacaoimagem: "Ativo",
-      formatoimagem: "1600",
-      caminhohref: "index#contato",
-      tituloalthref: "Imagem - Carousel",
-      textoadicional1: "",
-      textoadicional2: "",
-      textoadicional3: "",
-    },
-    {
-      formato: "1600",
-      sequencia: 13,
-      nomearquivoimagem: "13-imagem-banner-carousel.webp",
-      caminhoarquivologo:
-        "https://www.sgpsolucoes.com.br/crm/imagens_sistema/imagensbannerscarousel/1920/",
-      situacaoimagem: "Ativo",
-      formatoimagem: "1600",
-      caminhohref: "index#contato",
-      tituloalthref: "Imagem - Carousel",
-      textoadicional1: "",
-      textoadicional2: "",
-      textoadicional3: "",
-    },
-  ];
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 1920) {
+        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
+        const auxSize = auxArr.filter((x) => x.formato === "1920");
+        setMainCarouselImg(auxSize);
+        return;
+      }
+
+      if (window.innerWidth <= 1920 && window.innerWidth > 1100) {
+        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
+        const auxSize = auxArr.filter((x) => x.formato === "1600");
+        setMainCarouselImg(auxSize);
+        return;
+      }
+
+      if (window.innerWidth <= 1100 && window.innerWidth > 800) {
+        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
+        const auxSize = auxArr.filter((x) => x.formato === "1100");
+        setMainCarouselImg(auxSize);
+        return;
+      }
+
+      if (window.innerWidth <= 800 && window.innerWidth > 469) {
+        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
+        const auxSize = auxArr.filter((x) => x.formato === "800");
+        setMainCarouselImg(auxSize);
+        return;
+      }
+
+      if (window.innerWidth <= 469) {
+        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
+        const auxSize = auxArr.filter((x) => x.formato === "410");
+        setMainCarouselImg(auxSize);
+        return;
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const { carouselFragment, slideToPrevItem, slideToNextItem } =
     useSpringCarousel({
-      itemsPerSlide: 3,
       withLoop: true,
       // @ts-ignore
-      items: arr.map((x: RegularImageType, index: number) => ({
+      items: mainCarouselImg.map((x: RegularImageType, index: number) => ({
         id: index,
         renderItem: (
           <div
             className={styles[x.nomeclass]}
             style={{
-              backgroundImage:
-                "https://www.sgpsolucoes.com.br//crm//imagens_sistema//imagensbannerscarousel//410//00-imagem-banner-carousel.webp",
-              height: "500px",
-              backgroundColor: "red",
+              backgroundImage: `url(${x.caminhoimagem})`,
             }}
-          >
-            {/* {x.} */}
-          </div>
+          ></div>
         ),
       })),
+      breakpoints: {},
     });
 
   const carouselParceiros = useSpringCarousel({
@@ -309,7 +277,6 @@ export default function Home({
           <button className={styles.slideToNextItem} onClick={slideToNextItem}>
             <BsArrowRightCircle />
           </button>
-          <span>asdlkjaslkdjk</span>
         </div>
       </main>
 
@@ -719,7 +686,6 @@ export async function getServerSideProps() {
     };
   });
 
-  console.log("newImgsType", newImgsType);
   const resClientes = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=logosclientesempresas`
   );
