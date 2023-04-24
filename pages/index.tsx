@@ -55,6 +55,7 @@ export default function Home({
             onClick={() => linkToUrlBannerCarousel(x.caminhohref)}
             style={{
               backgroundImage: `url(${x.caminhoimagem})`,
+              cursor: "pointer",
             }}
           ></div>
         ),
