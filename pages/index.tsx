@@ -591,7 +591,7 @@ export default function Home({
         </div>
       </section>
 
-      <section className={styles.obrasExclusivas}>
+      <section className={styles.obrasExclusivas} id="obras-exclusivas">
         <div className={styles.obrasExclusivasAll}>
           <BsInfoCircleFill />
           <hr />
