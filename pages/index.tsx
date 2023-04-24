@@ -30,9 +30,8 @@ import {
 import { FooterCompleto } from "@/components/FooterCompleto";
 import { useRouter } from "next/router";
 import { ClientesRequisicao } from "@/typings/Requisicoes/Clientes";
-import { InferGetServerSidePropsType, InferGetStaticPropsType } from "next";
+import { InferGetServerSidePropsType } from "next";
 import { useEffect, useState } from "react";
-import { Depoimentos } from "@/utils/depoimentos";
 import { ProfessorReq } from "@/typings/Requisicoes/Professores";
 import { cloneDeep } from "lodash";
 
