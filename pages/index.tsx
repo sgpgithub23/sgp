@@ -44,48 +44,6 @@ export default function Home({
   const [mainCarouselImg, setMainCarouselImg] =
     useState<RegularImageType[]>(imgsJson);
 
-  useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth > 1920) {
-        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
-        const auxSize = auxArr.filter((x) => x.formato === "1920");
-        setMainCarouselImg(auxSize);
-        return;
-      }
-
-      if (window.innerWidth <= 1920 && window.innerWidth > 1100) {
-        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
-        const auxSize = auxArr.filter((x) => x.formato === "1600");
-        setMainCarouselImg(auxSize);
-        return;
-      }
-
-      if (window.innerWidth <= 1100 && window.innerWidth > 800) {
-        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
-        const auxSize = auxArr.filter((x) => x.formato === "1100");
-        setMainCarouselImg(auxSize);
-        return;
-      }
-
-      if (window.innerWidth <= 800 && window.innerWidth > 469) {
-        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
-        const auxSize = auxArr.filter((x) => x.formato === "800");
-        setMainCarouselImg(auxSize);
-        return;
-      }
-
-      if (window.innerWidth <= 469) {
-        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
-        const auxSize = auxArr.filter((x) => x.formato === "410");
-        setMainCarouselImg(auxSize);
-        return;
-      }
-    }
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   const { carouselFragment, slideToPrevItem, slideToNextItem } =
     useSpringCarousel({
       withLoop: true,
@@ -95,6 +53,7 @@ export default function Home({
         renderItem: (
           <div
             className={styles[x.nomeclass]}
+            onClick={() => linkToUrlBannerCarousel(x.caminhohref)}
             style={{
               backgroundImage: `url(${x.caminhoimagem})`,
             }}
@@ -237,6 +196,48 @@ export default function Home({
     return () => clearInterval(interval);
   });
 
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 1920) {
+        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
+        const auxSize = auxArr.filter((x) => x.formato === "1920");
+        setMainCarouselImg(auxSize);
+        return;
+      }
+
+      if (window.innerWidth <= 1920 && window.innerWidth > 1100) {
+        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
+        const auxSize = auxArr.filter((x) => x.formato === "1600");
+        setMainCarouselImg(auxSize);
+        return;
+      }
+
+      if (window.innerWidth <= 1100 && window.innerWidth > 800) {
+        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
+        const auxSize = auxArr.filter((x) => x.formato === "1100");
+        setMainCarouselImg(auxSize);
+        return;
+      }
+
+      if (window.innerWidth <= 800 && window.innerWidth > 469) {
+        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
+        const auxSize = auxArr.filter((x) => x.formato === "800");
+        setMainCarouselImg(auxSize);
+        return;
+      }
+
+      if (window.innerWidth <= 469) {
+        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
+        const auxSize = auxArr.filter((x) => x.formato === "410");
+        setMainCarouselImg(auxSize);
+        return;
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   function getIconByName(rede: string) {
     if (rede === "Facebook") {
       return <BsFacebook />;
@@ -257,6 +258,10 @@ export default function Home({
     if (rede === "Instagram") {
       return <BsInstagram />;
     }
+  }
+
+  function linkToUrlBannerCarousel(url: string) {
+    push(url);
   }
 
   return (
