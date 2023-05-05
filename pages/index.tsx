@@ -31,13 +31,14 @@ import { FooterCompleto } from "@/components/FooterCompleto";
 import { useRouter } from "next/router";
 import { ClientesRequisicao } from "@/typings/Requisicoes/Clientes";
 import { InferGetServerSidePropsType } from "next";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ProfessorReq } from "@/typings/Requisicoes/Professores";
 import { cloneDeep } from "lodash";
 import {
   ImagensCarousel,
   RegularImageType,
 } from "@/typings/Requisicoes/Carrossel";
+// import size from "window-size";
 
 export default function Home({
   imgsJson,
@@ -46,7 +47,7 @@ export default function Home({
   const { push } = useRouter();
   const [mainCarouselImg, setMainCarouselImg] =
     useState<RegularImageType[]>(imgsJson);
-
+  const [windowWidth, setWindowWidth] = useState(0);
   const { carouselFragment, slideToPrevItem, slideToNextItem } =
     useSpringCarousel({
       withLoop: true,
@@ -201,45 +202,23 @@ export default function Home({
   });
 
   useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth > 1920) {
-        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
-        const auxSize = auxArr.filter((x) => x.formato === "1920");
-        setMainCarouselImg(auxSize);
-        return;
-      }
+    const auxArr = cloneDeep(imgsJson);
+    const width = window.innerWidth;
+    setWindowWidth(width);
 
-      if (window.innerWidth <= 1920 && window.innerWidth > 1100) {
-        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
-        const auxSize = auxArr.filter((x) => x.formato === "1600");
-        setMainCarouselImg(auxSize);
-        return;
-      }
+    const size =
+      width > 1920
+        ? "1920"
+        : width > 1100
+        ? "1600"
+        : width > 800
+        ? "1100"
+        : width > 469
+        ? "800"
+        : "410";
 
-      if (window.innerWidth <= 1100 && window.innerWidth > 800) {
-        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
-        const auxSize = auxArr.filter((x) => x.formato === "1100");
-        setMainCarouselImg(auxSize);
-        return;
-      }
-
-      if (window.innerWidth <= 800 && window.innerWidth > 469) {
-        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
-        const auxSize = auxArr.filter((x) => x.formato === "800");
-        setMainCarouselImg(auxSize);
-        return;
-      }
-
-      if (window.innerWidth <= 469) {
-        const auxArr: RegularImageType[] = cloneDeep(imgsJson);
-        const auxSize = auxArr.filter((x) => x.formato === "410");
-        setMainCarouselImg(auxSize);
-        return;
-      }
-    }
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const auxSize = auxArr.filter((x) => x.formato === size);
+    setMainCarouselImg(auxSize);
   }, []);
 
   function getIconByName(rede: string) {
