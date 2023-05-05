@@ -34,6 +34,10 @@ import { InferGetServerSidePropsType } from "next";
 import { useEffect, useState } from "react";
 import { ProfessorReq } from "@/typings/Requisicoes/Professores";
 import { cloneDeep } from "lodash";
+import {
+  ImagensCarousel,
+  RegularImageType,
+} from "@/typings/Requisicoes/Carrossel";
 
 export default function Home({
   imgsJson,

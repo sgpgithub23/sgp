@@ -13,9 +13,9 @@ export interface Imagem {
   };
 }
 
-interface ImagensCarousel extends Array<Imagem> {}
+export interface ImagensCarousel extends Array<Imagem> {}
 
-interface RegularImageType {
+export interface RegularImageType {
   formato: string;
   sequencia: number;
   nomearquivoimagem: string;
