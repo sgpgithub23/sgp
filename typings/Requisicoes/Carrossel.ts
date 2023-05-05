@@ -1,4 +1,4 @@
-interface Imagem {
+export interface Imagem {
   [formato: string]: {
     sequencia: number;
     nomearquivoimagem: string;
