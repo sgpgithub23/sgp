@@ -3,7 +3,7 @@ import { TItemsMenu } from "@/typings/ItemsMenu";
 export const ItemsMenu: TItemsMenu[] = [
   {
     title: "Quem somos",
-    url: "/",
+    url: "/#quemsomos",
     className: "QuemSomos",
   },
   {
@@ -31,11 +31,11 @@ export const ItemsMenu: TItemsMenu[] = [
     url: "/solucoes-inovadoras",
     className: "SolucoesInovadoras",
   },
-  {
-    title: "Canal SGP",
-    url: "/canal-sgp",
-    className: "CanalSGP",
-  },
+  // {
+  //   title: "Canal SGP",
+  //   url: "/canal-sgp",
+  //   className: "CanalSGP",
+  // },
   {
     title: "Documentações",
     url: "/documentacoes",
@@ -56,15 +56,14 @@ export const ItemsMenu: TItemsMenu[] = [
     url: "/contato",
     className: "TrabalheConosco",
   },
-  {
-    title: "Notícias",
-    url: "/noticias",
-    className: "Noticias"
-  },
+  // {
+  //   title: "Notícias",
+  //   url: "/noticias",
+  //   className: "Noticias",
+  // },
   {
     title: "Galeria de Fotos",
     url: "/galeria",
     className: "GaleriaFotos",
   },
 ];
-

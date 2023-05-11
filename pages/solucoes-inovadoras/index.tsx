@@ -116,7 +116,7 @@ export default function SolucoesInovadoras() {
         </div>
       </section>
 
-      <section className={styles.image} id="inloco">
+      <section className={styles.image}>
         <div className={styles.texto}>
           <hr />
 
@@ -278,7 +278,7 @@ export default function SolucoesInovadoras() {
           </div>
         </div>
         <div className={styles.assesoriaLicitacoes}>
-          <div className={styles.textos}>
+          <div className={styles.textos} id="implantacaoleis">
             <h1>Assessoria LGPD</h1>
             <hr />
             <p>

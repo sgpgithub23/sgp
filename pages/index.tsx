@@ -268,7 +268,7 @@ export default function Home({
         </div>
       </main>
 
-      <section className={styles.quemSomosAll}>
+      <section className={styles.quemSomosAll} id="quemsomos">
         <div className={styles.quemsomos}>
           <div className={styles.textoEImagem}>
             <div className={styles.descricao}>
@@ -447,15 +447,15 @@ export default function Home({
             </div>
             <div className={styles.fotosPeriodicos}>
               <Image
-                src={"/images/homepage/periodicos/azul.png"}
-                alt="Foto do centro de São Paulo"
+                src={"/images/homepage/periodicos/SAM.webp"}
+                alt="Périodo SAM"
                 width={312}
                 height={383}
                 className={"imgOnHover"}
               />
               <Image
-                src={"/images/homepage/periodicos/laranja.png"}
-                alt="Foto do centro de São Paulo"
+                src={"/images/homepage/periodicos/SLC.webp"}
+                alt="Periódico SLC"
                 width={312}
                 height={383}
                 className={"imgOnHover"}

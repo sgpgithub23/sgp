@@ -30,7 +30,11 @@ export default function Navbar() {
             {ItemsMenu.map(({ title, url, className }, index: number) => {
               if (url === "/solucoes-inovadoras") {
                 return (
-                  <Menu as="li" key={url} className={classNames(styles[className!])}>
+                  <Menu
+                    as="li"
+                    key={url}
+                    className={classNames(styles[className!])}
+                  >
                     {({ open }) => (
                       <>
                         <Menu.Button as="div">
@@ -59,13 +63,17 @@ export default function Navbar() {
                                 </Link>
                               </Menu.Item>
                               <Menu.Item>
-                                <Link href={"/solucoes-inovadoras/#assessoria-empresas-privadas"}>
+                                <Link
+                                  href={
+                                    "/solucoes-inovadoras/#assessoria-empresas-privadas"
+                                  }
+                                >
                                   Assessoria para Empresas Privadas
                                 </Link>
                               </Menu.Item>
                               <Menu.Item>
-                                <Link href={""}>
-                                  Implantaçao de Leis
+                                <Link href={"#implantacaoleis"}>
+                                  Implantação de Leis
                                 </Link>
                               </Menu.Item>
                             </Menu.Items>
