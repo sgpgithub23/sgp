@@ -381,15 +381,13 @@ export default function Home({
             </div>
             <div className={styles.carouselAll}>
               <div className={styles.carousel}>
-                {clientes.length > 1 ? (
-                  carouselParceiros.carouselFragment
-                ) : (
-                  <small style={{ textAlign: "center" }}>
-                    Não foi possível carregas as imagens. <br /> Contate o
-                    adminstrador
-                  </small>
-                )}
+                {carouselParceiros.carouselFragment}
               </div>
+              {clientes.length <= 2 && (
+                <small style={{ display: "block" }}>
+                  Ocorreu um erro. <br /> Contate o administrador.
+                </small>
+              )}
               <div className={styles.controles}>
                 <MdOutlineKeyboardArrowLeft
                   onClick={
