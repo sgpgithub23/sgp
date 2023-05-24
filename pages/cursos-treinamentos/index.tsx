@@ -14,46 +14,66 @@ import Image from "next/image";
 import { InferGetStaticPropsType } from "next";
 import { CursosTreinamentosRequisicao } from "@/typings/Requisicoes/CursosTreinamentos";
 import { useRouter } from "next/router";
+import { notify } from "@/components/Notification";
 
-export async function getStaticProps(){
-  const res = await fetch(`${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=temascursostreinamentos`)
-  const cursosTreinamentos: CursosTreinamentosRequisicao[] = await res.json()
+export async function getStaticProps() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=temascursostreinamentos`
+  );
+  const cursosTreinamentos: CursosTreinamentosRequisicao[] = await res.json();
+  const errors: any[] = [];
+
+  if (cursosTreinamentos.length === 1) {
+    errors.push(cursosTreinamentos);
+  }
 
   return {
-      props: {
-          cursosTreinamentos
-      }, 
-      revalidate: 600
-  }
+    props: {
+      cursosTreinamentos,
+      errors,
+    },
+    revalidate: 600,
+  };
 }
 
-export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStaticPropsType<typeof getStaticProps>) {
-    const { push } = useRouter()
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-    const [modalContent, setModalContent] = useState<CursosTreinamentosRequisicao>();
-    const [curso, setCurso] = useState<string>("");
-    const [treinamento, setTreinamento] = useState<string>("");
-    
-    const [primeirosCursos, setPrimeirosCursos] = useState<CursosTreinamentosRequisicao[]>()
-    const [primeirosTreinamentos, setPrimeirosTreinamentos] = useState<CursosTreinamentosRequisicao[]>()
+export default function CursosTreinamentos({
+  cursosTreinamentos,
+  errors,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { push } = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [modalContent, setModalContent] =
+    useState<CursosTreinamentosRequisicao>();
+  const [curso, setCurso] = useState<string>("");
+  const [treinamento, setTreinamento] = useState<string>("");
 
-    function modalState(content: CursosTreinamentosRequisicao) {
-        setIsModalOpen(!isModalOpen);
-        setModalContent(content);
-    }
+  const [primeirosCursos, setPrimeirosCursos] =
+    useState<CursosTreinamentosRequisicao[]>();
+  const [primeirosTreinamentos, setPrimeirosTreinamentos] =
+    useState<CursosTreinamentosRequisicao[]>();
+
+  function modalState(content: CursosTreinamentosRequisicao) {
+    setIsModalOpen(!isModalOpen);
+    setModalContent(content);
+  }
 
   useEffect(() => {
-    // CursosTreinamentosRequisicao[] = 
+    if (errors.length > 0) {
+      notify.error(errors[0][0].error);
+    }
+  }, []);
 
-    const tiposCursos = cursosTreinamentos.filter((x) => x.modalidade.toLowerCase() === "c").slice(0, 6)
-    const tipoTreinamentos = cursosTreinamentos.filter((x) => x.modalidade.toLowerCase() === "t").slice(0, 6)
+  useEffect(() => {
+    const tiposCursos = cursosTreinamentos
+      .filter((x) => x.modalidade.toLowerCase() === "c")
+      .slice(0, 6);
+    const tipoTreinamentos = cursosTreinamentos
+      .filter((x) => x.modalidade.toLowerCase() === "t")
+      .slice(0, 6);
 
-    setPrimeirosCursos(tiposCursos)
-    setPrimeirosTreinamentos(tipoTreinamentos)
-
-
-  }, [cursosTreinamentos])
-  
+    setPrimeirosCursos(tiposCursos);
+    setPrimeirosTreinamentos(tipoTreinamentos);
+  }, [cursosTreinamentos]);
 
   return (
     <div className={styles.main}>
@@ -124,7 +144,11 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
             <div>
               <h1>Cursos e Treinamentos Presenciais</h1>
               <hr />
-              <p>  Aulas presenciais, em sala de aula devidamente equipada, com material didático apropriado, cofee-breaks e Certificação.</p>
+              <p>
+                {" "}
+                Aulas presenciais, em sala de aula devidamente equipada, com
+                material didático apropriado, cofee-breaks e Certificação.
+              </p>
             </div>
             <Image
               src="/images/cursos-treinamentos/palestra.webp"
@@ -146,10 +170,16 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
               className={"imgOnHover"}
             />
             <div>
-              <h1>Cursos e Treinamentos <em>In Company</em></h1>
+              <h1>
+                Cursos e Treinamentos <em>In Company</em>
+              </h1>
               <hr />
               <p>
-              Aulas presenciais ou on-line, especialmente elaboradas para atender às necessidades específicas de seu órgão, entidade ou empresa, tendo em vista suas peculiaridades próprias, que muitas vezes acabam por não ser abordadas em eventos abertos para o público em geral, também com material didático e Certificação.
+                Aulas presenciais ou on-line, especialmente elaboradas para
+                atender às necessidades específicas de seu órgão, entidade ou
+                empresa, tendo em vista suas peculiaridades próprias, que muitas
+                vezes acabam por não ser abordadas em eventos abertos para o
+                público em geral, também com material didático e Certificação.
               </p>
             </div>
           </div>
@@ -179,7 +209,8 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
               <div className={styles.curso} key={i}>
                 <div
                   className={classNames({
-                    [styles.isCursoNovo]: x.modalidade.toLocaleLowerCase() === "c"
+                    [styles.isCursoNovo]:
+                      x.modalidade.toLocaleLowerCase() === "c",
                   })}
                 ></div>
                 <div role="button" onClick={() => modalState(x)}>
@@ -250,7 +281,7 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
             <div className={styles.curso} key={i}>
               <div
                 className={classNames({
-                  [styles.isCursoAntigo]: x.modalidade.toLowerCase() === "t"
+                  [styles.isCursoAntigo]: x.modalidade.toLowerCase() === "t",
                 })}
               ></div>
               <div className={styles.detalhes} onClick={() => modalState(x)}>

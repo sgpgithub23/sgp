@@ -11,26 +11,42 @@ import classNames from "classnames";
 import { Dialog, Transition } from "@headlessui/react";
 import { InferGetStaticPropsType } from "next";
 import { CursosTreinamentosRequisicao } from "@/typings/Requisicoes/CursosTreinamentos";
+import { notify } from "@/components/Notification";
 
-export async function getStaticProps(){
-  const res = await fetch(`${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=temascursostreinamentos`)
-  const cursosTreinamentos: CursosTreinamentosRequisicao[] = await res.json()
+export async function getStaticProps() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=temascursostreinamentos`
+  );
+  const cursosTreinamentos: CursosTreinamentosRequisicao[] = await res.json();
+
+  const errors: any[] = [];
+
+  if (cursosTreinamentos.length === 1) {
+    errors.push(cursosTreinamentos);
+  }
 
   return {
-      props: {
-          cursosTreinamentos
-      }, 
-      revalidate: 600
-  }
+    props: {
+      cursosTreinamentos,
+      errors,
+    },
+    revalidate: 600,
+  };
 }
 
-export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function CursosTreinamentos({
+  cursosTreinamentos,
+  errors,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [modalContent, setModalContent] = useState<CursosTreinamentosRequisicao>();
+  const [modalContent, setModalContent] =
+    useState<CursosTreinamentosRequisicao>();
   const [curso, setCurso] = useState<string>("");
   const [treinamento, setTreinamento] = useState<string>("");
-  const [cursosCompletos, setCursosCompletos] = useState<CursosTreinamentosRequisicao[]>()
-  const [primeirosTreinamentos, setPrimeirosTreinamentos] = useState<CursosTreinamentosRequisicao[]>()
+  const [cursosCompletos, setCursosCompletos] =
+    useState<CursosTreinamentosRequisicao[]>();
+  const [primeirosTreinamentos, setPrimeirosTreinamentos] =
+    useState<CursosTreinamentosRequisicao[]>();
 
   function modalState(content: CursosTreinamentosRequisicao) {
     setIsModalOpen(!isModalOpen);
@@ -38,10 +54,17 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
   }
 
   useEffect(() => {
-    const tiposCursos = cursosTreinamentos.filter((x) => x.modalidade.toLowerCase() === "c")
-    setCursosCompletos(tiposCursos)
-  }, [cursosTreinamentos])
-  
+    if (errors.length > 0) {
+      notify.error(errors[0][0].error);
+    }
+  }, []);
+
+  useEffect(() => {
+    const tiposCursos = cursosTreinamentos.filter(
+      (x) => x.modalidade.toLowerCase() === "c"
+    );
+    setCursosCompletos(tiposCursos);
+  }, [cursosTreinamentos]);
 
   return (
     <div className={styles.main}>
@@ -57,9 +80,7 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
         <div className={styles.headerContent}>
           <h1>Cursos</h1>
           <hr />
-          <p>
-            
-          </p>
+          <p></p>
         </div>
       </div>
       <div className={styles.pageSize}>
@@ -73,44 +94,51 @@ export default function CursosTreinamentos({ cursosTreinamentos }: InferGetStati
               </span>
             </div>
             <div className={styles.right}>
-                <Input
-                    withicon={true}
-                    placeholder="Pesquisar curso..."
-                    label=""
-                    type="text"
-                    icon={<HiMagnifyingGlass />}
-                    onChange={(e) => setCurso(e.target.value)}
-                />
+              <Input
+                withicon={true}
+                placeholder="Pesquisar curso..."
+                label=""
+                type="text"
+                icon={<HiMagnifyingGlass />}
+                onChange={(e) => setCurso(e.target.value)}
+              />
             </div>
           </div>
           <div className={styles.cursosNovos}>
-            {cursosCompletos?.filter((p) => {
+            {cursosCompletos
+              ?.filter((p) => {
                 if (curso === "" || curso?.trim() === "") {
-                    return p;
+                  return p;
                 } else if (
-                    p?.objetivo?.toLowerCase().includes(curso.toLowerCase()) ||
-                    p.titulocursotreinamento?.toLowerCase().includes(curso.toLowerCase()) ||
-                    p.publicoalvo?.toLowerCase().includes(curso.toLowerCase())
-                ) { return p; }
-            }).map((x, i) => (
-              <div className={styles.curso} key={i}>
-                <div
-                  className={classNames({
-                    [styles.isCursoNovo]: x.modalidade.toLocaleLowerCase() === "c"
-                  })}
-                ></div>
-                <div role="button" onClick={() => modalState(x)}>
-                  <h4>
-                    <b>{x.titulocursotreinamento}</b>
-                  </h4>
-                  <p role="button">
-                    <span>
-                      <BsPersonCircle /> Conferir detalhes
-                    </span>
-                  </p>
+                  p?.objetivo?.toLowerCase().includes(curso.toLowerCase()) ||
+                  p.titulocursotreinamento
+                    ?.toLowerCase()
+                    .includes(curso.toLowerCase()) ||
+                  p.publicoalvo?.toLowerCase().includes(curso.toLowerCase())
+                ) {
+                  return p;
+                }
+              })
+              .map((x, i) => (
+                <div className={styles.curso} key={i}>
+                  <div
+                    className={classNames({
+                      [styles.isCursoNovo]:
+                        x.modalidade.toLocaleLowerCase() === "c",
+                    })}
+                  ></div>
+                  <div role="button" onClick={() => modalState(x)}>
+                    <h4>
+                      <b>{x.titulocursotreinamento}</b>
+                    </h4>
+                    <p role="button">
+                      <span>
+                        <BsPersonCircle /> Conferir detalhes
+                      </span>
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </div>

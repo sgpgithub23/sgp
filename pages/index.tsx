@@ -38,11 +38,15 @@ import {
   ImagensCarousel,
   RegularImageType,
 } from "@/typings/Requisicoes/Carrossel";
+import { toast } from "react-toastify";
+import { notify } from "@/components/Notification";
+import { verificaPropriedades } from "@/utils/verificaTipoObjeto";
 // import size from "window-size";
 
 export default function Home({
   imgsJson,
   clientes,
+  errors,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { push } = useRouter();
   const [mainCarouselImg, setMainCarouselImg] =
@@ -69,7 +73,7 @@ export default function Home({
     });
 
   const carouselParceiros = useSpringCarousel({
-    itemsPerSlide: 2,
+    itemsPerSlide: clientes.length > 1 ? 2 : 1,
     withLoop: true,
     initialActiveItem: 1,
     // @ts-ignore
@@ -196,7 +200,7 @@ export default function Home({
   useEffect(() => {
     const interval = setInterval(() => {
       slideToNextItem();
-      carouselParceiros.slideToNextItem();
+      clientes.length > 1 && carouselParceiros.slideToNextItem();
     }, 8000);
     return () => clearInterval(interval);
   });
@@ -219,6 +223,12 @@ export default function Home({
 
     const auxSize = auxArr.filter((x) => x.formato === size);
     setMainCarouselImg(auxSize);
+  }, []);
+
+  useEffect(() => {
+    if (errors.length > 0) {
+      notify.error(errors[0][0].error);
+    }
   }, []);
 
   function getIconByName(rede: string) {
@@ -371,15 +381,30 @@ export default function Home({
             </div>
             <div className={styles.carouselAll}>
               <div className={styles.carousel}>
-                {carouselParceiros.carouselFragment}
+                {clientes.length > 1 ? (
+                  carouselParceiros.carouselFragment
+                ) : (
+                  <small style={{ textAlign: "center" }}>
+                    Não foi possível carregas as imagens. <br /> Contate o
+                    adminstrador
+                  </small>
+                )}
               </div>
               <div className={styles.controles}>
                 <MdOutlineKeyboardArrowLeft
-                  onClick={carouselParceiros.slideToPrevItem}
+                  onClick={
+                    clientes.length > 3
+                      ? carouselParceiros.slideToPrevItem
+                      : undefined
+                  }
                   className={styles.arrowLeft}
                 />
                 <MdOutlineKeyboardArrowRight
-                  onClick={carouselParceiros.slideToNextItem}
+                  onClick={
+                    clientes.length > 3
+                      ? carouselParceiros.slideToNextItem
+                      : undefined
+                  }
                   className={styles.arrowRight}
                 />
                 <span>Clique nos botões para interagir</span>
@@ -648,7 +673,7 @@ export async function getServerSideProps() {
   );
   const profsAll: ProfessorReq[] = await res.json();
 
-  const imgsCarouselFetch = await await fetch(
+  const imgsCarouselFetch = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=2&model=bannerscarousel`
   );
 
@@ -679,8 +704,26 @@ export async function getServerSideProps() {
   );
   const clientes: ClientesRequisicao[] = await resClientes.json();
 
+  const error: any[] = [];
+  interface Teste {}
+
+  if (clientes.length === 1) {
+    error.push(clientes);
+  }
+
+  if (newImgsType.length === 1) {
+    error.push(newImgsType);
+  }
+
+  if (profsAll.length === 1) {
+    error.push(profsAll);
+  }
+
+  console.log(error);
+
   return {
     props: {
+      errors: error,
       profsAll,
       imgsJson: newImgsType,
       clientes,

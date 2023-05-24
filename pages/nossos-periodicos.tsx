@@ -15,8 +15,6 @@ import {
 } from "@/utils/nossos-periodicos";
 import Image from "next/image";
 import BookOpen from "@/public/icons/book-open";
-import axios from "axios";
-import { InferGetStaticPropsType } from "next";
 
 type PropsDropdown = {
   label: string;

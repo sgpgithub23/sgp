@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/NossosProfessores.module.scss";
 import { FooterCompleto } from "@/components/FooterCompleto";
@@ -10,21 +10,19 @@ import ProfessoresComponent from "@/components/Professores";
 import Dropdown from "@/components/Dropdown";
 import { ProfessorReq } from "@/typings/Requisicoes/Professores";
 import { InferGetServerSidePropsType } from "next";
+import { notify } from "@/components/Notification";
 
-
-
-export default function NossosProfessores({ profsAll }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const { push } = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [modalContent, setModalContent] = useState<CursosTreinamentosType>();
-
-  function modalState(content: CursosTreinamentosType) {
-    setIsModalOpen(!isModalOpen);
-    setModalContent(content)
-  }
-
-  
-
+export default function NossosProfessores({
+  profsAll,
+  errors,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  useEffect(() => {
+    if (errors[0][0].error) {
+      notify.error(errors[0][0].error);
+    } else {
+      notify.error("Erro ao carregar os professores");
+    }
+  }, []);
   return (
     <div className={styles.main}>
       <Head>
@@ -40,30 +38,37 @@ export default function NossosProfessores({ profsAll }: InferGetServerSidePropsT
           <h1>Conheça nossos professores</h1>
           <hr />
           <p>
-          Conheça nosso corpo docente de excelência e gabarito, que aplicam e vivenciam as melhores boas práticas do mercado.
+            Conheça nosso corpo docente de excelência e gabarito, que aplicam e
+            vivenciam as melhores boas práticas do mercado.
           </p>
           <Button color="blue" title="Saber Mais!" />
         </div>
       </div>
       <div className={styles.pageSize}>
-        
         <ProfessoresComponent profsAll={profsAll} />
       </div>
 
       <FooterCompleto />
-      
-
     </div>
   );
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=professores`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=professores`
+  );
   const profsAll: ProfessorReq[] = await res.json();
+
+  const errors: any[] = [];
+
+  if (profsAll.length === 1) {
+    errors.push(profsAll);
+  }
 
   return {
     props: {
-      profsAll
-    }
+      profsAll,
+      errors,
+    },
   };
 }

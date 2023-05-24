@@ -18,7 +18,14 @@ import { AgendaRequisicao } from "@/typings/Requisicoes/Agenda";
 
 export async function getStaticProps(){
     const res = await fetch(`${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=agendaturmas`)
-    const agenda: AgendaRequisicao[] = await res.json()
+    const agenda: AgendaRequisicao[] = await res.json()]
+
+    const errors: any[] = []
+
+    if(agenda.length < 2) {
+        errors.push(agenda)
+    }
+
 
     return {
         props: {
