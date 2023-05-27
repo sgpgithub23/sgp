@@ -110,42 +110,50 @@ export default function Agenda({
             </div>
             <div className={styles.right}></div>
           </div>
-          <div className={styles.cursosNovos}>
-            {cursoArray.map((x, i) => (
-              <div className={styles.curso} key={i}>
-                <div className={styles.detalhes}>
-                  <div
-                    className={classNames({
-                      [styles.isCursoPresencial]:
-                        x.presencialonline.toLocaleLowerCase() === "presencial",
-                      [styles.isCursoAntigo]:
-                        x.presencialonline.toLocaleLowerCase() !== "presencial",
-                    })}
-                  />
-                  <span>Data: {x.dataprogamada}</span>
-                </div>
-                <div role="button" onClick={() => modalState(x)}>
-                  <h4>
-                    <b>{x.titulocursotreinamento}</b>
-                  </h4>
-                  <p role="button">
-                    <span>
-                      <BsPersonCircle /> Conferir detalhes
-                    </span>
-                  </p>
-                </div>
+          {cursoArray.length > 0 ? (
+            <>
+              <div className={styles.cursosNovos}>
+                {cursoArray.map((x, i) => (
+                  <div className={styles.curso} key={i}>
+                    <div className={styles.detalhes}>
+                      <div
+                        className={classNames({
+                          [styles.isCursoPresencial]:
+                            x?.presencialonline?.toLocaleLowerCase() ===
+                            "presencial",
+                          [styles.isCursoAntigo]:
+                            x?.presencialonline?.toLocaleLowerCase() !==
+                            "presencial",
+                        })}
+                      />
+                      <span>Data: {x?.dataprogamada}</span>
+                    </div>
+                    <div role="button" onClick={() => modalState(x)}>
+                      <h4>
+                        <b>{x?.titulocursotreinamento}</b>
+                      </h4>
+                      <p role="button">
+                        <span>
+                          <BsPersonCircle /> Conferir detalhes
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <p>
-            Confira a lista completa{" "}
-            <b
-              style={{ cursor: "pointer" }}
-              onClick={() => push("/agenda/cursos-treinamentos-completo")}
-            >
-              clicando aqui!
-            </b>
-          </p>
+              <p>
+                Confira a lista completa{" "}
+                <b
+                  style={{ cursor: "pointer" }}
+                  onClick={() => push("/agenda/cursos-treinamentos-completo")}
+                >
+                  clicando aqui!
+                </b>
+              </p>
+            </>
+          ) : (
+            <span></span>
+          )}
         </div>
       </div>
       <div className={styles.professores}>

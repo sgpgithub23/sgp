@@ -48,55 +48,58 @@ export default function Home({
   clientes,
   errors,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  console.log('clientes', clientes)
+  console.log('errors', errors)
+  console.log('imgsJson', imgsJson)
   const { push } = useRouter();
   const [mainCarouselImg, setMainCarouselImg] =
     useState<RegularImageType[]>(imgsJson);
   const [windowWidth, setWindowWidth] = useState(0);
-  const { carouselFragment, slideToPrevItem, slideToNextItem } =
-    useSpringCarousel({
-      withLoop: true,
-      // @ts-ignore
-      items: mainCarouselImg.map((x: RegularImageType, index: number) => ({
-        id: index,
-        renderItem: (
-          <div
-            className={styles[x.nomeclass]}
-            onClick={() => linkToUrlBannerCarousel(x.caminhohref)}
-            style={{
-              backgroundImage: `url(${x.caminhoimagem})`,
-              cursor: "pointer",
-            }}
-          ></div>
-        ),
-      })),
-      breakpoints: {},
-    });
+  // const carousel = mainCarouselImg && mainCarouselImg.length > 0 ? 
+  //   useSpringCarousel({
+  //     withLoop: true,
+  //     // @ts-ignore
+  //     items: mainCarouselImg.map((x: RegularImageType, index: number) => ({
+  //       id: index,
+  //       renderItem: (
+  //         <div
+  //           className={styles[x.nomeclass]}
+  //           onClick={() => linkToUrlBannerCarousel(x.caminhohref)}
+  //           style={{
+  //             backgroundImage: `url(${x.caminhoimagem})`,
+  //             cursor: "pointer",
+  //           }}
+  //         ></div>
+  //       ),
+  //     })),
+  //     breakpoints: {},
+  //   }) : null;
 
-  const carouselParceiros = useSpringCarousel({
-    itemsPerSlide: clientes.length > 1 ? 2 : 1,
-    withLoop: true,
-    initialActiveItem: 1,
-    // @ts-ignore
-    items: clientes.map((cliente, index) => {
-      return {
-        id: cliente.sequencia,
-        renderItem: (
-          <div key={index} className={styles.englobaTudo}>
-            <div className={styles.carouselParceirosItem}>
-              <Image
-                // src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`
-                src={`https://www.sgpsolucoes.com.br/crm/imagens_sistema/logosclientesempresas/${cliente.nomearquivologo}`}
-                alt={String(cliente.sequencia)}
-                width={811}
-                height={225}
-                className={"imgOnHover"}
-              />
-            </div>
-          </div>
-        ),
-      };
-    }),
-  });
+  // const carouselParceiros = useSpringCarousel({
+  //   itemsPerSlide: clientes.length > 1 ? 2 : 1,
+  //   withLoop: true,
+  //   initialActiveItem: 1,
+  //   // @ts-ignore
+  //   items: clientes.map((cliente, index) => {
+  //     return {
+  //       id: cliente.sequencia,
+  //       renderItem: (
+  //         <div key={index} className={styles.englobaTudo}>
+  //           <div className={styles.carouselParceirosItem}>
+  //             <Image
+  //               // src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`
+  //               src={`https://www.sgpsolucoes.com.br/crm/imagens_sistema/logosclientesempresas/${cliente.nomearquivologo}`}
+  //               alt={String(cliente.sequencia)}
+  //               width={811}
+  //               height={225}
+  //               className={"imgOnHover"}
+  //             />
+  //           </div>
+  //         </div>
+  //       ),
+  //     };
+  //   }),
+  // });
 
   const carouselDegustacao = useSpringCarousel({
     itemsPerSlide: 2,
@@ -199,8 +202,8 @@ export default function Home({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      slideToNextItem();
-      clientes.length > 1 && carouselParceiros.slideToNextItem();
+      // carousel?.slideToNextItem();
+      // clientes.length > 1 && carouselParceiros.slideToNextItem();
     }, 8000);
     return () => clearInterval(interval);
   });
@@ -225,11 +228,14 @@ export default function Home({
     setMainCarouselImg(auxSize);
   }, []);
 
-  useEffect(() => {
-    if (errors.length > 0) {
-      notify.error(errors[0][0].error);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (errors.length > 0) {
+  //     errors.map(erro => {
+  //       notify.error(errors[0][0].error);
+
+  //     })
+  //   }
+  // }, []);
 
   function getIconByName(rede: string) {
     if (rede === "Facebook") {
@@ -268,13 +274,13 @@ export default function Home({
       <Navbar />
       <main className={styles.main}>
         <div className={styles.carouselSpace}>
-          <button className={styles.slideToPrevItem} onClick={slideToPrevItem}>
+          {/* <button className={styles.slideToPrevItem} onClick={carousel?.slideToPrevItem}>
             <BsArrowLeftCircle />
           </button>
-          {carouselFragment}
-          <button className={styles.slideToNextItem} onClick={slideToNextItem}>
+          {carousel?.carouselFragment}
+          <button className={styles.slideToNextItem} onClick={carousel?.slideToNextItem}>
             <BsArrowRightCircle />
-          </button>
+          </button> */}
         </div>
       </main>
 
@@ -381,7 +387,7 @@ export default function Home({
             </div>
             <div className={styles.carouselAll}>
               <div className={styles.carousel}>
-                {carouselParceiros.carouselFragment}
+                {/* {carouselParceiros.carouselFragment} */}
               </div>
               {clientes.length <= 2 && (
                 <small style={{ display: "block" }}>
@@ -390,19 +396,19 @@ export default function Home({
               )}
               <div className={styles.controles}>
                 <MdOutlineKeyboardArrowLeft
-                  onClick={
-                    clientes.length > 3
-                      ? carouselParceiros.slideToPrevItem
-                      : undefined
-                  }
+                  // onClick={
+                  //   clientes.length > 3
+                  //     ? carouselParceiros.slideToPrevItem
+                  //     : undefined
+                  // }
                   className={styles.arrowLeft}
                 />
                 <MdOutlineKeyboardArrowRight
-                  onClick={
-                    clientes.length > 3
-                      ? carouselParceiros.slideToNextItem
-                      : undefined
-                  }
+                  // onClick={
+                  //   clientes.length > 3
+                  //     ? carouselParceiros.slideToNextItem
+                  //     : undefined
+                  // }
                   className={styles.arrowRight}
                 />
                 <span>Clique nos botões para interagir</span>
@@ -670,32 +676,34 @@ export async function getServerSideProps() {
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=professores`
   );
   const profsAll: ProfessorReq[] = await res.json();
+  console.log('profsAll', profsAll)
 
   const imgsCarouselFetch = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=2&model=bannerscarousel`
   );
 
   const imgsJson: ImagensCarousel[] = await imgsCarouselFetch.json();
+  // console.log('imgsJson', imgsJson)
 
-  const newImgsType = imgsJson.map((obj: any) => {
-    const chave = Object.keys(obj)[0];
-    const valor = obj[chave];
-    return {
-      formato: chave,
-      nomeclass: `img${chave}`,
-      sequencia: valor.sequencia,
-      nomearquivoimagem: valor.nomearquivoimagem,
-      caminhoarquivologo: valor.caminhoarquivologo,
-      caminhoimagem: `${valor.caminhoarquivologo}${valor.nomearquivoimagem}`,
-      situacaoimagem: valor.situacaoimagem,
-      formatoimagem: valor.formatoimagem,
-      caminhohref: valor.caminhohref,
-      tituloalthref: valor.tituloalthref,
-      textoadicional1: valor.textoadicional1,
-      textoadicional2: valor.textoadicional2,
-      textoadicional3: valor.textoadicional3,
-    };
-  });
+  // const newImgsType = imgsJson.map((obj: any) => {
+  //   const chave = Object.keys(obj)[0];
+  //   const valor = obj[chave];
+  //   return {
+  //     formato: chave,
+  //     nomeclass: `img${chave}`,
+  //     sequencia: valor.sequencia,
+  //     nomearquivoimagem: valor.nomearquivoimagem,
+  //     caminhoarquivologo: valor.caminhoarquivologo,
+  //     caminhoimagem: `${valor.caminhoarquivologo}${valor.nomearquivoimagem}`,
+  //     situacaoimagem: valor.situacaoimagem,
+  //     formatoimagem: valor.formatoimagem,
+  //     caminhohref: valor.caminhohref,
+  //     tituloalthref: valor.tituloalthref,
+  //     textoadicional1: valor.textoadicional1,
+  //     textoadicional2: valor.textoadicional2,
+  //     textoadicional3: valor.textoadicional3,
+  //   };
+  // });
 
   const resClientes = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=logosclientesempresas`
@@ -709,14 +717,14 @@ export async function getServerSideProps() {
     error.push(clientes);
   }
 
-  if (newImgsType.length === 1) {
-    error.push(newImgsType);
-  }
+  // if (newImgsType.length === 1) {
+  //   error.push(newImgsType);
+  // }
 
   if (profsAll.length === 1) {
     error.push(profsAll);
   }
-
+  const newImgsType: any[] = []
   console.log(error);
 
   return {

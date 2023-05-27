@@ -61,7 +61,7 @@ export default function CursosTreinamentos({
 
   useEffect(() => {
     const tiposCursos = cursosTreinamentos.filter(
-      (x) => x.modalidade.toLowerCase() === "c"
+      (x) => x?.modalidade?.toLowerCase() === "c"
     );
     setCursosCompletos(tiposCursos);
   }, [cursosTreinamentos]);
@@ -124,7 +124,7 @@ export default function CursosTreinamentos({
                   <div
                     className={classNames({
                       [styles.isCursoNovo]:
-                        x.modalidade.toLocaleLowerCase() === "c",
+                        x?.modalidade?.toLocaleLowerCase() === "c",
                     })}
                   ></div>
                   <div role="button" onClick={() => modalState(x)}>

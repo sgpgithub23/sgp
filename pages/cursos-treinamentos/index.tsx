@@ -44,8 +44,6 @@ export default function CursosTreinamentos({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] =
     useState<CursosTreinamentosRequisicao>();
-  const [curso, setCurso] = useState<string>("");
-  const [treinamento, setTreinamento] = useState<string>("");
 
   const [primeirosCursos, setPrimeirosCursos] =
     useState<CursosTreinamentosRequisicao[]>();
@@ -64,11 +62,9 @@ export default function CursosTreinamentos({
   }, []);
 
   useEffect(() => {
-    const tiposCursos = cursosTreinamentos
-      .filter((x) => x.modalidade.toLowerCase() === "c")
+    const tiposCursos = cursosTreinamentos?.filter((x) => x?.modalidade?.toLowerCase() === "c")
       .slice(0, 6);
-    const tipoTreinamentos = cursosTreinamentos
-      .filter((x) => x.modalidade.toLowerCase() === "t")
+    const tipoTreinamentos = cursosTreinamentos?.filter((x) => x?.modalidade?.toLowerCase() === "t")
       .slice(0, 6);
 
     setPrimeirosCursos(tiposCursos);
