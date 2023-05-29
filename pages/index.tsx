@@ -87,7 +87,6 @@ export default function Home({
   useEffect(() => {
     const auxArr = cloneDeep(imgsJson);
     const width = window.innerWidth;
-    console.group();
     setWindowWidth(width);
 
     const size =
@@ -100,8 +99,6 @@ export default function Home({
         : width > 724
         ? "800"
         : "410";
-
-    console.groupEnd();
 
     const auxSize = auxArr.filter((x) => x.formato === size);
     setMainCarouselImg(auxSize);
