@@ -41,38 +41,49 @@ import {
 import { toast } from "react-toastify";
 import { notify } from "@/components/Notification";
 import { verificaPropriedades } from "@/utils/verificaTipoObjeto";
+import { ErrorResponse } from "@/typings/ErroResponse";
+import { extractErrorMessages } from "@/utils/tratamento-erros";
 // import size from "window-size";
 
 export default function Home({
   imgsJson,
   clientes,
-  errors,
+  errosClientes, 
+  errosImagesCarouselPrincipal
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  console.log('clientes', clientes)
-  console.log('errors', errors)
-  console.log('imgsJson', imgsJson)
   const { push } = useRouter();
-  const [mainCarouselImg, setMainCarouselImg] =
-    useState<RegularImageType[]>(imgsJson);
+  const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(imgsJson);
   const [windowWidth, setWindowWidth] = useState(0);
-  // const carousel = mainCarouselImg && mainCarouselImg.length > 0 ? 
-  //   useSpringCarousel({
-  //     withLoop: true,
-  //     // @ts-ignore
-  //     items: mainCarouselImg.map((x: RegularImageType, index: number) => ({
-  //       id: index,
-  //       renderItem: (
-  //         <div
-  //           className={styles[x.nomeclass]}
-  //           onClick={() => linkToUrlBannerCarousel(x.caminhohref)}
-  //           style={{
-  //             backgroundImage: `url(${x.caminhoimagem})`,
-  //             cursor: "pointer",
-  //           }}
-  //         ></div>
-  //       ),
-  //     })),
-  //     breakpoints: {},
+
+const carouselApresentacao =
+    useSpringCarousel({
+      withLoop: true,
+      // @ts-ignore
+      items: 
+      errosImagesCarouselPrincipal?.length <= 0 ? mainCarouselImg.map((x: RegularImageType, index: number) => ({
+        id: index,
+        renderItem: (
+          <div
+            className={styles[x.nomeclass]}
+            onClick={() => linkToUrlBannerCarousel(x.caminhohref)}
+            style={{
+              backgroundImage: `url(${x.caminhoimagem})`,
+              cursor: "pointer",
+            }}
+          ></div>
+        ),
+      })) : [
+        {
+          id: 'item-1',
+          renderItem: (
+            <div style={{backgroundColor: "#032752", color: "white", fontSize: "23px", minWidth: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center"}}>
+              <p>Ocorreu um erro! </p>
+              <p>Estamos trabalhando para corrigi-lo o mais rápido possível.</p>
+            </div>
+          )
+        },
+      ],
+    })
   //   }) : null;
 
   // const carouselParceiros = useSpringCarousel({
@@ -80,7 +91,7 @@ export default function Home({
   //   withLoop: true,
   //   initialActiveItem: 1,
   //   // @ts-ignore
-  //   items: clientes.map((cliente, index) => {
+  //   items:  clientes.map((cliente, index) => {
   //     return {
   //       id: cliente.sequencia,
   //       renderItem: (
@@ -274,13 +285,13 @@ export default function Home({
       <Navbar />
       <main className={styles.main}>
         <div className={styles.carouselSpace}>
-          {/* <button className={styles.slideToPrevItem} onClick={carousel?.slideToPrevItem}>
+          <button className={styles.slideToPrevItem} onClick={carouselApresentacao?.slideToPrevItem}>
             <BsArrowLeftCircle />
           </button>
-          {carousel?.carouselFragment}
-          <button className={styles.slideToNextItem} onClick={carousel?.slideToNextItem}>
+          {carouselApresentacao?.carouselFragment}
+          <button className={styles.slideToNextItem} onClick={carouselApresentacao?.slideToNextItem}>
             <BsArrowRightCircle />
-          </button> */}
+          </button>
         </div>
       </main>
 
@@ -672,67 +683,62 @@ export default function Home({
 }
 
 export async function getServerSideProps() {
+  let newImgsType: any[] = [];
+  let errosProfessores: string[] = [];
+  let errosImagesCarouselPrincipal: any[] = [];
+  let errosClientes: any[] = [];
+
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=professores`
   );
-  const profsAll: ProfessorReq[] = await res.json();
-  console.log('profsAll', profsAll)
 
   const imgsCarouselFetch = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=2&model=bannerscarousel`
   );
 
-  const imgsJson: ImagensCarousel[] = await imgsCarouselFetch.json();
-  // console.log('imgsJson', imgsJson)
-
-  // const newImgsType = imgsJson.map((obj: any) => {
-  //   const chave = Object.keys(obj)[0];
-  //   const valor = obj[chave];
-  //   return {
-  //     formato: chave,
-  //     nomeclass: `img${chave}`,
-  //     sequencia: valor.sequencia,
-  //     nomearquivoimagem: valor.nomearquivoimagem,
-  //     caminhoarquivologo: valor.caminhoarquivologo,
-  //     caminhoimagem: `${valor.caminhoarquivologo}${valor.nomearquivoimagem}`,
-  //     situacaoimagem: valor.situacaoimagem,
-  //     formatoimagem: valor.formatoimagem,
-  //     caminhohref: valor.caminhohref,
-  //     tituloalthref: valor.tituloalthref,
-  //     textoadicional1: valor.textoadicional1,
-  //     textoadicional2: valor.textoadicional2,
-  //     textoadicional3: valor.textoadicional3,
-  //   };
-  // });
-
   const resClientes = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=logosclientesempresas`
   );
+
+  const profsAll: ProfessorReq[] = await res.json();
+  const imgsJson: ImagensCarousel[] = await imgsCarouselFetch.json();
   const clientes: ClientesRequisicao[] = await resClientes.json();
 
-  const error: any[] = [];
-  interface Teste {}
+  // const  = []
+  errosProfessores = extractErrorMessages(profsAll);
+  errosImagesCarouselPrincipal = extractErrorMessages(imgsJson);
+  errosClientes = extractErrorMessages(clientes);
 
-  if (clientes.length === 1) {
-    error.push(clientes);
+  if (errosImagesCarouselPrincipal.length <= 0) {
+    newImgsType = imgsJson.map((obj: any) => {
+      const chave = Object.keys(obj)[0];
+      const valor = obj[chave];
+      return {
+        formato: chave,
+        nomeclass: `img${chave}`,
+        sequencia: valor.sequencia,
+        nomearquivoimagem: valor.nomearquivoimagem,
+        caminhoarquivologo: valor.caminhoarquivologo,
+        caminhoimagem: `${valor.caminhoarquivologo}${valor.nomearquivoimagem}`,
+        situacaoimagem: valor.situacaoimagem,
+        formatoimagem: valor.formatoimagem,
+        caminhohref: valor.caminhohref,
+        tituloalthref: valor.tituloalthref,
+        textoadicional1: valor.textoadicional1,
+        textoadicional2: valor.textoadicional2,
+        textoadicional3: valor.textoadicional3,
+      };
+    });
   }
-
-  // if (newImgsType.length === 1) {
-  //   error.push(newImgsType);
-  // }
-
-  if (profsAll.length === 1) {
-    error.push(profsAll);
-  }
-  const newImgsType: any[] = []
-  console.log(error);
 
   return {
     props: {
-      errors: error,
       profsAll,
       imgsJson: newImgsType,
       clientes,
+      errosProfessores,
+      errosImagesCarouselPrincipal,
+      errosClientes,
     },
   };
 }
