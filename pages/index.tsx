@@ -88,7 +88,6 @@ export default function Home({
     const auxArr = cloneDeep(imgsJson);
     const width = window.innerWidth;
     console.group();
-    console.log("width", width);
     setWindowWidth(width);
 
     const size =
@@ -102,7 +101,6 @@ export default function Home({
         ? "800"
         : "410";
 
-    console.log("size", size);
     console.groupEnd();
 
     const auxSize = auxArr.filter((x) => x.formato === size);
