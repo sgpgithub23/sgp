@@ -146,7 +146,7 @@ export default function Home({
   });
 
   const carouselParceiros = useSpringCarousel({
-    itemsPerSlide: 1,
+    itemsPerSlide: errosClientes.length > 0 ? 1 : 2,
     withLoop: true,
     initialActiveItem: 1,
     // @ts-ignore
