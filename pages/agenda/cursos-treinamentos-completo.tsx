@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { FormEvent, Fragment, useState } from "react";
+import React, { FormEvent, Fragment, useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/Agenda.module.scss";
 import { FooterCompleto } from "@/components/FooterCompleto";
@@ -15,38 +15,51 @@ import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import { InferGetStaticPropsType } from "next";
 import { AgendaRequisicao } from "@/typings/Requisicoes/Agenda";
+import { extractErrorMessages } from "@/utils/tratamento-erros";
+import { ErrorMessageReq } from "@/components/ReqErrorMessage";
+import { toast } from "react-toastify";
 
 export async function getStaticProps() {
+  let errorsCursosTreinamentosCompletos: any[] = [];
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=agendaturmas`
   );
-  const agenda: AgendaRequisicao[] = await res.json();
+  let agenda: AgendaRequisicao[] = await res.json();
 
-  const errors: any[] = [];
+  errorsCursosTreinamentosCompletos = extractErrorMessages(agenda);
 
-  if (agenda.length < 2) {
-    errors.push(agenda);
+  if (errorsCursosTreinamentosCompletos.length > 0) {
+    agenda = [];
   }
 
   return {
     props: {
       agenda,
+      errorsCursosTreinamentosCompletos,
     },
   };
 }
 
 export default function Agenda({
   agenda,
+  errorsCursosTreinamentosCompletos,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<AgendaRequisicao>();
   const [curso, setCurso] = useState<string>("");
   const [treinamento, setTreinamento] = useState<string>("");
 
+  useEffect(() => {
+    if (errorsCursosTreinamentosCompletos.length > 0) {
+      errorsCursosTreinamentosCompletos.forEach((erro) => toast.error(erro));
+    }
+  }, []);
+
   function modalState(content: AgendaRequisicao) {
     setIsModalOpen(!isModalOpen);
     setModalContent(content);
   }
+
 
   return (
     <div className={styles.main}>
@@ -81,57 +94,70 @@ export default function Agenda({
               />
             </div>
           </div>
-          <div className={styles.cursosNovos}>
-            {agenda
-              ?.filter((p) => {
-                if (curso === "" || curso?.trim() === "") {
-                  return p;
-                } else if (
-                  p?.objetivo?.toLowerCase().includes(curso.toLowerCase()) ||
-                  p.titulocursotreinamento
-                    ?.toLowerCase()
-                    .includes(curso.toLowerCase()) ||
-                  p.publicoalvo?.toLowerCase().includes(curso.toLowerCase()) ||
-                  p.presencialonline
-                    ?.toLowerCase()
-                    .includes(curso.toLowerCase()) ||
-                  p.nomeprofessor?.toLowerCase().includes(curso.toLowerCase())
-                ) {
-                  return p;
-                }
-              })
-              .map((x, i) => (
-                <div className={styles.curso} key={i}>
-                  <div className={styles.detalhes}>
-                    <div
-                      className={classNames({
-                        [styles.isCursoPresencial]:
-                          x.presencialonline.toLocaleLowerCase() ===
-                          "presencial",
-                        [styles.isCursoAntigo]:
-                          x.presencialonline.toLocaleLowerCase() !==
-                          "presencial",
-                      })}
-                    />
-                    <span>Data: {x.dataprogamada}</span>
-                  </div>
-                  <div role="button" onClick={() => modalState(x)}>
-                    <h4>
-                      <b>{x.titulocursotreinamento}</b>
-                    </h4>
-                    <p role="button">
-                      <span>
-                        <BsPersonCircle /> Conferir detalhes
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              ))}
-          </div>
-          <p>
-            Confira a lista completa{" "}
-            <b style={{ cursor: "pointer" }}>clicando aqui!</b>
-          </p>
+
+          {errorsCursosTreinamentosCompletos.length <= 0 ? (
+            <>
+              <div className={styles.cursosNovos}>
+                {agenda
+                  ?.filter((p) => {
+                    if (curso === "" || curso?.trim() === "") {
+                      return p;
+                    } else if (
+                      p?.objetivo
+                        ?.toLowerCase()
+                        .includes(curso.toLowerCase()) ||
+                      p.titulocursotreinamento
+                        ?.toLowerCase()
+                        .includes(curso.toLowerCase()) ||
+                      p.publicoalvo
+                        ?.toLowerCase()
+                        .includes(curso.toLowerCase()) ||
+                      p.presencialonline
+                        ?.toLowerCase()
+                        .includes(curso.toLowerCase()) ||
+                      p.nomeprofessor
+                        ?.toLowerCase()
+                        .includes(curso.toLowerCase())
+                    ) {
+                      return p;
+                    }
+                  })
+                  .map((x, i) => (
+                    <div className={styles.curso} key={i}>
+                      <div className={styles.detalhes}>
+                        <div
+                          className={classNames({
+                            [styles.isCursoPresencial]:
+                              x.presencialonline.toLocaleLowerCase() ===
+                              "presencial",
+                            [styles.isCursoAntigo]:
+                              x.presencialonline.toLocaleLowerCase() !==
+                              "presencial",
+                          })}
+                        />
+                        <span>Data: {x.dataprogamada}</span>
+                      </div>
+                      <div role="button" onClick={() => modalState(x)}>
+                        <h4>
+                          <b>{x.titulocursotreinamento}</b>
+                        </h4>
+                        <p role="button">
+                          <span>
+                            <BsPersonCircle /> Conferir detalhes
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+              <p>
+                Confira a lista completa{" "}
+                <b style={{ cursor: "pointer" }}>clicando aqui!</b>
+              </p>
+            </>
+          ) : (
+            <ErrorMessageReq />
+          )}
         </div>
       </div>
       <div className={styles.empresaIndicadaBottom}>

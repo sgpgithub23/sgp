@@ -12,23 +12,28 @@ import { Dialog, Transition } from "@headlessui/react";
 import { InferGetStaticPropsType } from "next";
 import { CursosTreinamentosRequisicao } from "@/typings/Requisicoes/CursosTreinamentos";
 import { notify } from "@/components/Notification";
+import { ErrorMessageReq } from "@/components/ReqErrorMessage";
+import { extractErrorMessages } from "@/utils/tratamento-erros";
+import { toast } from "react-toastify";
 
 export async function getStaticProps() {
+  let errorsTreinamentos: any[] = [];
+
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=temascursostreinamentos`
   );
-  const cursosTreinamentos: CursosTreinamentosRequisicao[] = await res.json();
+  let cursosTreinamentos: CursosTreinamentosRequisicao[] = await res.json();
 
-  const error: any[] = [];
+  errorsTreinamentos = extractErrorMessages(cursosTreinamentos);
 
-  if (cursosTreinamentos.length === 1) {
-    error.push(cursosTreinamentos);
+  if (errorsTreinamentos.length > 0) {
+    cursosTreinamentos = [];
   }
 
   return {
     props: {
       cursosTreinamentos,
-      error,
+      errorsTreinamentos,
     },
     revalidate: 600,
   };
@@ -36,7 +41,7 @@ export async function getStaticProps() {
 
 export default function CursosTreinamentos({
   cursosTreinamentos,
-  error,
+  errorsTreinamentos,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] =
@@ -51,15 +56,17 @@ export default function CursosTreinamentos({
   }
 
   useEffect(() => {
-    const tiposTreinamentos = cursosTreinamentos.filter(
-      (x) => x.modalidade.toLowerCase() === "t"
-    );
-    setTreinamentosCompletos(tiposTreinamentos);
+    if (errorsTreinamentos.length <= 0) {
+      const tiposTreinamentos = cursosTreinamentos.filter(
+        (x) => x.modalidade.toLowerCase() === "t"
+      );
+      setTreinamentosCompletos(tiposTreinamentos);
+    }
   }, [cursosTreinamentos]);
 
   useEffect(() => {
-    if (error.length > 0) {
-      notify.error(error[0][0].error);
+    if (errorsTreinamentos.length > 0) {
+      errorsTreinamentos.forEach((erro) => toast.error(erro));
     }
   }, []);
 
@@ -101,46 +108,50 @@ export default function CursosTreinamentos({
               />
             </div>
           </div>
-          <div className={styles.cursosNovos}>
-            {treinamentosCompletos
-              ?.filter((p) => {
-                if (treinamento === "" || treinamento?.trim() === "") {
-                  return p;
-                } else if (
-                  p?.objetivo
-                    ?.toLowerCase()
-                    .includes(treinamento.toLowerCase()) ||
-                  p.titulocursotreinamento
-                    ?.toLowerCase()
-                    .includes(treinamento.toLowerCase()) ||
-                  p.publicoalvo
-                    ?.toLowerCase()
-                    .includes(treinamento.toLowerCase())
-                ) {
-                  return p;
-                }
-              })
-              .map((x, i) => (
-                <div className={styles.curso} key={i}>
-                  <div
-                    className={classNames({
-                      [styles.isCursoAntigo]:
-                        x.modalidade.toLocaleLowerCase() === "t",
-                    })}
-                  ></div>
-                  <div role="button" onClick={() => modalState(x)}>
-                    <h4>
-                      <b>{x.titulocursotreinamento}</b>
-                    </h4>
-                    <p role="button">
-                      <span>
-                        <BsPersonCircle /> Conferir detalhes
-                      </span>
-                    </p>
+          {errorsTreinamentos.length <= 0 ? (
+            <div className={styles.cursosNovos}>
+              {treinamentosCompletos
+                ?.filter((p) => {
+                  if (treinamento === "" || treinamento?.trim() === "") {
+                    return p;
+                  } else if (
+                    p?.objetivo
+                      ?.toLowerCase()
+                      .includes(treinamento.toLowerCase()) ||
+                    p.titulocursotreinamento
+                      ?.toLowerCase()
+                      .includes(treinamento.toLowerCase()) ||
+                    p.publicoalvo
+                      ?.toLowerCase()
+                      .includes(treinamento.toLowerCase())
+                  ) {
+                    return p;
+                  }
+                })
+                .map((x, i) => (
+                  <div className={styles.curso} key={i}>
+                    <div
+                      className={classNames({
+                        [styles.isCursoAntigo]:
+                          x.modalidade.toLocaleLowerCase() === "t",
+                      })}
+                    ></div>
+                    <div role="button" onClick={() => modalState(x)}>
+                      <h4>
+                        <b>{x.titulocursotreinamento}</b>
+                      </h4>
+                      <p role="button">
+                        <span>
+                          <BsPersonCircle /> Conferir detalhes
+                        </span>
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
-          </div>
+                ))}
+            </div>
+          ) : (
+            <ErrorMessageReq />
+          )}
         </div>
       </div>
       <FooterCompleto />

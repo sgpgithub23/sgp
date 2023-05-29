@@ -55,8 +55,53 @@ export default function Home({
   const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(imgsJson);
   const [windowWidth, setWindowWidth] = useState(0);
 
-const carouselApresentacao =
-    useSpringCarousel({
+  useEffect(() => {
+    if(errosImagesCarouselPrincipal.length <= 0 ) {
+      const interval = setInterval(() => {
+        carouselApresentacao?.slideToNextItem();
+      }, 8000);
+      return () => clearInterval(interval);
+    }
+    if(errosClientes.length <= 0) {
+      const interval = setInterval(() => {
+        carouselParceiros?.slideToNextItem();
+      }, 8000);
+      return () => clearInterval(interval);
+    }
+
+  }, []);
+
+  useEffect(() => {
+    const auxArr = cloneDeep(imgsJson);
+    const width = window.innerWidth;
+    setWindowWidth(width);
+
+    const size =
+      width > 1920
+        ? "1920"
+        : width > 1100
+        ? "1600"
+        : width > 800
+        ? "1100"
+        : width > 469
+        ? "800"
+        : "410";
+
+    const auxSize = auxArr.filter((x) => x.formato === size);
+    setMainCarouselImg(auxSize);
+  }, []);
+  
+  useEffect(() => {
+    if(errosClientes.length > 0){
+      errosClientes.forEach(erro => toast.error(erro))
+    }
+
+    if(errosImagesCarouselPrincipal.length > 0){
+      errosImagesCarouselPrincipal.forEach(erro => toast.error(erro))
+    }
+  }, [])
+
+  const carouselApresentacao = useSpringCarousel({
       withLoop: true,
       // @ts-ignore
       items: 
@@ -78,39 +123,48 @@ const carouselApresentacao =
           renderItem: (
             <div style={{backgroundColor: "#032752", color: "white", fontSize: "23px", minWidth: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center"}}>
               <p>Ocorreu um erro! </p>
-              <p>Estamos trabalhando para corrigi-lo o mais rápido possível.</p>
+              <p>Estamos trabalhando para corrigi-lo  <br /> o mais rápido possível.</p>
             </div>
           )
         },
       ],
-    })
-  //   }) : null;
+  })
 
-  // const carouselParceiros = useSpringCarousel({
-  //   itemsPerSlide: clientes.length > 1 ? 2 : 1,
-  //   withLoop: true,
-  //   initialActiveItem: 1,
-  //   // @ts-ignore
-  //   items:  clientes.map((cliente, index) => {
-  //     return {
-  //       id: cliente.sequencia,
-  //       renderItem: (
-  //         <div key={index} className={styles.englobaTudo}>
-  //           <div className={styles.carouselParceirosItem}>
-  //             <Image
-  //               // src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`
-  //               src={`https://www.sgpsolucoes.com.br/crm/imagens_sistema/logosclientesempresas/${cliente.nomearquivologo}`}
-  //               alt={String(cliente.sequencia)}
-  //               width={811}
-  //               height={225}
-  //               className={"imgOnHover"}
-  //             />
-  //           </div>
-  //         </div>
-  //       ),
-  //     };
-  //   }),
-  // });
+  const carouselParceiros = useSpringCarousel({
+    itemsPerSlide: 1,
+    withLoop: true,
+    initialActiveItem: 1,
+    // @ts-ignore
+    items: errosClientes.length <= 0 ? clientes.map((cliente, index) => {
+      return {
+        id: cliente.sequencia,
+        renderItem: (
+          <div key={index} className={styles.englobaTudo}>
+            <div className={styles.carouselParceirosItem}>
+              <Image
+                // src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`
+                src={`https://www.sgpsolucoes.com.br/crm/imagens_sistema/logosclientesempresas/${cliente.nomearquivologo}`}
+                alt={String(cliente.sequencia)}
+                width={811}
+                height={225}
+                className={"imgOnHover"}
+              />
+            </div>
+          </div>
+        ),
+      };
+    }) : [
+      {
+        id: 'item-1',
+        renderItem: (
+          <div style={{color: "#032752", height: "100%",fontSize: "23px", minWidth: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center"}}>
+            <p>Ocorreu um erro! </p>
+            <p>Estamos trabalhando para corrigi-lo <br /> o mais rápido possível.</p>
+          </div>
+        )
+      },
+    ],
+  });
 
   const carouselDegustacao = useSpringCarousel({
     itemsPerSlide: 2,
@@ -211,42 +265,6 @@ const carouselApresentacao =
     ],
   });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // carousel?.slideToNextItem();
-      // clientes.length > 1 && carouselParceiros.slideToNextItem();
-    }, 8000);
-    return () => clearInterval(interval);
-  });
-
-  useEffect(() => {
-    const auxArr = cloneDeep(imgsJson);
-    const width = window.innerWidth;
-    setWindowWidth(width);
-
-    const size =
-      width > 1920
-        ? "1920"
-        : width > 1100
-        ? "1600"
-        : width > 800
-        ? "1100"
-        : width > 469
-        ? "800"
-        : "410";
-
-    const auxSize = auxArr.filter((x) => x.formato === size);
-    setMainCarouselImg(auxSize);
-  }, []);
-
-  // useEffect(() => {
-  //   if (errors.length > 0) {
-  //     errors.map(erro => {
-  //       notify.error(errors[0][0].error);
-
-  //     })
-  //   }
-  // }, []);
 
   function getIconByName(rede: string) {
     if (rede === "Facebook") {
@@ -398,28 +416,15 @@ const carouselApresentacao =
             </div>
             <div className={styles.carouselAll}>
               <div className={styles.carousel}>
-                {/* {carouselParceiros.carouselFragment} */}
+                {carouselParceiros?.carouselFragment}
               </div>
-              {clientes.length <= 2 && (
-                <small style={{ display: "block" }}>
-                  Ocorreu um erro. <br /> Contate o administrador.
-                </small>
-              )}
               <div className={styles.controles}>
                 <MdOutlineKeyboardArrowLeft
-                  // onClick={
-                  //   clientes.length > 3
-                  //     ? carouselParceiros.slideToPrevItem
-                  //     : undefined
-                  // }
+                  onClick={() => carouselParceiros?.slideToPrevItem}
                   className={styles.arrowLeft}
                 />
                 <MdOutlineKeyboardArrowRight
-                  // onClick={
-                  //   clientes.length > 3
-                  //     ? carouselParceiros.slideToNextItem
-                  //     : undefined
-                  // }
+                  onClick={() => carouselParceiros?.slideToNextItem}
                   className={styles.arrowRight}
                 />
                 <span>Clique nos botões para interagir</span>
@@ -684,13 +689,9 @@ const carouselApresentacao =
 
 export async function getServerSideProps() {
   let newImgsType: any[] = [];
-  let errosProfessores: string[] = [];
   let errosImagesCarouselPrincipal: any[] = [];
   let errosClientes: any[] = [];
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=professores`
-  );
 
   const imgsCarouselFetch = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=2&model=bannerscarousel`
@@ -700,14 +701,13 @@ export async function getServerSideProps() {
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=logosclientesempresas`
   );
 
-  const profsAll: ProfessorReq[] = await res.json();
   const imgsJson: ImagensCarousel[] = await imgsCarouselFetch.json();
-  const clientes: ClientesRequisicao[] = await resClientes.json();
+  let clientes: ClientesRequisicao[] = await resClientes.json();
 
-  // const  = []
-  errosProfessores = extractErrorMessages(profsAll);
   errosImagesCarouselPrincipal = extractErrorMessages(imgsJson);
   errosClientes = extractErrorMessages(clientes);
+
+
 
   if (errosImagesCarouselPrincipal.length <= 0) {
     newImgsType = imgsJson.map((obj: any) => {
@@ -729,14 +729,19 @@ export async function getServerSideProps() {
         textoadicional3: valor.textoadicional3,
       };
     });
+  } else {
+    newImgsType = []
   }
+
+  if(errosClientes.length <= 0){
+    clientes = []
+  }
+
 
   return {
     props: {
-      profsAll,
       imgsJson: newImgsType,
       clientes,
-      errosProfessores,
       errosImagesCarouselPrincipal,
       errosClientes,
     },

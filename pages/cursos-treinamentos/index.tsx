@@ -15,22 +15,28 @@ import { InferGetStaticPropsType } from "next";
 import { CursosTreinamentosRequisicao } from "@/typings/Requisicoes/CursosTreinamentos";
 import { useRouter } from "next/router";
 import { notify } from "@/components/Notification";
+import { extractErrorMessages } from "@/utils/tratamento-erros";
+import { toast } from "react-toastify";
+import { ErrorMessageReq } from "@/components/ReqErrorMessage";
 
 export async function getStaticProps() {
+  let errorsCursosTreinamentos: any[] = [];
+
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=temascursostreinamentos`
   );
-  const cursosTreinamentos: CursosTreinamentosRequisicao[] = await res.json();
-  const errors: any[] = [];
+  let cursosTreinamentos: CursosTreinamentosRequisicao[] = await res.json();
 
-  if (cursosTreinamentos.length === 1) {
-    errors.push(cursosTreinamentos);
+  errorsCursosTreinamentos = extractErrorMessages(cursosTreinamentos);
+
+  if (errorsCursosTreinamentos.length > 0) {
+    cursosTreinamentos = [];
   }
 
   return {
     props: {
       cursosTreinamentos,
-      errors,
+      errorsCursosTreinamentos,
     },
     revalidate: 600,
   };
@@ -38,7 +44,7 @@ export async function getStaticProps() {
 
 export default function CursosTreinamentos({
   cursosTreinamentos,
-  errors,
+  errorsCursosTreinamentos,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { push } = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -56,15 +62,17 @@ export default function CursosTreinamentos({
   }
 
   useEffect(() => {
-    if (errors.length > 0) {
-      notify.error(errors[0][0].error);
+    if (errorsCursosTreinamentos.length > 0) {
+      errorsCursosTreinamentos.forEach((erro) => toast.error(erro));
     }
   }, []);
 
   useEffect(() => {
-    const tiposCursos = cursosTreinamentos?.filter((x) => x?.modalidade?.toLowerCase() === "c")
+    const tiposCursos = cursosTreinamentos
+      ?.filter((x) => x?.modalidade?.toLowerCase() === "c")
       .slice(0, 6);
-    const tipoTreinamentos = cursosTreinamentos?.filter((x) => x?.modalidade?.toLowerCase() === "t")
+    const tipoTreinamentos = cursosTreinamentos
+      ?.filter((x) => x?.modalidade?.toLowerCase() === "t")
       .slice(0, 6);
 
     setPrimeirosCursos(tiposCursos);
@@ -200,32 +208,44 @@ export default function CursosTreinamentos({
               /> */}
             </div>
           </div>
-          <div className={styles.cursosNovos}>
-            {primeirosCursos?.map((x, i) => (
-              <div className={styles.curso} key={i}>
-                <div
-                  className={classNames({
-                    [styles.isCursoNovo]:
-                      x.modalidade.toLocaleLowerCase() === "c",
-                  })}
-                ></div>
-                <div role="button" onClick={() => modalState(x)}>
-                  <h4>
-                    <b>{x.titulocursotreinamento}</b>
-                  </h4>
-                  <p role="button">
-                    <span>
-                      <BsPersonCircle /> Conferir detalhes
-                    </span>
-                  </p>
-                </div>
+          {/* {errorsCursosTreinamentos.length <= 0 ? (
+            <>
+            
+            </>
+          )} */}
+          {errorsCursosTreinamentos.length <= 0 ? (
+            <>
+              <div className={styles.cursosNovos}>
+                {/* {primeirosCursos?.map((x, i) => }} */}
+                {primeirosCursos?.map((x, i) => (
+                  <div className={styles.curso} key={i}>
+                    <div
+                      className={classNames({
+                        [styles.isCursoNovo]:
+                          x.modalidade.toLocaleLowerCase() === "c",
+                      })}
+                    ></div>
+                    <div role="button" onClick={() => modalState(x)}>
+                      <h4>
+                        <b>{x.titulocursotreinamento}</b>
+                      </h4>
+                      <p role="button">
+                        <span>
+                          <BsPersonCircle /> Conferir detalhes
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <p onClick={() => push("/cursos-treinamentos/cursos")}>
-            Confira a lista completa de cursos{" "}
-            <b style={{ cursor: "pointer" }}>clicando aqui!</b>
-          </p>
+              <p onClick={() => push("/cursos-treinamentos/cursos")}>
+                Confira a lista completa de cursos{" "}
+                <b style={{ cursor: "pointer" }}>clicando aqui!</b>
+              </p>
+            </>
+          ) : (
+            <ErrorMessageReq />
+          )}
         </div>
       </div>
       <div className={styles.empresaIndicada}>
@@ -239,7 +259,7 @@ export default function CursosTreinamentos({
             <li>Saneamento de todas as dúvidas</li>
             <li>Aulas expositivas</li>
             <li>Dinâmicas em grupo</li>
-            <li>Carga horária adequada</li>
+            <li>Carga horária adequada</li>cursosNovos
           </ul>
           <ul>
             <li>Alto índice de satisfação</li>
@@ -272,31 +292,41 @@ export default function CursosTreinamentos({
             /> */}
           </div>
         </div>
-        <div className={styles.cursosNovos}>
-          {primeirosTreinamentos?.map((x, i) => (
-            <div className={styles.curso} key={i}>
-              <div
-                className={classNames({
-                  [styles.isCursoAntigo]: x.modalidade.toLowerCase() === "t",
-                })}
-              ></div>
-              <div className={styles.detalhes} onClick={() => modalState(x)}>
-                <h4>
-                  <b>{x.titulocursotreinamento}</b>
-                </h4>
-                <p role="button">
-                  <span>
-                    <BsPersonCircle /> Conferir detalhes
-                  </span>
-                </p>
-              </div>
+        {errorsCursosTreinamentos.length <= 0 ? (
+          <>
+            <div className={styles.cursosNovos}>
+              {primeirosTreinamentos?.map((x, i) => (
+                <div className={styles.curso} key={i}>
+                  <div
+                    className={classNames({
+                      [styles.isCursoAntigo]:
+                        x.modalidade.toLowerCase() === "t",
+                    })}
+                  ></div>
+                  <div
+                    className={styles.detalhes}
+                    onClick={() => modalState(x)}
+                  >
+                    <h4>
+                      <b>{x.titulocursotreinamento}</b>
+                    </h4>
+                    <p role="button">
+                      <span>
+                        <BsPersonCircle /> Conferir detalhes
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <p onClick={() => push("/cursos-treinamentos/treinamentos")}>
-          Confira a lista completa de treinamentos{" "}
-          <b style={{ cursor: "pointer" }}>clicando aqui!</b>
-        </p>
+            <p onClick={() => push("/cursos-treinamentos/treinamentos")}>
+              Confira a lista completa de treinamentos{" "}
+              <b style={{ cursor: "pointer" }}>clicando aqui!</b>
+            </p>
+          </>
+        ) : (
+          <ErrorMessageReq />
+        )}
       </div>
       <div className={styles.empresaIndicadaBottom}>
         <hr />

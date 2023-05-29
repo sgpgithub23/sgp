@@ -16,23 +16,28 @@ import Image from "next/image";
 import { InferGetStaticPropsType } from "next";
 import { AgendaRequisicao } from "@/typings/Requisicoes/Agenda";
 import { notify } from "@/components/Notification";
+import { extractErrorMessages } from "@/utils/tratamento-erros";
+import { toast } from "react-toastify";
+import { ErrorMessageReq } from "@/components/ReqErrorMessage";
 
 export async function getStaticProps() {
+  let errorsAgenda: any[] = [];
+
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=agendaturmas`
   );
-  const agenda: AgendaRequisicao[] = await res.json();
+  let agenda: AgendaRequisicao[] = await res.json();
 
-  const errors: any[] = [];
+  errorsAgenda = extractErrorMessages(agenda);
 
-  if (agenda.length === 1) {
-    errors.push(agenda);
+  if (errorsAgenda.length > 0) {
+    agenda = [];
   }
 
   return {
     props: {
       agenda,
-      errors,
+      errorsAgenda,
     },
     revalidate: 600,
   };
@@ -40,7 +45,7 @@ export async function getStaticProps() {
 
 export default function Agenda({
   agenda,
-  errors,
+  errorsAgenda,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<AgendaRequisicao>();
@@ -55,11 +60,12 @@ export default function Agenda({
   }
 
   useEffect(() => {
-    if (errors.length > 0) {
-      notify.error(errors[0][0].error);
+    if (errorsAgenda.length > 0) {
+      errorsAgenda.forEach((erro) => toast.error(erro));
     }
   }, []);
 
+  
   return (
     <div className={styles.main}>
       <Head>
@@ -110,50 +116,53 @@ export default function Agenda({
             </div>
             <div className={styles.right}></div>
           </div>
-          {cursoArray.length > 0 ? (
-            <>
-              <div className={styles.cursosNovos}>
-                {cursoArray.map((x, i) => (
-                  <div className={styles.curso} key={i}>
-                    <div className={styles.detalhes}>
-                      <div
-                        className={classNames({
-                          [styles.isCursoPresencial]:
-                            x?.presencialonline?.toLocaleLowerCase() ===
-                            "presencial",
-                          [styles.isCursoAntigo]:
-                            x?.presencialonline?.toLocaleLowerCase() !==
-                            "presencial",
-                        })}
-                      />
-                      <span>Data: {x?.dataprogamada}</span>
-                    </div>
-                    <div role="button" onClick={() => modalState(x)}>
-                      <h4>
-                        <b>{x?.titulocursotreinamento}</b>
-                      </h4>
-                      <p role="button">
-                        <span>
-                          <BsPersonCircle /> Conferir detalhes
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p>
-                Confira a lista completa{" "}
-                <b
-                  style={{ cursor: "pointer" }}
-                  onClick={() => push("/agenda/cursos-treinamentos-completo")}
-                >
-                  clicando aqui!
-                </b>
-              </p>
-            </>
-          ) : (
-            <span></span>
-          )}
+        {errorsAgenda.length <= 0 ? 
+cursoArray.length > 0 && (
+  <>
+    <div className={styles.cursosNovos}>
+      {cursoArray.map((x, i) => (
+        <div className={styles.curso} key={i}>
+          <div className={styles.detalhes}>
+            <div
+              className={classNames({
+                [styles.isCursoPresencial]:
+                  x?.presencialonline?.toLocaleLowerCase() ===
+                  "presencial",
+                [styles.isCursoAntigo]:
+                  x?.presencialonline?.toLocaleLowerCase() !==
+                  "presencial",
+              })}
+            />
+            <span>Data: {x?.dataprogamada}</span>
+          </div>
+          <div role="button" onClick={() => modalState(x)}>
+            <h4>
+              <b>{x?.titulocursotreinamento}</b>
+            </h4>
+            <p role="button">
+              <span>
+                <BsPersonCircle /> Conferir detalhes
+              </span>
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <p>
+      Confira a lista completa{" "}
+      <b
+        style={{ cursor: "pointer" }}
+        onClick={() => push("/agenda/cursos-treinamentos-completo")}
+      >
+        clicando aqui!
+      </b>
+    </p>
+  </>
+
+        ) : (
+          <ErrorMessageReq />
+        )}
+          
         </div>
       </div>
       <div className={styles.professores}>

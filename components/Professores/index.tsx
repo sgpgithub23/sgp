@@ -8,6 +8,7 @@ import { HiMagnifyingGlass } from "react-icons/hi2";
 import Input from "../Input";
 import styles from "./Professores.module.scss";
 import { ProfessorReq } from "@/typings/Requisicoes/Professores";
+import { ErrorMessageReq } from "../ReqErrorMessage";
 
 
 export default function ProfessoresComponent(props: any) {
@@ -59,7 +60,9 @@ export default function ProfessoresComponent(props: any) {
           />
         </div>
       </div>
-      <div className={styles.professoresTodos}>
+      {props.errorsProfessores.length <= 0 ? (
+        <>
+<div className={styles.professoresTodos}>
         {props.profsAll?.filter((p: any) => {
           if (professor === "" || professor?.trim() === "") {
             return p;
@@ -100,6 +103,11 @@ export default function ProfessoresComponent(props: any) {
           <b style={{ cursor: "pointer" }}>Ver menos</b>
         </p>
       )}
+        </>
+      ) : (
+        <ErrorMessageReq/>
+      )}
+      
 
       <Transition appear show={isModalOpen} as={Fragment}>
         <Dialog

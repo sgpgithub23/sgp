@@ -12,23 +12,23 @@ import { Dialog, Transition } from "@headlessui/react";
 import { InferGetStaticPropsType } from "next";
 import { CursosTreinamentosRequisicao } from "@/typings/Requisicoes/CursosTreinamentos";
 import { notify } from "@/components/Notification";
+import { extractErrorMessages } from "@/utils/tratamento-erros";
+import { ErrorMessageReq } from "@/components/ReqErrorMessage";
 
 export async function getStaticProps() {
+  let errorsCursosTreinamentos: any[] = [];
+
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=temascursostreinamentos`
   );
+
   const cursosTreinamentos: CursosTreinamentosRequisicao[] = await res.json();
-
-  const errors: any[] = [];
-
-  if (cursosTreinamentos.length === 1) {
-    errors.push(cursosTreinamentos);
-  }
+  errorsCursosTreinamentos = extractErrorMessages(cursosTreinamentos);
 
   return {
     props: {
       cursosTreinamentos,
-      errors,
+      errorsCursosTreinamentos,
     },
     revalidate: 600,
   };
@@ -36,7 +36,7 @@ export async function getStaticProps() {
 
 export default function CursosTreinamentos({
   cursosTreinamentos,
-  errors,
+  errorsCursosTreinamentos,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] =
@@ -48,22 +48,21 @@ export default function CursosTreinamentos({
   const [primeirosTreinamentos, setPrimeirosTreinamentos] =
     useState<CursosTreinamentosRequisicao[]>();
 
+  
   function modalState(content: CursosTreinamentosRequisicao) {
     setIsModalOpen(!isModalOpen);
     setModalContent(content);
   }
 
-  useEffect(() => {
-    if (errors.length > 0) {
-      notify.error(errors[0][0].error);
-    }
-  }, []);
 
   useEffect(() => {
-    const tiposCursos = cursosTreinamentos.filter(
-      (x) => x?.modalidade?.toLowerCase() === "c"
-    );
-    setCursosCompletos(tiposCursos);
+    if(errorsCursosTreinamentos.length <= 0){
+      const tiposCursos = cursosTreinamentos?.filter(
+        (x) => x?.modalidade?.toLowerCase() === "c"
+      );
+      setCursosCompletos(tiposCursos);
+    }
+
   }, [cursosTreinamentos]);
 
   return (
@@ -105,7 +104,7 @@ export default function CursosTreinamentos({
             </div>
           </div>
           <div className={styles.cursosNovos}>
-            {cursosCompletos
+            {errorsCursosTreinamentos.length <= 0 ? cursosCompletos
               ?.filter((p) => {
                 if (curso === "" || curso?.trim() === "") {
                   return p;
@@ -138,7 +137,9 @@ export default function CursosTreinamentos({
                     </p>
                   </div>
                 </div>
-              ))}
+              )) : (
+                <ErrorMessageReq />
+              )}
           </div>
         </div>
       </div>

@@ -11,18 +11,20 @@ import Dropdown from "@/components/Dropdown";
 import { ProfessorReq } from "@/typings/Requisicoes/Professores";
 import { InferGetServerSidePropsType } from "next";
 import { notify } from "@/components/Notification";
+import { extractErrorMessages } from "@/utils/tratamento-erros";
+import { toast } from "react-toastify";
 
 export default function NossosProfessores({
   profsAll,
-  errors,
+  errorsProfessores,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+
   useEffect(() => {
-    if (errors[0][0].error) {
-      notify.error(errors[0][0].error);
-    } else {
-      notify.error("Erro ao carregar os professores");
-    }
+    if (errorsProfessores.length > 0) {
+      errorsProfessores.forEach((erro) => toast.error(erro));
+    } 
   }, []);
+
   return (
     <div className={styles.main}>
       <Head>
@@ -45,7 +47,7 @@ export default function NossosProfessores({
         </div>
       </div>
       <div className={styles.pageSize}>
-        <ProfessoresComponent profsAll={profsAll} />
+        <ProfessoresComponent profsAll={profsAll} errorsProfessores={errorsProfessores} />
       </div>
 
       <FooterCompleto />
@@ -54,21 +56,23 @@ export default function NossosProfessores({
 }
 
 export async function getServerSideProps() {
+  let errorsProfessores: any[] = [];
+
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=professores`
   );
-  const profsAll: ProfessorReq[] = await res.json();
+  let profsAll: ProfessorReq[] = await res.json();
 
-  const errors: any[] = [];
-
-  if (profsAll.length === 1) {
-    errors.push(profsAll);
+  errorsProfessores = extractErrorMessages(profsAll);
+  
+  if (errorsProfessores.length > 0) {
+    profsAll = [];
   }
 
   return {
     props: {
       profsAll,
-      errors,
+      errorsProfessores,
     },
   };
 }
