@@ -39,36 +39,34 @@ import {
   RegularImageType,
 } from "@/typings/Requisicoes/Carrossel";
 import { toast } from "react-toastify";
-import { notify } from "@/components/Notification";
-import { verificaPropriedades } from "@/utils/verificaTipoObjeto";
-import { ErrorResponse } from "@/typings/ErroResponse";
 import { extractErrorMessages } from "@/utils/tratamento-erros";
 // import size from "window-size";
 
 export default function Home({
   imgsJson,
   clientes,
-  errosClientes, 
-  errosImagesCarouselPrincipal
+  errosClientes,
+  errosImagesCarouselPrincipal,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  console.log("clientes", clientes);
   const { push } = useRouter();
-  const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(imgsJson);
+  const [mainCarouselImg, setMainCarouselImg] =
+    useState<RegularImageType[]>(imgsJson);
   const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
-    if(errosImagesCarouselPrincipal.length <= 0 ) {
+    if (errosImagesCarouselPrincipal.length <= 0) {
       const interval = setInterval(() => {
         carouselApresentacao?.slideToNextItem();
       }, 8000);
       return () => clearInterval(interval);
     }
-    if(errosClientes.length <= 0) {
+    if (errosClientes.length <= 0) {
       const interval = setInterval(() => {
         carouselParceiros?.slideToNextItem();
       }, 8000);
       return () => clearInterval(interval);
     }
-
   }, []);
 
   useEffect(() => {
@@ -90,80 +88,115 @@ export default function Home({
     const auxSize = auxArr.filter((x) => x.formato === size);
     setMainCarouselImg(auxSize);
   }, []);
-  
+
   useEffect(() => {
-    if(errosClientes.length > 0){
-      errosClientes.forEach(erro => toast.error(erro))
+    if (errosClientes.length > 0) {
+      errosClientes.forEach((erro) => toast.error(erro));
     }
 
-    if(errosImagesCarouselPrincipal.length > 0){
-      errosImagesCarouselPrincipal.forEach(erro => toast.error(erro))
+    if (errosImagesCarouselPrincipal.length > 0) {
+      errosImagesCarouselPrincipal.forEach((erro) => toast.error(erro));
     }
-  }, [])
+  }, []);
 
   const carouselApresentacao = useSpringCarousel({
-      withLoop: true,
-      // @ts-ignore
-      items: 
-      errosImagesCarouselPrincipal?.length <= 0 ? mainCarouselImg.map((x: RegularImageType, index: number) => ({
-        id: index,
-        renderItem: (
-          <div
-            className={styles[x.nomeclass]}
-            onClick={() => linkToUrlBannerCarousel(x.caminhohref)}
-            style={{
-              backgroundImage: `url(${x.caminhoimagem})`,
-              cursor: "pointer",
-            }}
-          ></div>
-        ),
-      })) : [
-        {
-          id: 'item-1',
-          renderItem: (
-            <div style={{backgroundColor: "#032752", color: "white", fontSize: "23px", minWidth: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center"}}>
-              <p>Ocorreu um erro! </p>
-              <p>Estamos trabalhando para corrigi-lo  <br /> o mais rápido possível.</p>
-            </div>
-          )
-        },
-      ],
-  })
+    withLoop: true,
+    // @ts-ignore
+    items:
+      errosImagesCarouselPrincipal.length <= 0
+        ? mainCarouselImg.map((x: RegularImageType, index: number) => ({
+            id: index,
+            renderItem: (
+              <div
+                className={styles[x.nomeclass]}
+                onClick={() => linkToUrlBannerCarousel(x.caminhohref)}
+                style={{
+                  backgroundImage: `url(${x.caminhoimagem})`,
+                  cursor: "pointer",
+                }}
+              ></div>
+            ),
+          }))
+        : [
+            {
+              id: "item-1",
+              renderItem: (
+                <div
+                  style={{
+                    backgroundColor: "#032752",
+                    color: "white",
+                    fontSize: "23px",
+                    minWidth: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                  }}
+                >
+                  <p>Ocorreu um erro! </p>
+                  <p>
+                    Estamos trabalhando para corrigi-lo <br /> o mais rápido
+                    possível.
+                  </p>
+                </div>
+              ),
+            },
+          ],
+  });
 
   const carouselParceiros = useSpringCarousel({
     itemsPerSlide: 1,
     withLoop: true,
     initialActiveItem: 1,
     // @ts-ignore
-    items: errosClientes.length <= 0 ? clientes.map((cliente, index) => {
-      return {
-        id: cliente.sequencia,
-        renderItem: (
-          <div key={index} className={styles.englobaTudo}>
-            <div className={styles.carouselParceirosItem}>
-              <Image
-                // src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`
-                src={`https://www.sgpsolucoes.com.br/crm/imagens_sistema/logosclientesempresas/${cliente.nomearquivologo}`}
-                alt={String(cliente.sequencia)}
-                width={811}
-                height={225}
-                className={"imgOnHover"}
-              />
-            </div>
-          </div>
-        ),
-      };
-    }) : [
-      {
-        id: 'item-1',
-        renderItem: (
-          <div style={{color: "#032752", height: "100%",fontSize: "23px", minWidth: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center"}}>
-            <p>Ocorreu um erro! </p>
-            <p>Estamos trabalhando para corrigi-lo <br /> o mais rápido possível.</p>
-          </div>
-        )
-      },
-    ],
+    items:
+      errosClientes.length <= 0
+        ? clientes.map((cliente, index) => {
+            return {
+              id: cliente.sequencia,
+              renderItem: (
+                <div key={index} className={styles.englobaTudo}>
+                  <div className={styles.carouselParceirosItem}>
+                    <Image
+                      // src={`https://www.sgpsolucoes.com.br/imagens/fotosprofessores/${modalContent?.nomearquivofotoprofessor}`
+                      src={`https://www.sgpsolucoes.com.br/crm/imagens_sistema/logosclientesempresas/${cliente.nomearquivologo}`}
+                      alt={String(cliente.sequencia)}
+                      width={811}
+                      height={225}
+                      className={"imgOnHover"}
+                    />
+                  </div>
+                </div>
+              ),
+            };
+          })
+        : [
+            {
+              id: "item-1",
+              renderItem: (
+                <div
+                  style={{
+                    color: "#032752",
+                    height: "100%",
+                    fontSize: "23px",
+                    minWidth: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                  }}
+                >
+                  <p>Ocorreu um erro! </p>
+                  <p>
+                    Estamos trabalhando para corrigi-lo <br /> o mais rápido
+                    possível.
+                  </p>
+                </div>
+              ),
+            },
+          ],
   });
 
   const carouselDegustacao = useSpringCarousel({
@@ -265,7 +298,6 @@ export default function Home({
     ],
   });
 
-
   function getIconByName(rede: string) {
     if (rede === "Facebook") {
       return <BsFacebook />;
@@ -303,11 +335,17 @@ export default function Home({
       <Navbar />
       <main className={styles.main}>
         <div className={styles.carouselSpace}>
-          <button className={styles.slideToPrevItem} onClick={carouselApresentacao?.slideToPrevItem}>
+          <button
+            className={styles.slideToPrevItem}
+            onClick={carouselApresentacao?.slideToPrevItem}
+          >
             <BsArrowLeftCircle />
           </button>
           {carouselApresentacao?.carouselFragment}
-          <button className={styles.slideToNextItem} onClick={carouselApresentacao?.slideToNextItem}>
+          <button
+            className={styles.slideToNextItem}
+            onClick={carouselApresentacao?.slideToNextItem}
+          >
             <BsArrowRightCircle />
           </button>
         </div>
@@ -416,15 +454,15 @@ export default function Home({
             </div>
             <div className={styles.carouselAll}>
               <div className={styles.carousel}>
-                {carouselParceiros?.carouselFragment}
+                {carouselParceiros.carouselFragment}
               </div>
               <div className={styles.controles}>
                 <MdOutlineKeyboardArrowLeft
-                  onClick={() => carouselParceiros?.slideToPrevItem}
+                  onClick={() => carouselParceiros.slideToPrevItem}
                   className={styles.arrowLeft}
                 />
                 <MdOutlineKeyboardArrowRight
-                  onClick={() => carouselParceiros?.slideToNextItem}
+                  onClick={() => carouselParceiros.slideToNextItem}
                   className={styles.arrowRight}
                 />
                 <span>Clique nos botões para interagir</span>
@@ -692,7 +730,6 @@ export async function getServerSideProps() {
   let errosImagesCarouselPrincipal: any[] = [];
   let errosClientes: any[] = [];
 
-
   const imgsCarouselFetch = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=2&model=bannerscarousel`
   );
@@ -706,8 +743,6 @@ export async function getServerSideProps() {
 
   errosImagesCarouselPrincipal = extractErrorMessages(imgsJson);
   errosClientes = extractErrorMessages(clientes);
-
-
 
   if (errosImagesCarouselPrincipal.length <= 0) {
     newImgsType = imgsJson.map((obj: any) => {
@@ -730,13 +765,12 @@ export async function getServerSideProps() {
       };
     });
   } else {
-    newImgsType = []
+    newImgsType = [];
   }
 
-  if(errosClientes.length <= 0){
-    clientes = []
+  if (errosClientes.length > 0) {
+    clientes = [];
   }
-
 
   return {
     props: {
