@@ -48,10 +48,11 @@ export default function Home({
   errosClientes,
   errosImagesCarouselPrincipal,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  console.log("clientes", clientes);
   const { push } = useRouter();
-  const [mainCarouselImg, setMainCarouselImg] =
-    useState<RegularImageType[]>(imgsJson);
+  const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(
+    cloneDeep(imgsJson)
+  );
+
   const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
@@ -70,24 +71,43 @@ export default function Home({
   }, []);
 
   useEffect(() => {
+    function atualizarTamanhoViewport() {
+      setWindowWidth(window.innerWidth || document.documentElement.clientWidth);
+    }
+
+    window.addEventListener("resize", atualizarTamanhoViewport);
+
+    atualizarTamanhoViewport();
+
+    return () => {
+      window.removeEventListener("resize", atualizarTamanhoViewport);
+    };
+  }, []);
+
+  useEffect(() => {
     const auxArr = cloneDeep(imgsJson);
     const width = window.innerWidth;
+    console.group();
+    console.log("width", width);
     setWindowWidth(width);
 
     const size =
       width > 1920
         ? "1920"
-        : width > 1100
+        : width > 1432
         ? "1600"
-        : width > 800
+        : width > 1024
         ? "1100"
-        : width > 469
+        : width > 724
         ? "800"
         : "410";
 
+    console.log("size", size);
+    console.groupEnd();
+
     const auxSize = auxArr.filter((x) => x.formato === size);
     setMainCarouselImg(auxSize);
-  }, []);
+  }, [windowWidth]);
 
   useEffect(() => {
     if (errosClientes.length > 0) {
