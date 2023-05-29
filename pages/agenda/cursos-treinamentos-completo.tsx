@@ -47,7 +47,6 @@ export default function Agenda({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<AgendaRequisicao>();
   const [curso, setCurso] = useState<string>("");
-  const [treinamento, setTreinamento] = useState<string>("");
 
   useEffect(() => {
     if (errorsCursosTreinamentosCompletos.length > 0) {
