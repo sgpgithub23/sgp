@@ -52,12 +52,12 @@
     position: absolute;
     top: 50%;
     right: 2%;
-    
-      & > svg  {
-        color: white;
-        background-color: $dark-blue-100;
-        border-radius: 99999999px;
-      }
+
+    & > svg {
+      color: white;
+      background-color: $dark-blue-100;
+      border-radius: 99999999px;
+    }
   }
 
   & > .slideToPrevItem {
@@ -65,13 +65,12 @@
     top: 50%;
     left: 2%;
 
-    & > svg  {
+    & > svg {
       color: white;
       background-color: $dark-blue-100;
       border-radius: 99999999px;
     }
   }
-  
 }
 
 .img1920,
@@ -248,67 +247,80 @@
   align-items: center;
   flex-direction: column;
   word-break: keep-all;
-  margin-block: 100px 60px;
+  margin-block: 100px;
 
+  h1 {
+    margin-bottom: 40px ;
+  }
+  
   .comentariosContent {
-    width: 60%;
-    text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 450px;
 
-    .carouselDepoimentosAll {
-      .carosel {
-        .depoimentosClientes {
-          // height: 400px;
-          width: 90%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          position: absolute;
-          top: 0;
-          // min-height: 400px;
-          background-color: red;
+    .carouselDepoimentosSpace {
+      min-width: 100vw;
+      min-height: 350px;
+      // margin-block: 40px;
+  
+      .carouselDepoimentosIndividual {
+        width: 100%;
+        display: flex;
+        color: $dark-blue-100;
+  
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        padding-inline: 10%;
+  
+        .depoimento {
+          max-width: 600px;
+          user-select: none;
+
+          em {
+            margin-top: 100px;
+          }
+  
+          .depoimentodescricao {
+            color: $grey-500;
+            margin-block: 50px;
+          }
         }
       }
     }
-  }
-}
-
-.sergio {
-  display: flex;
-  margin-block: 30px;
-  width: 70%;
-  justify-content: center;
-  color: $dark-blue-100;
-
-  & > .nomefoto {
-    width: 50%;
-    display: flex;
-    margin-right: 20px;
-
-    & > p {
+  
+    .controles {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      gap: 15px;
+      margin-top: 20px;
+      user-select: none;
       width: 100%;
-      text-align: start;
-      align-self: center;
-      padding-inline: 8px;
-      font-size: 15px;
+      // height: 300px;
+
+      & > .arrowLeft,
+      .arrowRight {
+        width: 30px;
+        height: 30px;
+        padding: 3px 3px;
+        font-size: 20px;
+        background-color: $dark-blue-2;
+        color: $dark-blue-100;
+        cursor: pointer;
+      }
+  
+      & > span {
+        color: $grey-300;
+        font-size: 14px;
+        // user-select: none;
+      }
     }
   }
 
-  & > .review {
-    width: 50%;
-    border-left: 2px solid $grey-100;
-    text-align-last: left;
-    padding-left: 32px;
 
-    & > p {
-      color: $grey-300;
-    }
-  }
 }
 
 .periodicosExclusivos {
@@ -895,7 +907,15 @@
   .comentarios {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
     padding-block: 60px;
+    width: 100%;
+
+    h1 {
+      width: 80%;
+      text-align: center;
+    }
 
     & > .comentariosContent {
       width: 80%;
@@ -905,164 +925,17 @@
       align-items: center;
       flex-direction: column;
 
-      & > .comentarioSergio {
-        // width: 100%%;
-        color: $grey-300;
+      .carouselDepoimentosSpace {
+        width: 80%;
       }
     }
   }
 
-  .sergio {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-
-    & > .nomefoto {
-      width: 100%;
-      display: flex;
-      margin-right: 0;
-
-      & > p {
-        width: 100%;
-        text-align: start;
-        align-self: center;
-        padding-inline: 8px;
-        font-size: 15px;
-      }
-    }
-
-    & > .review {
-      width: 100%;
-      border: none;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      padding-left: 0;
-
-      & > p {
-        color: $grey-300;
-      }
-    }
-  }
+ 
 }
 
-@media (max-width: 621px) {
-  .comentarios {
-    display: flex;
-    justify-content: center;
-    padding-block: 60px;
 
-    & > .comentariosContent {
-      width: 63%;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
 
-      & > .comentarioSergio {
-        width: 75%;
-        color: $grey-300;
-      }
-    }
-  }
-
-  .sergio {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-
-    & > .nomefoto {
-      width: 100%;
-      display: flex;
-      margin-right: 0;
-
-      & > p {
-        width: 100%;
-        text-align: start;
-        align-self: center;
-        padding-inline: 8px;
-        font-size: 15px;
-      }
-    }
-
-    & > .review {
-      width: 100%;
-      border: none;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      padding-left: 0;
-
-      & > p {
-        color: $grey-300;
-      }
-    }
-  }
-}
-
-@media (max-width: 470px) {
-  .comentarios {
-    display: flex;
-    justify-content: center;
-
-    & > .comentariosContent {
-      width: 85%;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-
-      & > .comentarioSergio {
-        width: 90%;
-        color: $grey-300;
-      }
-    }
-  }
-
-  .sergio {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-
-    & > .nomefoto {
-      width: 100%;
-      display: flex;
-      margin-right: 0;
-
-      & > p {
-        width: 100%;
-        text-align: start;
-        align-self: center;
-        padding-inline: 8px;
-        font-size: 15px;
-      }
-    }
-
-    & > .review {
-      width: 100%;
-      border: none;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      padding-left: 0;
-
-      & > p {
-        color: $grey-300;
-      }
-    }
-  }
-}
 
 @media (max-width: 1223px) {
   .periodicosExclusivos {

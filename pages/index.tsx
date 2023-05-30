@@ -40,6 +40,8 @@ import {
 } from "@/typings/Requisicoes/Carrossel";
 import { toast } from "react-toastify";
 import { extractErrorMessages } from "@/utils/tratamento-erros";
+import { Depoimento } from "@/typings/Depoimentos";
+import { ErrorMessageReq } from "@/components/ReqErrorMessage";
 // import size from "window-size";
 
 export default function Home({
@@ -47,6 +49,8 @@ export default function Home({
   clientes,
   errosClientes,
   errosImagesCarouselPrincipal,
+  depoimentos,
+  errosDepoimentos,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { push } = useRouter();
   const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(
@@ -212,6 +216,60 @@ export default function Home({
               ),
             },
           ],
+  });
+
+  const carouselDepoimentos = useSpringCarousel({
+    itemsPerSlide: 1,
+    withLoop: true,
+    // @ts-ignore
+    items:
+      errosDepoimentos.length <= 0 ? (
+        depoimentos.map((depoimento) => {
+          return {
+            id: depoimento.iddpmt,
+            renderItem: (
+              <div className={styles.carouselDepoimentosIndividual}>
+                <div className={styles.depoimento}>
+                  <p>
+                    <b>Empresa: </b>
+                    {depoimento.empresa &&
+                    depoimento.empresa.trim().length > 0 &&
+                    depoimento.empresa?.length > 0
+                      ? depoimento.empresa
+                      : "Não informada"}
+                  </p>
+                  <p style={{ marginBottom: "25px" }}>
+                    <b>Cargo: </b>
+                    {depoimento.cargoqualificacao &&
+                    depoimento.cargoqualificacao.trim().length > 0 &&
+                    depoimento.cargoqualificacao?.length > 0
+                      ? depoimento.cargoqualificacao
+                      : "Não informado"}
+                  </p>
+                  <em>
+                    {" "}
+                    ~ Por{" "}
+                    {depoimento.nomedepoente &&
+                    depoimento.nomedepoente.trim().length > 0 &&
+                    depoimento.nomedepoente?.length > 0
+                      ? depoimento.nomedepoente
+                      : "Não informado"}
+                  </em>
+                  <p className={styles.depoimentodescricao}>
+                    {depoimento.descricaodepoimento &&
+                    depoimento.descricaodepoimento.trim().length > 0 &&
+                    depoimento.descricaodepoimento?.length > 0
+                      ? depoimento.descricaodepoimento
+                      : "Não informado"}
+                  </p>
+                </div>
+              </div>
+            ),
+          };
+        })
+      ) : (
+        <ErrorMessageReq />
+      ),
   });
 
   const carouselDegustacao = useSpringCarousel({
@@ -473,11 +531,11 @@ export default function Home({
               </div>
               <div className={styles.controles}>
                 <MdOutlineKeyboardArrowLeft
-                  onClick={() => carouselParceiros.slideToPrevItem}
+                  onClick={carouselParceiros.slideToPrevItem}
                   className={styles.arrowLeft}
                 />
                 <MdOutlineKeyboardArrowRight
-                  onClick={() => carouselParceiros.slideToNextItem}
+                  onClick={carouselParceiros.slideToNextItem}
                   className={styles.arrowRight}
                 />
                 <span>Clique nos botões para interagir</span>
@@ -488,42 +546,26 @@ export default function Home({
       </section>
 
       <section className={styles.comentarios}>
+        <h1 className={styles.titleDarkBlue}>
+          Clientes e Parceiros comentam sobre a SGP...
+        </h1>
         <div className={styles.comentariosContent}>
-          <h1 className={styles.titleDarkBlue}>
-            Clientes e Parceiros comentam sobre a SGP...
-          </h1>
-          <div className={styles.sergio}>
-            <div className={styles.nomefoto}>
-              <Image
-                src={"/images/homepage/sergio.png"}
-                alt="Sergio Ferraz - Integrante do Conselho Editorial da SGP "
-                width={52}
-                height={52}
-              />
-              <p>
-                <b>Sergio Ferraz - </b>
-                Integrante do nosso Conselho Editorial
-              </p>
-            </div>
-            <div className={styles.review}>
-              <Image
-                src={"/images/homepage/rant-stars.svg"}
-                alt="Sergio Ferraz - Integrante do Conselho Editorial da SGP "
-                width={109}
-                height={15.71}
-                style={{ width: "auto" }}
-              />
-              <div className={styles.linhaVertical}></div>
-              <p>Avaliação - SGP</p>
-            </div>
+          <div className={styles.carouselDepoimentosSpace}>
+            {carouselDepoimentos.carouselFragment}
           </div>
-          <p className={styles.comentarioSergio}>
-            O periódico SLC - Solução em Licitações e Contratos é uma referência
-            imprescindível, tanto para doutrinadores como para exercentes da
-            advocacia. Trata-se do mais atualizado e abrangente repositório de
-            tudo quanto se produz, em qualquer das vertentes do Direito, no
-            campo da constatação administrativa.
-          </p>
+          <div className={styles.controles}>
+            <MdOutlineKeyboardArrowLeft
+              onClick={carouselDepoimentos.slideToPrevItem}
+              className={styles.arrowLeft}
+              role="button"
+            />
+            <MdOutlineKeyboardArrowRight
+              role="button"
+              onClick={carouselDepoimentos.slideToNextItem}
+              className={styles.arrowRight}
+            />
+            <span>Clique nos botões para interagir</span>
+          </div>
         </div>
       </section>
 
@@ -744,6 +786,7 @@ export async function getServerSideProps() {
   let newImgsType: any[] = [];
   let errosImagesCarouselPrincipal: any[] = [];
   let errosClientes: any[] = [];
+  let errosDepoimentos: any[] = [];
 
   const imgsCarouselFetch = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=2&model=bannerscarousel`
@@ -753,11 +796,17 @@ export async function getServerSideProps() {
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=logosclientesempresas`
   );
 
+  const resDepoimentos = await fetch(
+    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=2&model=depoimentos`
+  );
+
   const imgsJson: ImagensCarousel[] = await imgsCarouselFetch.json();
   let clientes: ClientesRequisicao[] = await resClientes.json();
+  let depoimentos: Depoimento[] = await resDepoimentos.json();
 
   errosImagesCarouselPrincipal = extractErrorMessages(imgsJson);
   errosClientes = extractErrorMessages(clientes);
+  errosDepoimentos = extractErrorMessages(depoimentos);
 
   if (errosImagesCarouselPrincipal.length <= 0) {
     newImgsType = imgsJson.map((obj: any) => {
@@ -787,12 +836,18 @@ export async function getServerSideProps() {
     clientes = [];
   }
 
+  if (errosDepoimentos.length > 0) {
+    depoimentos = [];
+  }
+
   return {
     props: {
       imgsJson: newImgsType,
       clientes,
+      depoimentos,
       errosImagesCarouselPrincipal,
       errosClientes,
+      errosDepoimentos,
     },
   };
 }
