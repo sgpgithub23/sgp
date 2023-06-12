@@ -787,6 +787,7 @@ export async function getServerSideProps() {
   let errosImagesCarouselPrincipal: any[] = [];
   let errosClientes: any[] = [];
   let errosDepoimentos: any[] = [];
+  let depoimentosFiltrados: Depoimento[] = []
 
   const imgsCarouselFetch = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=2&model=bannerscarousel`
@@ -838,13 +839,18 @@ export async function getServerSideProps() {
 
   if (errosDepoimentos.length > 0) {
     depoimentos = [];
+  } else {
+    depoimentosFiltrados = depoimentos.filter(x => 
+      x.nomedepoente.trim() !== "" && 
+      x.empresa.trim() !== ""
+    )
   }
 
   return {
     props: {
       imgsJson: newImgsType,
       clientes,
-      depoimentos,
+      depoimentos: depoimentosFiltrados,
       errosImagesCarouselPrincipal,
       errosClientes,
       errosDepoimentos,
