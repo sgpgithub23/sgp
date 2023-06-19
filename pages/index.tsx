@@ -53,11 +53,10 @@ export default function Home({
   errosDepoimentos,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { push } = useRouter();
+  const [windowWidth, setWindowWidth] = useState(0);
   const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(
     cloneDeep(imgsJson)
   );
-
-  const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
     if (errosImagesCarouselPrincipal.length <= 0) {
@@ -423,7 +422,6 @@ export default function Home({
           </button>
         </div>
       </main>
-
       <section className={styles.quemSomosAll} id="quemsomos">
         <div className={styles.quemsomos}>
           <div className={styles.textoEImagem}>
@@ -787,8 +785,11 @@ export async function getServerSideProps() {
   let errosImagesCarouselPrincipal: any[] = [];
   let errosClientes: any[] = [];
   let errosDepoimentos: any[] = [];
-  let depoimentosFiltrados: Depoimento[] = []
+  let imgsJson: ImagensCarousel[] = [];
+  let clientesJson: ClientesRequisicao[] = [];
+  let depoimentosJson: Depoimento[] = [];
 
+  let depoimentosFiltrados: Depoimento[] = [];
   const imgsCarouselFetch = await fetch(
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=2&model=bannerscarousel`
   );
@@ -801,32 +802,30 @@ export async function getServerSideProps() {
     `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=2&model=depoimentos`
   );
 
-  const imgsJson: ImagensCarousel[] = await imgsCarouselFetch.json();
-  let clientes: ClientesRequisicao[] = await resClientes.json();
-  let depoimentos: Depoimento[] = await resDepoimentos.json();
+  imgsJson = await imgsCarouselFetch.json();
+  clientesJson = await resClientes.json();
+  depoimentosJson = await resDepoimentos.json();
 
   errosImagesCarouselPrincipal = extractErrorMessages(imgsJson);
-  errosClientes = extractErrorMessages(clientes);
-  errosDepoimentos = extractErrorMessages(depoimentos);
+  errosClientes = extractErrorMessages(clientesJson);
+  errosDepoimentos = extractErrorMessages(depoimentosJson);
 
   if (errosImagesCarouselPrincipal.length <= 0) {
     newImgsType = imgsJson.map((obj: any) => {
-      const chave = Object.keys(obj)[0];
-      const valor = obj[chave];
       return {
-        formato: chave,
-        nomeclass: `img${chave}`,
-        sequencia: valor.sequencia,
-        nomearquivoimagem: valor.nomearquivoimagem,
-        caminhoarquivologo: valor.caminhoarquivologo,
-        caminhoimagem: `${valor.caminhoarquivologo}${valor.nomearquivoimagem}`,
-        situacaoimagem: valor.situacaoimagem,
-        formatoimagem: valor.formatoimagem,
-        caminhohref: valor.caminhohref,
-        tituloalthref: valor.tituloalthref,
-        textoadicional1: valor.textoadicional1,
-        textoadicional2: valor.textoadicional2,
-        textoadicional3: valor.textoadicional3,
+        formato: obj.formatoimagem,
+        nomeclass: `img${obj.formatoimagem}`,
+        sequencia: obj.sequencia,
+        nomearquivoimagem: obj.nomearquivoimagem,
+        caminhoarquivologo: obj.caminhoarquivoimagem,
+        caminhoimagem: `${obj.caminhoarquivoimagem}${obj.nomearquivoimagem}`,
+        situacaoimagem: obj.situacaoimagem,
+        formatoimagem: obj.formatoimagem,
+        caminhohref: obj.caminhohref,
+        tituloalthref: obj.tituloalthref,
+        textoadicional1: obj.textoadicional1,
+        textoadicional2: obj.textoadicional2,
+        textoadicional3: obj.textoadicional3,
       };
     });
   } else {
@@ -834,26 +833,33 @@ export async function getServerSideProps() {
   }
 
   if (errosClientes.length > 0) {
-    clientes = [];
+    clientesJson = [];
   }
 
   if (errosDepoimentos.length > 0) {
-    depoimentos = [];
+    depoimentosJson = [];
   } else {
-    depoimentosFiltrados = depoimentos.filter(x => 
-      x.nomedepoente.trim() !== "" && 
-      x.empresa.trim() !== ""
-    )
+    depoimentosFiltrados = depoimentosJson.filter(
+      (x) => x.nomedepoente.trim() !== "" && x.empresa.trim() !== ""
+    );
   }
 
   return {
     props: {
       imgsJson: newImgsType,
-      clientes,
+      clientes: clientesJson,
       depoimentos: depoimentosFiltrados,
       errosImagesCarouselPrincipal,
       errosClientes,
       errosDepoimentos,
     },
+    // props: {
+    //   imgsJson: [],
+    //   clientes: [],
+    //   depoimentos: [],
+    //   errosImagesCarouselPrincipal: [],
+    //   errosClientes: [],
+    //   errosDepoimentos: [],
+    // },
   };
 }
