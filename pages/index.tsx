@@ -60,10 +60,10 @@ export default function Home({
 
   useEffect(() => {
     if (errosImagesCarouselPrincipal.length <= 0) {
-      const interval = setInterval(() => {
-        carouselApresentacao?.slideToNextItem();
-      }, 8000);
-      return () => clearInterval(interval);
+      // const interval = setInterval(() => {
+      //   carouselApresentacao?.slideToNextItem();
+      // }, 8000);
+      // return () => clearInterval(interval);
     }
     if (errosClientes.length <= 0) {
       const interval = setInterval(() => {
@@ -89,17 +89,17 @@ export default function Home({
 
   useEffect(() => {
     const auxArr = cloneDeep(imgsJson);
-    const width = window.innerWidth;
-    setWindowWidth(width);
+    const viewportWidth = window.innerWidth;
+    setWindowWidth(viewportWidth);
 
     const size =
-      width > 1920
+      viewportWidth > 1920
         ? "1920"
-        : width > 1432
+        : viewportWidth > 1600
         ? "1600"
-        : width > 1024
+        : viewportWidth > 1100
         ? "1100"
-        : width > 724
+        : viewportWidth < 1100 && viewportWidth > 410
         ? "800"
         : "410";
 
@@ -222,53 +222,76 @@ export default function Home({
     withLoop: true,
     // @ts-ignore
     items:
-      errosDepoimentos.length <= 0 ? (
-        depoimentos.map((depoimento) => {
-          return {
-            id: depoimento.iddpmt,
-            renderItem: (
-              <div className={styles.carouselDepoimentosIndividual}>
-                <div className={styles.depoimento}>
-                  <p className={styles.depoimentodescricao}>
-                    {depoimento.descricaodepoimento &&
-                    depoimento.descricaodepoimento.trim().length > 0 &&
-                    depoimento.descricaodepoimento?.length > 0
-                      ? depoimento.descricaodepoimento
-                      : "Não informado"}
-                  </p>
-                  <p>
-                    <b>Empresa: </b>
-                    {depoimento.empresa &&
-                    depoimento.empresa.trim().length > 0 &&
-                    depoimento.empresa?.length > 0
-                      ? depoimento.empresa
-                      : "Não informada"}
-                  </p>
-                  <p style={{ marginBottom: "25px" }}>
-                    <b>Cargo: </b>
-                    {depoimento.cargoqualificacao &&
-                    depoimento.cargoqualificacao.trim().length > 0 &&
-                    depoimento.cargoqualificacao?.length > 0
-                      ? depoimento.cargoqualificacao
-                      : "Não informado"}
-                  </p>
-                  <em>
-                    {" "}
-                    ~ Por{" "}
-                    {depoimento.nomedepoente &&
-                    depoimento.nomedepoente.trim().length > 0 &&
-                    depoimento.nomedepoente?.length > 0
-                      ? depoimento.nomedepoente
-                      : "Não informado"}
-                  </em>
+      errosDepoimentos.length <= 0
+        ? depoimentos.map((depoimento) => {
+            return {
+              id: depoimento.iddpmt,
+              renderItem: (
+                <div className={styles.carouselDepoimentosIndividual}>
+                  <div className={styles.depoimento}>
+                    <p className={styles.depoimentodescricao}>
+                      {depoimento.descricaodepoimento &&
+                      depoimento.descricaodepoimento.trim().length > 0 &&
+                      depoimento.descricaodepoimento?.length > 0
+                        ? depoimento.descricaodepoimento
+                        : "Não informado"}
+                    </p>
+                    <p>
+                      <b>Empresa: </b>
+                      {depoimento.empresa &&
+                      depoimento.empresa.trim().length > 0 &&
+                      depoimento.empresa?.length > 0
+                        ? depoimento.empresa
+                        : "Não informada"}
+                    </p>
+                    <p style={{ marginBottom: "25px" }}>
+                      <b>Cargo: </b>
+                      {depoimento.cargoqualificacao &&
+                      depoimento.cargoqualificacao.trim().length > 0 &&
+                      depoimento.cargoqualificacao?.length > 0
+                        ? depoimento.cargoqualificacao
+                        : "Não informado"}
+                    </p>
+                    <em>
+                      {" "}
+                      ~ Por{" "}
+                      {depoimento.nomedepoente &&
+                      depoimento.nomedepoente.trim().length > 0 &&
+                      depoimento.nomedepoente?.length > 0
+                        ? depoimento.nomedepoente
+                        : "Não informado"}
+                    </em>
+                  </div>
                 </div>
-              </div>
-            ),
-          };
-        })
-      ) : (
-        <ErrorMessageReq />
-      ),
+              ),
+            };
+          })
+        : [
+            {
+              id: "item-1",
+              renderItem: (
+                <div
+                  style={{
+                    color: "#032752",
+                    height: "100%",
+                    fontSize: "23px",
+                    minWidth: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textAlign: "center",
+                  }}
+                >
+                  <p>Ocorreu um erro! </p>
+                  <p>
+                    Estamos trabalhando para corrigi-lo <br /> o mais rápido
+                    possível.
+                  </p>
+                </div>
+              ),
+            },
+          ],
   });
 
   const carouselDegustacao = useSpringCarousel({
@@ -551,19 +574,21 @@ export default function Home({
           <div className={styles.carouselDepoimentosSpace}>
             {carouselDepoimentos.carouselFragment}
           </div>
-          <div className={styles.controles}>
-            <MdOutlineKeyboardArrowLeft
-              onClick={carouselDepoimentos.slideToPrevItem}
-              className={styles.arrowLeft}
-              role="button"
-            />
-            <MdOutlineKeyboardArrowRight
-              role="button"
-              onClick={carouselDepoimentos.slideToNextItem}
-              className={styles.arrowRight}
-            />
-            <span>Clique nos botões para interagir</span>
-          </div>
+          {errosDepoimentos.length <= 0 && (
+            <div className={styles.controles}>
+              <MdOutlineKeyboardArrowLeft
+                onClick={carouselDepoimentos.slideToPrevItem}
+                className={styles.arrowLeft}
+                role="button"
+              />
+              <MdOutlineKeyboardArrowRight
+                role="button"
+                onClick={carouselDepoimentos.slideToNextItem}
+                className={styles.arrowRight}
+              />
+              <span>Clique nos botões para interagir</span>
+            </div>
+          )}
         </div>
       </section>
 
@@ -809,6 +834,7 @@ export async function getServerSideProps() {
   errosImagesCarouselPrincipal = extractErrorMessages(imgsJson);
   errosClientes = extractErrorMessages(clientesJson);
   errosDepoimentos = extractErrorMessages(depoimentosJson);
+  console.log("errosDepoimentos");
 
   if (errosImagesCarouselPrincipal.length <= 0) {
     newImgsType = imgsJson.map((obj: any) => {

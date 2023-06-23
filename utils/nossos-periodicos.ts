@@ -26,7 +26,7 @@ for (var i = new Date().getFullYear(); i >= 2016  ; i--)  {
 export const dropdownValuesTipoPeriodico = [
     {label: "SLC", value: "SLC"},
     {label: "SAM", value: "SAM"},
-  ]
+]
   
 
 
