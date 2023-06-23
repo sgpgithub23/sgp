@@ -229,6 +229,13 @@ export default function Home({
             renderItem: (
               <div className={styles.carouselDepoimentosIndividual}>
                 <div className={styles.depoimento}>
+                  <p className={styles.depoimentodescricao}>
+                    {depoimento.descricaodepoimento &&
+                    depoimento.descricaodepoimento.trim().length > 0 &&
+                    depoimento.descricaodepoimento?.length > 0
+                      ? depoimento.descricaodepoimento
+                      : "Não informado"}
+                  </p>
                   <p>
                     <b>Empresa: </b>
                     {depoimento.empresa &&
@@ -254,13 +261,6 @@ export default function Home({
                       ? depoimento.nomedepoente
                       : "Não informado"}
                   </em>
-                  <p className={styles.depoimentodescricao}>
-                    {depoimento.descricaodepoimento &&
-                    depoimento.descricaodepoimento.trim().length > 0 &&
-                    depoimento.descricaodepoimento?.length > 0
-                      ? depoimento.descricaodepoimento
-                      : "Não informado"}
-                  </p>
                 </div>
               </div>
             ),
