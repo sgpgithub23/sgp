@@ -65,7 +65,6 @@ export default function Agenda({
     }
   }, []);
 
-  
   return (
     <div className={styles.main}>
       <Head>
@@ -108,7 +107,7 @@ export default function Agenda({
         <div className={styles.mainContentForm}>
           <div className={styles.introduction}>
             <div className={styles.left}>
-              <h2>Confira nossos cursos e treinamentos</h2>
+              <h2>Confira nossa agenda de cursos e treinamentos</h2>
               <span>
                 Conheça nossos cursos de excelência e gabarito, que aplicam e
                 vivenciam as melhores boas práticas do mercado.
@@ -116,53 +115,52 @@ export default function Agenda({
             </div>
             <div className={styles.right}></div>
           </div>
-        {errorsAgenda.length <= 0 ? 
-cursoArray.length > 0 && (
-  <>
-    <div className={styles.cursosNovos}>
-      {cursoArray.map((x, i) => (
-        <div className={styles.curso} key={i}>
-          <div className={styles.detalhes}>
-            <div
-              className={classNames({
-                [styles.isCursoPresencial]:
-                  x?.presencialonline?.toLocaleLowerCase() ===
-                  "presencial",
-                [styles.isCursoAntigo]:
-                  x?.presencialonline?.toLocaleLowerCase() !==
-                  "presencial",
-              })}
-            />
-            <span>Data: {x?.dataprogamada}</span>
-          </div>
-          <div role="button" onClick={() => modalState(x)}>
-            <h4>
-              <b>{x?.titulocursotreinamento}</b>
-            </h4>
-            <p role="button">
-              <span>
-                <BsPersonCircle /> Conferir detalhes
-              </span>
-            </p>
-          </div>
-        </div>
-      ))}
-    </div>
-    <p>
-      Confira a lista completa{" "}
-      <b
-        style={{ cursor: "pointer" }}
-        onClick={() => push("/agenda/cursos-treinamentos-completo")}
-      >
-        clicando aqui!
-      </b>
-    </p>
-  </>
-
-        ) : (
-          <ErrorMessageReq />
-        )}
-          
+          {errorsAgenda.length <= 0 ? (
+            cursoArray.length > 0 && (
+              <>
+                <div className={styles.cursosNovos}>
+                  {cursoArray.map((x, i) => (
+                    <div className={styles.curso} key={i}>
+                      <div className={styles.detalhes}>
+                        <div
+                          className={classNames({
+                            [styles.isCursoPresencial]:
+                              x?.presencialonline?.toLocaleLowerCase() ===
+                              "presencial",
+                            [styles.isCursoAntigo]:
+                              x?.presencialonline?.toLocaleLowerCase() !==
+                              "presencial",
+                          })}
+                        />
+                        <span>Data: {x?.dataprogamada}</span>
+                      </div>
+                      <div role="button" onClick={() => modalState(x)}>
+                        <h4>
+                          <b>{x?.titulocursotreinamento}</b>
+                        </h4>
+                        <p role="button">
+                          <span>
+                            <BsPersonCircle /> Conferir detalhes
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p>
+                  Confira a lista completa{" "}
+                  <b
+                    style={{ cursor: "pointer" }}
+                    onClick={() => push("/agenda/cursos-treinamentos-completo")}
+                  >
+                    clicando aqui!
+                  </b>
+                </p>
+              </>
+            )
+          ) : (
+            <ErrorMessageReq />
+          )}
         </div>
       </div>
       <div className={styles.professores}>
