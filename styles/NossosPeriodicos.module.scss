@@ -101,7 +101,57 @@
                     width: 100%;
                     display: flex;
                     justify-content: flex-start;
+                    align-items: center;
+                    gap: 10px;
                     padding-block: 40px;
+                }
+            }
+
+            & > .periodicosAllMobile {
+                width: 100%;
+    
+                h3 {
+                    color: $dark-blue-100;
+                    margin-top: 10px;
+                    margin-bottom: 20px;
+                }
+    
+                & > .periodicosDownload {
+                    display: grid;
+                    grid-template-columns: repeat(3, 33%);
+                    padding: 15px;
+    
+                    & > .card {
+                        // border: 1px solid $dark-blue-100;
+                        background-color:$dark-blue-100;
+                        color: white;
+                        border-radius: 8px;
+                        width: 90%;
+                        height: 70px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        transition: .2s all ease-out;
+    
+                        &:hover {
+                            transform: scale(1.02);
+                        }
+    
+                        p { 
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 25px;
+                            
+                            svg {
+                                font-size: 20px;
+                                
+                            }
+                        }
+    
+                        
+                    }
                 }
             }
 
@@ -141,6 +191,56 @@
                 }
             }
         }
+
+        & > .periodicosAllDesktop {
+            width: 100%;
+
+            h3 {
+                color: $dark-blue-100;
+                margin-top: 10px;
+                margin-bottom: 20px;
+            }
+
+            & > .periodicosDownload {
+                display: grid;
+                grid-template-columns: repeat(3, 33%);
+                padding: 15px;
+
+                & > .card {
+                    // border: 1px solid $dark-blue-100;
+                    background-color:$dark-blue-100;
+                    color: white;
+                    border-radius: 8px;
+                    width: 90%;
+                    height: 70px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    transition: .2s all ease-out;
+
+                    &:hover {
+                        transform: scale(1.02);
+                    }
+
+                    p { 
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 25px;
+                        
+                        svg {
+                            font-size: 20px;
+                            
+                        }
+                    }
+
+                    
+                }
+            }
+        }
+
+        
 
         & > .principaisSolucoesInovadoras {
             margin-block: 150px;
@@ -212,6 +312,17 @@
     }
 }
 
+@media (min-width: 1008px){
+   .main {
+    .pageSize {
+        .periodicos {
+            .periodicosAllMobile {
+                display: none;
+            }
+        }
+    }
+   }
+}
 
 @media (max-width: 1145px) {
     .content {
@@ -236,6 +347,10 @@
 
         }
 
+    }
+
+    .main > .pageSize > .periodicos > .periodicosAllDesktop {
+        display: hidden;
     }
 }
 
@@ -280,6 +395,19 @@
                     }
 
                 }
+
+                .periodicosAllMobile {
+        
+                    & > .periodicosDownload {
+                        display: grid;
+                        grid-template-columns: repeat(2, 50%);
+
+                    }
+                }
+            }
+
+            & > .periodicosAllDesktop {
+                display: none;
             }
 
             & > .principaisSolucoesInovadoras {
@@ -438,7 +566,28 @@
                     justify-content: center;
                     gap: 20px;
                 }
+
+                .periodicosAllMobile {
+                    & > .periodicosDownload {
+                        display: grid;
+                        grid-template-columns: repeat(1, 100%);
+                        
+                        & > .card {
+                            // border: 1px solid $dark-blue-100;
+                            border-radius: 8px;
+                            width: 100%;
+                            height: 70px;
+                            text-decoration: none;
+
+                
+        
+                            
+                        }
+                    }
+                }
             }
+
+            
     
         }
     }

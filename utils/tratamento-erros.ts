@@ -1,7 +1,7 @@
 import { ErrorResponse } from "@/typings/ErroResponse";
 
 
-export function extractErrorMessages(response: any): string[] {
+export function extractErrorMessages(response: any, codigoerror?: string): string[] {
     const errorMessages: string[] = [];
   
     function traverseResponse(obj: any): void {
@@ -10,9 +10,9 @@ export function extractErrorMessages(response: any): string[] {
           traverseResponse(item);
         }
       } else if (typeof obj === "object" && obj !== null) {
-        const hasCodigo = "codigoerror:" in obj;
+        const hasCodigo = (codigoerror ? codigoerror : "codigoerror:") in obj;
         const hasMsgError = "error" in obj;
-  
+        
         if (hasCodigo && hasMsgError) {
           errorMessages.push(obj.error);
         } else {
