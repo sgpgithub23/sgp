@@ -19,6 +19,7 @@ import { notify } from "@/components/Notification";
 import { extractErrorMessages } from "@/utils/tratamento-erros";
 import { toast } from "react-toastify";
 import { ErrorMessageReq } from "@/components/ReqErrorMessage";
+import Spinner from "@/components/Spinner";
 
 export async function getStaticProps() {
   let errorsAgenda: any[] = [];
@@ -49,9 +50,11 @@ export default function Agenda({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<AgendaRequisicao>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [cursoArray, setCursoArray] = useState<AgendaRequisicao[]>(
     agenda.slice(0, 6)
   );
+
   const { push } = useRouter();
 
   function modalState(content: AgendaRequisicao) {
@@ -89,7 +92,7 @@ export default function Agenda({
               </p>
               <Button
                 color="darkBlue"
-                title="Conhecer nossos professores"
+                title="Conheça nossos professores"
                 onClick={() => push("/nossos-professores")}
               />
             </div>
@@ -151,11 +154,19 @@ export default function Agenda({
                   Confira a lista completa{" "}
                   <b
                     style={{ cursor: "pointer" }}
-                    onClick={() => push("/agenda/cursos-treinamentos-completo")}
+                    onClick={() => {
+                      push("/agenda/cursos-treinamentos-completo");
+                      setIsLoading(true);
+                    }}
                   >
                     clicando aqui!
                   </b>
                 </p>
+                {isLoading && (
+                  <div className={styles.loadSpinnerr}>
+                    <Spinner />
+                  </div>
+                )}
               </>
             )
           ) : (
@@ -163,7 +174,7 @@ export default function Agenda({
           )}
         </div>
       </div>
-      <div className={styles.professores}>
+      {/* <div className={styles.professores}>
         <h1>Corpo docente</h1>
         <p>
           Conheça nosso corpo docente de excelência e gabarito, que aplicam e
@@ -174,10 +185,10 @@ export default function Agenda({
           color="darkBlue"
           title="Ver todos os professores"
         />
-      </div>
+      </div> */}
       {/* <div className={styles.empresaIndicadaBottom}>
                 <hr />
-                <h2>“O conhecimento é a única coisa que não podem tirar de você”.</h2>
+                <h2>“O Conhecimento é o único bem que não pode ser tirado de você”.</h2>
             </div> */}
       <section className={styles.degustacaoAll}>
         <div className={styles.degustacao}>
@@ -236,7 +247,7 @@ export default function Agenda({
         <Button
           onClick={() => push("/nossos-professores")}
           color="darkBlue"
-          title="Entrar em contato"
+          title="Quero mais informações!"
         />
       </div>
 

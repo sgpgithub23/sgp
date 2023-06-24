@@ -330,7 +330,7 @@ export default function CursosTreinamentos({
       </div>
       <div className={styles.empresaIndicadaBottom}>
         <hr />
-        <h2>“O conhecimento é a única coisa que não podem tirar de você”.</h2>
+        <h2>“O Conhecimento é o único bem que não pode ser tirado de você”.</h2>
       </div>
       <FooterCompleto />
 

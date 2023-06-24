@@ -134,7 +134,7 @@ export default function NossosPeriodicos() {
                 disabled={!ano || !mes || !periodico || isLoading}
                 onClick={handleSubmit}
               />
-              {isLoading && <Spinner size="sm" />}
+              {isLoading && <Spinner />}
             </div>
           </div>
           {resultDegustacao.length > 0 && (

@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./Spinner.module.scss";
 
-interface SpinnerProps {
-  size: "sm" | "md" | "lg";
-}
-
-export default function Spinner({ size }: SpinnerProps) {
+export default function Spinner() {
   return (
     <div className={style.spinner}>
       <span className={style["spinner-inner-1"]}></span>
