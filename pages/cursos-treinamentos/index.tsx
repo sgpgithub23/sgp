@@ -79,6 +79,10 @@ export default function CursosTreinamentos({
     setPrimeirosTreinamentos(tipoTreinamentos);
   }, [cursosTreinamentos]);
 
+  function mudaPOsicaoPaginaSaberMais() {
+    push("#aulas");
+  }
+
   return (
     <div className={styles.main}>
       <Head>
@@ -100,10 +104,14 @@ export default function CursosTreinamentos({
             participantes a oportunidade de seu aperfeiçoamento e capacitação
             devidamente certificada.
           </p>
-          <Button color="blue" title="Saber Mais!" />
+          <Button
+            color="blue"
+            title="Saber Mais!"
+            onClick={mudaPOsicaoPaginaSaberMais}
+          />
         </div>
       </div>
-      <div className={styles.pageSize}>
+      <div className={styles.pageSize} id="aulas">
         <div className={styles.tiposDeCurso}>
           <div className={styles.imgOnRightSide}>
             <div>
