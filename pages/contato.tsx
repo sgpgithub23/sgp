@@ -94,16 +94,15 @@ export default function Contato() {
   const onSubmit = async (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
 
-    const response = await fetch('/api/verify-token', {
-      method: 'POST',
+    const response = await fetch("/api/verify-token", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ token: recaptchaResponse })
+      body: JSON.stringify({ token: recaptchaResponse }),
     });
-  
-    const result = await response.json();
 
+    const result = await response.json();
 
     try {
       const res = await fetch("/api/sendEmail", {
@@ -116,13 +115,8 @@ export default function Contato() {
         method: "POST",
       });
       const result = await res.json();
-      console.log("res", res);
-      console.log("result", result);
-    } catch (error) {
-      console.log("error requisicao contato", error);
-    }
+    } catch (error) {}
   };
-
 
   return (
     <div className={styles.main}>
@@ -289,7 +283,7 @@ export default function Contato() {
               </p>
             </div>
             <ReCAPTCHA
-            // @ts-ignore
+              // @ts-ignore
               sitekey={process.env.NEXT_PUBLIC_API_RECAPTCHA_SIE}
               ref={captchaRef}
               onChange={(value) => setRecaptchaResponse(value)}

@@ -45,11 +45,7 @@ export default function NossosPeriodicos() {
     PeriodicoDegustacao[]
   >([]);
 
-  useEffect(() => {
-    console.warn(ano);
-    console.warn(periodico);
-    console.warn(mes);
-  }, [isLoading]);
+  useEffect(() => {}, [isLoading]);
 
   async function handleSubmit() {
     setIsLoading(true);

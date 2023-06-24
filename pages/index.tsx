@@ -834,7 +834,6 @@ export async function getServerSideProps() {
   errosImagesCarouselPrincipal = extractErrorMessages(imgsJson);
   errosClientes = extractErrorMessages(clientesJson);
   errosDepoimentos = extractErrorMessages(depoimentosJson);
-  console.log("errosDepoimentos");
 
   if (errosImagesCarouselPrincipal.length <= 0) {
     newImgsType = imgsJson.map((obj: any) => {
