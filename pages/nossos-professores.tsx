@@ -18,11 +18,12 @@ export default function NossosProfessores({
   profsAll,
   errorsProfessores,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const { push } = useRouter();
 
   useEffect(() => {
     if (errorsProfessores.length > 0) {
       errorsProfessores.forEach((erro) => toast.error(erro));
-    } 
+    }
   }, []);
 
   return (
@@ -43,11 +44,20 @@ export default function NossosProfessores({
             Conheça nosso corpo docente de excelência e gabarito, que aplicam e
             vivenciam as melhores boas práticas do mercado.
           </p>
-          <Button color="blue" title="Saber Mais!" />
+          <Button
+            color="blue"
+            title="Saber Mais!"
+            onClick={() => {
+              push("#professores");
+            }}
+          />
         </div>
       </div>
       <div className={styles.pageSize}>
-        <ProfessoresComponent profsAll={profsAll} errorsProfessores={errorsProfessores} />
+        <ProfessoresComponent
+          profsAll={profsAll}
+          errorsProfessores={errorsProfessores}
+        />
       </div>
 
       <FooterCompleto />
@@ -64,7 +74,7 @@ export async function getServerSideProps() {
   let profsAll: ProfessorReq[] = await res.json();
 
   errorsProfessores = extractErrorMessages(profsAll);
-  
+
   if (errorsProfessores.length > 0) {
     profsAll = [];
   }

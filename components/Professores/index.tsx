@@ -9,25 +9,18 @@ import Input from "../Input";
 import styles from "./Professores.module.scss";
 import { ProfessorReq } from "@/typings/Requisicoes/Professores";
 import { ErrorMessageReq } from "../ReqErrorMessage";
+import { CardProfessor } from "@/components/CardProfessor";
 
 export default function ProfessoresComponent(props: any) {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [modalContent, setModalContent] = useState<ProfessorReq>();
-
   const [professores, setProfessores] = useState<ProfessorReq[]>(
-    props.profsAll?.slice(0, 6)
+    props.profsAll.slice(0, 6)
   );
-  const [isFotosIniciais, setIsFotosIniciais] = useState<boolean>(true);
+  const [isFotosIniciais, setIsFotosIniciais] = useState<boolean>(false);
   const [professor, setProfessor] = useState<string>("");
-
-  function modalState(content: ProfessorReq) {
-    setIsModalOpen(!isModalOpen);
-    setModalContent(content);
-  }
 
   function changeQuantidadeFotosProfessores() {
     setIsFotosIniciais(!isFotosIniciais);
-
+    console.log("isFotosIniciais", isFotosIniciais);
     if (!isFotosIniciais) {
       setProfessores(props.profsAll);
       return;
@@ -40,7 +33,7 @@ export default function ProfessoresComponent(props: any) {
   }
 
   return (
-    <div className={styles.mainContentForm}>
+    <div className={styles.mainContentForm} id="professores">
       <div className={styles.introduction}>
         <div className={styles.left}>
           <h2>Nossos Professores</h2>
@@ -65,7 +58,7 @@ export default function ProfessoresComponent(props: any) {
       {props.errorsProfessores.length <= 0 ? (
         <>
           <div className={styles.professoresTodos}>
-            {props.profsAll
+            {professores
               ?.filter((p: any) => {
                 if (professor === "" || professor?.trim() === "") {
                   return p;
@@ -77,26 +70,7 @@ export default function ProfessoresComponent(props: any) {
                 }
               })
               .map((x: ProfessorReq, index: any) => (
-                <div key={index} className={styles.professor}>
-                  <Image
-                    priority
-                    style={{ maxWidth: "100%", height: "auto" }}
-                    src={
-                      `https://www.sgpsolucoes.com.br/crm/imagens_sistema/fotosprofessores/${x.nomearquivofoto}` ||
-                      "https://pbs.twimg.com/profile_images/956910864698953730/FDAqZ5hv_400x400.jpg"
-                    }
-                    alt={"Professor(a) - " + x.nome}
-                    width={294}
-                    height={362}
-                    className={"imgOnHover"}
-                  />
-                  <div role="button" onClick={() => modalState(x)}>
-                    <span className={styles.nomeProfessor}>{x.nome}</span>
-                    <span>
-                      <BsPersonCircle /> Conferir detalhes
-                    </span>
-                  </div>
-                </div>
+                <CardProfessor professor={x} index={index} />
               ))}
           </div>
           {professores?.length === 6 ? (
@@ -105,38 +79,15 @@ export default function ProfessoresComponent(props: any) {
               <b style={{ cursor: "pointer" }}>clicando aqui!</b>
             </p>
           ) : (
-            <p role={"button"} onClick={changeQuantidadeFotosProfessores}>
+            <p
+              role={"button"}
+              onClick={() => {
+                changeQuantidadeFotosProfessores();
+              }}
+            >
               <b style={{ cursor: "pointer" }}>Ver menos</b>
             </p>
           )}
-
-          <Transition appear show={isModalOpen} as={Fragment}>
-            <Dialog
-              as="div"
-              style={{ zIndex: 50 }}
-              onClose={() => setIsModalOpen(false)}
-            >
-              <div className={styles.fullBodyModal}>
-                <div className={styles.bodyModalStarted}>
-                  <Dialog.Panel className={styles.modalPanel}>
-                    <div
-                      className={styles.voltarParaInicio}
-                      onClick={() => setIsModalOpen(false)}
-                    >
-                      <BsArrowLeftCircle />
-                      <span>Voltar para o início</span>
-                    </div>
-                    <Dialog.Title as="h3" className={styles.modalTitle}>
-                      <span>{modalContent?.nome} - Currículo</span>
-                    </Dialog.Title>
-                    <div className={styles.contentAboveTitle}>
-                      <span>{modalContent?.qualificacao}</span>
-                    </div>
-                  </Dialog.Panel>
-                </div>
-              </div>
-            </Dialog>
-          </Transition>
         </>
       ) : (
         <ErrorMessageReq />
