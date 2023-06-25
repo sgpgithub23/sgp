@@ -34,12 +34,8 @@ export default function SolucoesInovadoras() {
           </p>
 
           <div className={styles.buttonFrase}>
-            <b>Tradicional, tributário e RH | DP | eSocial</b>
-            <Button
-              onClick={() => push("#lista")}
-              color="blue"
-              title="Saber Mais!"
-            />
+            <b>Tradicional, tributário e RH | DP | eSocial</b>A Orientação SGP
+            presta suporte técnico-jurídico aos assinantes
           </div>
         </div>
       </section>
@@ -119,7 +115,6 @@ export default function SolucoesInovadoras() {
       <section className={styles.image}>
         <div className={styles.texto}>
           <hr />
-
           <p>
             A Orientação SGP presta suporte técnico-jurídico aos assinantes dos
             nossos periódicos mensais, por meio de orientações escritas,
@@ -132,6 +127,15 @@ export default function SolucoesInovadoras() {
             horas, orientações escritas e seguras, que refletem o atual
             entendimento da Orientação SGP e certamente auxiliarão na tomada de
             decisão de cada órgão ou entidade.
+          </p>
+          <p>
+            <Button
+              color="blue"
+              title="Saber mais"
+              onClick={() => {
+                push("/contato");
+              }}
+            />
           </p>
         </div>
       </section>

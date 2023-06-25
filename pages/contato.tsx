@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { FormEvent, useRef, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import Input from "@/components/Input";
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/Contato.module.scss";
@@ -54,8 +54,12 @@ const initialValues = {
 };
 
 export default function Contato() {
-  const { push } = useRouter();
+  const {
+    push,
+    query: { assuntoForm },
+  } = useRouter();
   const captchaRef = useRef(null);
+
   const [recaptchaResponse, setRecaptchaResponse] = useState<any>();
 
   const {
@@ -63,11 +67,16 @@ export default function Contato() {
     formState: { errors, isValid, isSubmitting },
     getValues,
     reset,
+    setValue,
   } = useForm<FormContato>({
     defaultValues: initialValues,
     mode: "all",
     resolver: yupResolver(schema),
   });
+
+  useEffect(() => {
+    setValue("assunto", String(assuntoForm));
+  }, [assuntoForm]);
 
   function getIconByName(rede: string) {
     if (rede === "Facebook") {

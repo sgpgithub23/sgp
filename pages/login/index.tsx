@@ -8,8 +8,7 @@ import { FooterCompleto } from "@/components/FooterCompleto";
 import Button from "@/components/Button";
 import { useRouter } from "next/router";
 
-export default function Login({isInternal}: any) {
-
+export default function Login({ isInternal }: any) {
   const [isAreaCliente, setIsAreaCliente] = useState<boolean>(true);
   const [isTelaPreencherCampo, setIsTelaPreencherCampo] =
     useState<boolean>(false);
@@ -34,7 +33,6 @@ export default function Login({isInternal}: any) {
           setIsAreaCliente={setIsAreaCliente}
           setIsFormAlterarSenha={setIsFormAlterarSenha}
           isInternal={isInternal}
-
         />
       );
     }
@@ -46,7 +44,6 @@ export default function Login({isInternal}: any) {
           setIsAreaCliente={setIsAreaCliente}
           setIsFormAlterarSenha={setIsFormAlterarSenha}
           isInternal={isInternal}
-
         />
       );
     }
@@ -102,7 +99,7 @@ function LoginPrincipal(props: any) {
                 <Input
                   type="password"
                   label="Senha"
-                  placeholder="Senha de 8 caracteres"
+                  placeholder="Insira sua senha"
                 />
               </div>
               <a
@@ -121,8 +118,7 @@ function LoginPrincipal(props: any) {
             </form>
           ) : (
             <h2>Não é permitido acessar diretamente pela url.</h2>
-          )} 
-         
+          )}
         </div>
         <div className={styles.imagemRight}></div>
       </div>
@@ -244,13 +240,15 @@ function RecuperacaoSenha(props: any) {
   );
 }
 
-export async function getServerSideProps({req}: any) {
-  const referer = req.headers.referer || '';
-  const isInternal = referer.startsWith(process.env.NEXT_PUBLIC_ENVIRONMENT_URL);
+export async function getServerSideProps({ req }: any) {
+  const referer = req.headers.referer || "";
+  const isInternal = referer.startsWith(
+    process.env.NEXT_PUBLIC_ENVIRONMENT_URL
+  );
 
   return {
     props: {
-      isInternal
-    }
-  }
+      isInternal,
+    },
+  };
 }

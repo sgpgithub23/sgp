@@ -1,18 +1,19 @@
 import Head from "next/head";
-import React, { FormEvent } from "react"
+import React, { FormEvent, useEffect } from "react";
 import Navbar from "@/components/Navbar";
-import styles from '@/styles/Documentacoes.module.scss'
+import styles from "@/styles/Documentacoes.module.scss";
 import * as yup from "yup";
 import { FooterCompleto } from "@/components/FooterCompleto";
-import {  AiOutlinePaperClip } from "react-icons/ai";
+import { AiOutlinePaperClip } from "react-icons/ai";
 import Image from "next/image";
 import { CertidoesDeclaracoes } from "@/utils/certidoes-declaracoes";
+import { useRouter } from "next/router";
 
 const schema = yup.object().shape({
   nome: yup.string().required("Campo obrigatório"),
   email: yup.string().required("Campo obrigatório"),
   mensagem: yup.string().required("Campo obrigatório"),
-  arquivo: yup.mixed().nullable().required('A file is required'),
+  arquivo: yup.mixed().nullable().required("A file is required"),
   assunto: yup.string().required("Campo obrigatório"),
   celular: yup.string().required("Campo obrigatório"),
   conheceusgp: yup.string().required("Campo obrigatório"),
@@ -26,18 +27,18 @@ const initialValues = {
   nome: "",
   email: "",
   mensagem: "",
-  arquivo: "", 
-  assunto: "", 
-  celular: "", 
-  conheceusgp: "", 
+  arquivo: "",
+  assunto: "",
+  celular: "",
+  conheceusgp: "",
   dataEnvio: undefined,
-  empresa: "", 
-  facebook: "", 
-  telComl: ""
-}
+  empresa: "",
+  facebook: "",
+  telComl: "",
+};
 
 export default function Documentacoes() {
-
+  const { push } = useRouter();
 
   return (
     <div className={styles.main}>
@@ -53,12 +54,35 @@ export default function Documentacoes() {
         <div className={styles.mainContentForm}>
           <div className={styles.introduction}>
             <h2>Documentações SGP</h2>
-            <span>Caro cliente, aqui se encontra a lista de documentações para que possa <b>realizar download.</b> </span>
-            <span>Caso não encontre a documentação necessária, acesse este link <b>"Minha Documentação"</b> e solicite à SGP Soluções.</span>
-            
+            <span>
+              Caro cliente, aqui se encontra a lista de documentações para que
+              possa <b>realizar download.</b>{" "}
+            </span>
+            <span>
+              Caso não encontre a documentação necessária, acesse este link{" "}
+              <b
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  push({
+                    pathname: "/contato",
+                    query: {
+                      assuntoForm: "Minha Documentação",
+                    },
+                  });
+                }}
+              >
+                "Minha Documentação"
+              </b>{" "}
+              e solicite à SGP Soluções.
+            </span>
+
             <ul>
               <li>Informações cadastrais</li>
-              <li>SGP Soluções em Gestão Pública | CNPJ: 29.759.932/0001-02 | Rua Sete de Abril, 282 - Conj: 113 - 11º andar - CEP: 01044-905 - República - São Paulo - SP</li>
+              <li>
+                SGP Soluções em Gestão Pública | CNPJ: 29.759.932/0001-02 | Rua
+                Sete de Abril, 282 - Conj: 113 - 11º andar - CEP: 01044-905 -
+                República - São Paulo - SP
+              </li>
             </ul>
             <div className={styles.imgDiv}>
               <Image
@@ -69,25 +93,25 @@ export default function Documentacoes() {
                 height={435}
               />
             </div>
-            
           </div>
           <div className={styles.documentacoes}>
-            <h2 className={styles.certidao} >Demais documentações</h2>
+            <h2 className={styles.certidao}>Demais documentações</h2>
             <p className={styles.documentacaoBaixar}>
-              <AiOutlinePaperClip  style={{fontSize: "20px"}} /> <span>Cadastro Nacional de Pessoa Jurídica - CNPJ</span>
+              <AiOutlinePaperClip style={{ fontSize: "20px" }} />{" "}
+              <span>Cadastro Nacional de Pessoa Jurídica - CNPJ</span>
             </p>
-            <h2 className={styles.certidao} style={{marginTop: "30px"}}>Certidões e Declarações</h2>
+            <h2 className={styles.certidao} style={{ marginTop: "30px" }}>
+              Certidões e Declarações
+            </h2>
             <div className={styles.certidoesDeclaracoesMap}>
-              {CertidoesDeclaracoes.map(({titulo, link}, i) => (
+              {CertidoesDeclaracoes.map(({ titulo, link }, i) => (
                 <p className={styles.documentacaoBaixar} key={i}>
-                  <AiOutlinePaperClip style={{fontSize: "20px"}} /> 
+                  <AiOutlinePaperClip style={{ fontSize: "20px" }} />
                   <span>{titulo}</span>
                 </p>
               ))}
             </div>
-            
           </div>
-  
         </div>
       </div>
       <FooterCompleto />
