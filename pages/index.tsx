@@ -95,15 +95,16 @@ export default function Home({
     const size =
       viewportWidth > 1920
         ? "1920"
-        : viewportWidth > 1600
+        : viewportWidth > 1600 && viewportWidth <= 1920
         ? "1600"
-        : viewportWidth > 1100
+        : viewportWidth > 1100 && viewportWidth <= 1600
         ? "1100"
-        : viewportWidth < 1100 && viewportWidth > 410
+        : viewportWidth > 700 && viewportWidth <= 1100
         ? "800"
         : "410";
 
     const auxSize = auxArr.filter((x) => x.formato === size);
+    console.log("size", size);
     setMainCarouselImg(auxSize);
   }, [windowWidth]);
 
