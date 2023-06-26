@@ -88,8 +88,90 @@ body {
   &:hover {
     transform: scale(1.02);
   }
+}
 
+.spinner-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
 
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100px;
+  width: 100px;
+  margin: 0 auto;
+  -webkit-animation: pulse 1.6s infinite linear;
+  -moz-animation: pulse 1.6s infinite linear;
+  -o-animation: pulse 1.6s infinite linear;
+  animation: pulse 1.6s infinite linear;
+}
+
+.spinner img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
+  
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 
+@-o-keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}

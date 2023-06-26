@@ -60,10 +60,10 @@ export default function Home({
 
   useEffect(() => {
     if (errosImagesCarouselPrincipal.length <= 0) {
-      // const interval = setInterval(() => {
-      //   carouselApresentacao?.slideToNextItem();
-      // }, 8000);
-      // return () => clearInterval(interval);
+      const interval = setInterval(() => {
+        carouselApresentacao?.slideToNextItem();
+      }, 8000);
+      return () => clearInterval(interval);
     }
     if (errosClientes.length <= 0) {
       const interval = setInterval(() => {
@@ -509,14 +509,16 @@ export default function Home({
                 </p>
               </div>
             </div>
-            <div className={styles.foto}>
-              <Image
-                alt="Foto referente a cidade de São Paulo"
-                src="/images/homepage/cidadesp.webp"
-                height={335}
-                width={1216}
-              />
-              <p>Foto centro de São Paulo</p>
+            <div className={styles.fotoSpace}>
+              <div className={styles.foto}>
+                <Image
+                  alt="Foto referente a cidade de São Paulo"
+                  src="/images/homepage/sp.webp"
+                  height={335}
+                  width={1216}
+                />
+                <p>Foto centro de São Paulo</p>
+              </div>
             </div>
           </div>
         </div>
