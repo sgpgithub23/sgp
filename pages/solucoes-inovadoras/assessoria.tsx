@@ -44,7 +44,7 @@ export default function SolucoesInovadoras() {
               equipe altamente qualificada.{" "}
             </p>
           </div>
-          <div className={styles.right}>
+          {/* <div className={styles.right}>
             <Image
               alt="Fly falando sobre Assessoria On-line Hora Certa"
               src="/images/solucoes-inovadoras/assessoria/header.webp"
@@ -52,7 +52,7 @@ export default function SolucoesInovadoras() {
               height={323}
               className={"imgOnHover"}
             />
-          </div>
+          </div> */}
         </div>
       </section>
       <div className={styles.pageSize} id="mais">
@@ -136,7 +136,7 @@ export default function SolucoesInovadoras() {
               />
             </div>
           </div>
-          <div className={styles.img}></div>
+          {/* <div className={styles.img}></div> */}
           {/* <div className={styles.professores}>
             <h1>Corpo docente</h1>
             <p>

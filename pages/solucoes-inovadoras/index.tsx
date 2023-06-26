@@ -34,8 +34,7 @@ export default function SolucoesInovadoras() {
           </p>
 
           <div className={styles.buttonFrase}>
-            <b>Tradicional, tributário e RH | DP | eSocial</b>A Orientação SGP
-            presta suporte técnico-jurídico aos assinantes
+            <b>Tradicional, tributário e RH | DP | eSocial</b>
           </div>
         </div>
       </section>

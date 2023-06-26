@@ -1,8 +1,8 @@
 @use '_index.scss' as *;
 
 .content {
-    background-color: $dark-blue-black;
-    background-position: center;
+    background-image: url("/images/solucoes-inovadoras/banner-orientacoes.webp");
+    background-position: unset ;
     min-width: 100vw;
     height: 356.8px;
     background-size: cover;
@@ -11,17 +11,17 @@
     justify-content: center;
     position: relative;
 
-    .bluredBall {
-        position: absolute;
-        height: 60%;
-        width: 20%;
-        top: 0;
-        left: 50%;
-        border-radius: 50%;
-        z-index: 0;
-        background-color: $blue-100;
-        filter: blur(7rem);
-    }
+    // .bluredBall {
+    //     position: absolute;
+    //     height: 60%;
+    //     width: 20%;
+    //     top: 0;
+    //     left: 50%;
+    //     border-radius: 50%;
+    //     z-index: 0;
+    //     background-color: $blue-100;
+    //     filter: blur(7rem);
+    // }
 
     & > .headerContent {
         width: 30%;
@@ -54,6 +54,7 @@
             display: flex;   
             justify-content: space-between;
             gap: 20px;
+            color: white;
 
             & > b {
                 color: white;
@@ -673,10 +674,11 @@
     }
 }
 
-@media (max-width: 1145px) {
+
+@media (min-width: 1145px){
     .main {
         & > .content {
-            background-position: center;
+            background-position: unset;
             min-width: 100vw;
             height: 356.8px;
             background-size: cover;
@@ -697,6 +699,12 @@
             }
         
         }
+    }
+}
+
+@media (max-width: 1145px) {
+    .main {
+      
 
         .image {
             .texto {
@@ -901,7 +909,6 @@
 
 @media (max-width: 861px) {
     .content {
-
         background-position: center;
         min-width: 100vw;
         height: 356.8px;
@@ -949,14 +956,14 @@
 @media (max-width: 625px) {
     .content {
         // background-image: url('../public/images/cursos-treinamentos/homem-sorrindo.webp');
-        background-position: center;
+        background-position: right;
         min-width: 100vw;
         height: 356.8px;
         background-size: cover;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        position: relative;
+        position: relative; 
     
         & > .headerContent {
             width: 90%;
@@ -978,7 +985,7 @@
 @media (max-width: 625px) {
     .content {
         // background-image: url('../public/images/cursos-treinamentos/homem-sorrindo.webp');
-        background-position: center;
+        background-position: center left;
         min-width: 100vw;
         min-height: 356.8px;
         height: auto;
@@ -1294,13 +1301,7 @@
                 width: 80%;
                 
                 & > .buttonFrase {
-                    > b {
-                        display: none;
-                    }
-
-                    > button {
-                        width: 100%;
-                    }
+                 
                 }
             }
         }
@@ -1475,4 +1476,16 @@
         }
         
     } 
+}
+
+@media (max-width: 290px){
+    .content {
+        & > .headerContent {
+            width: 80%;
+
+            .buttonFrase {
+                display: none;
+            }
+        }
+    }
 }
