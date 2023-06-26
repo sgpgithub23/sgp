@@ -2,6 +2,8 @@
 
 .content {
     background-color: $dark-blue-black;
+    background-image: url('../public/images/solucoes-inovadoras/projeto/banner-projeto-sgp.webp');
+
     background-position: center;
     min-width: 100vw;
     min-height: 356.8px;
@@ -13,17 +15,7 @@
     align-items: center;
     position: relative;
 
-    .bluredBall {
-        position: absolute;
-        height: 60%;
-        width: 20%;
-        top: 0;
-        left: 50%;
-        border-radius: 50%;
-        z-index: 0;
-        background-color: $blue-100;
-        filter: blur(7rem);
-    }
+   
 
     & > .headerContent {
         width: 80%;

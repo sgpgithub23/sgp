@@ -40,15 +40,6 @@ export default function SolucoesInovadoras() {
               Cargos e Salários dos Servidores Municipais.
             </p>
           </div>
-          <div className={styles.right}>
-            <Image
-              alt="Fly falando sobre Assessoria On-line Hora Certa"
-              src="/images/solucoes-inovadoras/projeto/martelo.webp"
-              width={453}
-              height={323}
-              className={"imgOnHover"}
-            />
-          </div>
         </div>
       </section>
       <div className={styles.pageSize}>
@@ -110,7 +101,11 @@ export default function SolucoesInovadoras() {
                 Municipais e Reestruturação de Cargos e Salários dos Servidores
                 Municipais.
               </p>
-              <Button color="blue" title="Solicite um orçamento" />
+              <Button
+                color="blue"
+                title="Solicite um orçamento"
+                onClick={() => push("/contato")}
+              />
             </div>
             <div className={styles.imageLei}>
               <Image
