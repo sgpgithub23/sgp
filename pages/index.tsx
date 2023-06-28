@@ -43,6 +43,10 @@ import { extractErrorMessages } from "@/utils/tratamento-erros";
 import { Depoimento } from "@/typings/Depoimentos";
 import { ErrorMessageReq } from "@/components/ReqErrorMessage";
 // import size from "window-size";
+import teste1 from "../public/teste1.webp";
+import teste2 from "../public/teste2.webp";
+
+const urls = [teste1.src, teste2.src];
 
 export default function Home({
   imgsJson,
@@ -123,14 +127,14 @@ export default function Home({
     // @ts-ignore
     items:
       errosImagesCarouselPrincipal.length <= 0
-        ? mainCarouselImg.map((x: RegularImageType, index: number) => ({
+        ? urls.map((x: string, index: number) => ({
             id: index,
             renderItem: (
               <div
-                className={styles[x.nomeclass]}
-                onClick={() => linkToUrlBannerCarousel(x.caminhohref)}
+                className={styles.img410}
+                // onClick={() => linkToUrlBannerCarousel(x.caminhohref)}
                 style={{
-                  backgroundImage: `url(${x.caminhoimagem})`,
+                  backgroundImage: `url(${x})`,
                   cursor: "pointer",
                 }}
               ></div>
