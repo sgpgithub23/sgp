@@ -93,13 +93,13 @@ export default function Home({
     setWindowWidth(viewportWidth);
 
     const size =
-      viewportWidth > 1600
+      viewportWidth > 1920
         ? "1920"
-        : viewportWidth > 1600 && viewportWidth <= 1100
+        : viewportWidth < 1920 && viewportWidth >= 1600
         ? "1600"
-        : viewportWidth > 800 && viewportWidth <= 1100
+        : viewportWidth < 1600 && viewportWidth >= 1100
         ? "1100"
-        : viewportWidth > 800 && viewportWidth <= 410
+        : viewportWidth < 1100 && viewportWidth >= 800
         ? "800"
         : "410";
 
