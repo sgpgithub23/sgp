@@ -35,12 +35,18 @@ export default function App({ Component, pageProps }: AppProps) {
       setLoading(false);
     };
 
+    const handleRouteError = () => {
+      setLoading(false);
+    };
+
     router.events.on("routeChangeStart", handleRouteStart);
     router.events.on("routeChangeComplete", handleRouteComplete);
+    router.events.on("routeChangeError", handleRouteError);
 
     return () => {
       router.events.off("routeChangeStart", handleRouteStart);
       router.events.off("routeChangeComplete", handleRouteComplete);
+      router.events.on("routeChangeError", handleRouteError);
     };
   }, [router]);
 
