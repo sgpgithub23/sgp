@@ -136,22 +136,25 @@ export default function Home({
     // @ts-ignore
     items:
       errosImagesCarouselPrincipal.length <= 0
-        ? mainCarouselImg.map((x: RegularImageType, index: number) => ({
-            id: index,
-            renderItem: (
-              <div
-                className={styles[x.nomeclass]}
-                onClick={() => linkToUrlBannerCarousel(x.caminhohref)}
-                style={{
-                  backgroundImage: `url(${x.caminhoimagem})`,
-                  cursor: "pointer",
-                }}
-              ></div>
-            ),
-          }))
+        ? mainCarouselImg.map((x: RegularImageType, index: number) => {
+            console.warn(index, x);
+            return {
+              id: `item-${index}`,
+              renderItem: (
+                <div
+                  className={styles[x.nomeclass]}
+                  onClick={() => linkToUrlBannerCarousel(x.caminhohref)}
+                  style={{
+                    backgroundImage: `url(${x.caminhoimagem})`,
+                    cursor: "pointer",
+                  }}
+                ></div>
+              ),
+            };
+          })
         : [
             {
-              id: "item-1",
+              id: "item-ajsdkjasdkj1",
               renderItem: (
                 <div
                   style={{
@@ -411,7 +414,10 @@ export default function Home({
     console.group("teste");
     console.log(mainCarouselImg.length, mainCarouselImg);
     console.groupEnd();
-    if (mainCarouselImg.length > 0) {
+    if (
+      mainCarouselImg.length > 0 &&
+      errosImagesCarouselPrincipal.length <= 0
+    ) {
       if (direction === "next") {
         carouselApresentacao?.slideToNextItem();
       }
