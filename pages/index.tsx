@@ -59,18 +59,31 @@ export default function Home({
   );
 
   useEffect(() => {
-    if (errosImagesCarouselPrincipal.length <= 0) {
+    if (
+      errosImagesCarouselPrincipal.length <= 0 &&
+      mainCarouselImg.length > 0
+    ) {
+      console.group("MAIN CAROUSEL ERRORS");
+      console.log("DADOS CROUSEL principal", mainCarouselImg);
+      console.log("SIZE principal", mainCarouselImg.length);
+      console.groupEnd();
+
       const interval = setInterval(() => {
         carouselApresentacao?.slideToNextItem();
       }, 8000);
       return () => clearInterval(interval);
     }
-    if (errosClientes.length <= 0) {
+    if (errosClientes.length <= 0 && clientes.length > 0) {
+      console.group("CLIENTES CAROUSEL ERRORS");
+
+      console.log("DADOS CROUSEL clientes", clientes);
+      console.log("SIZE clientes", clientes.length);
       const interval = setInterval(() => {
         carouselParceiros?.slideToNextItem();
       }, 8000);
       return () => clearInterval(interval);
     }
+    console.groupEnd();
   }, []);
 
   useEffect(() => {
@@ -394,6 +407,20 @@ export default function Home({
     ],
   });
 
+  function moveCarousel(direction: "next" | "prev") {
+    console.group("teste");
+    console.log(mainCarouselImg.length, mainCarouselImg);
+    console.groupEnd();
+    if (mainCarouselImg.length > 0) {
+      if (direction === "next") {
+        carouselApresentacao?.slideToNextItem();
+      }
+      if (direction === "prev") {
+        carouselApresentacao?.slideToPrevItem();
+      }
+    }
+  }
+
   function getIconByName(rede: string) {
     if (rede === "Facebook") {
       return <BsFacebook />;
@@ -433,14 +460,14 @@ export default function Home({
         <div className={styles.carouselSpace}>
           <button
             className={styles.slideToPrevItem}
-            onClick={carouselApresentacao?.slideToPrevItem}
+            onClick={() => moveCarousel("prev")}
           >
             <BsArrowLeftCircle />
           </button>
           {carouselApresentacao?.carouselFragment}
           <button
             className={styles.slideToNextItem}
-            onClick={carouselApresentacao?.slideToNextItem}
+            onClick={() => moveCarousel("next")}
           >
             <BsArrowRightCircle />
           </button>
