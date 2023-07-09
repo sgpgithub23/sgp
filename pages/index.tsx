@@ -57,6 +57,22 @@ export default function Home({
   const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(
     cloneDeep(imgsJson)
   );
+  const [seconds, setSeconds] = useState(0);
+  const [increment, setIncrement] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIncrement((prevIncrement) => prevIncrement + 1);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  useEffect(() => {
+    carouselApresentacao.slideToNextItem();
+  }, [increment]);
 
   useEffect(() => {
     function atualizarTamanhoViewport() {
@@ -387,7 +403,6 @@ export default function Home({
       errosImagesCarouselPrincipal.length <= 0
     ) {
       if (direction === "next") {
-        console.log("carouselApresentacao", carouselApresentacao);
         carouselApresentacao?.slideToNextItem();
       }
       if (direction === "prev") {
