@@ -502,7 +502,7 @@ export default function SolucoesInovadoras() {
             <div className={styles.informacoes}>
               <span>12 Encontros</span>
               <span>36 Horas</span>
-              <span>Com certificado!</span>
+              <span id="projeto-regulamentacao">Com certificado!</span>
             </div>
           </div>
         </div>
