@@ -300,7 +300,7 @@ export default function SolucoesInovadoras() {
               title="Entre em contato"
             />
           </div>
-          <div className={styles.img}>
+          <div className={styles.img} id="pos-graduacao">
             <Image
               src="/images/solucoes-inovadoras/direito.webp"
               width={592}
@@ -312,10 +312,7 @@ export default function SolucoesInovadoras() {
           </div>
         </div>
       </section>
-      <section
-        className={styles.mbaLicitacoesContratacoesADM}
-        id="pos-graduacao"
-      >
+      <section className={styles.mbaLicitacoesContratacoesADM}>
         <h1>MBA em Licitações e Contratações da Administração Pública</h1>
         <hr />
         <div>
