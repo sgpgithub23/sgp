@@ -63,7 +63,7 @@ export default function Home({
   useEffect(() => {
     const interval = setInterval(() => {
       setIncrement((prevIncrement) => prevIncrement + 1);
-    }, 1000);
+    }, 8000);
 
     return () => {
       clearInterval(interval);
