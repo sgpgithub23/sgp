@@ -104,11 +104,6 @@ export default function CursosTreinamentos({
             participantes a oportunidade de seu aperfeiçoamento e capacitação
             devidamente certificada.
           </p>
-          <Button
-            color="blue"
-            title="Saber Mais!"
-            onClick={mudaPOsicaoPaginaSaberMais}
-          />
         </div>
       </div>
       <div className={styles.pageSize} id="aulas">

@@ -44,13 +44,6 @@ export default function NossosProfessores({
             Conheça nosso corpo docente de excelência e gabarito, que aplicam e
             vivenciam as melhores boas práticas do mercado.
           </p>
-          <Button
-            color="blue"
-            title="Saber Mais!"
-            onClick={() => {
-              push("#professores");
-            }}
-          />
         </div>
       </div>
       <div className={styles.pageSize}>
