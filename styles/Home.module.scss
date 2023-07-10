@@ -755,6 +755,20 @@
 
 // ----------------- CAROUSEL ----------------- //
 
+@media (min-width: 1850px){
+  .img1920 {
+    height: auto;
+    background-size: contain;
+    background-repeat: repeat-y;
+  }
+
+  .carouselSpace {
+    background-color: $dark-blue-2;
+    height: auto;
+    height: 600px;
+  }
+}
+
 // quem somos
 
 @media (max-width: 971px) {

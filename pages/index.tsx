@@ -105,7 +105,7 @@ export default function Home({
         : "410";
 
     const auxSize = auxArr.filter((x) => x.formato === size);
-    console.log("size", size);
+    console.log("auxSize", auxSize);
     setMainCarouselImg(auxSize);
   }, [windowWidth]);
 

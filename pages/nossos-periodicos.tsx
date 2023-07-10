@@ -55,12 +55,15 @@ export default function NossosPeriodicos() {
       ano: ano?.label,
       mes: String(mes?.value),
     };
+
     const res = await fetch(`/api/degustacaoperiodicos`, {
       method: "POST",
       body: JSON.stringify(data),
     });
+
     const result = await res.json();
     if (result.errors) {
+      console.log("result.errors", result.errors);
       setIsLoading(false);
       result.errors.map((err: any) => {
         notify.error(err);
