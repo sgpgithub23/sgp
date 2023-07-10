@@ -80,7 +80,7 @@ export default function Documentacoes() {
               <li>Informações cadastrais</li>
               <li>
                 SGP Soluções em Gestão Pública | CNPJ: 29.759.932/0001-02 | Rua
-                Sete de Abril, 252 | 12° Andar | Cj: 120/121 - CEP: 01044-905 -
+                Sete de Abril, 252 | 12° Andar | Cj: 120/121 - CEP: 01044-903 -
                 República - São Paulo - SP
               </li>
             </ul>

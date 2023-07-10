@@ -606,16 +606,15 @@ export default function Home({
                 onClick={carouselDepoimentos.slideToNextItem}
                 className={styles.arrowRight}
               />
-              <span>Clique nos botões para interagir</span>
+              <span id="periodicos-mensais">
+                Clique nos botões para interagir
+              </span>
             </div>
           )}
         </div>
       </section>
 
-      <section
-        className={styles.periodicosExclusivosAll}
-        id="periodicos-mensais"
-      >
+      <section className={styles.periodicosExclusivosAll}>
         <div className={styles.periodicosExclusivos}>
           <div className={styles.periodicos}>
             <div className={styles.introducao}>

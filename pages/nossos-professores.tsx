@@ -41,8 +41,8 @@ export default function NossosProfessores({
           <h1>Conheça nossos professores</h1>
           <hr />
           <p>
-            Conheça nosso corpo docente de excelência e gabarito, que aplicam e
-            vivenciam as melhores boas práticas do mercado.
+            Conheça nosso corpo docente de excelência, que aplicam boas práticas
+            de mercado.
           </p>
         </div>
       </div>

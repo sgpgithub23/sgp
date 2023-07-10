@@ -93,11 +93,7 @@ export default function NossosPeriodicos() {
         <div className={styles.headerContent}>
           <h1>Nossos periódicos</h1>
           <hr />
-          <p>
-            {" "}
-            Edição reduzida para degustação. Informe-se também sobre cursos e
-            treinamentos em nosso site.{" "}
-          </p>
+          <p> Edição reduzida para degustação.</p>
         </div>
       </div>
       <div className={styles.pageSize}>
@@ -220,6 +216,11 @@ export default function NossosPeriodicos() {
 
           <div className={styles.descricao}>
             <h1>Conheça nossas principais soluções Inovadoras</h1>
+            <Button
+              color="blue"
+              title="Conheça agora!"
+              onClick={() => push("/solucoes-inovadoras")}
+            />
             <div>
               <BookOpen strokeColor="#ffffff" />
               <span>
@@ -228,11 +229,6 @@ export default function NossosPeriodicos() {
                 atendimento.
               </span>
             </div>
-            <Button
-              color="blue"
-              title="Conhecer agora!"
-              onClick={() => push("/solucoes-inovadoras")}
-            />
           </div>
           <div className={styles.imagem}>
             <Image
