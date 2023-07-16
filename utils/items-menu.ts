@@ -32,6 +32,11 @@ export const ItemsMenu: TItemsMenu[] = [
     url: "/solucoes-inovadoras",
     className: "SolucoesInovadoras",
   },
+  {
+    title: "Publique Conosco",
+    url: "/publique-conosco",
+    className: "PubliqueConosco",
+  },
   // {
   //   title: "Canal SGP",
   //   url: "/canal-sgp",

@@ -1,0 +1,231 @@
+@use "_index.scss" as *;
+
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; 
+  background-color: $dark-blue-2;
+
+
+    & > .pageSize {
+        width: 80%;
+        margin-top: 6rem;
+        margin-bottom: 4rem;
+    }}
+
+
+.degustacaoAll {
+  margin-bottom: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $dark-blue-2;
+
+  & > .degustacao {
+    width: 80%;
+    border-radius: 16px;
+    padding-block: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    align-items: center;
+    color: $grey-500;
+
+    & > .leftSide {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+
+      h1 {
+        color: $dark-blue-100;
+      }
+
+      & > .livroExplicacao {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        gap: 15px;
+        align-items: center;
+      }
+    }
+
+    & > .rightSide {
+      display: grid;
+      grid-template-columns: repeat(2, 50%);
+      align-items: center;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      img {
+        max-width: 100%;
+        height: auto;
+        transition: 0.2s ease all;
+
+        &:hover {
+          transform: scale(1.04);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1151px) {
+  .degustacaoAll {
+    & > .degustacao {
+      display: grid;
+      // padding: 30px 50px;
+      grid-template-columns: repeat(2, 50%);
+    }
+  }
+}
+
+@media (max-width: 963px) {
+  .degustacaoAll {
+    & > .degustacao {
+      display: grid;
+      grid-template-columns: repeat(1, 100%);
+      gap: 40px;
+    }
+  }
+}
+
+@media (max-width: 861px) {
+  .degustacaoAll {
+    margin-bottom: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $dark-blue-2;
+
+    & > .degustacao {
+      width: 80%;
+      border-radius: 16px;
+      padding-block: 40px;
+      display: grid;
+      grid-template-columns: repeat(1, 100%);
+      align-items: center;
+      color: $grey-500;
+
+      & > .leftSide {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+
+        h1 {
+          color: $dark-blue-100;
+        }
+
+        & > .livroExplicacao {
+          display: grid;
+          grid-template-columns: repeat(2, auto);
+          gap: 15px;
+          align-items: center;
+        }
+      }
+
+      & > .rightSide {
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+        align-items: center;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        img {
+          max-width: 100%;
+          height: auto;
+          transition: 0.2s ease all;
+
+          &:hover {
+            transform: scale(1.04);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 603px) {
+  .degustacaoAll {
+    & > .degustacao {
+      & > .leftSide {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+
+        & > .livroExplicacao {
+          display: grid;
+          grid-template-columns: repeat(2, auto);
+          gap: 15px;
+          align-items: center;
+
+          & > img {
+            width: 30px;
+            height: 30px;
+            padding: 5px;
+            border: 1px solid $grey-100;
+            border-radius: 5px;
+          }
+        }
+      }
+
+      & > .rightSide {
+        display: grid;
+        grid-template-columns: repeat(1, 100%);
+        align-items: center;
+        gap: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 467px) {
+  .degustacaoAll {
+    & > .degustacao {
+      width: 80%;
+      border-radius: 0;
+
+      & > .leftSide {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        > h1 {
+          text-align: center;
+        }
+
+        & > .livroExplicacao {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 15px;
+          align-items: center;
+          text-align: center;
+          // justify-content: center;
+
+          & > img {
+            width: 30px;
+            height: 30px;
+            padding: 5px;
+            border: 1px solid $grey-100;
+            border-radius: 5px;
+          }
+        }
+      }
+
+      & > .rightSide {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+        justify-content: center;
+      }
+    }
+  }
+}
