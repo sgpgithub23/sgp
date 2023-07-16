@@ -17,15 +17,16 @@ export const ItemsMenu: TItemsMenu[] = [
     className: "CursosTreinamentos",
   },
   {
-    title: "Nossos Professores",
-    url: "/nossos-professores",
-    className: "NossosProfessores",
-  },
-  {
     title: "Agenda",
     url: "/agenda",
     className: "Agenda",
   },
+  {
+    title: "Nossos Professores",
+    url: "/nossos-professores",
+    className: "NossosProfessores",
+  },
+
   {
     title: "Soluções Inovadoras",
     url: "/solucoes-inovadoras",
@@ -36,11 +37,7 @@ export const ItemsMenu: TItemsMenu[] = [
   //   url: "/canal-sgp",
   //   className: "CanalSGP",
   // },
-  {
-    title: "Documentações",
-    url: "/documentacoes",
-    className: "Documentacoes",
-  },
+  
   {
     title: "Contato",
     url: "/contato",
@@ -65,5 +62,10 @@ export const ItemsMenu: TItemsMenu[] = [
     title: "Galeria de Fotos",
     url: "/galeria",
     className: "GaleriaFotos",
+  },
+  {
+    title: "Documentações",
+    url: "/documentacoes",
+    className: "Documentacoes",
   },
 ];

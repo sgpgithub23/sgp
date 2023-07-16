@@ -86,7 +86,6 @@
 }
 
 
-
 .itemsOutros {
     position: absolute;
     top: 4rem;
@@ -147,6 +146,10 @@
     background-color: rgba($grey-details, 0.4);
 }
 
+.Documentacoes {
+    display: none;
+}
+
 @media screen and (max-width:768px) { 
     .active {
         color: white;
@@ -168,7 +171,7 @@
 
 
 @media (max-width: 1588px) {
-    .Agenda, .CanalSGP, .TrabalheConosco, .GaleriaFotos, .Noticias {
+    .CanalSGP, .TrabalheConosco, .GaleriaFotos, .Noticias {
         display: none;
     }
 } 
@@ -199,7 +202,7 @@
 } 
 
 @media (max-width: 790px) {
-    .Outros, .CursosTreinamentos {
+    .Outros, .CursosTreinamentos, .Agenda {
         display: none;
     }
 } 

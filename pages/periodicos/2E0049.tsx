@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/Agenda2030.module.scss";
 import { FooterCompleto } from "@/components/FooterCompleto";
@@ -14,53 +14,86 @@ import { FormMBA } from "@/typings/FormMba";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getColorVariants } from "@/utils/getColorVariants";
-
+import ReCAPTCHA from "react-google-recaptcha";
 
 const schema = yup.object().shape({
   nome: yup.string().required("Campo obrigatório"),
   cpf: yup.string().required("Campo obrigatório"),
   cep: yup.string().required("Campo obrigatório"),
   endereco: yup.string().required("Campo obrigatório"),
-  bairro: yup.mixed().nullable().required('A file is required'),
+  bairro: yup.mixed().nullable().required("A file is required"),
   cidade: yup.string().required("Campo obrigatório"),
   estado: yup.string().required("Campo obrigatório"),
   email: yup.string().required("Campo obrigatório"),
   celular: yup.string().required("Campo obrigatório"),
   telefoneCompl: yup.string().required("Campo obrigatório"),
-  tipoPagamento: yup.array().of(yup.string().nullable()).required("Campo obrigatório"),
-  anexo: yup.mixed().required("*Avatar image is required")
+  tipoPagamento: yup
+    .array()
+    .of(yup.string().nullable())
+    .required("Campo obrigatório"),
+  anexo: yup.mixed().required("*Avatar image is required"),
 });
 
 const initialValues = {
-    nome: "",
-    cpf: "",
-    endereco: "",
-    cep: "",
-    bairro: "",
-    cidade: "",
-    estado: "",
-    email: "",
-    celular: "",
-    telefoneCompl: "",
-    tipoPagamento: "",
-    anexo: null
-}
+  nome: "",
+  cpf: "",
+  endereco: "",
+  cep: "",
+  bairro: "",
+  cidade: "",
+  estado: "",
+  email: "",
+  celular: "",
+  telefoneCompl: "",
+  tipoPagamento: "",
+  anexo: null,
+};
 
 const tiposPagamento = [
-  {id: "pix", label: "PIX"}, 
-  {id: "boleto", label: "Boleto Bancário"}, 
-  {id: "depositoCaixa", label: "Depósito Caixa Econômica Federal"}, 
-  {id: "tedCaixa", label: "TED Caixa Econômica Federal"}, 
-  {id: "debito", label: "Cartão de Débito"}, 
-  {id: "credito", label: "Cartão de Crédito"}, 
-  {id: "naoPagar", label: "Não realizei o pagamento ainda"}, 
-]
+  { id: "pix", label: "PIX" },
+  { id: "boleto", label: "Boleto Bancário" },
+  { id: "depositoCaixa", label: "Depósito Caixa Econômica Federal" },
+  { id: "tedCaixa", label: "TED Caixa Econômica Federal" },
+  { id: "debito", label: "Cartão de Débito" },
+  { id: "credito", label: "Cartão de Crédito" },
+  { id: "naoPagar", label: "Não realizei o pagamento ainda" },
+];
 
 export default function Verde() {
   const { push, pathname } = useRouter();
-  const color = pathname.split("/")[2]
-  const [inputFileName, setInputFileName] = useState<string>("Clique aqui para escolher o arquivo");
-  const { purple1, purple2, bluredPurple } = getColorVariants(color)
+  const color = pathname.split("/")[2];
+  const [inputFileName, setInputFileName] = useState<string>(
+    "Clique aqui para escolher o arquivo"
+  );
+  const { purple1, purple2, bluredPurple } = getColorVariants(color);
+  const captchaRef = useRef(null);
+  const [recaptchaResponse, setRecaptchaResponse] = useState<any>();
+  const onSubmit = async (ev: FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
+
+    const response = await fetch("/api/verify-token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token: recaptchaResponse }),
+    });
+
+    const result = await response.json();
+
+    try {
+      const res = await fetch("/api/sendEmail", {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": process.env.NEXT_PUBLIC_TOKEN!,
+          "x-source": process.env.NEXT_PUBLIC_URL_SMTP_LOCAWEB!,
+          "User-Agent": "locaweb-smtp-nodejs",
+        },
+        method: "POST",
+      });
+      const result = await res.json();
+    } catch (error) {}
+  };
 
   const {
     register,
@@ -81,26 +114,51 @@ export default function Verde() {
       </Head>
       <Navbar />
       {/* style={{backgroundColor: `#${color}`}} */}
-      <section className={styles.content}  style={{backgroundColor: `#${color}`}} >
-        <div className={styles.bluredBall} style={{backgroundColor: `${bluredPurple}`}}></div>
+      <section
+        className={styles.content}
+        style={{ backgroundColor: `#${color}` }}
+      >
+        <div
+          className={styles.bluredBall}
+          style={{ backgroundColor: `${bluredPurple}` }}
+        ></div>
         <div className={styles.headerContent}>
           <div className={styles.left}>
             <div className={styles.mainTitle}>
-              <hr style={{backgroundColor: `${purple2}`, marginBlock: "10px", border: `1px solid ${purple2}`}} />
-              <h2> <strong>A Boa Gestão Pública e o Novo Direito Administrativo:</strong> <em>dos conflitos às melhores soluções práticas</em> </h2>
+              <hr
+                style={{
+                  backgroundColor: `${purple2}`,
+                  marginBlock: "10px",
+                  border: `1px solid ${purple2}`,
+                }}
+              />
+              <h2>
+                {" "}
+                <strong>
+                  A Boa Gestão Pública e o Novo Direito Administrativo:
+                </strong>{" "}
+                <em>dos conflitos às melhores soluções práticas</em>{" "}
+              </h2>
             </div>
           </div>
           <div className={styles.center}>
             <div>
-              <p>Esta importante obra jurídica, com prefácio do Professor Jessé Torres Pereira Junior, caracteriza-se não simplesmente como algo teórico e/ou acadêmico, mas, sim, como mais uma de nossas Soluções práticas, com muita segurança jurídica e que verdadeiramente contribuirá na tomada de decisão dos agentes públicos. São mais de 30 autores do segmento participando!</p>
+              <p>
+                Esta importante obra jurídica, com prefácio do Professor Jessé
+                Torres Pereira Junior, caracteriza-se não simplesmente como algo
+                teórico e/ou acadêmico, mas, sim, como mais uma de nossas
+                Soluções práticas, com muita segurança jurídica e que
+                verdadeiramente contribuirá na tomada de decisão dos agentes
+                públicos. São mais de 30 autores do segmento participando!
+              </p>
             </div>
             <div className={styles.precobtn}>
-              <Button color="blue" title="Saiba mais" style={{backgroundColor: `${purple2}`}} />
               <div>
-                <p>R$ 315,00 <br /> (com frente incluso)</p>
+                <p>
+                  R$ 315,00 <br /> (com frente incluso)
+                </p>
               </div>
             </div>
-            
           </div>
           <div className={styles.right}>
             <Image
@@ -110,64 +168,157 @@ export default function Verde() {
               height={323}
               className={"imgOnHover"}
             />
-            <div className={styles.title}>
-              <h1> MBA em Licitações </h1>
-              <hr />
-            </div>
           </div>
         </div>
       </section>
       <div className={styles.pageSize}>
         <div className={styles.infoProduto}>
           <h1>Informações sobre o produto</h1>
-          <hr style={{backgroundColor: `${purple2}`, border: `1px solid ${purple2}`}}/>
+          <hr
+            style={{
+              backgroundColor: `${purple2}`,
+              border: `1px solid ${purple2}`,
+            }}
+          />
           <div>
-            <p>Editada já em conformidade com a nova Lei de Licitações e Contratos Administrativos (Lei nº 14.133/2021), esta obra aborda aspectos relacionados às licitações públicas e seus princípios, processos de contratação direta e contratos adminstrativos, rescisão, pareceres referenciais, sistema de registro de preços, mas não fica apenas por aí. Também aborda outras temáticas importantíssimas e indispensáveis para uma adequada gesão pública na atualidade, a exemplo de questões relacionadas a processos arbitrais, serviços públicos de saneamento básico e o Novo Marco Regulatório, contratos de encomenda tecnológica, ordem cronológica de pagamentos, classificações orçamentárias de receitas e despesas, providências de início de mandato, o controle externo do Tribunal de Contas da União, trespasse de uso de bens públicos, neoadministrativismo, inteligência artificial, ordem jurídico-urbanística, regularização urbanística fundiária (REURB), Lei Geral de Proteção de Dados (LGPD), Sistema de Solução de Disputas (DSD), função social da propriedade urbana, Direito, nudges e liberdade, fundações de direito público e a Lei Anticorrupção, reforma administrativa no Poder Legislativo, Índice de Medição de Resultados (IMR), Administração Consensual, gestão pública ambiental, Inovações na gestão pública, dentre outros.</p>
-            <p><b>Participaram da obra os seguintes autores: </b></p>
-            <p>Alberto Shinji Higa, Alexandre Levin, Ana Maria Pedreira, André Luís Vieira, Christianne de Carvalho Stroppa, Fabiana Ferreira Pascoaloto, Fabrizio de Lima Pieroni, Flavio Corrêa de Toledo Junior, Flávio Amaral Garcia, Gabriel Heller, Gilberto Oliveira Filho, Gisele Clozer Pinheiro Garcia, Guilherme Carvalho e Sousa, Ivan Barbosa Rigolin, Jessé Torres Pereira Junior, José Antonio Apparecido Júnior, José Luiz Souza de Moraes, João Eduardo Lopes Queiroz, João Gabriel Lemos Ferreira, Juliano Heinen, Jéssica Ciléia Cabral Fratta, Leo Vinicius Pires de Lima, Luciana Andrea Accorsi Beradi, Marinês Restelatto Dotti, Maríllia Formoso Camargo, Mauricio Morais Tonin, Márcia Walquiria Batista dos Santos, Nathalia Leone Marco, Nathaly Capitelli Roque, Otavio Henrique Simão e Cucinelli, Raul Miguel Freitas de Oliveira, Renata Constante Cestari, Renila Lacerda Bragagnoli, Ricardo Marcondes Martins, Rodrigo Bordalo, Samuel Ralize de Godoy, Sergio Ferraz, Simone Zanotello de Oliveira, Tarcila Peres Santos, Thaís Marçal, Toshio Mukai.</p>  
+            <p>
+              Editada já em conformidade com a nova Lei de Licitações e
+              Contratos Administrativos (Lei nº 14.133/2021), esta obra aborda
+              aspectos relacionados às licitações públicas e seus princípios,
+              processos de contratação direta e contratos adminstrativos,
+              rescisão, pareceres referenciais, sistema de registro de preços,
+              mas não fica apenas por aí. Também aborda outras temáticas
+              importantíssimas e indispensáveis para uma adequada gesão pública
+              na atualidade, a exemplo de questões relacionadas a processos
+              arbitrais, serviços públicos de saneamento básico e o Novo Marco
+              Regulatório, contratos de encomenda tecnológica, ordem cronológica
+              de pagamentos, classificações orçamentárias de receitas e
+              despesas, providências de início de mandato, o controle externo do
+              Tribunal de Contas da União, trespasse de uso de bens públicos,
+              neoadministrativismo, inteligência artificial, ordem
+              jurídico-urbanística, regularização urbanística fundiária (REURB),
+              Lei Geral de Proteção de Dados (LGPD), Sistema de Solução de
+              Disputas (DSD), função social da propriedade urbana, Direito,
+              nudges e liberdade, fundações de direito público e a Lei
+              Anticorrupção, reforma administrativa no Poder Legislativo, Índice
+              de Medição de Resultados (IMR), Administração Consensual, gestão
+              pública ambiental, Inovações na gestão pública, dentre outros.
+            </p>
+            <p>
+              <b>Participaram da obra os seguintes autores: </b>
+            </p>
+            <p>
+              Alberto Shinji Higa, Alexandre Levin, Ana Maria Pedreira, André
+              Luís Vieira, Christianne de Carvalho Stroppa, Fabiana Ferreira
+              Pascoaloto, Fabrizio de Lima Pieroni, Flavio Corrêa de Toledo
+              Junior, Flávio Amaral Garcia, Gabriel Heller, Gilberto Oliveira
+              Filho, Gisele Clozer Pinheiro Garcia, Guilherme Carvalho e Sousa,
+              Ivan Barbosa Rigolin, Jessé Torres Pereira Junior, José Antonio
+              Apparecido Júnior, José Luiz Souza de Moraes, João Eduardo Lopes
+              Queiroz, João Gabriel Lemos Ferreira, Juliano Heinen, Jéssica
+              Ciléia Cabral Fratta, Leo Vinicius Pires de Lima, Luciana Andrea
+              Accorsi Beradi, Marinês Restelatto Dotti, Maríllia Formoso
+              Camargo, Mauricio Morais Tonin, Márcia Walquiria Batista dos
+              Santos, Nathalia Leone Marco, Nathaly Capitelli Roque, Otavio
+              Henrique Simão e Cucinelli, Raul Miguel Freitas de Oliveira,
+              Renata Constante Cestari, Renila Lacerda Bragagnoli, Ricardo
+              Marcondes Martins, Rodrigo Bordalo, Samuel Ralize de Godoy, Sergio
+              Ferraz, Simone Zanotello de Oliveira, Tarcila Peres Santos, Thaís
+              Marçal, Toshio Mukai.
+            </p>
           </div>
         </div>
       </div>
       <section className={styles.passoAPasso}>
         <h1>Siga o passo a passo.</h1>
-        <hr style={{backgroundColor: `${purple2}`, border: `1px solid ${purple2}`}}/>
+        <hr
+          style={{
+            backgroundColor: `${purple2}`,
+            border: `1px solid ${purple2}`,
+          }}
+        />
         <div className={styles.stepsInfos}>
           <div className={styles.solitacaoInscricao}>
             <div className={styles.headerTopico}>
-              <AiOutlineCheckCircle style={{color: `${purple2}`}} />
+              <AiOutlineCheckCircle style={{ color: `${purple2}` }} />
               <h3>Passo 1 - É nos enviar sua solicitação de inscrição:</h3>
             </div>
-            <p>Digite os seus dados abaixo para iniciarmos o processo de registro da solicitação. É importante que os dados estejam corretos para que não haja problema no envio do livro.</p>
+            <p>
+              Digite os seus dados abaixo para iniciarmos o processo de registro
+              da solicitação. É importante que os dados estejam corretos para
+              que não haja problema no envio do livro.
+            </p>
           </div>
-          
+
           <div className={styles.comprovantePagamento}>
             <div className={styles.headerTopico}>
-              <AiOutlineCheckCircle style={{color: `${purple2}`}} />
+              <AiOutlineCheckCircle style={{ color: `${purple2}` }} />
               <h3>Passo 3 - Enviar comprovante de pagamento:</h3>
             </div>
-            <p>Após pagamento envie o comprovante para a SGP - Soluções em Gestão Pública no e-mail atendimento@sgpsolucoes.com.br , ou, anexo a solicitação abaixo, para que possamos agilizar o processo de envio e registrar em nosso controle!!!</p>
+            <p>
+              Após pagamento envie o comprovante para a SGP - Soluções em Gestão
+              Pública no e-mail:{" "}
+              <b>
+                <br />
+                <br /> atendimento@sgpsolucoes.com.br <br />{" "}
+              </b>
+              <br /> ou, anexo a solicitação abaixo, para que possamos agilizar
+              o processo de envio e registrar em nosso controle!!!
+            </p>
           </div>
-          
+
           <div className={styles.realizarPagamento}>
             <div className={styles.headerTopico}>
-              <AiOutlineCheckCircle style={{color: `${purple2}`}} />
+              <AiOutlineCheckCircle style={{ color: `${purple2}` }} />
               <h3>Passo 2 - Realizar o pagamento por um dos canais:</h3>
             </div>
             <p>Há 6 (seis) vias de possibilidade de pagamento:</p>
-            <p>1 - PIX: Chave: 29759932000102 | SGP - Soluções em Gestão Pública | CNPJ: 29.759.932/0001-02 | Banco: 104 Caixa Econômica Federal | Ag.: 1679 | Conta Corrente: 3184-4</p>
-            <p>2 - Boleto: É necessário que o cliente solicite-o junto a SGP - Soluções em Gestão Pública no canal de comunicação WhatsApp 11 9 7443 5898 !!!</p>
-            <p>3 - Depósito: SGP - Soluções em Gestão Pública | CNPJ: 29.759.932/0001-02 | Banco: 104 Caixa Econômica Federal | Ag.: 1679 | Conta Corrente: 3184-4</p>
-            <p>4 - TED: SGP - Soluções em Gestão Pública | CNPJ: 29.759.932/0001-02 | Banco: 104 Caixa Econômica Federal | Ag.: 1679 | Conta Corrente: 3184-4</p>
-            <p>5 - Cartão de Débito: Após cadastramento realizado abaixo (registro da solicitação), você será direcionado à tela de "Pagamento com Cartão de Débito | Operadora CIELO".</p>
-            <p>6 - Cartão de Crédito: Após cadastramento realizado abaixo (registro da solicitação), você será direcionado à tela de "Pagamento com Cartão de Crédito | Operadora CIELO".</p>
+            <p>
+              1 - PIX: Chave: 29759932000102 | SGP - Soluções em Gestão Pública
+              | CNPJ: 29.759.932/0001-02 | Banco: 104 Caixa Econômica Federal |
+              Ag.: 1679 | Conta Corrente: 3184-4
+            </p>
+            <p>
+              2 - Boleto: É necessário que o cliente solicite-o junto a SGP -
+              Soluções em Gestão Pública no canal de comunicação WhatsApp 11 9
+              7443 5898 !!!
+            </p>
+            <p>
+              3 - Depósito: SGP - Soluções em Gestão Pública | CNPJ:
+              29.759.932/0001-02 | Banco: 104 Caixa Econômica Federal | Ag.:
+              1679 | Conta Corrente: 3184-4
+            </p>
+            <p>
+              4 - TED: SGP - Soluções em Gestão Pública | CNPJ:
+              29.759.932/0001-02 | Banco: 104 Caixa Econômica Federal | Ag.:
+              1679 | Conta Corrente: 3184-4
+            </p>
+            <p>
+              5 - Cartão de Débito: Após cadastramento realizado abaixo
+              (registro da solicitação), você será direcionado à tela de
+              "Pagamento com Cartão de Débito | Operadora CIELO".
+            </p>
+            <p>
+              6 - Cartão de Crédito: Após cadastramento realizado abaixo
+              (registro da solicitação), você será direcionado à tela de
+              "Pagamento com Cartão de Crédito | Operadora CIELO".
+            </p>
           </div>
 
           <div className={styles.boletoBancario}>
             <div className={styles.headerTopico}>
-              <AiOutlineCheckCircle style={{color: `${purple2}`}} />
-              <h3>Pagamento via Boleto Bancário consulte a SGP - Soluções em Gestão Pública.</h3>
+              <AiOutlineCheckCircle style={{ color: `${purple2}` }} />
+              <h3>
+                Pagamento via Boleto Bancário consulte a SGP - Soluções em
+                Gestão Pública.
+              </h3>
             </div>
-            <p>A postagem do livro nos CORREIOS será realizada somente após o pagamento do VALOR DO PRODUTO + FRETE e, consequentemente, o apontamento correto do ENDEREÇO DE ENTREGA, confirmado pelo comprador.</p>
+            <p>
+              A postagem do livro nos CORREIOS será realizada somente após o
+              pagamento do VALOR DO PRODUTO + FRETE e, consequentemente, o
+              apontamento correto do ENDEREÇO DE ENTREGA, confirmado pelo
+              comprador.
+            </p>
 
             <div className={styles.duvidas}>
               <h3>Está com dúvidas?</h3>
@@ -175,28 +326,27 @@ export default function Verde() {
 
               <ul>
                 <li>
-                  <BsTelephone style={{color: `${purple2}`}}/>
+                  <BsTelephone style={{ color: `${purple2}` }} />
                   <span>(11) 3237 4232</span>
                 </li>
                 <li>
-                  <BsTelephone style={{color: `${purple2}`}}/>
+                  <BsTelephone style={{ color: `${purple2}` }} />
                   <span>(11) 9 7443 5898</span>
                 </li>
                 <li>
-                  <AiOutlineMail  style={{color: `${purple2}`}}/>
+                  <AiOutlineMail style={{ color: `${purple2}` }} />
                   <span>atendimento@sgpsolucoes.com.br</span>
                 </li>
               </ul>
-              <Button color="blue" title="Prosseguir para o próximo passo" />
             </div>
-        
           </div>
         </div>
       </section>
 
       <section className={styles.dadosPagamentoContato}>
         <h1>
-        Os campos são obrigatórios e é imprescindível o correto preenchimento para <b>envio do produto e emissão da nota fiscal!</b>
+          Os campos são obrigatórios e é imprescindível o correto preenchimento
+          para <b>envio do produto e emissão da nota fiscal!</b>
         </h1>
         <form>
           <div className={styles.formContato}>
@@ -225,7 +375,7 @@ export default function Verde() {
               error={errors.endereco?.message}
               placeholder="R. João Gomes"
             />
-            
+
             <Input
               name="cep"
               label="CEP*"
@@ -249,7 +399,7 @@ export default function Verde() {
               label="Estado"
               register={register("estado")}
               error={errors.celular?.message}
-              placeholder="São Paulo" 
+              placeholder="São Paulo"
             />
 
             <Input
@@ -279,19 +429,24 @@ export default function Verde() {
               placeholder="(13) 99999-9999"
               mask="(99) 99999-9999"
             />
-            
+
             <div>
               <div className={styles.opcoesPagamento}>
                 <p>Indique abaixo a via de pagamento que foi utilizada: *</p>
                 <div>
-                {tiposPagamento.map((x, i) => (
-                  <div className={styles.inputRadio} key={i}>
-                    <input type="radio" id={x.id} name="tipoPagamento" value={x.label} />
-                    <label htmlFor={x.id}>{x.label}</label>
-                  </div>
-                ))}
+                  {tiposPagamento.map((x, i) => (
+                    <div className={styles.inputRadio} key={i}>
+                      <input
+                        type="radio"
+                        id={x.id}
+                        name="tipoPagamento"
+                        value={x.label}
+                      />
+                      <label htmlFor={x.id}>{x.label}</label>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
             </div>
             <div>
               <div className={styles.anexo}>
@@ -304,28 +459,93 @@ export default function Verde() {
                   register={register("anexo")}
                   error={errors.anexo?.message}
                   onChange={(e) => {
-                    setInputFileName(e.target.value.split("\\")[2])
+                    setInputFileName(e.target.value.split("\\")[2]);
                   }}
                 />
-            </div>
+              </div>
             </div>
           </div>
-            
+
           <div className={styles.cienciaSobCompra}>
             <div>
-              <b>"Estou ciente que o livro só será enviado após confirmação do pagamento pela SGP - Soluções em Gestão Pública."</b>
-              <p>Após o envio de seus dados, você receberá um e-mail de confirmação de solicitação de compra. Caso não receba o e-mail de confirmação, contate a SGP - Soluções em Gestão Pública para verificar o que ocorreu. Lembre-se, o envio do livro será realizado após confirmação de pagamento.</p>
-              <p>Estou ciente também de que os dados enviados à empresa SGP - Soluções em Gestão Pública, que são dados pessoais e sensíveis de minha propriedade, assim como dados da empresa, do órgão público ou da entidade, serão concedidos e utilizados sob os critérios abaixo, de acordo com a <b> Política de Privacidade para Proteção de Dados mencionada na Lei Geral de Proteção de Dados - LGPD:</b>
+              <b>
+                "Estou ciente que o livro só será enviado após confirmação do
+                pagamento pela SGP - Soluções em Gestão Pública."
+              </b>
+              <p>
+                Após o envio de seus dados, você receberá um e-mail de
+                confirmação de solicitação de compra. Caso não receba o e-mail
+                de confirmação, contate a SGP - Soluções em Gestão Pública para
+                verificar o que ocorreu. Lembre-se, o envio do livro será
+                realizado após confirmação de pagamento.
+              </p>
+              <p>
+                Estou ciente também de que os dados enviados à empresa SGP -
+                Soluções em Gestão Pública, que são dados pessoais e sensíveis
+                de minha propriedade, assim como dados da empresa, do órgão
+                público ou da entidade, serão concedidos e utilizados sob os
+                critérios abaixo, de acordo com a{" "}
+                <b>
+                  {" "}
+                  Política de Privacidade para Proteção de Dados mencionada na
+                  Lei Geral de Proteção de Dados - LGPD:
+                </b>
               </p>
             </div>
             <p>Ao enviar os dados do formulário: </p>
             <ul>
-              <li><AiOutlineCheckCircle style={{color: `${purple2}`}} /><span>Estou ciente e aceito a <b> Política de Cookies *</b></span></li>
-              <li><AiOutlineCheckCircle style={{color: `${purple2}`}} /><span>Estou ciente e aceito a <b>Política de Privacidade *</b></span></li>
-              <li><AiOutlineCheckCircle style={{color: `${purple2}`}} /><span>Estou ciente e aceito o <b>Termo de Consentimento da Privacidade *</b></span></li>
+              <li>
+                <AiOutlineCheckCircle style={{ color: `${purple2}` }} />
+                <span>
+                  Estou ciente e aceito a{" "}
+                  <b
+                    onClick={() => push("/documentacoes/cookies")}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {" "}
+                    Política de Cookies *
+                  </b>
+                </span>
+              </li>
+              <li>
+                <AiOutlineCheckCircle style={{ color: `${purple2}` }} />
+                <span>
+                  Estou ciente e aceito a{" "}
+                  <b
+                    style={{ cursor: "pointer" }}
+                    onClick={() => push("/documentacoes/politica-privacidade")}
+                  >
+                    Política de Privacidade *
+                  </b>
+                </span>
+              </li>
+              <li>
+                <AiOutlineCheckCircle style={{ color: `${purple2}` }} />
+                <span>
+                  Estou ciente e aceito o{" "}
+                  <b
+                    style={{ cursor: "pointer" }}
+                    onClick={() => push("/documentacoes/termos-uso")}
+                  >
+                    Termo de Consentimento da Privacidade *
+                  </b>
+                </span>
+              </li>
             </ul>
             <div className={styles.buttonPosition}>
-              <Button color="darkBlue" title="Enviar dados preenchidos" disabled={isSubmitting || !isValid} />
+              <ReCAPTCHA
+                // @ts-ignore
+                sitekey={process.env.NEXT_PUBLIC_API_RECAPTCHA_SIE}
+                ref={captchaRef}
+                onChange={(value: any) => setRecaptchaResponse(value)}
+              />
+            </div>
+            <div className={styles.buttonPosition}>
+              <Button
+                color="darkBlue"
+                title="Enviar dados preenchidos"
+                disabled={isSubmitting || !isValid}
+              />
             </div>
           </div>
         </form>

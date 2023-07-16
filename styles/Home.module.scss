@@ -102,7 +102,6 @@
     }
   }
 
-
 }
 
 .img1920,
@@ -781,6 +780,23 @@
 }
 
 // ----------------- CAROUSEL ----------------- //
+
+@media (min-width: 1850px){
+  .img1920 {
+    height: 800px;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .main {
+    box-sizing: border-box;
+      .carouselSpace {
+        background-color: $dark-blue-2;
+        height: 800px;
+      }
+  }
+
+}
 
 // quem somos
 

@@ -96,21 +96,22 @@ export default function Home({
   const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(
     cloneDeep(imgsJson)
   );
+  const [seconds, setSeconds] = useState(0);
+  const [increment, setIncrement] = useState(0);
 
-  // useEffect(() => {
-  //   if (errosImagesCarouselPrincipal.length <= 0) {
-  //     const interval = setInterval(() => {
-  //       carouselApresentacao?.slideToNextItem();
-  //     }, 8000);
-  //     return () => clearInterval(interval);
-  //   }
-  //   if (errosClientes.length <= 0) {
-  //     const interval = setInterval(() => {
-  //       carouselParceiros?.slideToNextItem();
-  //     }, 8000);
-  //     return () => clearInterval(interval);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIncrement((prevIncrement) => prevIncrement + 1);
+    }, 8000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  useEffect(() => {
+    carouselApresentacao.slideToNextItem();
+  }, [increment]);
 
   useEffect(() => {
     function atualizarTamanhoViewport() {
@@ -146,6 +147,10 @@ export default function Home({
   //   console.log("size", size);
   //   setMainCarouselImg(auxSize);
   // }, [windowWidth]);
+  //   const auxSize = auxArr.filter((x) => x.formato === size);
+  //   console.log("auxSize", auxSize);
+  //   setMainCarouselImg(auxSize);
+  // }, [windowWidth]);
 
   useEffect(() => {
     if (errosClientes.length > 0) {
@@ -171,7 +176,7 @@ export default function Home({
           }))
         : [
             {
-              id: "item-1",
+              id: "item-0",
               renderItem: (
                 <div
                   style={{
@@ -427,6 +432,20 @@ export default function Home({
     ],
   });
 
+  function moveCarousel(direction: "next" | "prev") {
+    if (
+      mainCarouselImg.length > 0 &&
+      errosImagesCarouselPrincipal.length <= 0
+    ) {
+      if (direction === "next") {
+        carouselApresentacao?.slideToNextItem();
+      }
+      if (direction === "prev") {
+        carouselApresentacao?.slideToPrevItem();
+      }
+    }
+  }
+
   function getIconByName(rede: string) {
     if (rede === "Facebook") {
       return <BsFacebook />;
@@ -622,16 +641,15 @@ export default function Home({
                 onClick={carouselDepoimentos.slideToNextItem}
                 className={styles.arrowRight}
               />
-              <span>Clique nos botões para interagir</span>
+              <span id="periodicos-mensais">
+                Clique nos botões para interagir
+              </span>
             </div>
           )}
         </div>
       </section>
 
-      <section
-        className={styles.periodicosExclusivosAll}
-        id="periodicos-mensais"
-      >
+      <section className={styles.periodicosExclusivosAll}>
         <div className={styles.periodicosExclusivos}>
           <div className={styles.periodicos}>
             <div className={styles.introducao}>

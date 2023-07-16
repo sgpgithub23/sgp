@@ -75,8 +75,11 @@ export default function Contato() {
   });
 
   useEffect(() => {
-    setValue("assunto", String(assuntoForm));
+    if (assuntoForm && assuntoForm.length > 1) {
+      setValue("assunto", String(assuntoForm));
+    }
   }, [assuntoForm]);
+  console.log("assuntoForm", assuntoForm);
 
   function getIconByName(rede: string) {
     if (rede === "Facebook") {
@@ -285,7 +288,7 @@ export default function Contato() {
                 Ao enviar sua mensagem, você autoriza receber comunicações do
                 SGP - Soluções em Gestão Pública, podendo cancelar a qualquer
                 momento. Consulte nossa{" "}
-                <b onClick={() => push("/politica-privacidade")}>
+                <b onClick={() => push("/documentacoes/politica-privacidade")}>
                   Política de Privacidade
                 </b>
                 .

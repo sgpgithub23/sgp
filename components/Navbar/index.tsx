@@ -72,7 +72,11 @@ export default function Navbar() {
                                 </Link>
                               </Menu.Item>
                               <Menu.Item>
-                                <Link href={"#implantacaoleis"}>
+                                <Link
+                                  href={
+                                    "/solucoes-inovadoras/#projeto-regulamentacao"
+                                  }
+                                >
                                   Implantação de Leis
                                 </Link>
                               </Menu.Item>

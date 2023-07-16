@@ -29,12 +29,12 @@ export default function SolucoesInovadoras() {
           <h1>Orientações SGP</h1>
           <hr />
           <p>
-            A Orientação SGP ampliou sua área de atuação. Agora são três
+            A Orientação SGP ampliou sua área de atuação. Agora são quatro
             Consultorias pelo preço de uma.
           </p>
 
           <div className={styles.buttonFrase}>
-            <b>Tradicional, tributário e RH | DP | eSocial</b>
+            <b>Tradicional, tributário e RH | DP | eSocial | Contabilidade</b>
           </div>
         </div>
       </section>
@@ -69,11 +69,6 @@ export default function SolucoesInovadoras() {
               impostos, taxas e contribuições, nos âmbitos municipal, estadual e
               federal.
             </p>
-            <Button
-              onClick={() => push("/contato")}
-              color="darkBlue"
-              title="Envie sua solicitação"
-            />
           </div>
           <div className={styles.img}>
             <Image
@@ -102,15 +97,10 @@ export default function SolucoesInovadoras() {
               Atuante nas áreas de Recursos Humanos, Departamento Pessoal e
               eSocial.
             </p>
-            <Button
-              onClick={() => push("/contato")}
-              color="darkBlue"
-              title="Envie sua solicitação"
-            />
           </div>
         </div>
       </section>
-
+      {/* 
       <section className={styles.image}>
         <div className={styles.texto}>
           <hr />
@@ -137,7 +127,7 @@ export default function SolucoesInovadoras() {
             />
           </p>
         </div>
-      </section>
+      </section> */}
 
       <section className={styles.assesoriaJuridicaInLoco} id="inloco">
         <div className={styles.texto}>
@@ -154,6 +144,13 @@ export default function SolucoesInovadoras() {
             Num atendimento totalmente personalizado e exclusivo, nosso Corpo
             Jurídico, com toda sua expertise, poderá fazer quantas visitações
             forem necessárias para atender às suas necessidades administrativas.
+          </p>
+          <p>
+            <Button
+              color="blue"
+              title="Quero mais informações!"
+              onClick={() => push("/contato")}
+            />
           </p>
         </div>
       </section>
@@ -295,7 +292,10 @@ export default function SolucoesInovadoras() {
               órgão público encontra-se adequado à nova LGPD.
             </p>
             <Button
-              onClick={() => push("/contato")}
+              id="pos-graduacao"
+              onClick={() =>
+                push("https://www.sgpsolucoes.com.br/lgpd/checklist-lgpd")
+              }
               color="darkBlue"
               title="Entre em contato"
             />
@@ -312,10 +312,7 @@ export default function SolucoesInovadoras() {
           </div>
         </div>
       </section>
-      <section
-        className={styles.mbaLicitacoesContratacoesADM}
-        id="pos-graduacao"
-      >
+      <section className={styles.mbaLicitacoesContratacoesADM}>
         <h1>MBA em Licitações e Contratações da Administração Pública</h1>
         <hr />
         <div>
@@ -423,7 +420,7 @@ export default function SolucoesInovadoras() {
             </p>
           </div>
           <div>
-            <h3>Objetivo Geral do curso</h3>
+            {/* <h3>Objetivo Geral do curso</h3> */}
             <ul>
               <li>
                 <AiOutlineCheckCircle />
@@ -458,7 +455,7 @@ export default function SolucoesInovadoras() {
             </ul>
           </div>
           <div>
-            <h3>Objetivo Geral do curso</h3>
+            {/* <h3>Objetivo Geral do curso</h3> */}
             <ul>
               <li>
                 <AiOutlineCheckCircle />
@@ -505,7 +502,7 @@ export default function SolucoesInovadoras() {
             <div className={styles.informacoes}>
               <span>12 Encontros</span>
               <span>36 Horas</span>
-              <span>Com certificado!</span>
+              <span id="projeto-regulamentacao">Com certificado!</span>
             </div>
           </div>
         </div>
@@ -548,7 +545,7 @@ export default function SolucoesInovadoras() {
         </div>
       </section>
 
-      <section className={styles.indicacoes}>
+      {/* <section className={styles.indicacoes}>
         <div className={styles.contentIndicacoes}>
           <hr />
           <h1>
@@ -575,7 +572,7 @@ export default function SolucoesInovadoras() {
             </ul>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <FooterCompleto />
     </div>

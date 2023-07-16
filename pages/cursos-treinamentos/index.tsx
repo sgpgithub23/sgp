@@ -104,11 +104,6 @@ export default function CursosTreinamentos({
             participantes a oportunidade de seu aperfeiçoamento e capacitação
             devidamente certificada.
           </p>
-          <Button
-            color="blue"
-            title="Saber Mais!"
-            onClick={mudaPOsicaoPaginaSaberMais}
-          />
         </div>
       </div>
       <div className={styles.pageSize} id="aulas">
@@ -201,8 +196,8 @@ export default function CursosTreinamentos({
             <div className={styles.left}>
               <h2>Confira nossos cursos</h2>
               <span>
-                Conheça nossos cursos de excelência e gabarito, que aplicam e
-                vivenciam as melhores boas práticas do mercado.
+                Conheça nossos cursos de excelência, que aplicam as boas
+                práticas de mercado.
               </span>
             </div>
             <div className={styles.right}>

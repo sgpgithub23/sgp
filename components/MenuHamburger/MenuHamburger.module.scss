@@ -83,18 +83,17 @@ $height: 1rem;
 //     .TrabalheConosco, .GaleriaFotos, .Noticias {
 //          display: none;
 //      }
-//  } 
- 
+//  }  
  
 @media (min-width: 1588px) {
-    .Agenda, .CanalSGP {
+    .CanalSGP {
         display: none;
     }
 } 
 
 
 @media (min-width: 1355px) {
-    .NossosProfessores, .Documentacoes {
+    .NossosProfessores {
         display: none;
     }
 } 
@@ -125,7 +124,7 @@ $height: 1rem;
 
 
 @media (min-width: 790px) {
-    .Outros, .CursosTreinamentos {
+    .Outros, .CursosTreinamentos, .Agenda {
         display: none;
     }
 } 

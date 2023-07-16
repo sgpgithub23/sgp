@@ -245,7 +245,7 @@ export default function Agenda({
           que você possa se comunicar mais rápido conosco!
         </p>
         <Button
-          onClick={() => push("/nossos-professores")}
+          onClick={() => push("/contato")}
           color="darkBlue"
           title="Quero mais informações!"
         />
