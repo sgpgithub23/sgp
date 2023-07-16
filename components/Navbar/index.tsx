@@ -80,6 +80,13 @@ export default function Navbar() {
                                   Implantação de Leis
                                 </Link>
                               </Menu.Item>
+                              <Menu.Item>
+                                <Link
+                                  href={"/solucoes-inovadoras/#pos-graduacao"}
+                                >
+                                  MBA
+                                </Link>
+                              </Menu.Item>
                             </Menu.Items>
                           </>
                         )}

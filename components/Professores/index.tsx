@@ -10,6 +10,7 @@ import styles from "./Professores.module.scss";
 import { ProfessorReq } from "@/typings/Requisicoes/Professores";
 import { ErrorMessageReq } from "../ReqErrorMessage";
 import { CardProfessor } from "@/components/CardProfessor";
+import FriendlyErrorMessage from "../FriendlyErrorMessage";
 
 export default function ProfessoresComponent(props: any) {
   const [professores, setProfessores] = useState<ProfessorReq[]>(
@@ -20,7 +21,7 @@ export default function ProfessoresComponent(props: any) {
 
   function changeQuantidadeFotosProfessores() {
     setIsFotosIniciais(!isFotosIniciais);
-    console.log("isFotosIniciais", isFotosIniciais);
+
     if (!isFotosIniciais) {
       setProfessores(props.profsAll);
       return;
@@ -90,7 +91,7 @@ export default function ProfessoresComponent(props: any) {
           )}
         </>
       ) : (
-        <ErrorMessageReq />
+        <FriendlyErrorMessage commommsg />
       )}
     </div>
   );

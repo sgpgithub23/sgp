@@ -174,15 +174,15 @@ export default function Home({
   //   setMainCarouselImg(auxSize);
   // }, [windowWidth]);
 
-  useEffect(() => {
-    if (errosClientes.length > 0) {
-      errosClientes.forEach((erro) => toast.error(erro));
-    }
+  // useEffect(() => {
+  //   if (errosClientes.length > 0) {
+  //     errosClientes.forEach((erro) => toast.error(erro));
+  //   }
 
-    if (errosImagesCarouselPrincipal.length > 0) {
-      errosImagesCarouselPrincipal.forEach((erro) => toast.error(erro));
-    }
-  }, []);
+  //   if (errosImagesCarouselPrincipal.length > 0) {
+  //     errosImagesCarouselPrincipal.forEach((erro) => toast.error(erro));
+  //   }
+  // }, []);
 
   const carouselApresentacao = useSpringCarousel({
     withLoop: true,

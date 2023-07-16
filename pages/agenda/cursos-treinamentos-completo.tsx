@@ -18,6 +18,7 @@ import { AgendaRequisicao } from "@/typings/Requisicoes/Agenda";
 import { extractErrorMessages } from "@/utils/tratamento-erros";
 import { ErrorMessageReq } from "@/components/ReqErrorMessage";
 import { toast } from "react-toastify";
+import FriendlyErrorMessage from "@/components/FriendlyErrorMessage";
 
 export async function getStaticProps() {
   let errorsCursosTreinamentosCompletos: any[] = [];
@@ -48,11 +49,11 @@ export default function Agenda({
   const [modalContent, setModalContent] = useState<AgendaRequisicao>();
   const [curso, setCurso] = useState<string>("");
 
-  useEffect(() => {
-    if (errorsCursosTreinamentosCompletos.length > 0) {
-      errorsCursosTreinamentosCompletos.forEach((erro) => toast.error(erro));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (errorsCursosTreinamentosCompletos.length > 0) {
+  //     errorsCursosTreinamentosCompletos.forEach((erro) => toast.error(erro));
+  //   }
+  // }, []);
 
   function modalState(content: AgendaRequisicao) {
     setIsModalOpen(!isModalOpen);
@@ -154,7 +155,7 @@ export default function Agenda({
               </p>
             </>
           ) : (
-            <ErrorMessageReq />
+            <FriendlyErrorMessage commommsg />
           )}
         </div>
       </div>

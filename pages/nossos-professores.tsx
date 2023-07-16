@@ -20,11 +20,11 @@ export default function NossosProfessores({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { push } = useRouter();
 
-  useEffect(() => {
-    if (errorsProfessores.length > 0) {
-      errorsProfessores.forEach((erro) => toast.error(erro));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (errorsProfessores.length > 0) {
+  //     errorsProfessores.forEach((erro) => toast.error(erro));
+  //   }
+  // }, []);
 
   return (
     <div className={styles.main}>

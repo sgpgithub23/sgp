@@ -15,6 +15,7 @@ import { notify } from "@/components/Notification";
 import { ErrorMessageReq } from "@/components/ReqErrorMessage";
 import { extractErrorMessages } from "@/utils/tratamento-erros";
 import { toast } from "react-toastify";
+import FriendlyErrorMessage from "@/components/FriendlyErrorMessage";
 
 export async function getStaticProps() {
   let errorsTreinamentos: any[] = [];
@@ -64,12 +65,6 @@ export default function CursosTreinamentos({
     }
   }, [cursosTreinamentos]);
 
-  useEffect(() => {
-    if (errorsTreinamentos.length > 0) {
-      errorsTreinamentos.forEach((erro) => toast.error(erro));
-    }
-  }, []);
-
   return (
     <div className={styles.main}>
       <Head>
@@ -98,14 +93,16 @@ export default function CursosTreinamentos({
               </span>
             </div>
             <div className={styles.right}>
-              <Input
-                withicon={true}
-                placeholder="Pesquisar curso..."
-                label=""
-                type="text"
-                icon={<HiMagnifyingGlass />}
-                onChange={(e) => setTreinamento(e.target.value)}
-              />
+              {errorsTreinamentos.length < 1 && (
+                <Input
+                  withicon={true}
+                  placeholder="Pesquisar curso..."
+                  label=""
+                  type="text"
+                  icon={<HiMagnifyingGlass />}
+                  onChange={(e) => setTreinamento(e.target.value)}
+                />
+              )}
             </div>
           </div>
           {errorsTreinamentos.length <= 0 ? (
@@ -150,7 +147,7 @@ export default function CursosTreinamentos({
                 ))}
             </div>
           ) : (
-            <ErrorMessageReq />
+            <FriendlyErrorMessage commommsg />
           )}
         </div>
       </div>

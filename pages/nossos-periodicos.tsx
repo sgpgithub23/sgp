@@ -48,6 +48,8 @@ export default function NossosPeriodicos() {
     string[]
   >([]);
 
+  const [isHidden, setIsHidden] = useState<boolean>(true);
+
   useEffect(() => {}, [isLoading]);
 
   async function handleSubmit() {
@@ -70,6 +72,7 @@ export default function NossosPeriodicos() {
       setIsLoading(false);
       setErrorsResultDegustacao(result.errors);
       setResultDegustacao([]);
+      setIsHidden(false);
       return;
     }
     setResultDegustacao(result);
@@ -77,6 +80,7 @@ export default function NossosPeriodicos() {
     setAno(initialValuesDropdown);
     setMes(initialValuesDropdown);
     setPeriodico(initialValuesDropdown);
+    setIsHidden(true);
   }
 
   return (
@@ -137,10 +141,6 @@ export default function NossosPeriodicos() {
             </div>
           </div>
 
-          <div className={styles.errorsPeriodicosMobile}>
-            <FriendlyErrorMessage messages={errorsResultDegustacao} />
-          </div>
-
           {resultDegustacao.length > 0 && (
             <div className={styles.periodicosAllMobile}>
               <h3>Periódicos Disponíveis</h3>
@@ -192,9 +192,12 @@ export default function NossosPeriodicos() {
             </div>
           </div>
         </div>
-        <div className={styles.errorsPeriodicosDesktop}>
-          <FriendlyErrorMessage messages={errorsResultDegustacao} />
-        </div>
+        {!isHidden && (
+          <div className={styles.errorsPeriodicosDesktop}>
+            <FriendlyErrorMessage messages={errorsResultDegustacao} />
+          </div>
+        )}
+
         {resultDegustacao.length > 0 && (
           <div className={styles.periodicosAllDesktop}>
             <h3>Periódicos Disponíveis</h3>
@@ -222,7 +225,7 @@ export default function NossosPeriodicos() {
           <div className={styles.bluredBall}></div>
 
           <div className={styles.descricao}>
-            <h1>Conheça nossas principais soluções Inovadoras</h1>
+            <h1>Conheça nossas principais Soluções Inovadoras</h1>
             <Button
               color="blue"
               title="Conheça agora!"

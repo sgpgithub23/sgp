@@ -20,6 +20,7 @@ import { extractErrorMessages } from "@/utils/tratamento-erros";
 import { toast } from "react-toastify";
 import { ErrorMessageReq } from "@/components/ReqErrorMessage";
 import Spinner from "@/components/Spinner";
+import FriendlyErrorMessage from "@/components/FriendlyErrorMessage";
 
 export async function getStaticProps() {
   let errorsAgenda: any[] = [];
@@ -62,11 +63,11 @@ export default function Agenda({
     setModalContent(content);
   }
 
-  useEffect(() => {
-    if (errorsAgenda.length > 0) {
-      errorsAgenda.forEach((erro) => toast.error(erro));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (errorsAgenda.length > 0) {
+  //     errorsAgenda.forEach((erro) => toast.error(erro));
+  //   }
+  // }, []);
 
   return (
     <div className={styles.main}>
@@ -112,8 +113,8 @@ export default function Agenda({
             <div className={styles.left}>
               <h2>Confira nossa agenda de cursos e treinamentos</h2>
               <span>
-                Conheça nossos cursos de excelência e gabarito, que aplicam e
-                vivenciam as melhores boas práticas do mercado.
+                Conheça nossos cursos de excelência, que aplicam as boas
+                práticas de mercado.
               </span>
             </div>
             <div className={styles.right}></div>
@@ -170,7 +171,7 @@ export default function Agenda({
               </>
             )
           ) : (
-            <ErrorMessageReq />
+            <FriendlyErrorMessage commommsg />
           )}
         </div>
       </div>

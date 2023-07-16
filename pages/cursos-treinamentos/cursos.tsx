@@ -14,6 +14,7 @@ import { CursosTreinamentosRequisicao } from "@/typings/Requisicoes/CursosTreina
 import { notify } from "@/components/Notification";
 import { extractErrorMessages } from "@/utils/tratamento-erros";
 import { ErrorMessageReq } from "@/components/ReqErrorMessage";
+import FriendlyErrorMessage from "@/components/FriendlyErrorMessage";
 
 export async function getStaticProps() {
   let errorsCursosTreinamentos: any[] = [];
@@ -48,21 +49,18 @@ export default function CursosTreinamentos({
   const [primeirosTreinamentos, setPrimeirosTreinamentos] =
     useState<CursosTreinamentosRequisicao[]>();
 
-  
   function modalState(content: CursosTreinamentosRequisicao) {
     setIsModalOpen(!isModalOpen);
     setModalContent(content);
   }
 
-
   useEffect(() => {
-    if(errorsCursosTreinamentos.length <= 0){
+    if (errorsCursosTreinamentos.length <= 0) {
       const tiposCursos = cursosTreinamentos?.filter(
         (x) => x?.modalidade?.toLowerCase() === "c"
       );
       setCursosCompletos(tiposCursos);
     }
-
   }, [cursosTreinamentos]);
 
   return (
@@ -93,53 +91,57 @@ export default function CursosTreinamentos({
               </span>
             </div>
             <div className={styles.right}>
-              <Input
-                withicon={true}
-                placeholder="Pesquisar curso..."
-                label=""
-                type="text"
-                icon={<HiMagnifyingGlass />}
-                onChange={(e) => setCurso(e.target.value)}
-              />
+              {errorsCursosTreinamentos.length < 1 && (
+                <Input
+                  withicon={true}
+                  placeholder="Pesquisar curso..."
+                  label=""
+                  type="text"
+                  icon={<HiMagnifyingGlass />}
+                  onChange={(e) => setTreinamento(e.target.value)}
+                />
+              )}
             </div>
           </div>
           <div className={styles.cursosNovos}>
-            {errorsCursosTreinamentos.length <= 0 ? cursosCompletos
-              ?.filter((p) => {
-                if (curso === "" || curso?.trim() === "") {
-                  return p;
-                } else if (
-                  p?.objetivo?.toLowerCase().includes(curso.toLowerCase()) ||
-                  p.titulocursotreinamento
-                    ?.toLowerCase()
-                    .includes(curso.toLowerCase()) ||
-                  p.publicoalvo?.toLowerCase().includes(curso.toLowerCase())
-                ) {
-                  return p;
-                }
-              })
-              .map((x, i) => (
-                <div className={styles.curso} key={i}>
-                  <div
-                    className={classNames({
-                      [styles.isCursoNovo]:
-                        x?.modalidade?.toLocaleLowerCase() === "c",
-                    })}
-                  ></div>
-                  <div role="button" onClick={() => modalState(x)}>
-                    <h4>
-                      <b>{x.titulocursotreinamento}</b>
-                    </h4>
-                    <p role="button">
-                      <span>
-                        <BsPersonCircle /> Conferir detalhes
-                      </span>
-                    </p>
+            {errorsCursosTreinamentos.length <= 0 ? (
+              cursosCompletos
+                ?.filter((p) => {
+                  if (curso === "" || curso?.trim() === "") {
+                    return p;
+                  } else if (
+                    p?.objetivo?.toLowerCase().includes(curso.toLowerCase()) ||
+                    p.titulocursotreinamento
+                      ?.toLowerCase()
+                      .includes(curso.toLowerCase()) ||
+                    p.publicoalvo?.toLowerCase().includes(curso.toLowerCase())
+                  ) {
+                    return p;
+                  }
+                })
+                .map((x, i) => (
+                  <div className={styles.curso} key={i}>
+                    <div
+                      className={classNames({
+                        [styles.isCursoNovo]:
+                          x?.modalidade?.toLocaleLowerCase() === "c",
+                      })}
+                    ></div>
+                    <div role="button" onClick={() => modalState(x)}>
+                      <h4>
+                        <b>{x.titulocursotreinamento}</b>
+                      </h4>
+                      <p role="button">
+                        <span>
+                          <BsPersonCircle /> Conferir detalhes
+                        </span>
+                      </p>
+                    </div>
                   </div>
-                </div>
-              )) : (
-                <ErrorMessageReq />
-              )}
+                ))
+            ) : (
+              <FriendlyErrorMessage commommsg />
+            )}
           </div>
         </div>
       </div>

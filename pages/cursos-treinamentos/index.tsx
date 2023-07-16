@@ -18,6 +18,7 @@ import { notify } from "@/components/Notification";
 import { extractErrorMessages } from "@/utils/tratamento-erros";
 import { toast } from "react-toastify";
 import { ErrorMessageReq } from "@/components/ReqErrorMessage";
+import FriendlyErrorMessage from "@/components/FriendlyErrorMessage";
 
 export async function getStaticProps() {
   let errorsCursosTreinamentos: any[] = [];
@@ -60,12 +61,6 @@ export default function CursosTreinamentos({
     setIsModalOpen(!isModalOpen);
     setModalContent(content);
   }
-
-  useEffect(() => {
-    if (errorsCursosTreinamentos.length > 0) {
-      errorsCursosTreinamentos.forEach((erro) => toast.error(erro));
-    }
-  }, []);
 
   useEffect(() => {
     const tiposCursos = cursosTreinamentos
@@ -247,7 +242,7 @@ export default function CursosTreinamentos({
               </p>
             </>
           ) : (
-            <ErrorMessageReq />
+            <FriendlyErrorMessage commommsg />
           )}
         </div>
       </div>
@@ -328,7 +323,7 @@ export default function CursosTreinamentos({
             </p>
           </>
         ) : (
-          <ErrorMessageReq />
+          <FriendlyErrorMessage commommsg />
         )}
       </div>
       <div className={styles.empresaIndicadaBottom}>

@@ -8,36 +8,54 @@ import { AiOutlinePaperClip } from "react-icons/ai";
 import Image from "next/image";
 import { CertidoesDeclaracoes } from "@/utils/certidoes-declaracoes";
 import { useRouter } from "next/router";
+import { DocumentacoesReq } from "@/typings/Requisicoes/Documentacoes";
+import { extractErrorMessages } from "@/utils/tratamento-erros";
+import { InferGetStaticPropsType } from "next";
+import FriendlyErrorMessage from "@/components/FriendlyErrorMessage";
+import Link from "next/link";
 
-const schema = yup.object().shape({
-  nome: yup.string().required("Campo obrigatório"),
-  email: yup.string().required("Campo obrigatório"),
-  mensagem: yup.string().required("Campo obrigatório"),
-  arquivo: yup.mixed().nullable().required("A file is required"),
-  assunto: yup.string().required("Campo obrigatório"),
-  celular: yup.string().required("Campo obrigatório"),
-  conheceusgp: yup.string().required("Campo obrigatório"),
-  dataEnvio: yup.string().required("Campo obrigatório"),
-  empresa: yup.string().required("Campo obrigatório"),
-  facebook: yup.string().required("Campo obrigatório"),
-  telComl: yup.string().required("Campo obrigatório"),
-});
+export async function getStaticProps() {
+  let errorsDocumentacoes: any[] = [];
+  let docs: DocumentacoesReq[] = [];
+  let declaracoescertidoes: DocumentacoesReq[] = [];
 
-const initialValues = {
-  nome: "",
-  email: "",
-  mensagem: "",
-  arquivo: "",
-  assunto: "",
-  celular: "",
-  conheceusgp: "",
-  dataEnvio: undefined,
-  empresa: "",
-  facebook: "",
-  telComl: "",
-};
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=documentacoessgp`
+  );
+  let documentacoes: DocumentacoesReq[] = await res.json();
 
-export default function Documentacoes() {
+  errorsDocumentacoes = extractErrorMessages(documentacoes);
+
+  if (errorsDocumentacoes.length > 0) {
+    documentacoes = [];
+  } else {
+    let auxDocs = documentacoes.filter(
+      (doc) => doc.descricaocategoria_docu === "Demais documentações"
+    );
+
+    let auxDeclaracoesCertidoes = documentacoes.filter(
+      (doc) => doc.descricaocategoria_docu === "Certidões e Declarações"
+    );
+
+    docs.push(...auxDocs);
+    declaracoescertidoes.push(...auxDeclaracoesCertidoes);
+  }
+
+  return {
+    props: {
+      docs,
+      declaracoescertidoes,
+      errorsDocumentacoes,
+    },
+    revalidate: 600,
+  };
+}
+
+export default function Documentacoes({
+  docs,
+  declaracoescertidoes,
+  errorsDocumentacoes,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const { push } = useRouter();
 
   return (
@@ -96,20 +114,46 @@ export default function Documentacoes() {
           </div>
           <div className={styles.documentacoes}>
             <h2 className={styles.certidao}>Demais documentações</h2>
-            <p className={styles.documentacaoBaixar}>
-              <AiOutlinePaperClip style={{ fontSize: "20px" }} />{" "}
-              <span>Cadastro Nacional de Pessoa Jurídica - CNPJ</span>
-            </p>
+            {errorsDocumentacoes.length <= 0 ? (
+              docs.map(
+                ({ titulolink_docu, caminholinkhref, nomearquivo_docu }, i) => (
+                  <Link
+                    href={`${caminholinkhref}${nomearquivo_docu}`}
+                    className={styles.documentacaoBaixar}
+                    key={i}
+                  >
+                    <AiOutlinePaperClip style={{ fontSize: "20px" }} />{" "}
+                    <span>{titulolink_docu}</span>
+                  </Link>
+                )
+              )
+            ) : (
+              <FriendlyErrorMessage commommsg />
+            )}
+
             <h2 className={styles.certidao} style={{ marginTop: "30px" }}>
               Certidões e Declarações
             </h2>
             <div className={styles.certidoesDeclaracoesMap}>
-              {CertidoesDeclaracoes.map(({ titulo, link }, i) => (
-                <p className={styles.documentacaoBaixar} key={i}>
-                  <AiOutlinePaperClip style={{ fontSize: "20px" }} />
-                  <span>{titulo}</span>
-                </p>
-              ))}
+              {errorsDocumentacoes.length <= 0 ? (
+                declaracoescertidoes.map(
+                  (
+                    { titulolink_docu, caminholinkhref, nomearquivo_docu },
+                    i
+                  ) => (
+                    <Link
+                      href={`${caminholinkhref}${nomearquivo_docu}`}
+                      className={styles.documentacaoBaixar}
+                      key={i}
+                    >
+                      <AiOutlinePaperClip style={{ fontSize: "20px" }} />{" "}
+                      <span>{titulolink_docu}</span>
+                    </Link>
+                  )
+                )
+              ) : (
+                <FriendlyErrorMessage commommsg />
+              )}
             </div>
           </div>
         </div>

@@ -69,11 +69,11 @@ export default function SolucoesInovadoras() {
               impostos, taxas e contribuições, nos âmbitos municipal, estadual e
               federal.
             </p>
-            <Button
+            {/* <Button
               color="darkBlue"
               title="Envie sua solicitação"
               onClick={() => push("/contato")}
-            />
+            /> */}
           </div>
           <div className={styles.img}>
             <Image
@@ -102,11 +102,11 @@ export default function SolucoesInovadoras() {
               Atuante nas áreas de Recursos Humanos, Departamento Pessoal e
               eSocial.
             </p>
-            <Button
+            {/* <Button
               color="darkBlue"
               title="Envie sua solicitação"
               onClick={() => push("/contato")}
-            />
+            /> */}
           </div>
         </div>
       </section>
@@ -125,11 +125,11 @@ export default function SolucoesInovadoras() {
               Encerramento de Exercício, Prestação de Contas, AUDESP, dentre
               outros assuntos correlatos.
             </p>
-            <Button
+            {/* <Button
               color="darkBlue"
               title="Envie sua solicitação"
               onClick={() => push("/contato")}
-            />
+            /> */}
           </div>
           <div className={styles.img}>
             <Image
@@ -329,12 +329,11 @@ export default function SolucoesInovadoras() {
               com redação dada pela Lei nº 13.853/2019), para implantação,
               levantamento de necessidades e soluções.
             </p>
-            <p>
+            <p id="pos-graduacao">
               Faça um primeiro diagnóstico, a fim de avaliar se a empresa ou o
               órgão público encontra-se adequado à nova LGPD.
             </p>
             <Button
-              id="pos-graduacao"
               onClick={() =>
                 push("https://www.sgpsolucoes.com.br/lgpd/checklist-lgpd")
               }

@@ -79,7 +79,6 @@ export default function Contato() {
       setValue("assunto", String(assuntoForm));
     }
   }, [assuntoForm]);
-  console.log("assuntoForm", assuntoForm);
 
   function getIconByName(rede: string) {
     if (rede === "Facebook") {
@@ -243,7 +242,6 @@ export default function Contato() {
                 label="Como conheceu a SGP?"
                 register={register("conheceusgp")}
                 error={errors.conheceusgp?.message}
-                onChange={() => console.log(getValues())}
                 placeholder="Escreva aqui"
               />
               <Input
