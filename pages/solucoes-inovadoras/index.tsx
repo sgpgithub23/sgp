@@ -69,6 +69,11 @@ export default function SolucoesInovadoras() {
               impostos, taxas e contribuições, nos âmbitos municipal, estadual e
               federal.
             </p>
+            <Button
+              color="darkBlue"
+              title="Envie sua solicitação"
+              onClick={() => push("/contato")}
+            />
           </div>
           <div className={styles.img}>
             <Image
@@ -97,6 +102,43 @@ export default function SolucoesInovadoras() {
               Atuante nas áreas de Recursos Humanos, Departamento Pessoal e
               eSocial.
             </p>
+            <Button
+              color="darkBlue"
+              title="Envie sua solicitação"
+              onClick={() => push("/contato")}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.orientacoesTributarias}>
+        <div
+          className={styles.orientacaoSGPTributaria}
+          style={{ marginTop: "60px", marginBottom: "100px" }}
+        >
+          <div className={styles.textos}>
+            <hr />
+            <h1>Orientação SGP Contabilidade</h1>
+            <p>
+              Consultoria que atua na área da Contabilidade e Contabilidade
+              Pública, Organização Contábil, Gestão, Controle Financeiro,
+              Encerramento de Exercício, Prestação de Contas, AUDESP, dentre
+              outros assuntos correlatos.
+            </p>
+            <Button
+              color="darkBlue"
+              title="Envie sua solicitação"
+              onClick={() => push("/contato")}
+            />
+          </div>
+          <div className={styles.img}>
+            <Image
+              src="/images/solucoes-inovadoras/tres-maos.webp"
+              width={593}
+              className={"imgOnHover"}
+              height={385}
+              alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
+            />
           </div>
         </div>
       </section>
@@ -367,10 +409,10 @@ export default function SolucoesInovadoras() {
           <div>
             <Image
               alt="Foto referente ao MBA"
-              src="/images/solucoes-inovadoras/mba/mba.webp"
-              width={453}
+              src="/images/solucoes-inovadoras/mba-imagem-pos.webp"
+              width={384}
               className={"imgOnHover"}
-              height={323}
+              height={384}
               style={{ maxWidth: "100%", width: "460px", height: "auto" }}
             />
           </div>

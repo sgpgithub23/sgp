@@ -509,8 +509,9 @@
 
         .objetivosHorarios {
             display: grid;
-            grid-template-columns: repeat(2, 50%);
+            grid-template-columns: repeat(2, auto);
             gap: 50px;
+            justify-content: space-around;
 
             & > div {
                 width: 90%;
