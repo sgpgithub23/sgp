@@ -193,7 +193,13 @@ export default function Home({
         ? urls.map((x, index: number) => ({
             id: String(index),
             renderItem: (
-              <Image width={x.w} height={x.h} src={x.src} alt={x.alt} />
+              <Image
+                width={x.w}
+                height={x.h}
+                src={x.src}
+                alt={x.alt}
+                priority
+              />
             ),
           }))
         : [
