@@ -15,13 +15,12 @@ import {
 } from "@/utils/nossos-periodicos";
 import Image from "next/image";
 import BookOpen from "@/public/icons/book-open";
-import { extractErrorMessages } from "@/utils/tratamento-erros";
-import { toast } from "react-toastify";
-import Notification, { notify } from "@/components/Notification";
+import { notify } from "@/components/Notification";
 import Spinner from "@/components/Spinner";
 import { PeriodicoDegustacao } from "@/typings/PeriodicosDegustacao";
 import { BsDownload } from "react-icons/bs";
 import Link from "next/link";
+import FriendlyErrorMessage from "@/components/FriendlyErrorMessage";
 
 type PropsDropdown = {
   label: string;
@@ -45,9 +44,14 @@ export default function NossosPeriodicos() {
     PeriodicoDegustacao[]
   >([]);
 
+  const [errorsResultDegustacao, setErrorsResultDegustacao] = useState<
+    string[]
+  >([]);
+
   useEffect(() => {}, [isLoading]);
 
   async function handleSubmit() {
+    setErrorsResultDegustacao([]);
     setIsLoading(true);
 
     const data = {
@@ -63,11 +67,8 @@ export default function NossosPeriodicos() {
 
     const result = await res.json();
     if (result.errors) {
-      console.log("result.errors", result.errors);
       setIsLoading(false);
-      result.errors.map((err: any) => {
-        notify.error(err);
-      });
+      setErrorsResultDegustacao(result.errors);
       setResultDegustacao([]);
       return;
     }
@@ -76,7 +77,6 @@ export default function NossosPeriodicos() {
     setAno(initialValuesDropdown);
     setMes(initialValuesDropdown);
     setPeriodico(initialValuesDropdown);
-    notify.success("Periódico encontrado com sucesso!");
   }
 
   return (
@@ -136,6 +136,11 @@ export default function NossosPeriodicos() {
               {isLoading && <Spinner />}
             </div>
           </div>
+
+          <div className={styles.errorsPeriodicosMobile}>
+            <FriendlyErrorMessage messages={errorsResultDegustacao} />
+          </div>
+
           {resultDegustacao.length > 0 && (
             <div className={styles.periodicosAllMobile}>
               <h3>Periódicos Disponíveis</h3>
@@ -187,7 +192,9 @@ export default function NossosPeriodicos() {
             </div>
           </div>
         </div>
-
+        <div className={styles.errorsPeriodicosDesktop}>
+          <FriendlyErrorMessage messages={errorsResultDegustacao} />
+        </div>
         {resultDegustacao.length > 0 && (
           <div className={styles.periodicosAllDesktop}>
             <h3>Periódicos Disponíveis</h3>

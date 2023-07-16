@@ -314,13 +314,17 @@
 
 @media (min-width: 1008px){
    .main {
-    .pageSize {
-        .periodicos {
-            .periodicosAllMobile {
-                display: none;
+        .pageSize {
+            .periodicos {
+                .periodicosAllMobile {
+                    display: none;
+                }
             }
         }
-    }
+   }
+
+   .errorsPeriodicosMobile {
+        display: none;
    }
 }
 
@@ -350,8 +354,10 @@
     }
 
     .main > .pageSize > .periodicos > .periodicosAllDesktop {
-        display: hidden;
+        display: none;
     }
+
+
 }
 
 @media (max-width: 1008px) {
@@ -435,6 +441,10 @@
             }
     
         }
+    }
+
+    .errorsPeriodicosDesktop {
+        display: none;
     }
 }
 

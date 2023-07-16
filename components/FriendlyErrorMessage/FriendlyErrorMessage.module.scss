@@ -1,0 +1,16 @@
+@use '../../styles/_index.scss' as *;
+
+
+.errorStructure {
+    padding: 20px;
+    border-radius: 15px;
+    border: none;
+    border: 1px solid $red-02;
+    height: fit-content;
+    width: fit-content;
+
+    & > legend {
+        padding-inline: 10px;
+        color: $red-02  ;
+    }
+}
