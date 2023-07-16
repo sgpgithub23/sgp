@@ -43,6 +43,45 @@ import { extractErrorMessages } from "@/utils/tratamento-erros";
 import { Depoimento } from "@/typings/Depoimentos";
 import { ErrorMessageReq } from "@/components/ReqErrorMessage";
 // import size from "window-size";
+// import teste1 from "../public/3400-anafernanda.png";
+// import teste2 from "../public/3400-lucana.png";
+// import teste3 from "../public/3400-simine.png";
+import teste4 from "../public/800-gilberto.png";
+import teste5 from "../public/800-luciana.png";
+import teste6 from "../public/800-simone.png";
+import group1teste6 from "../public/teste800-1.webp";
+import group2teste6 from "../public/teste800-2.webp";
+import group3teste6 from "../public/teste800-3.webp";
+
+const urls = [
+  {
+    w: 2079,
+    h: 3330,
+    alt: "asdasdasd",
+    src: group1teste6.src,
+  },
+  {
+    w: 2079,
+    h: 3330,
+    alt: "asdasdasd",
+    src: group2teste6.src,
+  },
+  {
+    w: 2079,
+    h: 3330,
+    alt: "asdasdasd",
+    src: group3teste6.src,
+  },
+
+  // 2079 por 3330
+
+  // teste1.src,
+  // teste2.src,
+  // teste3.src,
+  // teste4.src,
+  // teste5.src,
+  // teste6.src,
+];
 
 export default function Home({
   imgsJson,
@@ -88,26 +127,30 @@ export default function Home({
     };
   }, []);
 
-  useEffect(() => {
-    const auxArr = cloneDeep(imgsJson);
-    const viewportWidth = window.innerWidth;
-    setWindowWidth(viewportWidth);
+  // useEffect(() => {
+  //   const auxArr = cloneDeep(imgsJson);
+  //   const viewportWidth = window.innerWidth;
+  //   setWindowWidth(viewportWidth);
 
-    const size =
-      viewportWidth > 1920
-        ? "1920"
-        : viewportWidth < 1920 && viewportWidth >= 1600
-        ? "1600"
-        : viewportWidth < 1600 && viewportWidth >= 1100
-        ? "1100"
-        : viewportWidth < 1100 && viewportWidth >= 800
-        ? "800"
-        : "410";
+  //   const size =
+  //     viewportWidth > 1920
+  //       ? "1920"
+  //       : viewportWidth < 1920 && viewportWidth >= 1600
+  //       ? "1600"
+  //       : viewportWidth < 1600 && viewportWidth >= 1100
+  //       ? "1100"
+  //       : viewportWidth < 1100 && viewportWidth >= 800
+  //       ? "800"
+  //       : "410";
 
-    const auxSize = auxArr.filter((x) => x.formato === size);
-    console.log("auxSize", auxSize);
-    setMainCarouselImg(auxSize);
-  }, [windowWidth]);
+  //   const auxSize = auxArr.filter((x) => x.formato === size);
+  //   console.log("size", size);
+  //   setMainCarouselImg(auxSize);
+  // }, [windowWidth]);
+  //   const auxSize = auxArr.filter((x) => x.formato === size);
+  //   console.log("auxSize", auxSize);
+  //   setMainCarouselImg(auxSize);
+  // }, [windowWidth]);
 
   useEffect(() => {
     if (errosClientes.length > 0) {
@@ -121,24 +164,16 @@ export default function Home({
 
   const carouselApresentacao = useSpringCarousel({
     withLoop: true,
+    itemsPerSlide: 1,
     // @ts-ignore
     items:
       errosImagesCarouselPrincipal.length <= 0
-        ? mainCarouselImg.map((x: RegularImageType, index: number) => {
-            return {
-              id: `item-${index}`,
-              renderItem: (
-                <div
-                  className={styles[x.nomeclass]}
-                  onClick={() => linkToUrlBannerCarousel(x.caminhohref)}
-                  style={{
-                    backgroundImage: `url(${x.caminhoimagem})`,
-                    cursor: "pointer",
-                  }}
-                ></div>
-              ),
-            };
-          })
+        ? urls.map((x, index: number) => ({
+            id: String(index),
+            renderItem: (
+              <Image width={x.w} height={x.h} src={x.src} alt={x.alt} />
+            ),
+          }))
         : [
             {
               id: "item-0",
@@ -446,22 +481,22 @@ export default function Home({
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
       </Head>
       <Navbar />
-      <main className={styles.main}>
-        <div className={styles.carouselSpace}>
-          <button
-            className={styles.slideToPrevItem}
-            onClick={() => moveCarousel("prev")}
-          >
-            <BsArrowLeftCircle />
-          </button>
-          {carouselApresentacao?.carouselFragment}
-          <button
-            className={styles.slideToNextItem}
-            onClick={() => moveCarousel("next")}
-          >
-            <BsArrowRightCircle />
-          </button>
-        </div>
+      <main
+        className={`${styles.carouselFragment} ${styles.carouselContainer}`}
+      >
+        <button
+          className={styles.slideToPrevItem}
+          onClick={() => carouselApresentacao.slideToPrevItem()}
+        >
+          <BsArrowLeftCircle />
+        </button>
+        {carouselApresentacao?.carouselFragment}
+        <button
+          className={styles.slideToNextItem}
+          onClick={() => carouselApresentacao.slideToNextItem()}
+        >
+          <BsArrowRightCircle />
+        </button>
       </main>
       <section className={styles.quemSomosAll} id="quemsomos">
         <div className={styles.quemsomos}>
