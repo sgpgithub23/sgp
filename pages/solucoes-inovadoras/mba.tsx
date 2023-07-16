@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/Mba.module.scss";
 import { FooterCompleto } from "@/components/FooterCompleto";
@@ -23,6 +23,7 @@ import { useForm } from "react-hook-form";
 import { FormMBA } from "@/typings/FormMba";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const schema = yup.object().shape({
   nome: yup.string().required("Campo obrigatório"),
@@ -69,6 +70,8 @@ const tiposPagamento = [
 
 export default function SolucoesInovadoras() {
   const { push } = useRouter();
+  const captchaRef = useRef(null);
+  const [recaptchaResponse, setRecaptchaResponse] = useState<any>();
   const [inputFileName, setInputFileName] = useState<string>(
     "Clique aqui para escolher o arquivo"
   );
@@ -853,7 +856,7 @@ export default function SolucoesInovadoras() {
                   ))}
                 </li>
               </ul>
-              <Button color="blue" title="Prosseguir para o próximo passo" />
+              {/* <Button color="blue" title="Prosseguir para o próximo passo" /> */}
             </div>
           </div>
         </div>
@@ -1011,25 +1014,51 @@ export default function SolucoesInovadoras() {
             <p>Ao enviar os dados do formulário: </p>
             <ul>
               <li>
-                <AiOutlineCheckCircle />
+                <AiOutlineCheckCircle style={{ color: `#26B0EF` }} />
                 <span>
-                  Estou ciente e aceito a <b> Política de Cookies *</b>
+                  Estou ciente e aceito a{" "}
+                  <b
+                    onClick={() => push("/documentacoes/cookies")}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {" "}
+                    Política de Cookies *
+                  </b>
                 </span>
               </li>
               <li>
-                <AiOutlineCheckCircle />
+                <AiOutlineCheckCircle style={{ color: `#26B0EF` }} />
                 <span>
-                  Estou ciente e aceito a <b>Política de Privacidade *</b>
+                  Estou ciente e aceito a{" "}
+                  <b
+                    style={{ cursor: "pointer" }}
+                    onClick={() => push("/documentacoes/politica-privacidade")}
+                  >
+                    Política de Privacidade *
+                  </b>
                 </span>
               </li>
               <li>
-                <AiOutlineCheckCircle />
+                <AiOutlineCheckCircle style={{ color: `#26B0EF` }} />
                 <span>
                   Estou ciente e aceito o{" "}
-                  <b>Termo de Consentimento da Privacidade *</b>
+                  <b
+                    style={{ cursor: "pointer" }}
+                    onClick={() => push("/documentacoes/termos-uso")}
+                  >
+                    Termo de Consentimento da Privacidade *
+                  </b>
                 </span>
               </li>
             </ul>
+            <div className={styles.buttonPosition}>
+              <ReCAPTCHA
+                // @ts-ignore
+                sitekey={process.env.NEXT_PUBLIC_API_RECAPTCHA_SIE}
+                ref={captchaRef}
+                onChange={(value) => setRecaptchaResponse(value)}
+              />
+            </div>
             <div className={styles.buttonPosition}>
               <Button
                 color="darkBlue"
