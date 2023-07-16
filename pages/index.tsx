@@ -96,22 +96,44 @@ export default function Home({
   const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(
     cloneDeep(imgsJson)
   );
-  const [seconds, setSeconds] = useState(0);
+  const [manualInteraction, setManualInteraction] = useState<boolean>(false);
   const [increment, setIncrement] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIncrement((prevIncrement) => prevIncrement + 1);
-    }, 8000);
+      if (!manualInteraction) {
+        setIncrement((prevIncrement) => prevIncrement + 1);
+      }
+    }, 3000);
 
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [manualInteraction]);
 
   useEffect(() => {
     carouselApresentacao.slideToNextItem();
   }, [increment]);
+
+  function moveCarousel(direction: "next" | "prev") {
+    if (
+      mainCarouselImg.length > 0 &&
+      errosImagesCarouselPrincipal.length <= 0
+    ) {
+      setManualInteraction(true);
+      if (direction === "next") {
+        carouselApresentacao?.slideToNextItem();
+      }
+      if (direction === "prev") {
+        carouselApresentacao?.slideToPrevItem();
+      }
+
+      // Reiniciar a interação manual após um breve atraso
+      setTimeout(() => {
+        setManualInteraction(false);
+      }, 1000);
+    }
+  }
 
   useEffect(() => {
     function atualizarTamanhoViewport() {
@@ -432,20 +454,6 @@ export default function Home({
     ],
   });
 
-  function moveCarousel(direction: "next" | "prev") {
-    if (
-      mainCarouselImg.length > 0 &&
-      errosImagesCarouselPrincipal.length <= 0
-    ) {
-      if (direction === "next") {
-        carouselApresentacao?.slideToNextItem();
-      }
-      if (direction === "prev") {
-        carouselApresentacao?.slideToPrevItem();
-      }
-    }
-  }
-
   function getIconByName(rede: string) {
     if (rede === "Facebook") {
       return <BsFacebook />;
@@ -486,14 +494,14 @@ export default function Home({
       >
         <button
           className={styles.slideToPrevItem}
-          onClick={() => carouselApresentacao.slideToPrevItem()}
+          onClick={() => moveCarousel("prev")}
         >
           <BsArrowLeftCircle />
         </button>
         {carouselApresentacao?.carouselFragment}
         <button
           className={styles.slideToNextItem}
-          onClick={() => carouselApresentacao.slideToNextItem()}
+          onClick={() => moveCarousel("next")}
         >
           <BsArrowRightCircle />
         </button>
