@@ -52,6 +52,7 @@ import teste6 from "../public/800-simone.png";
 import group1teste6 from "../public/teste800-1.webp";
 import group2teste6 from "../public/teste800-2.webp";
 import group3teste6 from "../public/teste800-3.webp";
+import group3teste7 from "../public/3_banner_desktop_3400_.webp";
 
 const urls = [
   {
@@ -71,6 +72,12 @@ const urls = [
     h: 3330,
     alt: "asdasdasd",
     src: group3teste6.src,
+  },
+  {
+    w: 3400,
+    h: 1280,
+    alt: "asdasdasd",
+    src: group3teste7.src,
   },
 
   // 2079 por 3330
@@ -93,8 +100,11 @@ export default function Home({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { push } = useRouter();
   const [windowWidth, setWindowWidth] = useState(0);
-  const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(
-    cloneDeep(imgsJson)
+  // const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(
+  //   cloneDeep(imgsJson)
+  // );
+  const [mainCarouselImg, setMainCarouselImg] = useState<any[]>(
+    cloneDeep(urls)
   );
   const [manualInteraction, setManualInteraction] = useState<boolean>(false);
   const [increment, setIncrement] = useState(0);
@@ -149,30 +159,16 @@ export default function Home({
     };
   }, []);
 
-  // useEffect(() => {
-  //   const auxArr = cloneDeep(imgsJson);
-  //   const viewportWidth = window.innerWidth;
-  //   setWindowWidth(viewportWidth);
+  useEffect(() => {
+    const auxArr = cloneDeep(urls);
+    const viewportWidth = window.innerWidth;
+    setWindowWidth(viewportWidth);
 
-  //   const size =
-  //     viewportWidth > 1920
-  //       ? "1920"
-  //       : viewportWidth < 1920 && viewportWidth >= 1600
-  //       ? "1600"
-  //       : viewportWidth < 1600 && viewportWidth >= 1100
-  //       ? "1100"
-  //       : viewportWidth < 1100 && viewportWidth >= 800
-  //       ? "800"
-  //       : "410";
+    const size = viewportWidth > 800 ? "3400" : "2079";
 
-  //   const auxSize = auxArr.filter((x) => x.formato === size);
-  //   console.log("size", size);
-  //   setMainCarouselImg(auxSize);
-  // }, [windowWidth]);
-  //   const auxSize = auxArr.filter((x) => x.formato === size);
-  //   console.log("auxSize", auxSize);
-  //   setMainCarouselImg(auxSize);
-  // }, [windowWidth]);
+    const auxSize = auxArr.filter((x) => x.w === Number(size));
+    setMainCarouselImg(auxSize);
+  }, [windowWidth]);
 
   // useEffect(() => {
   //   if (errosClientes.length > 0) {
@@ -190,7 +186,7 @@ export default function Home({
     // @ts-ignore
     items:
       errosImagesCarouselPrincipal.length <= 0
-        ? urls.map((x, index: number) => ({
+        ? mainCarouselImg.map((x, index: number) => ({
             id: String(index),
             renderItem: (
               <Image
