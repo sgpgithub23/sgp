@@ -188,16 +188,14 @@ export default function Home({
         ? mainCarouselImg.map((x, index: number) => ({
             id: String(index),
             renderItem: (
-              // w: obj.formatoimagem === "3400" ? 3400 : 2079,
-              // h: obj.formatoimagem === "3400" ? 1285 : 3300,
               <Image
-                // width={x.formatoimagem === "3400" ? 3400 : 2079}
-                // height={x.formatoimagem === "3400" ? 1285 : 3300}
                 width={3400}
                 height={2700}
                 src={x.caminhoimagem}
                 alt={x.tituloalthref}
                 priority
+                onClick={() => push(x.caminhohref)}
+                style={{ cursor: "pointer" }}
               />
             ),
           }))

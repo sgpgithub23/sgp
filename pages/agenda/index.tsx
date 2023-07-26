@@ -191,7 +191,7 @@ export default function Agenda({
                 <hr />
                 <h2>“O Conhecimento é o único bem que não pode ser tirado de você”.</h2>
             </div> */}
-      <section className={styles.degustacaoAll}>
+      {/* <section className={styles.degustacaoAll}>
         <div className={styles.degustacao}>
           <div className={styles.leftSide}>
             <h1>Publique conosco seu artigo ou parecer.</h1>
@@ -238,7 +238,7 @@ export default function Agenda({
             />
           </div>
         </div>
-      </section>
+      </section> */}
       <div className={styles.professores}>
         <h1>Inicie um contato preenchendo o formulário</h1>
         <p>
