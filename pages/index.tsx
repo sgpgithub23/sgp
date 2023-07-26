@@ -31,7 +31,7 @@ import { FooterCompleto } from "@/components/FooterCompleto";
 import { useRouter } from "next/router";
 import { ClientesRequisicao } from "@/typings/Requisicoes/Clientes";
 import { InferGetServerSidePropsType } from "next";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { ProfessorReq } from "@/typings/Requisicoes/Professores";
 import { cloneDeep } from "lodash";
 import {
@@ -99,8 +99,11 @@ export default function Home({
   clientes,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   // console.warn("imgsJson", imgsJson);
+  const isBrowser = typeof window !== "undefined";
+  const initialWidth = isBrowser ? window.innerWidth : 0;
+
   const { push } = useRouter();
-  const [windowWidth, setWindowWidth] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(initialWidth);
   const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(
     cloneDeep(imgsJson)
   );
@@ -144,7 +147,7 @@ export default function Home({
   }
 
   function updateMainCarouselImg(size: string) {
-    const auxArr = cloneDeep(mainCarouselImg);
+    const auxArr = cloneDeep(imgsJson);
     const auxSize = auxArr.filter((x) => x.formato === size);
     setMainCarouselImg(auxSize);
   }
@@ -153,8 +156,6 @@ export default function Home({
     function atualizarTamanhoViewport() {
       setWindowWidth(window.innerWidth || document.documentElement.clientWidth);
     }
-
-    console.warn(windowWidth);
 
     window.addEventListener("resize", atualizarTamanhoViewport);
 
@@ -166,14 +167,14 @@ export default function Home({
   }, []);
 
   useEffect(() => {
-    console.log("windowWidth", windowWidth);
-    const auxArr = cloneDeep(mainCarouselImg);
     const viewportWidth = window.innerWidth;
     setWindowWidth(viewportWidth);
+  }, [windowWidth]);
 
-    if (viewportWidth >= 800) {
+  useEffect(() => {
+    if (windowWidth >= 800) {
       updateMainCarouselImg("3400");
-    } else if (viewportWidth < 800) {
+    } else if (windowWidth < 800) {
       updateMainCarouselImg("800");
     }
   }, [windowWidth]);
@@ -187,9 +188,13 @@ export default function Home({
         ? mainCarouselImg.map((x, index: number) => ({
             id: String(index),
             renderItem: (
+              // w: obj.formatoimagem === "3400" ? 3400 : 2079,
+              // h: obj.formatoimagem === "3400" ? 1285 : 3300,
               <Image
-                width={x.formatoimagem === "3400" ? 3400 : 2079}
-                height={x.formatoimagem === "3400" ? 1285 : 3300}
+                // width={x.formatoimagem === "3400" ? 3400 : 2079}
+                // height={x.formatoimagem === "3400" ? 1285 : 3300}
+                width={3400}
+                height={2700}
                 src={x.caminhoimagem}
                 alt={x.tituloalthref}
                 priority
@@ -498,7 +503,7 @@ export default function Home({
         >
           <BsArrowLeftCircle />
         </button>
-        {mainCarouselImg.length > 0 && carouselApresentacao?.carouselFragment}
+        {carouselApresentacao?.carouselFragment}
         <button
           className={styles.slideToNextItem}
           onClick={() => moveCarousel("next")}
