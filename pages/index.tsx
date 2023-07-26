@@ -54,57 +54,55 @@ import group2teste6 from "../public/teste800-2.webp";
 import group3teste6 from "../public/teste800-3.webp";
 import group3teste7 from "../public/3_banner_desktop_3400_.webp";
 
-const urls = [
-  {
-    w: 2079,
-    h: 3330,
-    alt: "asdasdasd",
-    src: group1teste6.src,
-  },
-  {
-    w: 2079,
-    h: 3330,
-    alt: "asdasdasd",
-    src: group2teste6.src,
-  },
-  {
-    w: 2079,
-    h: 3330,
-    alt: "asdasdasd",
-    src: group3teste6.src,
-  },
-  {
-    w: 3400,
-    h: 1280,
-    alt: "asdasdasd",
-    src: group3teste7.src,
-  },
+// const urls = [
+//   {
+//     w: 2079,
+//     h: 3330,
+//     alt: "asdasdasd",
+//     src: group1teste6.src,
+//   },
+//   {
+//     w: 2079,
+//     h: 3330,
+//     alt: "asdasdasd",
+//     src: group2teste6.src,
+//   },
+//   {
+//     w: 2079,
+//     h: 3330,
+//     alt: "asdasdasd",
+//     src: group3teste6.src,
+//   },
+//   {
+//     w: 3400,
+//     h: 1280,
+//     alt: "asdasdasd",
+//     src: group3teste7.src,
+//   },
 
-  // 2079 por 3330
+//   // 2079 por 3330
 
-  // teste1.src,
-  // teste2.src,
-  // teste3.src,
-  // teste4.src,
-  // teste5.src,
-  // teste6.src,
-];
+//   // teste1.src,
+//   // teste2.src,
+//   // teste3.src,
+//   // teste4.src,
+//   // teste5.src,
+//   // teste6.src,
+// ];
 
 export default function Home({
   imgsJson,
-  clientes,
   errosClientes,
   errosImagesCarouselPrincipal,
   depoimentos,
   errosDepoimentos,
+  clientes,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  // console.warn("imgsJson", imgsJson);
   const { push } = useRouter();
   const [windowWidth, setWindowWidth] = useState(0);
-  // const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(
-  //   cloneDeep(imgsJson)
-  // );
-  const [mainCarouselImg, setMainCarouselImg] = useState<any[]>(
-    cloneDeep(urls)
+  const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(
+    cloneDeep(imgsJson)
   );
   const [manualInteraction, setManualInteraction] = useState<boolean>(false);
   const [increment, setIncrement] = useState(0);
@@ -145,10 +143,18 @@ export default function Home({
     }
   }
 
+  function updateMainCarouselImg(size: string) {
+    const auxArr = cloneDeep(mainCarouselImg);
+    const auxSize = auxArr.filter((x) => x.formato === size);
+    setMainCarouselImg(auxSize);
+  }
+
   useEffect(() => {
     function atualizarTamanhoViewport() {
       setWindowWidth(window.innerWidth || document.documentElement.clientWidth);
     }
+
+    console.warn(windowWidth);
 
     window.addEventListener("resize", atualizarTamanhoViewport);
 
@@ -160,25 +166,17 @@ export default function Home({
   }, []);
 
   useEffect(() => {
-    const auxArr = cloneDeep(urls);
+    console.log("windowWidth", windowWidth);
+    const auxArr = cloneDeep(mainCarouselImg);
     const viewportWidth = window.innerWidth;
     setWindowWidth(viewportWidth);
 
-    const size = viewportWidth > 800 ? "3400" : "2079";
-
-    const auxSize = auxArr.filter((x) => x.w === Number(size));
-    setMainCarouselImg(auxSize);
+    if (viewportWidth >= 800) {
+      updateMainCarouselImg("3400");
+    } else if (viewportWidth < 800) {
+      updateMainCarouselImg("800");
+    }
   }, [windowWidth]);
-
-  // useEffect(() => {
-  //   if (errosClientes.length > 0) {
-  //     errosClientes.forEach((erro) => toast.error(erro));
-  //   }
-
-  //   if (errosImagesCarouselPrincipal.length > 0) {
-  //     errosImagesCarouselPrincipal.forEach((erro) => toast.error(erro));
-  //   }
-  // }, []);
 
   const carouselApresentacao = useSpringCarousel({
     withLoop: true,
@@ -190,10 +188,10 @@ export default function Home({
             id: String(index),
             renderItem: (
               <Image
-                width={x.w}
-                height={x.h}
-                src={x.src}
-                alt={x.alt}
+                width={x.formatoimagem === "3400" ? 3400 : 2079}
+                height={x.formatoimagem === "3400" ? 1285 : 3300}
+                src={x.caminhoimagem}
+                alt={x.tituloalthref}
                 priority
               />
             ),
@@ -500,7 +498,7 @@ export default function Home({
         >
           <BsArrowLeftCircle />
         </button>
-        {carouselApresentacao?.carouselFragment}
+        {mainCarouselImg.length > 0 && carouselApresentacao?.carouselFragment}
         <button
           className={styles.slideToNextItem}
           onClick={() => moveCarousel("next")}
@@ -892,6 +890,7 @@ export async function getServerSideProps() {
   );
 
   imgsJson = await imgsCarouselFetch.json();
+
   clientesJson = await resClientes.json();
   depoimentosJson = await resDepoimentos.json();
 
@@ -915,7 +914,15 @@ export async function getServerSideProps() {
         textoadicional1: obj.textoadicional1,
         textoadicional2: obj.textoadicional2,
         textoadicional3: obj.textoadicional3,
+        // 2079x3330
       };
+      // desktop
+      // w 3400
+      // h 1285
+
+      // mobile
+      // w 2079
+      // h 3330
     });
   } else {
     newImgsType = [];

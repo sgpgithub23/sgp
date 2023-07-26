@@ -29,4 +29,6 @@ export interface RegularImageType {
   textoadicional2: string;
   nomeclass: string;
   textoadicional3: string;
+  h: number
+  w: number
 }
