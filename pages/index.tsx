@@ -175,7 +175,7 @@ export default function Home({
     if (windowWidth >= 800) {
       updateMainCarouselImg("3400");
     } else if (windowWidth < 800) {
-      updateMainCarouselImg("800");
+      updateMainCarouselImg("2079");
     }
   }, [windowWidth]);
 
@@ -214,6 +214,7 @@ export default function Home({
                     justifyContent: "center",
                     alignItems: "center",
                     textAlign: "center",
+                    height: "100%",
                   }}
                 >
                   <p>Ocorreu um erro! </p>
@@ -893,7 +894,6 @@ export async function getServerSideProps() {
   );
 
   imgsJson = await imgsCarouselFetch.json();
-
   clientesJson = await resClientes.json();
   depoimentosJson = await resDepoimentos.json();
 
