@@ -175,6 +175,12 @@
     }
 } 
 
+@media (min-width: 1350px) {
+    .NossosProfessores {
+        display: none;
+    }
+} 
+
 
 @media (max-width: 1355px) {
     .NossosProfessores, .Documentacoes, .PubliqueConosco {

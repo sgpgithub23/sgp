@@ -5,8 +5,6 @@ import styles from "@/styles/SolucoesInovadoras.module.scss";
 import { FooterCompleto } from "@/components/FooterCompleto";
 import { useRouter } from "next/router";
 import Button from "@/components/Button";
-import { CursosTreinamentosType } from "@/typings/CursosTreinamentos";
-import { InfoOrientacoes } from "@/utils/orientacoes";
 import { TiposOrientacoes } from "@/utils/tipos-orientacoes";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import Image from "next/image";
@@ -133,7 +131,7 @@ export default function SolucoesInovadoras() {
           </div>
           <div className={styles.img}>
             <Image
-              src="/images/solucoes-inovadoras/tres-maos.webp"
+              src="/images/solucoes-inovadoras/contabilidade.webp"
               width={593}
               className={"imgOnHover"}
               height={385}
@@ -142,62 +140,45 @@ export default function SolucoesInovadoras() {
           </div>
         </div>
       </section>
-      {/* 
-      <section className={styles.image}>
-        <div className={styles.texto}>
-          <hr />
-          <p>
-            A Orientação SGP presta suporte técnico-jurídico aos assinantes dos
-            nossos periódicos mensais, por meio de orientações escritas,
-            devidamente balizadas, sempre que possível, em doutrinas e
-            jurisprudências atuais.
-          </p>
-          <p>
-            Os assinantes encaminham suas dúvidas e casos concretos por escrito,
-            via e-mail ou pelo nosso site, e recebem, num prazo de 24 a 72
-            horas, orientações escritas e seguras, que refletem o atual
-            entendimento da Orientação SGP e certamente auxiliarão na tomada de
-            decisão de cada órgão ou entidade.
-          </p>
-          <p>
-            <Button
-              color="blue"
-              title="Saber mais"
-              onClick={() => {
-                push("/contato");
-              }}
-            />
-          </p>
-        </div>
-      </section> */}
 
-      <section className={styles.assesoriaJuridicaInLoco} id="inloco">
-        <div className={styles.texto}>
-          <hr />
-          <h1>
-            Assessoria Jurídica <em>In Loco</em>
-          </h1>
-          <p>
-            Fazemos visitações no órgão ou entidade, a fim de realizar um
-            assessoramento pessoal e diferenciado, exclusivamente na área de
-            licitações e contratos.
-          </p>
-          <p>
-            Num atendimento totalmente personalizado e exclusivo, nosso Corpo
-            Jurídico, com toda sua expertise, poderá fazer quantas visitações
-            forem necessárias para atender às suas necessidades administrativas.
-          </p>
-          <p>
-            <Button
-              color="blue"
-              title="Quero mais informações!"
-              onClick={() => push("/contato")}
-            />
-          </p>
-        </div>
-      </section>
+      <hr className={styles.divider} />
 
       <section className={styles.informacoesAssesoriaMentoria}>
+        <div className={styles.assesoriaLicitacoes}>
+          <div className={styles.textos}>
+            <h1>
+              Assessoria Jurídica <em>In Loco</em>
+            </h1>
+            <hr />
+            <p>
+              Fazemos visitações no órgão ou entidade, a fim de realizar um
+              assessoramento pessoal e diferenciado, exclusivamente na área de
+              licitações e contratos.
+            </p>
+            <p>
+              Num atendimento totalmente personalizado e exclusivo, nosso Corpo
+              Jurídico, com toda sua expertise, poderá fazer quantas visitações
+              forem necessárias para atender às suas necessidades
+              administrativas.
+            </p>
+            <p>
+              <Button
+                color="blue"
+                title="Quero mais informações!"
+                onClick={() => push("/contato")}
+              />
+            </p>
+          </div>
+          <div className={styles.img}>
+            <Image
+              src={"/images/homepage/homem-computador.webp"}
+              alt="Homem sentado sorrindo mexendo no computador"
+              width={432}
+              height={451}
+              className={"imgOnHover"}
+            />
+          </div>
+        </div>
         <div className={styles.mentoriaNovaLei}>
           <div className={styles.img}>
             <Image
@@ -541,9 +522,7 @@ export default function SolucoesInovadoras() {
             />
             <b>MBA</b>
             <div className={styles.informacoes}>
-              <span>12 Encontros</span>
-              <span>36 Horas</span>
-              <span id="projeto-regulamentacao">Com certificado!</span>
+              <span id="projeto-regulamentacao"></span>
             </div>
           </div>
         </div>

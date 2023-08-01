@@ -1,5 +1,11 @@
 @use '_index.scss' as *;
 
+
+.divider {
+    width: 80%;
+    border: 1px solid $grey-200;    
+}
+
 .content {
     background-image: url("/images/solucoes-inovadoras/banner-orientacoes.webp");
     background-position: unset ;
@@ -338,6 +344,7 @@
                 
                 > img {
                     width: 343px;
+                    max-width: 100%;
                     height: 235px;
                 }
             }
