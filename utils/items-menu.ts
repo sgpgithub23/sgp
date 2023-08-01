@@ -17,6 +17,11 @@ export const ItemsMenu: TItemsMenu[] = [
     className: "CursosTreinamentos",
   },
   {
+    title: "Canal SGP",
+    url: "/canal-sgp",
+    className: "CanalSGP",
+  },
+  {
     title: "Agenda",
     url: "/agenda",
     className: "Agenda",
