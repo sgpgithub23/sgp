@@ -141,7 +141,7 @@ export default function SolucoesInovadoras() {
         </div>
       </section>
 
-      <hr className={styles.divider} />
+      <hr className={styles.divider} id="inloco" />
 
       <section className={styles.informacoesAssesoriaMentoria}>
         <div className={styles.assesoriaLicitacoes}>
