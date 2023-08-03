@@ -53,6 +53,7 @@ import group1teste6 from "../public/teste800-1.webp";
 import group2teste6 from "../public/teste800-2.webp";
 import group3teste6 from "../public/teste800-3.webp";
 import group3teste7 from "../public/3_banner_desktop_3400_.webp";
+import path from "path";
 
 // const urls = [
 //   {
@@ -102,13 +103,26 @@ export default function Home({
   const isBrowser = typeof window !== "undefined";
   const initialWidth = isBrowser ? window.innerWidth : 0;
 
-  const { push, asPath } = useRouter();
+  const { push, asPath, pathname } = useRouter();
   const [windowWidth, setWindowWidth] = useState(initialWidth);
   const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(
     cloneDeep(imgsJson)
   );
   const [manualInteraction, setManualInteraction] = useState<boolean>(false);
   const [increment, setIncrement] = useState(0);
+  const [auxPathname, setAuxPathname] = useState("");
+
+  useEffect(() => {
+    if (auxPathname === "/#quemsomos") {
+      scrollToSection("quemsomos");
+      return;
+    }
+
+    if (auxPathname === "/#periodicos-mensais") {
+      scrollToSection("periodicos-mensais");
+      return;
+    }
+  }, [auxPathname, pathname]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -152,9 +166,22 @@ export default function Home({
     setMainCarouselImg(auxSize);
   }
 
+  function scrollToSection(id: string) {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   useEffect(() => {
     function atualizarTamanhoViewport() {
-      setWindowWidth(window.innerWidth || document.documentElement.clientWidth);
+      const newWindowWidth =
+        window.innerWidth || document.documentElement.clientWidth;
+      setWindowWidth(newWindowWidth);
+      // Rolar para a seção após um pequeno atraso (por exemplo, 100ms)
+      setTimeout(() => {
+        setAuxPathname(asPath);
+      }, 100);
     }
 
     window.addEventListener("resize", atualizarTamanhoViewport);
@@ -642,7 +669,7 @@ export default function Home({
             {carouselDepoimentos.carouselFragment}
           </div>
           {errosDepoimentos.length <= 0 && (
-            <div className={styles.controles}>
+            <div className={styles.controles} id="periodicos-mensais">
               <MdOutlineKeyboardArrowLeft
                 onClick={carouselDepoimentos.slideToPrevItem}
                 className={styles.arrowLeft}
@@ -659,10 +686,7 @@ export default function Home({
         </div>
       </section>
 
-      <section
-        className={styles.periodicosExclusivosAll}
-        id="periodicos-mensais"
-      >
+      <section className={styles.periodicosExclusivosAll}>
         <div className={styles.periodicosExclusivos}>
           <div className={styles.periodicos}>
             <div className={styles.introducao}>
