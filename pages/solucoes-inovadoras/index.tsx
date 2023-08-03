@@ -244,6 +244,27 @@ export default function SolucoesInovadoras() {
         <div className={styles.mentoriaNovaLei}>
           <div className={styles.img}>
             <Image
+              src="/images/solucoes-inovadoras/periodicos.webp"
+              width={382}
+              height={401}
+              className={"imgOnHover"}
+              alt="Periódicos SLCs"
+            />
+          </div>
+          <div className={styles.textos}>
+            <h1>Conheça nossos periódicos!</h1>
+            <hr />
+            <Button
+              id="assessoria-empresas-privadas"
+              onClick={() => push("/#periodicos-mensais")}
+              color="darkBlue"
+              title="Saiba mais!"
+            />
+          </div>
+        </div>
+        <div className={styles.mentoriaNovaLei}>
+          <div className={styles.img}>
+            <Image
               style={{ maxWidth: "100%", width: "400px", height: "700px" }}
               src="/images/solucoes-inovadoras/mao-escrevendo.webp"
               width={563}
@@ -564,35 +585,6 @@ export default function SolucoesInovadoras() {
           </div>
         </div>
       </section>
-
-      {/* <section className={styles.indicacoes}>
-        <div className={styles.contentIndicacoes}>
-          <hr />
-          <h1>
-            Porque somos a empresa mais indicada em cursos e treinamentos?
-          </h1>
-          <div className={styles.listaExplicativa}>
-            <ul>
-              <li>Profissionais altamente qualificados</li>
-              <li>Conteúdo programático completo</li>
-              <li>Temas relevantes e atuais</li>
-              <li>Saneamento de todas as dúvidas</li>
-              <li>Aulas expositivas</li>
-              <li>Dinâmicas em grupo</li>
-              <li>Alto índice de satisfação</li>
-            </ul>
-            <ul>
-              <li>Conhecimento prático e técnico</li>
-              <li>Material didático de qualidade</li>
-              <li>Adaptações às necessidades específicas</li>
-              <li>Metodologia diferenciada</li>
-              <li>Estudos de casos práticos</li>
-              <li>Carga horária adequada</li>
-              <li>Reconhecimento no mercado</li>
-            </ul>
-          </div>
-        </div>
-      </section> */}
 
       <FooterCompleto />
     </div>
