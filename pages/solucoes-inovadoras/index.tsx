@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/SolucoesInovadoras.module.scss";
 import { FooterCompleto } from "@/components/FooterCompleto";
@@ -10,7 +10,25 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import Image from "next/image";
 
 export default function SolucoesInovadoras() {
-  const { push } = useRouter();
+  const { push, query, asPath } = useRouter();
+  console.log("asPath", asPath);
+
+  useEffect(() => {
+    if (asPath === "/solucoes-inovadoras#projeto-regulamentacao") {
+      const targetElement = document.getElementById(
+        "projeto-regulamentacao-anchor"
+      );
+      if (targetElement) {
+        // Calcula a posição do elemento alvo em relação à janela de visualização
+        const yOffset = -100; // Ajuste esse valor conforme necessário
+        const y =
+          targetElement.getBoundingClientRect().top + window.scrollY + yOffset;
+
+        // Role suavemente para a posição do elemento alvo
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }
+  }, [asPath]);
 
   return (
     <div className={styles.main}>
@@ -77,6 +95,7 @@ export default function SolucoesInovadoras() {
             <Image
               src="/images/solucoes-inovadoras/tres-maos.webp"
               width={593}
+              priority
               className={"imgOnHover"}
               height={385}
               alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
@@ -355,7 +374,10 @@ export default function SolucoesInovadoras() {
           </div>
         </div>
       </section>
-      <section className={styles.mbaLicitacoesContratacoesADM}>
+      <section
+        className={styles.mbaLicitacoesContratacoesADM}
+        style={{ marginBottom: "-50px" }}
+      >
         <h1>MBA em Licitações e Contratações da Administração Pública</h1>
         <hr />
         <div>
@@ -543,14 +565,15 @@ export default function SolucoesInovadoras() {
             />
             <b>MBA</b>
             <div className={styles.informacoes}>
-              <span id="projeto-regulamentacao"></span>
+              <span></span>
             </div>
           </div>
         </div>
       </section>
+
       <section
-        style={{ marginTop: "-50px" }}
         className={styles.informacoesAssesoriaMentoria}
+        id="projeto-regulamentacao-anchor"
       >
         <div className={styles.mentoriaNovaLei}>
           <div className={styles.img}>

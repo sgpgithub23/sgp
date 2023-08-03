@@ -126,64 +126,15 @@ export default function SolucoesInovadoras() {
               <h1> MBA em Licitações </h1>
               <hr />
             </div>
-            <p>
-              Você sabia que conhecimento é o único bem que ninguém pode tirar
-              de você?
-            </p>
             <b>MBA em Licitações e Contratações da Administração Pública.</b>
             <p>
               Na SGP - Soluções em Gestão Pública há um time de professores
               altamente qualificados !!!
             </p>
           </div>
-          <div className={styles.center}>
-            <div>
-              <b>Faça agora sua inscrição!</b>
-              <p>Com parcelas que cabem no seu bolso</p>
-            </div>
-            <div>
-              <h3>
-                Até 10 parcelas <br /> Matrícula R$ 680,00{" "}
-                <b> + 9 parcelas de R$ 680,00 </b>
-              </h3>
-              <span>(somente no cartão de crédito ou boleto bancário)</span>
-            </div>
-            <div>
-              <p>
-                {" "}
-                ou <b>5% </b>de desconto <b>à vista</b>
-              </p>
-              <span>(PIX, Depósito, TED, Cartão de Débito)</span>
-            </div>
-          </div>
-          {/* <div className={styles.right}>
-            <Image
-              alt="Fly falando sobre o MBA Online em licitações e contratações da administração Pública"
-              src="/images/solucoes-inovadoras/mba/mba.webp"
-              width={453}
-              className={"imgOnHover"}
-              height={323}
-            />
-            <div className={styles.title}>
-              <h1> MBA em Licitações </h1>
-              <hr />
-            </div>
-          </div> */}
         </div>
       </section>
       <div className={styles.pageSize}>
-        <section className={styles.professores}>
-          <h1>Corpo docente</h1>
-          <p>
-            Conheça nosso corpo docente de excelência e gabarito, que aplicam e
-            vivenciam as melhores boas práticas do mercado.
-          </p>
-          <Button
-            onClick={() => push("../nossos-professores")}
-            color="darkBlue"
-            title="Ver todos os professores"
-          />
-        </section>
         <section className={styles.mbaLicitacoesContratacoesAdmPublica}>
           <h1>MBA em Licitações e Contratações da Administração Pública</h1>
           <hr />
@@ -281,15 +232,47 @@ export default function SolucoesInovadoras() {
                   alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
                 />
                 <b>MBA</b>
-                <div className={styles.informacoes}>
-                  <span>12 Encontros</span>
-                  <span>36 Horas</span>
-                  <span>Com certificado!</span>
-                </div>
+                <div className={styles.informacoes}></div>
               </div>
             </div>
           </div>
         </section>
+
+        {/* <section className={styles.mbaLicitacoesContratacoesAdmPublica}>
+          <h1>Faça agora sua inscrição!</h1>
+          <hr />
+          <div className={styles.infosCurso}>
+            <div className={styles.objGeralCurso}>
+              <p>Com parcelas que cabem no seu bolso</p>
+              <p>
+                Até 10 parcelas <br /> Matrícula R$ 680,00{" "}
+                <b> + 9 parcelas de R$ 680,00 </b>
+              </p>
+            </div>
+          </div>
+        </section> */}
+
+        {/* <div className={styles.center}>
+          <div>
+            <b>Faça agora sua inscrição!</b>
+            <p>Com parcelas que cabem no seu bolso</p>
+          </div>
+          <div>
+            <h3>
+              Até 10 parcelas <br /> Matrícula R$ 680,00{" "}
+              <b> + 9 parcelas de R$ 680,00 </b>
+            </h3>
+            <span>(somente no cartão de crédito ou boleto bancário)</span>
+          </div>
+          <div>
+            <p>
+              {" "}
+              ou <b>5% </b>de desconto <b>à vista</b>
+            </p>
+            <span>(PIX, Depósito, TED, Cartão de Débito)</span>
+          </div>
+        </div> */}
+
         <section className={styles.conteudoProgramatico}>
           <h1>Conteúdo Programático</h1>
           <hr />
@@ -670,6 +653,30 @@ export default function SolucoesInovadoras() {
             color="darkBlue"
             title="Ver conteúdo completo"
             onClick={() => push("conteudo-programatico")}
+          />
+        </section>
+
+        <section
+          className={styles.professores}
+          style={{
+            width: "100%",
+            marginBlock: "140px",
+            marginBottom: "200px",
+            display: "flex",
+            justifyContent: "center",
+            textAlign: "center",
+            alignItems: "center",
+          }}
+        >
+          <h1>Corpo docente</h1>
+          <p>
+            Conheça nosso corpo docente de excelência e gabarito, que aplicam e
+            vivenciam as melhores boas práticas do mercado.
+          </p>
+          <Button
+            onClick={() => push("../nossos-professores")}
+            color="darkBlue"
+            title="Ver todos os professores"
           />
         </section>
 
