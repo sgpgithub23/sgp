@@ -102,7 +102,7 @@ export default function Home({
   const isBrowser = typeof window !== "undefined";
   const initialWidth = isBrowser ? window.innerWidth : 0;
 
-  const { push } = useRouter();
+  const { push, asPath } = useRouter();
   const [windowWidth, setWindowWidth] = useState(initialWidth);
   const [mainCarouselImg, setMainCarouselImg] = useState<RegularImageType[]>(
     cloneDeep(imgsJson)
@@ -653,15 +653,16 @@ export default function Home({
                 onClick={carouselDepoimentos.slideToNextItem}
                 className={styles.arrowRight}
               />
-              <span id="periodicos-mensais">
-                Clique nos botões para interagir
-              </span>
+              <span>Clique nos botões para interagir</span>
             </div>
           )}
         </div>
       </section>
 
-      <section className={styles.periodicosExclusivosAll}>
+      <section
+        className={styles.periodicosExclusivosAll}
+        id="periodicos-mensais"
+      >
         <div className={styles.periodicosExclusivos}>
           <div className={styles.periodicos}>
             <div className={styles.introducao}>

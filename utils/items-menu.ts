@@ -22,6 +22,12 @@ export const ItemsMenu: TItemsMenu[] = [
     className: "CanalSGP",
   },
   {
+    title: "MBA",
+    url: "/solucoes-inovadoras/#pos-graduacao",
+
+    className: "MBA",
+  },
+  {
     title: "Agenda",
     url: "/agenda",
     className: "Agenda",

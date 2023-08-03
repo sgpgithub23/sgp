@@ -310,7 +310,7 @@ export default function SolucoesInovadoras() {
               com redação dada pela Lei nº 13.853/2019), para implantação,
               levantamento de necessidades e soluções.
             </p>
-            <p id="pos-graduacao">
+            <p>
               Faça um primeiro diagnóstico, a fim de avaliar se a empresa ou o
               órgão público encontra-se adequado à nova LGPD.
             </p>
@@ -322,7 +322,7 @@ export default function SolucoesInovadoras() {
               title="Entre em contato"
             />
           </div>
-          <div className={styles.img}>
+          <div className={styles.img} id="pos-graduacao">
             <Image
               src="/images/solucoes-inovadoras/direito.webp"
               width={592}
