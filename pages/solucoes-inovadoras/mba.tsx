@@ -238,40 +238,28 @@ export default function SolucoesInovadoras() {
           </div>
         </section>
 
-        {/* <section className={styles.mbaLicitacoesContratacoesAdmPublica}>
+        <section className={styles.mbaLicitacoesContratacoesAdmPublica} style={{ marginTop: '3rem' }}>
           <h1>Faça agora sua inscrição!</h1>
           <hr />
           <div className={styles.infosCurso}>
-            <div className={styles.objGeralCurso}>
-              <p>Com parcelas que cabem no seu bolso</p>
-              <p>
-                Até 10 parcelas <br /> Matrícula R$ 680,00{" "}
-                <b> + 9 parcelas de R$ 680,00 </b>
+            <div className={styles.objGeralCurso} style={{ width: "25rem" }}>
+              <p>Com parcelas que cabem no seu bolso.</p>
+              <p style={{ marginTop: '1rem' }}>
+                Até 10 parcelas.
               </p>
+              <p style={{ marginTop: '1rem' }}>Matrícula <b>R$ 680,00 + 9 parcelas de R$ 680,00 </b></p>
+
+              <span>(somente no cartão de crédito ou boleto bancário)</span>
+
+              <div style={{ marginTop: '1rem' }}>
+                <p>
+                  ou <b>5% </b>de desconto <b>à vista</b>
+                </p>
+                <span>(PIX, Depósito, TED, Cartão de Débito)</span>
+              </div>
             </div>
           </div>
-        </section> */}
-
-        {/* <div className={styles.center}>
-          <div>
-            <b>Faça agora sua inscrição!</b>
-            <p>Com parcelas que cabem no seu bolso</p>
-          </div>
-          <div>
-            <h3>
-              Até 10 parcelas <br /> Matrícula R$ 680,00{" "}
-              <b> + 9 parcelas de R$ 680,00 </b>
-            </h3>
-            <span>(somente no cartão de crédito ou boleto bancário)</span>
-          </div>
-          <div>
-            <p>
-              {" "}
-              ou <b>5% </b>de desconto <b>à vista</b>
-            </p>
-            <span>(PIX, Depósito, TED, Cartão de Débito)</span>
-          </div>
-        </div> */}
+        </section>
 
         <section className={styles.conteudoProgramatico}>
           <h1>Conteúdo Programático</h1>
@@ -510,6 +498,7 @@ export default function SolucoesInovadoras() {
                 <span> Acordos Administrativos em Licitações</span>
               </li>
             </ul>
+            
             <ul className={styles.parte4}>
               <li>
                 <b>42.</b>
@@ -747,13 +736,13 @@ export default function SolucoesInovadoras() {
       </div>
       <section className={styles.headerBottom}></section>
       <section className={styles.passoAPasso}>
-        <h1>Siga o passo a passo.</h1>
+        <h1>Siga o passo a passo para sua inscrição.</h1>
         <hr />
         <div className={styles.stepsInfos}>
           <div className={styles.solitacaoInscricao}>
             <div className={styles.headerTopico}>
               <AiOutlineCheckCircle />
-              <h3>Passo 1 - É nos enviar sua solicitação de inscrição:</h3>
+              <h3>Passo 1 - Enviar sua inscrição:</h3>
             </div>
             <p>
               Digite os seus dados abaixo para iniciarmos o processo de registro
@@ -813,53 +802,54 @@ export default function SolucoesInovadoras() {
             </p>
           </div>
 
-          <div className={styles.boletoBancario}>
-            <div className={styles.headerTopico}>
-              <AiOutlineCheckCircle />
-              <h3>
-                Pagamento via Boleto Bancário consulte a SGP - Soluções em
-                Gestão Pública.
-              </h3>
-            </div>
-            <p>
-              A postagem do livro nos CORREIOS será realizada somente após o
-              pagamento do VALOR DO PRODUTO + FRETE e, consequentemente, o
-              apontamento correto do ENDEREÇO DE ENTREGA, confirmado pelo
-              comprador.
-            </p>
+        </div>
 
-            <div className={styles.duvidas}>
-              <h3>Está com dúvidas?</h3>
-              <p>Central de Atendimento</p>
+        <div className={styles.boletoBancario}>
+          <div className={styles.headerTopico}>
+            <AiOutlineCheckCircle />
+            <h3>
+              Pagamento via Boleto Bancário consulte a SGP - Soluções em
+              Gestão Pública.
+            </h3>
+          </div>
+          <p>
+            A postagem do livro nos CORREIOS será realizada somente após o
+            pagamento do VALOR DO PRODUTO + FRETE e, consequentemente, o
+            apontamento correto do ENDEREÇO DE ENTREGA, confirmado pelo
+            comprador.
+          </p>
 
-              <ul>
-                <li>
-                  <BsTelephone />
-                  <span>(11) 3237 4232</span>
-                </li>
-                <li>
-                  <BsTelephone />
-                  <span>(11) 9 7443 5898</span>
-                </li>
-                <li>
-                  <AiOutlineMail />
-                  <span>atendimento@sgpsolucoes.com.br</span>
-                </li>
-                <li>
-                  {RedesSociaisSGP.map(({ link, name }) => (
-                    <Link
-                      href={link}
-                      key={link}
-                      target="_blank"
-                      className={styles.rede}
-                    >
-                      {getIconByName(name)}
-                    </Link>
-                  ))}
-                </li>
-              </ul>
-              {/* <Button color="blue" title="Prosseguir para o próximo passo" /> */}
-            </div>
+          <div className={styles.duvidas}>
+            <h3>Está com dúvidas?</h3>
+            <p>Central de Atendimento</p>
+
+            <ul>
+              <li>
+                <BsTelephone />
+                <span>(11) 3237 4232</span>
+              </li>
+              <li>
+                <BsTelephone />
+                <span>(11) 9 7443 5898</span>
+              </li>
+              <li>
+                <AiOutlineMail />
+                <span>atendimento@sgpsolucoes.com.br</span>
+              </li>
+              <li>
+                {RedesSociaisSGP.map(({ link, name }) => (
+                  <Link
+                    href={link}
+                    key={link}
+                    target="_blank"
+                    className={styles.rede}
+                  >
+                    {getIconByName(name)}
+                  </Link>
+                ))}
+              </li>
+            </ul>
+            {/* <Button color="blue" title="Prosseguir para o próximo passo" /> */}
           </div>
         </div>
       </section>
