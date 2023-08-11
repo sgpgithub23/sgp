@@ -668,11 +668,10 @@ export default function SolucoesInovadoras() {
             alignItems: "center",
           }}
         >
-          <h1>Corpo docente</h1>
           <Button
             onClick={() => push("../nossos-professores")}
             color="darkBlue"
-            title="Ver todos os professores"
+            title="CONHEÇA NOSSO CORPO DOCENTE"
           />
         </section>
 
