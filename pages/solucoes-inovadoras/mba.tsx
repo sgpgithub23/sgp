@@ -669,10 +669,6 @@ export default function SolucoesInovadoras() {
           }}
         >
           <h1>Corpo docente</h1>
-          <p>
-            Conheça nosso corpo docente de excelência e gabarito, que aplicam e
-            vivenciam as melhores boas práticas do mercado.
-          </p>
           <Button
             onClick={() => push("../nossos-professores")}
             color="darkBlue"

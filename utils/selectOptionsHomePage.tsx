@@ -50,7 +50,7 @@ export const assunto: string[] = [
     "Boletim, periódico, revista",
     "Documentações",
     "Acesso Login",
-    "Dúwavidas Jurídicas",
+    "Dúvidas Jurídicas",
     "Certificados",
     "News Letter",
     "Publique seu artigo",
