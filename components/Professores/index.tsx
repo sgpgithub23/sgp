@@ -50,7 +50,15 @@ export default function ProfessoresComponent(props: any) {
               label=""
               type="text"
               icon={<HiMagnifyingGlass />}
-              onChange={(e) => setProfessor(e.target.value)}
+              onChange={(e) => {
+                setProfessor(e.target.value);
+
+                if(e.target.value.length > 0) {
+                  setProfessores(props.profsAll)
+                } else {
+                  setProfessores(props.profsAll.slice(0, 6))
+                }
+              }}
             />
           </div>
         )}

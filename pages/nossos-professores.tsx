@@ -41,8 +41,7 @@ export default function NossosProfessores({
           <h1>Conheça nossos professores</h1>
           <hr />
           <p>
-            Conheça nosso corpo docente de excelência, que aplicam boas práticas
-            de mercado.
+            Conheça nosso corpo docente formado por mestres, doutores e PhDs, qualificados para atender a área pública e privada.
           </p>
         </div>
       </div>
