@@ -44,10 +44,10 @@ export default function Input({
           <label htmlFor="file"> {label} 
           </label>
           <input
+            id="file"
             type="file"
             {...props}
             name={name}
-            id="file"
             style={{display: "none"}}
             accept="text/plain, application/pdf, application/msword"
             {...register}

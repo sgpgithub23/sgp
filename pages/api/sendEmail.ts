@@ -2,25 +2,24 @@ import axios from 'axios'
 import { NextApiRequest, NextApiResponse } from 'next';
 import locaweb from 'smtp-locaweb-nodejs' 
 
-
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+	try {
+		const url = process.env.NEXT_PUBLIC_URL_SMTP_LOCAWEB!
+		const result = await axios.post(url, {
+			data: {
+				"to": "string",
+				"subject": "Um título bem legal!!!",
+				"from": "suporte@bytechsolutions.com.br",
+				"body": "O conteúdo da mensagem.",
+				"cc": "suporte@bytechsolutions.com.br"
+			}, 
+		})
+		res.status(200).json(result.data)
+	} catch (error) {
+		console.log('error', error);
 
-    try {
-        const url = process.env.NEXT_PUBLIC_URL_SMTP_LOCAWEB!
-        const result = axios.post(url, {
-            data: {
-                "to": "string",
-                "subject": "Um título bem legal!!!",
-                "from": "suporte@bytechsolutions.com.br",
-                "body": "O conteúdo da mensagem.",
-                "cc": "suporte@bytechsolutions.com.br"
-            }, 
-        })
-        res.status(200).json((await result).data)
-    } catch (error) {
-        console.log('error', error)
-    }
+		res.status(400).json(error)
+	}
 }
 
 // let mensagem = {  

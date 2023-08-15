@@ -33,7 +33,7 @@ const schema = yup.object().shape({
   assunto: yup.string().required("Campo obrigatório"),
   celular: yup.string().required("Campo obrigatório"),
   conheceusgp: yup.string().required("Campo obrigatório"),
-  dataEnvio: yup.string().required("Campo obrigatório"),
+  dataEnvio: yup.date().required("Campo obrigatório"),
   empresa: yup.string().required("Campo obrigatório"),
   facebook: yup.string().required("Campo obrigatório"),
   telComl: yup.string().required("Campo obrigatório"),
@@ -43,11 +43,11 @@ const initialValues = {
   nome: "",
   email: "",
   mensagem: "",
-  arquivo: "",
+  arquivo: undefined,
   assunto: "",
   celular: "",
   conheceusgp: "",
-  dataEnvio: undefined,
+  dataEnvio: new Date(),
   empresa: "",
   facebook: "",
   telComl: "",
@@ -105,15 +105,15 @@ export default function Contato() {
   const onSubmit = async (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
 
-    const response = await fetch("/api/verify-token", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ token: recaptchaResponse }),
-    });
+    // const response = await fetch("/api/verify-token", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ token: recaptchaResponse }),
+    // });
 
-    const result = await response.json();
+    // const result = await response.json();
 
     try {
       const res = await fetch("/api/sendEmail", {
@@ -128,6 +128,13 @@ export default function Contato() {
       const result = await res.json();
     } catch (error) {}
   };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if(file)
+      setValue("arquivo", file, { shouldValidate: true });
+  }
 
   return (
     <div className={styles.main}>
@@ -190,6 +197,7 @@ export default function Contato() {
               <Input
                 type="text"
                 label="Empresa"
+                required
                 register={register("empresa")}
                 placeholder="Razão social completo"
                 error={errors.empresa?.message}
@@ -197,6 +205,7 @@ export default function Contato() {
               <Input
                 type="text"
                 label="Assunto"
+                required
                 register={register("assunto")}
                 error={errors.assunto?.message}
                 placeholder="Escolha um assunto"
@@ -207,6 +216,7 @@ export default function Contato() {
                 name="email"
                 type="email"
                 label="E-mail"
+                required
                 register={register("email")}
                 error={errors.email?.message}
                 placeholder="email@dominio.com.br"
@@ -214,6 +224,7 @@ export default function Contato() {
               <Input
                 name="nome"
                 label="Nome"
+                required
                 register={register("nome")}
                 error={errors.nome?.message}
                 placeholder="Nome completo"
@@ -224,13 +235,16 @@ export default function Contato() {
                 name="telComl"
                 type="text"
                 label="Telefone"
-                register={register("telComl")}
+                required
                 error={errors.telComl?.message}
                 placeholder="(99) 99999-9999"
+                mask="(99) 99999-9999"
               />
               <Input
                 name="celular"
                 label="Celular"
+                required
+                mask="(99) 99999-9999"
                 register={register("celular")}
                 error={errors.celular?.message}
                 placeholder="(99) 99999-9999"
@@ -240,6 +254,7 @@ export default function Contato() {
               <Input
                 name="conheceusgp"
                 label="Como conheceu a SGP?"
+                required
                 register={register("conheceusgp")}
                 error={errors.conheceusgp?.message}
                 placeholder="Escreva aqui"
@@ -257,6 +272,7 @@ export default function Contato() {
               <Input
                 name="mensagem"
                 type="text"
+                required
                 label="Mensagem"
                 as="textarea"
                 register={register("mensagem")}
@@ -268,13 +284,16 @@ export default function Contato() {
               <Input
                 name="arquivo"
                 as="file"
-                label="Anexe seu arquivo"
+                required
+                onChange={handleFileUpload}
+                label={getValues("arquivo")?.name || getValues("arquivo")?.[0]?.name || "Anexe seu arquivo"}
                 register={register("arquivo")}
                 error={errors.arquivo?.message}
               />
               <Input
                 name="dataEnvio"
                 type="date"
+                required
                 label="Data do envio"
                 register={register("dataEnvio")}
                 error={errors.dataEnvio?.message}

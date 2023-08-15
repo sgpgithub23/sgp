@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useRef, useState } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/Mba.module.scss";
 import { FooterCompleto } from "@/components/FooterCompleto";
@@ -29,8 +29,8 @@ const schema = yup.object().shape({
   nome: yup.string().required("Campo obrigatório"),
   cpf: yup.string().required("Campo obrigatório"),
   cep: yup.string().required("Campo obrigatório"),
-  endereco: yup.string().required("Campo obrigatório"),
-  bairro: yup.mixed().nullable().required("A file is required"),
+  // endereco: yup.string().required("Campo obrigatório"),
+  // bairro: yup.mixed().nullable().required("A file is required"),
   cidade: yup.string().required("Campo obrigatório"),
   estado: yup.string().required("Campo obrigatório"),
   email: yup.string().required("Campo obrigatório"),
@@ -46,9 +46,9 @@ const schema = yup.object().shape({
 const initialValues = {
   nome: "",
   cpf: "",
-  endereco: "",
+  // endereco: "",
   cep: "",
-  bairro: "",
+  // bairro: "",
   cidade: "",
   estado: "",
   email: "",
@@ -72,15 +72,13 @@ export default function SolucoesInovadoras() {
   const { push } = useRouter();
   const captchaRef = useRef(null);
   const [recaptchaResponse, setRecaptchaResponse] = useState<any>();
-  const [inputFileName, setInputFileName] = useState<string>(
-    "Clique aqui para escolher o arquivo"
-  );
 
   const {
     register,
     formState: { errors, isValid, isSubmitting },
     getValues,
     reset,
+    setValue
   } = useForm<FormMBA>({
     defaultValues: initialValues,
     mode: "all",
@@ -107,6 +105,24 @@ export default function SolucoesInovadoras() {
     if (rede === "Instagram") {
       return <BsInstagram />;
     }
+  }
+
+  console.log(getValues())
+  async function onSubmit(event: FormEvent) {
+    event.preventDefault();
+    
+    const name = getValues("nome");
+    const cpf = getValues("cpf");
+    const email = getValues("email");
+    const cep = getValues("cep");
+    const city = getValues("cidade");
+    const state = getValues("estado");
+    const phone = getValues("celular");
+    const tel = getValues("telefoneCompl");
+    const paymentType = getValues("tipoPagamento");
+    const attachment = getValues("anexo");
+
+    console.log({ name, cpf, email, cep, city, state, phone, tel, paymentType, attachment })
   }
 
   return (
@@ -859,7 +875,7 @@ export default function SolucoesInovadoras() {
           Os campos são obrigatórios e é imprescindível o correto preenchimento
           para <b>envio do produto e emissão da nota fiscal!</b>
         </h1>
-        <form>
+        <form onSubmit={onSubmit}>
           <div className={styles.formContato}>
             <Input
               type="text"
@@ -950,8 +966,8 @@ export default function SolucoesInovadoras() {
                       <input
                         type="radio"
                         id={x.id}
-                        name="tipoPagamento"
-                        value={x.label}
+                        value={x.id}
+                        {...register("tipoPagamento")}
                       />
                       <label htmlFor={x.id}>{x.label}</label>
                     </div>
@@ -966,11 +982,16 @@ export default function SolucoesInovadoras() {
                 <Input
                   name="anexo"
                   as="file"
-                  label={inputFileName}
+                  label={getValues("anexo")?.name || getValues("anexo")?.[0]?.name || "Clique aqui para escolher o arquivo"}
                   register={register("anexo")}
                   error={errors.anexo?.message}
                   onChange={(e) => {
-                    setInputFileName(e.target.value.split("\\")[2]);
+                    const file = e.target.files?.[0];
+
+                    console.log({ file })
+
+                    if(file)
+                      setValue("anexo", file);
                   }}
                 />
               </div>
@@ -1055,6 +1076,7 @@ export default function SolucoesInovadoras() {
               <Button
                 color="darkBlue"
                 title="Enviar dados preenchidos"
+                type="submit"
                 disabled={isSubmitting || !isValid}
               />
             </div>
