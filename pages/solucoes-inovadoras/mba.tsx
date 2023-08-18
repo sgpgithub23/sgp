@@ -24,6 +24,7 @@ import { FormMBA } from "@/typings/FormMba";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ReCAPTCHA from "react-google-recaptcha";
+import axios from "axios";
 
 const schema = yup.object().shape({
   nome: yup.string().required("Campo obrigatório"),
@@ -107,7 +108,6 @@ export default function SolucoesInovadoras() {
     }
   }
 
-  console.log(getValues())
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
     
@@ -118,11 +118,30 @@ export default function SolucoesInovadoras() {
     const city = getValues("cidade");
     const state = getValues("estado");
     const phone = getValues("celular");
+    const address = getValues("endereco")
     const tel = getValues("telefoneCompl");
     const paymentType = getValues("tipoPagamento");
     const attachment = getValues("anexo");
 
-    console.log({ name, cpf, email, cep, city, state, phone, tel, paymentType, attachment })
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('cpf', cpf);
+    formData.append('email', email);
+    formData.append('cep', cep);
+    formData.append('city', city);
+    formData.append('state', state);
+    formData.append('phone', phone);
+    formData.append('address', address);
+    formData.append('tel', tel);
+    formData.append('paymentType', paymentType);
+    formData.append('attachment', attachment);
+    formData.append('subject', "MBA");
+
+    await axios.post("/api/sendEmail", formData, { 
+      headers: { 
+        "Content-Type": "multipart/form-data" 
+      } 
+    });
   }
 
   return (
@@ -897,7 +916,7 @@ export default function SolucoesInovadoras() {
             <Input
               name="endereco"
               type="text"
-              label="E-mail"
+              label="Endereço"
               register={register("endereco")}
               error={errors.endereco?.message}
               placeholder="R. João Gomes"
@@ -1077,7 +1096,7 @@ export default function SolucoesInovadoras() {
                 color="darkBlue"
                 title="Enviar dados preenchidos"
                 type="submit"
-                disabled={isSubmitting || !isValid}
+                // disabled={isSubmitting || !isValid}
               />
             </div>
           </div>

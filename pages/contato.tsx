@@ -224,6 +224,7 @@ export default function Contato() {
               <Input
                 name="nome"
                 label="Nome"
+                type="text"
                 required
                 register={register("nome")}
                 error={errors.nome?.message}
