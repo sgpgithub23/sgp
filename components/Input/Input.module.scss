@@ -6,7 +6,7 @@
     flex-direction: column;
 
     .inputIcon {
-        & > input {
+        & > input, select {
             height: 35px;
             padding: 10px 10px;
             width: 100%;
@@ -33,7 +33,11 @@
         margin-block: 3px;
     }
 
-    & > input, .inputComum {
+    & > input, select, .inputComum {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        
         height: 35px;
         padding: 10px 10px;
         width: 100%;
@@ -43,6 +47,10 @@
         background-color: $dark-blue-2;
         border-radius: 5px;
 
+        & , select {
+            padding: 0px 10px !important;
+        }
+
         &:focus {
             border: 1px $dark-blue-100 solid;
             outline: none;
@@ -51,6 +59,10 @@
         &::placeholder {
             font-size: 12px;
         }
+    }
+
+    & > select {
+        
     }
 
     & > textarea {
@@ -106,7 +118,7 @@
     & > .inputIcon {
         position: relative;
 
-        & > input {
+        & > input, select {
             padding-left: 10%;
         }
 
