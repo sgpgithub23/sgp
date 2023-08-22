@@ -105,7 +105,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 				}
 			});
 
-			const emailsToSend = subjects[fields.subject].map((item) => emails[item])
+			const emailsData = emails as any;
+			const emailsToSend = subjects[fields.subject]?.map((item) => emailsData[item]) || []
 
 			await Promise.all(emailsToSend.map(async email => {
 				const mailOptions: MailOptions = {

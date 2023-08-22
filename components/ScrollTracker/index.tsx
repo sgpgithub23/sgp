@@ -14,9 +14,7 @@ export function ScrollTracker({ onScroll25Percent }: ScrollTrackerProps) {
 
       const scrollPercentage =
         (scrollPosition / (totalHeight - windowHeight)) * 100;
-      console.log("scrollPercentage", scrollPercentage);
       if (scrollPercentage >= 25 && scrollPercentage <= 26) {
-        console.log("deu certo ");
         onScroll25Percent();
       }
     };

@@ -3,6 +3,7 @@ import React, { FormEvent, useEffect, useRef, useState } from "react";
 import Input from "@/components/Input";
 import Navbar from "@/components/Navbar";
 import styles from "@/styles/Contato.module.scss";
+import inputStyles from "../components/Input/Input.module.scss";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -36,7 +37,7 @@ const schema = yup.object().shape({
   dataEnvio: yup.date().required("Campo obrigatório"),
   empresa: yup.string().required("Campo obrigatório"),
   facebook: yup.string().required("Campo obrigatório"),
-  telComl: yup.string().required("Campo obrigatório"),
+  // telComl: yup.string().required("Campo obrigatório"),
 });
 
 const initialValues = {
@@ -58,6 +59,7 @@ export default function Contato() {
     push,
     query: { assuntoForm },
   } = useRouter();
+  const [ isLoading, setIsLoading ] = useState(false);
   const captchaRef = useRef(null);
 
   const [recaptchaResponse, setRecaptchaResponse] = useState<any>();
@@ -102,8 +104,7 @@ export default function Contato() {
     }
   }
 
-  const onSubmit = async (ev: FormEvent<HTMLFormElement>) => {
-    ev.preventDefault();
+  const onSubmit = async () => {
 
     // const response = await fetch("/api/verify-token", {
     //   method: "POST",
@@ -115,18 +116,51 @@ export default function Contato() {
 
     // const result = await response.json();
 
+    setIsLoading(true)
+
     try {
-      const res = await fetch("/api/sendEmail", {
+      const name = getValues("nome");
+      const company = getValues("empresa");
+      const email = getValues("email");
+      const knowSGP = getValues("conheceusgp");
+      const facebook = getValues("facebook");
+      const subject = getValues("assunto");
+      const phone = getValues("celular");
+      const message = getValues("mensagem")
+      const tel = getValues("telComl");
+      const sendDate = getValues("dataEnvio");
+      const attachment = getValues("arquivo");
+
+      const formData = new FormData();
+
+      formData.append('name', name);
+      formData.append('company', company);
+      formData.append('email', email);
+      formData.append('knowSGP', knowSGP);
+      formData.append('facebook', facebook);
+      formData.append('subject', subject);
+      formData.append('phone', phone);
+      formData.append('message', message);
+      formData.append('tel', tel);
+      formData.append('sendDate', sendDate.toString());
+      formData.append('attachment', attachment);
+      formData.append('subject', subject);
+
+      const { data } = await axios.post("/api/sendEmail", formData, {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
           "x-auth-token": process.env.NEXT_PUBLIC_TOKEN!,
           "x-source": process.env.NEXT_PUBLIC_URL_SMTP_LOCAWEB!,
-          "User-Agent": "locaweb-smtp-nodejs",
+          // "User-Agent": "locaweb-smtp-nodejs",
         },
-        method: "POST",
       });
-      const result = await res.json();
-    } catch (error) {}
+
+      setIsLoading(false)
+      reset()
+    } catch (error) {
+      setIsLoading(false);
+      console.error(error)
+    }
   };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -192,7 +226,7 @@ export default function Contato() {
               className={"imgOnHover"}
             />
           </div>
-          <form className={styles.formContato} onSubmit={onSubmit}>
+          <form className={styles.formContato}>
             <div>
               <Input
                 type="text"
@@ -202,14 +236,36 @@ export default function Contato() {
                 placeholder="Razão social completo"
                 error={errors.empresa?.message}
               />
-              <Input
-                type="text"
-                label="Assunto"
-                required
-                register={register("assunto")}
-                error={errors.assunto?.message}
-                placeholder="Escolha um assunto"
-              />
+
+              <div className={inputStyles.main}>
+                <label htmlFor="subject-dropdown">Assunto</label>
+                <select id="subject-dropdown" className={inputStyles.inputComum} onChange={e => setValue("assunto", e.target.value)}>
+                  <option value="Acesso Login">Acesso Login</option>
+                  <option value="Agenda Cursos">Agenda Cursos</option>
+                  <option value="Artigos">Artigos</option>
+                  <option value="Assessoria Jurídica In Loco">Assessoria Jurídica In Loco</option>
+                  <option value="Assessoria On Line Hora Certa">Assessoria On Line Hora Certa</option>
+                  <option value="Assessoria para Empresas Privadas">Assessoria para Empresas Privadas</option>
+                  <option value="Certificados">Certificados</option>
+                  <option value="Cursos">Cursos</option>
+                  <option value="Documentações">Documentações</option>
+                  <option value="Dúvidas Jurídicas">Dúvidas Jurídicas</option>
+                  <option value="Implantações de Leis">Implantações de Leis</option>
+                  <option value="Livros">Livros</option>
+                  <option value="MBA">MBA</option>
+                  <option value="Mentoria">Mentoria</option>
+                  <option value="Orientações SGP">Orientações SGP</option>
+                  <option value="Outras informações">Outras informações</option>
+                  <option value="Periódicos">Periódicos</option>
+                  <option value="Projeto LGPD">Projeto LGPD</option>
+                  <option value="Publique seu artigo conosco">Publique seu artigo conosco</option>
+                  <option value="Regulamentação e/ou Revisão Legislativa">Regulamentação e/ou Revisão Legislativa</option>
+                  <option value="Revista">Revista</option>
+                  <option value="Treinamentos">Treinamentos</option>
+                  <option value="Visita Agendada">Visita Agendada</option>
+                </select>
+              </div>
+
             </div>
             <div>
               <Input
@@ -237,6 +293,7 @@ export default function Contato() {
                 type="text"
                 label="Telefone"
                 required
+                register={register("telComl")}
                 error={errors.telComl?.message}
                 placeholder="(99) 99999-9999"
                 mask="(99) 99999-9999"
@@ -324,11 +381,13 @@ export default function Contato() {
                 title="Limpar"
                 onClick={() => reset(initialValues)}
               />
+
               <Button
                 color="darkBlue"
-                title="Enviar informações"
-                disabled={isSubmitting || !isValid}
-              />
+                title={isLoading ? "Enviando..." : "Enviar informações"}
+                disabled={isSubmitting || isLoading || !isValid}
+                onClick={onSubmit}
+              /> 
             </div>
           </form>
         </div>

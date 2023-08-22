@@ -28,7 +28,6 @@ export default function Navbar() {
         <nav className={styles.navbar}>
           <ul className={styles.listNavbar}>
             {ItemsMenu.map(({ title, url, className }, index: number) => {
-              console.log(title)
               if (url === "/solucoes-inovadoras") {
                 return (
                   <Menu

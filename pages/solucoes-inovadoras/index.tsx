@@ -11,7 +11,6 @@ import Image from "next/image";
 
 export default function SolucoesInovadoras() {
   const { push, query, asPath } = useRouter();
-  console.log("asPath", asPath);
 
   useEffect(() => {
     if (asPath === "/solucoes-inovadoras#projeto-regulamentacao") {
