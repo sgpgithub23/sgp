@@ -181,8 +181,8 @@ export default function SolucoesInovadoras() {
             </p>
             <p>
               <Button
-                color="blue"
-                title="Quero mais informações!"
+                color="darkBlue"
+                title="Entre em contato"
                 onClick={() => push("/contato")}
               />
             </p>

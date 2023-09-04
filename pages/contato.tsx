@@ -369,12 +369,12 @@ export default function Contato() {
                 .
               </p>
             </div>
-            <ReCAPTCHA
+            {/* <ReCAPTCHA
               // @ts-ignore
               sitekey={process.env.NEXT_PUBLIC_API_RECAPTCHA_SIE}
               ref={captchaRef}
               onChange={(value) => setRecaptchaResponse(value)}
-            />
+            /> */}
             <div className={styles.buttonPosition}>
               <Button
                 color="grey"

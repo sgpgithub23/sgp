@@ -101,7 +101,7 @@ export default function Home({
   errosDepoimentos,
   clientes,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  // console.warn("imgsJson", imgsJson);
+  console.warn("imgsJson", imgsJson);
   const isBrowser = typeof window !== "undefined";
   const initialWidth = isBrowser ? window.innerWidth : 0;
 
@@ -1009,13 +1009,13 @@ export async function getServerSideProps() {
       errosClientes,
       errosDepoimentos,
     },
-    // props: {
-    //   imgsJson: [],
-    //   clientes: [],
-    //   depoimentos: [],
-    //   errosImagesCarouselPrincipal: [],
-    //   errosClientes: [],
-    //   errosDepoimentos: [],
-    // },
+//     // props: {
+//     //   imgsJson: [],
+//     //   clientes: [],
+//     //   depoimentos: [],
+//     //   errosImagesCarouselPrincipal: [],
+//     //   errosClientes: [],
+//     //   errosDepoimentos: [],
+//     // },
   };
 }
