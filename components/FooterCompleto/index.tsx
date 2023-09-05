@@ -75,7 +75,7 @@ export function FooterCompleto() {
         <h2>Mapa do site</h2>
         <div className={styles.linksSite}>
           <div className={styles.colunas}>
-            <Link href={"/"}>Quem somos</Link>
+            <Link href={"/#quemsomos"}>Quem somos</Link>
             <Link href={"/nossos-periodicos"}>Periódicos</Link>
             <Link href={"/cursos-treinamentos"}>Cursos e Treinamentos</Link>
             <Link href={"/nossos-professores"}>Nossos Professores</Link>
