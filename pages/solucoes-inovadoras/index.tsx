@@ -41,11 +41,10 @@ export default function SolucoesInovadoras() {
       <section className={styles.content}>
         <div className={styles.bluredBall}></div>
         <div className={styles.headerContent}>
-          <h1>Orientações SGP</h1>
+          <h1>Soluções Inovadoras</h1>
           <hr />
           <p>
-            A Orientação SGP ampliou sua área de atuação. Agora são quatro
-            Consultorias pelo preço de uma.
+            Conheça nossas soluções inovadoras.
           </p>
 
           <div className={styles.buttonFrase}>
