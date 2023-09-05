@@ -152,11 +152,11 @@ export default function Agenda({
                   ))}
                 </div>
                 <p>
-                  Confira a lista completa{" "}
+                  Ler menos{" "}
                   <b
                     style={{ cursor: "pointer" }}
                     onClick={() => {
-                      push("/agenda/cursos-treinamentos-completo");
+                      push("/agenda");
                       setIsLoading(true);
                     }}
                   >

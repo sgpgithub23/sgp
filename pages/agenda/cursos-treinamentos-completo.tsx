@@ -159,10 +159,10 @@ export default function Agenda({
           )}
         </div>
       </div>
-      <div className={styles.empresaIndicadaBottom}>
+      {/* <div className={styles.empresaIndicadaBottom}>
         <hr />
         <h2>“O Conhecimento é o único bem que não pode ser tirado de você”.</h2>
-      </div>
+      </div> */}
       <FooterCompleto />
 
       <Transition appear show={isModalOpen} as={Fragment}>
