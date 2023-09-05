@@ -685,7 +685,7 @@ export default function Home({
                   onClick={carouselParceiros.slideToNextItem}
                   className={styles.arrowRight}
                 />
-                <span>Clique nos botões para interagir</span>
+                {/* <span>Clique nos botões para interagir</span> */}
               </div>
             </div>
           </div>
