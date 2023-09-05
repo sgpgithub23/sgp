@@ -44,11 +44,11 @@ export default function SolucoesInovadoras() {
           <h1>Soluções Inovadoras</h1>
           <hr />
           <p>
-            Conheça nossas soluções inovadoras.
+          A Orientação SGP ampliou sua área de atuação. Agora são quatro Consultorias pelo preço de uma
           </p>
 
           <div className={styles.buttonFrase}>
-            <b>Tradicional, tributário e RH | DP | eSocial | Contabilidade</b>
+            <b>Tradicional, Tributário e RH | FP | eSocial | Contabilidade</b>
           </div>
         </div>
       </section>
@@ -112,10 +112,9 @@ export default function SolucoesInovadoras() {
           </div>
           <div className={styles.textos}>
             <hr />
-            <h1>Orientação SGP RH | DP | eSocial</h1>
+            <h1>Orientação SGP RH</h1>
             <p>
-              Atuante nas áreas de Recursos Humanos, Departamento Pessoal e
-              eSocial.
+              Atuante nas áreas de Recursos Humanos.
             </p>
             {/* <Button
               color="darkBlue"
@@ -129,7 +128,66 @@ export default function SolucoesInovadoras() {
       <section className={styles.orientacoesTributarias}>
         <div
           className={styles.orientacaoSGPTributaria}
-          style={{ marginTop: "60px", marginBottom: "100px" }}
+          style={{ marginTop: "40px", marginBottom: "100px" }}
+        >
+          <div className={styles.textos}>
+            <hr />
+            <h1>Orientação SGP DP</h1>
+            <p>
+              Atuante nas áreas de Departamento Pessoal.
+            </p>
+            {/* <Button
+              color="darkBlue"
+              title="Envie sua solicitação"
+              onClick={() => push("/contato")}
+            /> */}
+          </div>
+          <div className={styles.img}>
+            <Image
+              src="/images/solucoes-inovadoras/contabilidade.webp"
+              width={593}
+              className={"imgOnHover"}
+              height={385}
+              alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.orientacoesTributarias}>
+        <div
+          className={styles.orientacaoSGPTributaria}
+          style={{ marginTop: "40px", marginBottom: "100px" }}
+        >
+          <div className={styles.img}>
+            <Image
+              src="/images/solucoes-inovadoras/contabilidade.webp"
+              width={593}
+              className={"imgOnHover"}
+              height={385}
+              alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
+            />
+          </div>
+          <div className={styles.textos}>
+            <hr />
+            <h1>Orientação SGP eSocial</h1>
+            <p>
+            Atuante nas áreas de eSocial.
+            </p>
+            {/* <Button
+              color="darkBlue"
+              title="Envie sua solicitação"
+              onClick={() => push("/contato")}
+            /> */}
+          </div>
+          
+        </div>
+      </section>
+
+      <section className={styles.orientacoesTributarias}>
+        <div
+          className={styles.orientacaoSGPTributaria}
+          style={{ marginTop: "40px", marginBottom: "100px" }}
         >
           <div className={styles.textos}>
             <hr />
@@ -151,7 +209,7 @@ export default function SolucoesInovadoras() {
               src="/images/solucoes-inovadoras/contabilidade.webp"
               width={593}
               className={"imgOnHover"}
-              height={385}
+              height={385} 
               alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
             />
           </div>
