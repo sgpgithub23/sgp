@@ -5,7 +5,6 @@ import { useSpringCarousel } from "react-spring-carousel";
 import {
   BsArrowLeftCircle,
   BsArrowRightCircle,
-  BsFillArrowDownCircleFill,
   BsInfoCircleFill,
 } from "react-icons/bs";
 import {
@@ -31,67 +30,19 @@ import { FooterCompleto } from "@/components/FooterCompleto";
 import { useRouter } from "next/router";
 import { ClientesRequisicao } from "@/typings/Requisicoes/Clientes";
 import { InferGetServerSidePropsType } from "next";
-import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
-import { ProfessorReq } from "@/typings/Requisicoes/Professores";
+import {  useEffect,  useState } from "react";
 import { cloneDeep } from "lodash";
 import {
-  ImagensCarousel,
   RegularImageType,
 } from "@/typings/Requisicoes/Carrossel";
-import { toast } from "react-toastify";
 import { extractErrorMessages } from "@/utils/tratamento-erros";
 import { Depoimento } from "@/typings/Depoimentos";
-import { ErrorMessageReq } from "@/components/ReqErrorMessage";
-// import size from "window-size";
-// import teste1 from "../public/3400-anafernanda.png";
-// import teste2 from "../public/3400-lucana.png";
-// import teste3 from "../public/3400-simine.png";
-import teste4 from "../public/800-gilberto.png";
-import teste5 from "../public/800-luciana.png";
-import teste6 from "../public/800-simone.png";
-import group1teste6 from "../public/teste800-1.webp";
-import group2teste6 from "../public/teste800-2.webp";
-import group3teste6 from "../public/teste800-3.webp";
-import group3teste7 from "../public/3_banner_desktop_3400_.webp";
-import path from "path";
-import { ScrollTracker } from "@/components/ScrollTracker";
-import { Dialog, Transition } from "@headlessui/react";
 
-// const urls = [
-//   {
-//     w: 2079,
-//     h: 3330,
-//     alt: "asdasdasd",
-//     src: group1teste6.src,
-//   },
-//   {
-//     w: 2079,
-//     h: 3330,
-//     alt: "asdasdasd",
-//     src: group2teste6.src,
-//   },
-//   {
-//     w: 2079,
-//     h: 3330,
-//     alt: "asdasdasd",
-//     src: group3teste6.src,
-//   },
-//   {
-//     w: 3400,
-//     h: 1280,
-//     alt: "asdasdasd",
-//     src: group3teste7.src,
-//   },
 
-//   // 2079 por 3330
+type ImgType = {
+  formato: string;
+};
 
-//   // teste1.src,
-//   // teste2.src,
-//   // teste3.src,
-//   // teste4.src,
-//   // teste5.src,
-//   // teste6.src,
-// ];
 
 export default function Home({
   imgsJson,
@@ -101,7 +52,6 @@ export default function Home({
   errosDepoimentos,
   clientes,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  console.warn("imgsJson", imgsJson);
   const isBrowser = typeof window !== "undefined";
   const initialWidth = isBrowser ? window.innerWidth : 0;
 
@@ -141,8 +91,11 @@ export default function Home({
   }, [manualInteraction]);
 
   useEffect(() => {
-    carouselApresentacao.slideToNextItem();
+    if (mainCarouselImg.length > 0) {
+      carouselApresentacao.slideToNextItem();
+    }
   }, [increment]);
+  
 
   function moveCarousel(direction: "next" | "prev") {
     if (
@@ -166,7 +119,7 @@ export default function Home({
 
   function updateMainCarouselImg(size: string) {
     const auxArr = cloneDeep(imgsJson);
-    const auxSize = auxArr.filter((x) => x.formato === size);
+    const auxSize = auxArr.filter((x:ImgType) => x.formato === size);
     setMainCarouselImg(auxSize);
   }
 
@@ -266,7 +219,7 @@ export default function Home({
     // @ts-ignore
     items:
       errosClientes.length <= 0
-        ? clientes.map((cliente, index) => {
+        ? clientes.map((cliente: ClientesRequisicao, index:number) => {
             return {
               id: cliente.sequencia,
               renderItem: (
@@ -319,7 +272,7 @@ export default function Home({
     // @ts-ignore
     items:
       errosDepoimentos.length <= 0
-        ? depoimentos.map((depoimento) => {
+        ? depoimentos.map((depoimento:Depoimento) => {
             return {
               id: depoimento.iddpmt,
               renderItem: (
@@ -927,95 +880,62 @@ export default function Home({
     </div>
   );
 }
-
 export async function getServerSideProps() {
-  let newImgsType: any[] = [];
-  let errosImagesCarouselPrincipal: any[] = [];
-  let errosClientes: any[] = [];
-  let errosDepoimentos: any[] = [];
-  let imgsJson: ImagensCarousel[] = [];
-  let clientesJson: ClientesRequisicao[] = [];
-  let depoimentosJson: Depoimento[] = [];
+  try {
+    const bannersCarouselResponse = await fetch("https://sgpsolucoes.com.br/crm/api/?action=2&model=bannerscarousel");
+    const bannersCarouselData = await bannersCarouselResponse.json();
+    console.log(bannersCarouselData);
+    const [clientesResponse, depoimentosResponse] = await Promise.all([
+      fetch("https://sgpsolucoes.com.br/crm/api/?action=1&model=logosclientesempresas"),
+      fetch("https://sgpsolucoes.com.br/crm/api/?action=2&model=depoimentos"),
+    ]);
 
-  let depoimentosFiltrados: Depoimento[] = [];
-  const imgsCarouselFetch = await fetch(
-    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=2&model=bannerscarousel`
-  );
+    const clientesData = await clientesResponse.json();
+    const depoimentosData = await depoimentosResponse.json();
 
-  const resClientes = await fetch(
-    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=logosclientesempresas`
-  );
+    const errosImagesCarouselPrincipal = extractErrorMessages(bannersCarouselData);
+    const errosClientes = extractErrorMessages(clientesData);
+    const errosDepoimentos = extractErrorMessages(depoimentosData);
 
-  const resDepoimentos = await fetch(
-    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=2&model=depoimentos`
-  );
+    let newImgsType = [];
+    let depoimentosFiltrados = [];
 
-  imgsJson = await imgsCarouselFetch.json();
-  clientesJson = await resClientes.json();
-  depoimentosJson = await resDepoimentos.json();
+    if (errosImagesCarouselPrincipal.length === 0) {
+      newImgsType = bannersCarouselData.map((obj: RegularImageType) => {
+        return {
+          formato: obj.formatoimagem,
+          nomeclass: `img${obj.formatoimagem}`,
+        };
+      });
+    }
 
-  errosImagesCarouselPrincipal = extractErrorMessages(imgsJson);
-  errosClientes = extractErrorMessages(clientesJson);
-  errosDepoimentos = extractErrorMessages(depoimentosJson);
+    if (errosDepoimentos.length === 0) {
+      depoimentosFiltrados = depoimentosData.filter(
+        (x:Depoimento) => x.nomedepoente.trim() !== "" && x.empresa.trim() !== ""
+      );
+    }
 
-  if (errosImagesCarouselPrincipal.length <= 0) {
-    newImgsType = imgsJson.map((obj: any) => {
-      return {
-        formato: obj.formatoimagem,
-        nomeclass: `img${obj.formatoimagem}`,
-        sequencia: obj.sequencia,
-        nomearquivoimagem: obj.nomearquivoimagem,
-        caminhoarquivologo: obj.caminhoarquivoimagem,
-        caminhoimagem: `${obj.caminhoarquivoimagem}${obj.nomearquivoimagem}`,
-        situacaoimagem: obj.situacaoimagem,
-        formatoimagem: obj.formatoimagem,
-        caminhohref: obj.caminhohref,
-        tituloalthref: obj.tituloalthref,
-        textoadicional1: obj.textoadicional1,
-        textoadicional2: obj.textoadicional2,
-        textoadicional3: obj.textoadicional3,
-        // 2079x3330
-      };
-      // desktop
-      // w 3400
-      // h 1285
-
-      // mobile
-      // w 2079
-      // h 3330
-    });
-  } else {
-    newImgsType = [];
+    return {
+      props: {
+        imgsJson: newImgsType,
+        clientes: errosClientes.length === 0 ? clientesData : [],
+        depoimentos: depoimentosFiltrados,
+        errosImagesCarouselPrincipal,
+        errosClientes,
+        errosDepoimentos,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching or parsing data:', error);
+    return {
+      props: {
+        imgsJson: [],
+        clientes: [],
+        depoimentos: [],
+        errosImagesCarouselPrincipal: [],
+        errosClientes: [],
+        errosDepoimentos: [],
+      },
+    };
   }
-
-  if (errosClientes.length > 0) {
-    clientesJson = [];
-  }
-
-  if (errosDepoimentos.length > 0) {
-    depoimentosJson = [];
-  } else {
-    depoimentosFiltrados = depoimentosJson.filter(
-      (x) => x.nomedepoente.trim() !== "" && x.empresa.trim() !== ""
-    );
-  }
-
-  return {
-    props: {
-      imgsJson: newImgsType,
-      clientes: clientesJson,
-      depoimentos: depoimentosFiltrados,
-      errosImagesCarouselPrincipal,
-      errosClientes,
-      errosDepoimentos,
-    },
-//     // props: {
-//     //   imgsJson: [],
-//     //   clientes: [],
-//     //   depoimentos: [],
-//     //   errosImagesCarouselPrincipal: [],
-//     //   errosClientes: [],
-//     //   errosDepoimentos: [],
-//     // },
-  };
 }

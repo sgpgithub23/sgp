@@ -61,7 +61,7 @@ export async function getServerSideProps() {
   let errorsProfessores: any[] = [];
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=professores`
+    `https://www.sgpsolucoes.com.br/crm/api/?action=1&model=professores`
   );
   let profsAll: ProfessorReq[] = await res.json();
 
