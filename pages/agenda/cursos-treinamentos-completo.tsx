@@ -19,6 +19,7 @@ import { extractErrorMessages } from "@/utils/tratamento-erros";
 import { ErrorMessageReq } from "@/components/ReqErrorMessage";
 import { toast } from "react-toastify";
 import FriendlyErrorMessage from "@/components/FriendlyErrorMessage";
+import Spinner from "@/components/Spinner";
 
 export async function getStaticProps() {
   let errorsCursosTreinamentosCompletos: any[] = [];
@@ -48,6 +49,9 @@ export default function Agenda({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<AgendaRequisicao>();
   const [curso, setCurso] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const { push } = useRouter();
 
   // useEffect(() => {
   //   if (errorsCursosTreinamentosCompletos.length > 0) {
@@ -150,9 +154,22 @@ export default function Agenda({
                   ))}
               </div>
               <p>
-                Confira a lista completa{" "}
-                <b style={{ cursor: "pointer" }}>clicando aqui!</b>
-              </p>
+                  {" "}
+                  <b
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      push("/agenda");
+                      setIsLoading(true);
+                    }}
+                  >
+                    Ver menos!
+                  </b>
+                </p>
+                {isLoading && (
+                  <div className={styles.loadSpinnerr}>
+                    <Spinner />
+                  </div>
+                )}
             </>
           ) : (
             <FriendlyErrorMessage commommsg />
