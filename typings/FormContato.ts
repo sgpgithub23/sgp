@@ -7,6 +7,10 @@ export type FormContato = {
     celular: string, 
     conheceusgp: string, 
     facebook: string,
+    instagram: string,
+    twitter: string,
+    linkedin: string,
+    youtube: string,
     mensagem: string
     arquivo: any,
     dataEnvio: Date
