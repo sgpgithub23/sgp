@@ -255,7 +255,7 @@ export default function Contato() {
                 <label htmlFor="subject-dropdown">Assunto</label>
                 <select id="subject-dropdown" className={inputStyles.inputComum} onChange={e => setValue("assunto", e.target.value)}>
                   <option value="Acesso Login">Acesso Login</option>
-                  <option value="Agenda Cursos">Agenda Cursos</option>
+                  <option value="Agenda de Cursos e Treinamentos">Agenda de Cursos e Treinamentos</option>
                   <option value="Artigos">Artigos</option>
                   <option value="Assessoria Jurídica In Loco">Assessoria Jurídica In Loco</option>
                   <option value="Assessoria On Line Hora Certa">Assessoria On Line Hora Certa</option>

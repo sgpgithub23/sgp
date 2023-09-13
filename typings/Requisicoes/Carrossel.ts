@@ -24,6 +24,7 @@ export interface RegularImageType {
   formatoimagem: string;
   caminhohref: string;
   caminhoimagem: string;
+  caminhoarquivoimagem: string;
   tituloalthref: string;
   textoadicional1: string;
   textoadicional2: string;

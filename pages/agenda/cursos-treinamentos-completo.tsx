@@ -74,11 +74,43 @@ export default function Agenda({
       </Head>
       <Navbar />
       <div className={styles.content}>
-        <div className={styles.headerContent}></div>
+        <div className={styles.headerContent}>
+          <p>
+          <strong>“O conhecimento </strong>é o único bem que não pode ser tirado de você".
+          </p>
+        </div>
       </div>
       <div className={styles.pageSize}>
-        <div style={{ marginBlock: "50px" }} className={styles.mainContentForm}>
-          <div className={styles.introduction} style={{ marginBottom: "40px" }}>
+        <div className={styles.agendaCursosTreinamentos}>
+          <div className={styles.imgOnRightSide}>
+            <div>
+              <h1>Agenda de Cursos e Treinamentos</h1>
+              <hr />
+              <p>
+                Temos horário flexível <br /> Das 8h30 às 17h30 <br /> Na SGP ou{" "}
+                <em>In Company</em>!
+              </p>
+              <Button
+                color="darkBlue"
+                title="Conheça nossos professores"
+                onClick={() => push("/nossos-professores")}
+              />
+            </div>
+            <div className={styles.imagem}>
+              <Image
+                src="/images/agenda/calendario.webp"
+                alt="Homem olhando pro papel, tentando ler algo"
+                width={696}
+                height={384}
+                className={"imgOnHover"}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={styles.pageSize}>
+      <div className={styles.mainContentForm}>
+          <div className={styles.introduction}>
             <div className={styles.left}>
               <h2>Confira nossos cursos</h2>
               <span>
@@ -180,6 +212,18 @@ export default function Agenda({
         <hr />
         <h2>“O Conhecimento é o único bem que não pode ser tirado de você”.</h2>
       </div> */}
+        <div className={styles.professores}>
+          <h1>Inicie um contato preenchendo o formulário</h1>
+          <p>
+            Disponibilizamos vários canais de comunicação e este é um deles para
+            que você possa se comunicar mais rápido conosco!
+          </p>
+          <Button
+            onClick={() => push("/contato")}
+            color="darkBlue"
+            title="Quero mais informações!"
+          />
+        </div>
       <FooterCompleto />
 
       <Transition appear show={isModalOpen} as={Fragment}>

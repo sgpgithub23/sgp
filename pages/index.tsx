@@ -169,20 +169,23 @@ export default function Home({
     // @ts-ignore
     items:
       errosImagesCarouselPrincipal.length <= 0
-        ? mainCarouselImg.map((x, index: number) => ({
-            id: String(index),
-            renderItem: (
-              <Image
-                width={3400}
-                height={2700}
-                src={x.caminhoimagem}
-                alt={x.tituloalthref}
-                priority
-                onClick={() => push(x.caminhohref)}
-                style={{ cursor: "pointer" }}
-              />
-            ),
-          }))
+        ? mainCarouselImg.map((x, index: number) => {
+  
+            return {
+              id: String(index),
+              renderItem: (
+                <Image
+                  width={3400}
+                  height={2700}
+                  src={x.caminhoimagem}
+                  alt={x.tituloalthref}
+                  priority
+                  onClick={() => push(x.caminhohref)}
+                  style={{ cursor: "pointer" }}
+                />
+              ),
+            };
+          })
         : [
             {
               id: "item-0",
@@ -210,7 +213,7 @@ export default function Home({
               ),
             },
           ],
-  });
+  });  
 
   const carouselParceiros = useSpringCarousel({
     itemsPerSlide: errosClientes.length > 0 ? 1 : 2,
@@ -882,12 +885,11 @@ export default function Home({
 }
 export async function getServerSideProps() {
   try {
-    const bannersCarouselResponse = await fetch("https://sgpsolucoes.com.br/crm/api/?action=2&model=bannerscarousel");
+    const bannersCarouselResponse = await fetch("https://sgpsolucoes.com.br/crm/api/?action=1&model=bannerscarousel");
     const bannersCarouselData = await bannersCarouselResponse.json();
-    console.log(bannersCarouselData);
     const [clientesResponse, depoimentosResponse] = await Promise.all([
       fetch("https://sgpsolucoes.com.br/crm/api/?action=1&model=logosclientesempresas"),
-      fetch("https://sgpsolucoes.com.br/crm/api/?action=2&model=depoimentos"),
+      fetch("https://sgpsolucoes.com.br/crm/api/?action=1&model=depoimentos"),
     ]);
 
     const clientesData = await clientesResponse.json();
@@ -905,6 +907,18 @@ export async function getServerSideProps() {
         return {
           formato: obj.formatoimagem,
           nomeclass: `img${obj.formatoimagem}`,
+          sequencia: obj.sequencia,
+          nomearquivoimagem: obj.nomearquivoimagem,
+          caminhoarquivologo: obj.caminhoarquivoimagem,
+          caminhoimagem: `${obj.caminhoarquivoimagem}${obj.nomearquivoimagem}`,
+          situacaoimagem: obj.situacaoimagem,
+          formatoimagem: obj.formatoimagem,
+          caminhohref: obj.caminhohref,
+          tituloalthref: obj.tituloalthref,
+          textoadicional1: obj.textoadicional1,
+          textoadicional2: obj.textoadicional2,
+          textoadicional3: obj.textoadicional3,
+          // 2079x3330
         };
       });
     }
