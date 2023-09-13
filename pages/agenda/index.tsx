@@ -79,7 +79,11 @@ export default function Agenda({
       </Head>
       <Navbar />
       <div className={styles.content}>
-        <div className={styles.headerContent}></div>
+        <div className={styles.headerContent}>
+          <p>
+          <strong>“O conhecimento </strong>é o único bem que não pode ser tirado de você".
+          </p>
+        </div>
       </div>
       <div className={styles.pageSize}>
         <div className={styles.agendaCursosTreinamentos}>

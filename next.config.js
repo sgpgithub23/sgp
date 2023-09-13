@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['pbs.twimg.com', 'www.sgpsolucoes.com.br'],
+    domains: ['pbs.twimg.com', 'sgpsolucoes.com.br', 'www.sgpsolucoes.com.br'],
   },
   env: {
     NEXT_PUBLIC_GET_INFOS_SGP_CONTATO: process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO,

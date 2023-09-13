@@ -30,13 +30,18 @@ const schema = yup.object().shape({
   nome: yup.string().required("Campo obrigatório"),
   email: yup.string().required("Campo obrigatório"),
   mensagem: yup.string().required("Campo obrigatório"),
-  arquivo: yup.mixed().nullable().required("A file is required"),
+  arquivo: yup
+    .mixed()
+    .nullable()
+    .test('fileSize', 'O arquivo é muito grande. Máximo de 350KB.', (file) => {
+      if (!file) return true; // Allow if no file is selected
+      return file.size <= 350 * 1024; // 350KB
+    })
+    .required('Um arquivo é obrigatório'),
   assunto: yup.string().required("Campo obrigatório"),
   celular: yup.string().required("Campo obrigatório"),
   conheceusgp: yup.string().required("Campo obrigatório"),
-  dataEnvio: yup.date().required("Campo obrigatório"),
   empresa: yup.string().required("Campo obrigatório"),
-  facebook: yup.string().required("Campo obrigatório"),
   // telComl: yup.string().required("Campo obrigatório"),
 });
 
@@ -48,9 +53,12 @@ const initialValues = {
   assunto: "",
   celular: "",
   conheceusgp: "",
-  dataEnvio: new Date(),
   empresa: "",
   facebook: "",
+  instagram: "",
+  twitter: "",
+  linkedin: "",
+  youtube: "",
   telComl: "",
 };
 
@@ -124,11 +132,14 @@ export default function Contato() {
       const email = getValues("email");
       const knowSGP = getValues("conheceusgp");
       const facebook = getValues("facebook");
+      const instagram = getValues("instagram");
+      const twitter = getValues("twitter");
+      const linkedin = getValues("linkedin");
+      const youtube = getValues("youtube");
       const subject = getValues("assunto");
       const phone = getValues("celular");
       const message = getValues("mensagem")
       const tel = getValues("telComl");
-      const sendDate = getValues("dataEnvio");
       const attachment = getValues("arquivo");
 
       const formData = new FormData();
@@ -138,11 +149,14 @@ export default function Contato() {
       formData.append('email', email);
       formData.append('knowSGP', knowSGP);
       formData.append('facebook', facebook);
+      formData.append('instagram', instagram);
+      formData.append('twitter', twitter);
+      formData.append('linkedin', linkedin);
+      formData.append('youtube', youtube);
       formData.append('subject', subject);
       formData.append('phone', phone);
       formData.append('message', message);
       formData.append('tel', tel);
-      formData.append('sendDate', sendDate.toString());
       formData.append('attachment', attachment);
       formData.append('subject', subject);
 
@@ -241,7 +255,7 @@ export default function Contato() {
                 <label htmlFor="subject-dropdown">Assunto</label>
                 <select id="subject-dropdown" className={inputStyles.inputComum} onChange={e => setValue("assunto", e.target.value)}>
                   <option value="Acesso Login">Acesso Login</option>
-                  <option value="Agenda Cursos">Agenda Cursos</option>
+                  <option value="Agenda de Cursos e Treinamentos">Agenda de Cursos e Treinamentos</option>
                   <option value="Artigos">Artigos</option>
                   <option value="Assessoria Jurídica In Loco">Assessoria Jurídica In Loco</option>
                   <option value="Assessoria On Line Hora Certa">Assessoria On Line Hora Certa</option>
@@ -309,14 +323,20 @@ export default function Contato() {
               />
             </div>
             <div>
-              <Input
-                name="conheceusgp"
-                label="Como conheceu a SGP?"
-                required
-                register={register("conheceusgp")}
-                error={errors.conheceusgp?.message}
-                placeholder="Escreva aqui"
-              />
+            <div className={inputStyles.main}>
+                <label htmlFor="subject-dropdown">Como conheceu a SGP?</label>
+                <select id="subject-dropdown" className={inputStyles.inputComum} onChange={e => setValue("conheceusgp", e.target.value)}>
+                  <option value="Facebook">Facebook</option>
+                  <option value="Folder">Folder</option>
+                  <option value="Indicacao">Indicação</option>                 
+                  <option value="Instagram">Instagram</option>
+                  <option value="Linkedin">Linkedin</option>
+                  <option value="Outros">Outros</option>
+                  <option value="pesquisa-google">Pesquisa Google</option>
+                  <option value="Twitter">Twitter</option>
+                  <option value="Youtube">Youtube</option>
+                </select>
+          </div>
               <Input
                 name="facebook"
                 type="text"
@@ -324,6 +344,42 @@ export default function Contato() {
                 register={register("facebook")}
                 error={errors.facebook?.message}
                 placeholder="facebook.com/nomedeusuario"
+              />
+            </div>
+            <div>
+            <Input
+                name="instagram"
+                type="text"
+                label="Instagram"
+                register={register("instagram")}
+                error={errors.instagram?.message}
+                placeholder="instagram.com/nomedeusuario"
+              />
+              <Input
+                name="twitter"
+                type="text"
+                label="Twitter"
+                register={register("twitter")}
+                error={errors.twitter?.message}
+                placeholder="twitter.com/nomedeusuario"
+              />
+            </div>
+            <div>
+            <Input
+                name="linkedin"
+                type="text"
+                label="Linkedin"
+                register={register("linkedin")}
+                error={errors.linkedin?.message}
+                placeholder="linkedin.com/nomedeusuario"
+              />
+              <Input
+                name="youtube"
+                type="text"
+                label="Youtube"
+                register={register("youtube")}
+                error={errors.youtube?.message}
+                placeholder="youtube.com/nomedeusuario"
               />
             </div>
             <div>
@@ -344,17 +400,10 @@ export default function Contato() {
                 as="file"
                 required
                 onChange={handleFileUpload}
+                accept=".pdf,.doc,.txt"
                 label={getValues("arquivo")?.name || getValues("arquivo")?.[0]?.name || "Anexe seu arquivo"}
                 register={register("arquivo")}
                 error={errors.arquivo?.message}
-              />
-              <Input
-                name="dataEnvio"
-                type="date"
-                required
-                label="Data do envio"
-                register={register("dataEnvio")}
-                error={errors.dataEnvio?.message}
               />
             </div>
             <div className={styles.informacoes}>
@@ -369,12 +418,12 @@ export default function Contato() {
                 .
               </p>
             </div>
-            <ReCAPTCHA
+            {/* <ReCAPTCHA
               // @ts-ignore
               sitekey={process.env.NEXT_PUBLIC_API_RECAPTCHA_SIE}
               ref={captchaRef}
               onChange={(value) => setRecaptchaResponse(value)}
-            />
+            /> */}
             <div className={styles.buttonPosition}>
               <Button
                 color="grey"

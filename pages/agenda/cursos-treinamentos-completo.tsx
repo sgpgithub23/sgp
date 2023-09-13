@@ -19,6 +19,7 @@ import { extractErrorMessages } from "@/utils/tratamento-erros";
 import { ErrorMessageReq } from "@/components/ReqErrorMessage";
 import { toast } from "react-toastify";
 import FriendlyErrorMessage from "@/components/FriendlyErrorMessage";
+import Spinner from "@/components/Spinner";
 
 export async function getStaticProps() {
   let errorsCursosTreinamentosCompletos: any[] = [];
@@ -48,6 +49,9 @@ export default function Agenda({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<AgendaRequisicao>();
   const [curso, setCurso] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const { push } = useRouter();
 
   // useEffect(() => {
   //   if (errorsCursosTreinamentosCompletos.length > 0) {
@@ -70,11 +74,43 @@ export default function Agenda({
       </Head>
       <Navbar />
       <div className={styles.content}>
-        <div className={styles.headerContent}></div>
+        <div className={styles.headerContent}>
+          <p>
+          <strong>“O conhecimento </strong>é o único bem que não pode ser tirado de você".
+          </p>
+        </div>
       </div>
       <div className={styles.pageSize}>
-        <div style={{ marginBlock: "50px" }} className={styles.mainContentForm}>
-          <div className={styles.introduction} style={{ marginBottom: "40px" }}>
+        <div className={styles.agendaCursosTreinamentos}>
+          <div className={styles.imgOnRightSide}>
+            <div>
+              <h1>Agenda de Cursos e Treinamentos</h1>
+              <hr />
+              <p>
+                Temos horário flexível <br /> Das 8h30 às 17h30 <br /> Na SGP ou{" "}
+                <em>In Company</em>!
+              </p>
+              <Button
+                color="darkBlue"
+                title="Conheça nossos professores"
+                onClick={() => push("/nossos-professores")}
+              />
+            </div>
+            <div className={styles.imagem}>
+              <Image
+                src="/images/agenda/calendario.webp"
+                alt="Homem olhando pro papel, tentando ler algo"
+                width={696}
+                height={384}
+                className={"imgOnHover"}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={styles.pageSize}>
+      <div className={styles.mainContentForm}>
+          <div className={styles.introduction}>
             <div className={styles.left}>
               <h2>Confira nossos cursos</h2>
               <span>
@@ -150,19 +186,44 @@ export default function Agenda({
                   ))}
               </div>
               <p>
-                Confira a lista completa{" "}
-                <b style={{ cursor: "pointer" }}>clicando aqui!</b>
-              </p>
+                  {" "}
+                  <b
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      push("/agenda");
+                      setIsLoading(true);
+                    }}
+                  >
+                    Ver menos!
+                  </b>
+                </p>
+                {isLoading && (
+                  <div className={styles.loadSpinnerr}>
+                    <Spinner />
+                  </div>
+                )}
             </>
           ) : (
             <FriendlyErrorMessage commommsg />
           )}
         </div>
       </div>
-      <div className={styles.empresaIndicadaBottom}>
+      {/* <div className={styles.empresaIndicadaBottom}>
         <hr />
         <h2>“O Conhecimento é o único bem que não pode ser tirado de você”.</h2>
-      </div>
+      </div> */}
+        <div className={styles.professores}>
+          <h1>Inicie um contato preenchendo o formulário</h1>
+          <p>
+            Disponibilizamos vários canais de comunicação e este é um deles para
+            que você possa se comunicar mais rápido conosco!
+          </p>
+          <Button
+            onClick={() => push("/contato")}
+            color="darkBlue"
+            title="Quero mais informações!"
+          />
+        </div>
       <FooterCompleto />
 
       <Transition appear show={isModalOpen} as={Fragment}>
