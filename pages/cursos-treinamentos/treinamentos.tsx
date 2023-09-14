@@ -124,8 +124,8 @@ export default function CursosTreinamentos({
                   ) {
                     return p;
                   }
-                })
-                .map((x, i) => (
+                })  
+                .filter((x) => x.titulocursotreinamento.toLowerCase().includes(treinamento.toLowerCase())).map((x, i) => (
                   <div className={styles.curso} key={i}>
                     <div
                       className={classNames({

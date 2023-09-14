@@ -77,7 +77,7 @@ export default function CursosTreinamentos({
         <div className={styles.headerContent}>
           <h1>Cursos</h1>
           <hr />
-          <p></p>
+          <p>Contamos com uma equipe altamente qualificada de professores, verdadeiramente especialistas em cada tema, com vasta bagagem acadêmica e efetivo conhecimento prático, proporcionando aos participantes a oportunidade de seu aperfeiçoamento e capacitação devidamente certificada.</p>
         </div>
       </div>
       <div className={styles.pageSize}>
@@ -119,7 +119,7 @@ export default function CursosTreinamentos({
                     return p;
                   }
                 })
-                .map((x, i) => (
+                .filter((x) => x.titulocursotreinamento.toLowerCase().includes(treinamento.toLowerCase())).map((x, i) => (
                   <div className={styles.curso} key={i}>
                     <div
                       className={classNames({

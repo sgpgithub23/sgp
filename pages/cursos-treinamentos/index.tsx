@@ -326,10 +326,6 @@ export default function CursosTreinamentos({
           <FriendlyErrorMessage commommsg />
         )}
       </div>
-      <div className={styles.empresaIndicadaBottom}>
-        <hr />
-        <h2>“O Conhecimento é o único bem que não pode ser tirado de você”.</h2>
-      </div>
       <FooterCompleto />
 
       <Transition appear show={isModalOpen} as={Fragment}>

@@ -42,6 +42,17 @@ export async function getStaticProps() {
   };
 }
 
+function formatDate(dateString : string) {
+  if (!dateString) return ''; 
+
+  const date = new Date(dateString);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+}
+
 export default function Agenda({
   agenda,
   errorsCursosTreinamentosCompletos,
@@ -157,20 +168,16 @@ export default function Agenda({
                       return p;
                     }
                   })
-                  .map((x, i) => (
+                  .filter((x) => x.titulocursotreinamento.toLowerCase().includes(curso.toLowerCase())).map((x, i) => (
                     <div className={styles.curso} key={i}>
                       <div className={styles.detalhes}>
-                        <div
-                          className={classNames({
-                            [styles.isCursoPresencial]:
-                              x.presencialonline.toLocaleLowerCase() ===
-                              "presencial",
-                            [styles.isCursoAntigo]:
-                              x.presencialonline.toLocaleLowerCase() !==
-                              "presencial",
-                          })}
-                        />
-                        <span>Data: {x.dataprogamada}</span>
+                      <div className={classNames({
+                        [styles.isCurso]: x?.modalidade === "C",
+                        [styles.isTreinamento]: x?.modalidade !== "C",
+                      })}>
+                        {x?.presencialonline === "P" ? " Presencial" : " On-line"}
+                      </div>
+                        <span>Data: {formatDate(x.dataprogamada)}</span>
                       </div>
                       <div role="button" onClick={() => modalState(x)}>
                         <h4>
