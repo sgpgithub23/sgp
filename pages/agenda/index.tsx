@@ -45,6 +45,17 @@ export async function getStaticProps() {
   };
 }
 
+function formatDate(dateString : string) {
+  if (!dateString) return ''; 
+
+  const date = new Date(dateString);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+}
+
 export default function Agenda({
   agenda,
   errorsAgenda,
@@ -52,6 +63,7 @@ export default function Agenda({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<AgendaRequisicao>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [curso, setCurso] = useState<string>("");
   const [cursoArray, setCursoArray] = useState<AgendaRequisicao[]>(
     agenda.slice(0, 6)
   );
@@ -121,26 +133,31 @@ export default function Agenda({
                 práticas de mercado.
               </span>
             </div>
-            <div className={styles.right}></div>
+            <div className={styles.right}>
+              <Input
+                withicon={true}
+                placeholder="Pesquisar curso..."
+                label=""
+                type="text"
+                icon={<HiMagnifyingGlass />}
+                onChange={(e) => setCurso(e.target.value)}
+              />
+            </div>  
           </div>
           {errorsAgenda.length <= 0 ? (
             cursoArray.length > 0 && (
               <>
                 <div className={styles.cursosNovos}>
-                  {cursoArray.map((x, i) => (
+                  {cursoArray.filter((x) => x.titulocursotreinamento.toLowerCase().includes(curso.toLowerCase())).map((x, i) => (
                     <div className={styles.curso} key={i}>
                       <div className={styles.detalhes}>
-                        <div
-                          className={classNames({
-                            [styles.isCursoPresencial]:
-                              x?.presencialonline?.toLocaleLowerCase() ===
-                              "presencial",
-                            [styles.isCursoAntigo]:
-                              x?.presencialonline?.toLocaleLowerCase() !==
-                              "presencial",
-                          })}
-                        />
-                        <span>Data: {x?.dataprogamada}</span>
+                      <div className={classNames({
+                        [styles.isCurso]: x?.modalidade === "C",
+                        [styles.isTreinamento]: x?.modalidade !== "C",
+                      })}>
+                        {x?.presencialonline === "P" ? " Presencial" : " On-line"}
+                      </div>
+                        <span>Data: {formatDate(x?.dataprogamada)}</span>
                       </div>
                       <div role="button" onClick={() => modalState(x)}>
                         <h4>
@@ -317,3 +334,4 @@ export default function Agenda({
     </div>
   );
 }
+

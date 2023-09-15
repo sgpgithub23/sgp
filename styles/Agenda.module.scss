@@ -199,6 +199,35 @@
                             }
                         }
 
+                        & > .isCurso {
+                            background-color: $blue-100;
+                            width: 40%;
+                            padding: 10px;
+                            text-align: center;
+                            border-radius: 5px;
+                            color: white;
+                            font-weight: 700;
+
+                            &::before {
+                                content: "Curso";
+                            }
+                        }
+
+                        & > .isTreinamento {
+                            background-color: $orange-100;
+                            width: 40%;
+                            padding: 10px;
+                            text-align: center;
+                            border-radius: 5px;
+                            color: white;
+                            font-weight: 700;
+
+                            &::before {
+                                content: "Treinamento";
+                            }
+                        }
+                        
+
                         & > .isCursoAntigo {
                             background-color: $orange-100;
                             width: 40%;
