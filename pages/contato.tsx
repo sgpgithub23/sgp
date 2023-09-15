@@ -260,6 +260,7 @@ export default function Contato() {
                   <option value="Assessoria Jurídica In Loco">Assessoria Jurídica In Loco</option>
                   <option value="Assessoria On Line Hora Certa">Assessoria On Line Hora Certa</option>
                   <option value="Assessoria para Empresas Privadas">Assessoria para Empresas Privadas</option>
+                  <option value="Assinatura anual">Assinatura anual</option>
                   <option value="Certificados">Certificados</option>
                   <option value="Cursos">Cursos</option>
                   <option value="Documentações">Documentações</option>
@@ -268,6 +269,7 @@ export default function Contato() {
                   <option value="Livros">Livros</option>
                   <option value="MBA">MBA</option>
                   <option value="Mentoria">Mentoria</option>
+                  <option value="Orientação Jurídica">Orientação Jurídica</option>  
                   <option value="Orientações SGP">Orientações SGP</option>
                   <option value="Outras informações">Outras informações</option>
                   <option value="Periódicos">Periódicos</option>
