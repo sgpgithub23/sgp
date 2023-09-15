@@ -103,11 +103,11 @@ export default function SolucoesInovadoras() {
         <div className={styles.orientacaoSGPTributaria}>
           <div className={styles.img}>
             <Image
-              src="/images/solucoes-inovadoras/pessoas-discutindo.webp"
+              src="/images/solucoes-inovadoras/mulher-olhando-fotos.png"
               width={592}
               height={384}
               className={"imgOnHover"}
-              alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
+              alt="Uma mulher olhando para diversas fotos que estão na sua frente."
             />
           </div>
           <div className={styles.textos}>
@@ -144,11 +144,11 @@ export default function SolucoesInovadoras() {
           </div>
           <div className={styles.img}>
             <Image
-              src="/images/solucoes-inovadoras/contabilidade.webp"
+              src="/images/solucoes-inovadoras/duas-pessoas-mexendo-no-tablet.png"
               width={593}
               className={"imgOnHover"}
               height={385}
-              alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
+              alt="Dois homens mexendo no dispositivo móvel conhecido como tablet"
             />
           </div>
         </div>
@@ -161,11 +161,11 @@ export default function SolucoesInovadoras() {
         >
           <div className={styles.img}>
             <Image
-              src="/images/solucoes-inovadoras/contabilidade.webp"
+              src="/images/solucoes-inovadoras/pessoa-mexendo-notebook.png"
               width={593}
               className={"imgOnHover"}
               height={385}
-              alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
+              alt="Foto de um homem mexendo no notebook. Uma de suas mãos está com um dedo apontando para a tela e a outra está apoiada no notebook."
             />
           </div>
           <div className={styles.textos}>
