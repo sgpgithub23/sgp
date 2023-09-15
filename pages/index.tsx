@@ -768,7 +768,6 @@ export default function Home({
                 onClick={carouselDegustacao.slideToNextItem}
                 className={styles.arrowRight}
               />
-              <span>Clique nos botões para interagir</span>
             </div>
           </div>
         </div>
