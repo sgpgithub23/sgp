@@ -168,6 +168,7 @@ export default function NossosPeriodicos() {
             <div className={styles.slc}>
               <Image
                 alt="Solução em Licitações e Contratos"
+
                 width={384}
                 height={292}
                 src="/images/nossos-periodicos/slc.webp"
@@ -179,7 +180,7 @@ export default function NossosPeriodicos() {
             </div>
             <div className={styles.sam}>
               <Image
-                alt="Solução em Licitações e Contratos"
+                alt="Solução em direito administrativo e municipal"
                 width={384}
                 height={292}
                 src="/images/nossos-periodicos/sam.webp"

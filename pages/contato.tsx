@@ -234,7 +234,7 @@ export default function Contato() {
 
             <Image
               src={"/images/contato/mulher-sorrindo.webp"}
-              alt="Bolo de chocolate"
+              alt="Mulher com roupa social sorrindo"
               width={416}
               height={435}
               className={"imgOnHover"}

@@ -105,7 +105,7 @@ export default function Documentacoes({
             <div className={styles.imgDiv}>
               <Image
                 src={"/images/contato/mulher-sorrindo.webp"}
-                alt="Bolo de chocolate"
+                alt="Mulher com roupa social sorrindo"
                 width={416}
                 className={"imgOnHover"}
                 height={435}

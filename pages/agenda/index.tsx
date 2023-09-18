@@ -115,8 +115,9 @@ export default function Agenda({
             </div>
             <div className={styles.imagem}>
               <Image
+      
                 src="/images/agenda/calendario.webp"
-                alt="Homem olhando pro papel, tentando ler algo"
+                alt="Calendário de papel marcado em algumas datas importantes do mês"
                 width={696}
                 height={384}
                 className={"imgOnHover"}
