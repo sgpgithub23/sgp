@@ -264,7 +264,7 @@ export default function SolucoesInovadoras() {
                   src="/images/solucoes-inovadoras/pessoas-prestando-atencao.webp"
                   width={387}
                   height={301}
-                  alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
+                  alt="Pessoas prestando atenção em uma palestra. Uma mulher está realizando anotações em seu caderno"
                 />
                 <b>MBA</b>
                 <div className={styles.informacoes}></div>

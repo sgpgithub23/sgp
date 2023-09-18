@@ -210,7 +210,7 @@ export default function SolucoesInovadoras() {
               width={593}
               className={"imgOnHover"}
               height={385} 
-              alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
+              alt="Homem de terno escrevendo em um papel que possue gráfios e números e ele também está realizando contas em uma calculadora."
             />
           </div>
         </div>
@@ -261,7 +261,7 @@ export default function SolucoesInovadoras() {
               width={432}
               height={451}
               className={"imgOnHover"}
-              alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
+              alt="Homem com fones de ouvidos rindo em frente ao computador. Ele está em sua casa."
             />
           </div>
           <div className={styles.textos}>
@@ -312,7 +312,7 @@ export default function SolucoesInovadoras() {
               width={432}
               height={451}
               className={"imgOnHover"}
-              alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
+              alt="Homem de terno sentado em sua mesa e falando ao telefone com uma expressão de felicidade."
             />
           </div>
         </div>
@@ -428,7 +428,7 @@ export default function SolucoesInovadoras() {
               height={480}
               className={"imgOnHover"}
               style={{ width: "400px", height: "350px" }}
-              alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
+              alt="foto com o símbolo do direito no centro e vários ícones relacionados a comunicação em volta. No fundo, existe uma imagem de céu, árvores e prédios."
             />
           </div>
         </div>
@@ -624,7 +624,7 @@ export default function SolucoesInovadoras() {
               width={387}
               height={301}
               className={"imgOnHover"}
-              alt="Três mãos. Uma delas digitando em um notebook cinza, outra escrevendo em uma prancheta e a última está escrevendo e digitando"
+              alt="Pessoas prestando atenção em uma palestra. Uma mulher está realizando anotações em seu caderno"
             />
             <b>MBA</b>
             <div className={styles.informacoes}>

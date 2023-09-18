@@ -358,7 +358,7 @@ export default function Home({
               width={150}
               height={150}
               src={"/images/homepage/degustacao/degustacao-1.png"}
-              alt="Ícone indicando que um item na lista está preenchido"
+              alt="Imagem de um livro aberto"
               className={"imgOnHover"}
             />
           </div>
@@ -372,7 +372,7 @@ export default function Home({
               width={150}
               height={150}
               src={"/images/homepage/degustacao/degustacao-2.png"}
-              alt="Ícone indicando que um item na lista está preenchido"
+              alt="Imagem de um livro aberto"
               className={"imgOnHover"}
             />
           </div>
@@ -386,7 +386,7 @@ export default function Home({
               width={150}
               height={150}
               src={"/images/homepage/degustacao/degustacao-3.png"}
-              alt="Ícone indicando que um item na lista está preenchido"
+              alt="Imagem de um livro aberto"
               className={"imgOnHover"}
             />
           </div>
@@ -400,7 +400,7 @@ export default function Home({
               width={150}
               height={150}
               src={"/images/homepage/degustacao/degustacao-4.png"}
-              alt="Ícone indicando que um item na lista está preenchido"
+              alt="Imagem de um livro aberto com a capa virada para frente"
               className={"imgOnHover"}
             />
           </div>
@@ -422,7 +422,7 @@ export default function Home({
               width={2084}
               height={2323}
               src={"/images/homepage/periodicos/SAM.webp"}
-              alt="Ícone indicando que um item na lista está preenchido"
+              alt="Foto do livro Solução em direito administrativo e municipal"
               className={"imgOnHover"}
             />
           </div>
@@ -436,7 +436,7 @@ export default function Home({
               width={2084}
               height={2323}
               src={"/images/homepage/periodicos/SLC.webp"}
-              alt="Ícone indicando que um item na lista está preenchido"
+              alt="Foto do livro Solução em licitações e contrato"
               className={"imgOnHover"}
             />
           </div>
