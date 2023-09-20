@@ -49,7 +49,7 @@ export default function Navbar() {
                             >
                               <Menu.Item>
                                 <Link href={"/solucoes-inovadoras"}>
-                                  Orientaçoes SGP
+                                  Orientações SGP
                                 </Link>
                               </Menu.Item>
                               <Menu.Item>
