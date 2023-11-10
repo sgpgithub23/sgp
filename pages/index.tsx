@@ -884,10 +884,10 @@ export default function Home({
 }
 export async function getServerSideProps() {
   try {
-    const bannersCarouselResponse = await fetch("https://sgpsolucoes.com.br/crm/api/?action=1&model=bannerscarousel");
+    const bannersCarouselResponse = await fetch("https://sgpsolucoes.com.br/crm/api/?action=1&model=imagensBannersCarousel");
     const bannersCarouselData = await bannersCarouselResponse.json();
     const [clientesResponse, depoimentosResponse] = await Promise.all([
-      fetch("https://sgpsolucoes.com.br/crm/api/?action=1&model=logosclientesempresas"),
+      fetch("https://sgpsolucoes.com.br/crm/api/?action=1&model=logosClientesEmpresas"),
       fetch("https://sgpsolucoes.com.br/crm/api/?action=1&model=depoimentos"),
     ]);
 
@@ -924,8 +924,8 @@ export async function getServerSideProps() {
 
     if (errosDepoimentos.length === 0) {
       depoimentosFiltrados = depoimentosData.filter(
-        (x:Depoimento) => x.nomedepoente.trim() !== "" && x.empresa.trim() !== ""
-      );
+        (x: Depoimento) => x.nomedepoente?.trim() !== "" && x.empresa?.trim() !== ""
+      );      
     }
 
     return {
