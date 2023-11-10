@@ -24,7 +24,7 @@ export async function getStaticProps() {
   let errorsCursosTreinamentos: any[] = [];
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=temascursostreinamentos`
+    `${process.env.NEXT_PUBLIC_GET_INFOS_SGP_CONTATO}?action=1&model=temasCursosTreinamentos`
   );
   let cursosTreinamentos: CursosTreinamentosRequisicao[] = await res.json();
 
