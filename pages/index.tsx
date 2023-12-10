@@ -529,63 +529,55 @@ export default function Home({
         <div className={styles.quemsomos}>
           <div className={styles.textoEImagem}>
             <div className={styles.descricao}>
-              <h1>Quem somos, um pouco da história da SGP. </h1>
+              <h1>Um pouco da história da SGP. </h1>
               <hr />
               <div className={styles.historiaSgp}>
                 <p>
-                  Experientes profissionais dos segmentos de Cursos e
-                  Treinamentos de capacitação profissional, Editoração,
-                  Assessoramento Tecnico-Jurídico e Vendas para a Poder Público
-                  uniram esforços em uma nova e arrojada empreitada, com o
-                  intuito de continuar a atualizar, informar, capacitar e trazer
-                  as mais variadas Soluções inovadoras e de alta qualidade aos
-                  profissionais que atuam na área do Direito Público.
+                  Experientes profissionais dos segmentos de Cursos e Treinamentos para capacitação profissional, Editoração, Assessoramento Técnico-Jurídico e Vendas para o Poder Público uniram esforços em uma nova e arrojada empreitada, com o intuito de atualizar, informar, capacitar e trazer as mais variadas 
+                  <span>Soluções inovadoras</span> e de alta qualidade aos profissionais que atuam na área do Direito Público.
                 </p>
                 <p className={styles.descricaoPt2}>
                   {" "}
-                  Assim nasceu a SGP – Soluções em Gestão Pública, uma empresa
-                  que veio inovar no mercado de eventos técnicos e jurídicos,
-                  capacitação e aperfeiçoamento profissional, editoração de
-                  periódicos mensais nas áreas das Licitações e Contratos,
-                  Direito Administrativo, Direito Municipal, Direito Tributário,
-                  Direito Constitucional, Direito Eleitoral, Direito Urbanístico
-                  e Direito Público como um todo, bem como livros de alta
-                  relevância para a Administração Pública.
+                 Assim nasceu a SGP – Soluções em Gestão Pública, uma empresa que veio inovar no mercado de eventos técnicos e jurídicos, capacitação e aperfeiçoamento profissional, editoração de periódicos mensais nas áreas de Licitações e Contratos, Direito Administrativo, Direito Municipal, Direito Tributário, Direito Constitucional, 
+                  Direito Eleitoral, Direito Urbanístico e Direito Público como um todo, bem como livros de alta relevância para a Administração Pública.
                 </p>
                 <p>
-                  E não parou por aí... A SGP avançou e expandiu suas Soluções,
-                  passando a atuar em diversos segmentos de Assessoramentos
-                  Técnicos e Jurídicos, por escrito, de forma presencial ou
-                  on-line, sob os mais variados temas.{" "}
+                  Fornecemos aos nossos clientes, por meio de assinatura anual, os periódicos técnico-jurídicos mais completos e inovadores: o SLC – Solução em Licitações e Contratos e o SAM – Solução em Direito Administrativo e Municipal, ambos compostos por seções editoriais exclusivas, entrevistas com ilustres mestres do direito contemporâneo, trazendo novas perspectivas sobre os mais importantes temas do dia a dia do direito; respostas objetivas e minuciosamente selecionadas a questionamentos apresentados aos nossos advogados e consultores; jurisprudência atual nas áreas das Licitações e Contratos, Direito Administrativo, Direito Municipal, Direito Tributário, Direito Constitucional, Direito Eleitoral, Direito Urbanístico e Direito Público como um todo; artigos, pareceres e demais peças jurídicas dos melhores autores do Direito Público brasileiro, com temáticas sempre atuais e que estão sendo amplamente discutidas.
+{" "}
                 </p>
                 <p>
-                  Tanto nos Cursos e Treinamentos quanto nas mais diversas
-                  formas de Assessoramento, a SGP conta com uma equipe altamente
-                  qualificada em cada segmento, detentora de um know-how
-                  singular, obtido ao longo de mais de 25 anos de experiência no
-                  segmento da boa Gestão Pública.{" "}
+                 Os assinantes dos periódicos SLC – Solução em Licitações e Contratos e SAM – Solução em Direito Administrativo e Municipal poderão contar com a nossa Orientação SGP, que atua nas áreas do Direito Administrativo, Direito Municipal, Direito Tributário, Recursos Humanos, Departamento Pessoal, eSocial, Contabilidade e Contabilidade Pública, Organização Contábil, Gestão, Controle Financeiro, Encerramento de Exercício, Prestação de Contas, AUDESP, dentre outros assuntos correlatos, sendo composta por profissionais altamente especializados e capacitados.
+{" "}
                 </p>
                 <p>
-                  Sempre pensando em novas Soluções, a SGP também oferece a mais
-                  completa Pós-Graduação: MBA Lato Sensu On-Line em Licitações e
-                  Contratações da Administração Pública, com um quadro de
-                  professores de fazer inveja, composto de 70% de Pós-Doutores,
-                  Doutores e Mestres na sua área de atuação.{" "}
+                  E não parou por aí... A SGP avançou e expandiu suas Soluções, passando a atuar em diversos segmentos de Assessoramentos Técnicos e Jurídicos, por escrito, de forma presencial ou on-line, sob os mais variados temas.
+{" "}
                 </p>
                 <p>
-                  Mais recentemente, a fim de aproveitar ainda mais sua equipe
-                  altamente qualificada, a SGP apresentou ao mercado sua mais
-                  nova Solução: a elaboração de minutas de regulamentos da nova
-                  Lei de Licitações e Contratos (Lei nº 14.133/2021), bem como a
-                  elaboração de minutas de Regimentos Internos, Leis Orgânicas
-                  Municipais, Estatutos de Servidores Públicos Municipais e
-                  Reestruturação de Cargos e Salários dos Servidores Municipais.
+                  Tanto nos Cursos e Treinamentos quanto nas mais diversas formas de Assessoramento, a SGP conta com uma equipe altamente qualificada em cada segmento, detentora de um know-how singular, obtido ao longo de mais de mais de 25 anos de experiência no segmento da boa Gestão Pública.
+
                 </p>
                 <p>
-                  Esta é a SGP, uma empresa que dia após dia se reinventa,
-                  buscando sempre o seu aperfeiçoamento, a fim de cada vez mais
-                  criar Soluções inovadoras e eficazes para uma Gestão Pública
-                  de excelência.{" "}
+                  Sempre pensando em novas Soluções, a SGP também oferece a mais completa Pós-Graduação: MBA Lato Sensu On-Line em Licitações e Contratações da Administração Pública, com um quadro de professores de fazer inveja, composto de 70% de Pós-Doutores, Doutores e Mestres na sua área de atuação.
+{" "}
+                </p>
+                <p>
+                  A fim de aproveitar ainda mais sua equipe altamente qualificada, a SGP apresenta ao mercado uma nova Solução: a prestação de serviços de assessoria e consultoria técnico-profissional especializado, na área do Direito Público, especialmente na elaboração de minutas de regulamentação da nova Lei de Licitações e Contratos (Lei n° 14.133/2021), bem como na elaboração de minutas de Regimentos Internos, Leis Orgânicas Municipais, Estatutos de Servidores Públicos Municipais e Reestruturação de Cargos e 
+                  Salários dos Servidores Municipais.
+                 {" "}
+                </p>
+                <p>
+                  Sabedores das responsabilidades de nossos clientes em suas respectivas áreas de atuação, 
+                  buscamos priorizar suas necessidades, oferecer a qualidade exigida e sanar dúvidas mediante Soluções com o rigor técnico necessário.
+                 {" "}
+                </p>
+                <p>
+                  Esta é a SGP, uma empresa que dia após dia se reinventa, buscando sempre o melhor aperfeiçoamento, a fim de constantemente criar Soluções inovadoras e verdadeiramente eficazes para uma gestão pública de excelência.
+                  {" "}
+                </p>
+                <p>
+                  Nossa missão é atualizar, informar, capacitar, trazer inovações e apresentar Soluções efetivas e seguras para todos os profissionais envolvidos com a Administração Pública.
+                 {" "}
                 </p>
               </div>
             </div>
